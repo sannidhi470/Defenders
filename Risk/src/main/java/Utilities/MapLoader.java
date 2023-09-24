@@ -82,7 +82,20 @@ public class MapLoader {
         		l_neighbouringCountries.put(Integer.parseInt(l_borderStringArr[0]),l_neighbours );
         	}
    		
-   		
+   		for(int i=l_countryLength+1;i<l_borderLength-1;i++)
+   		{
+   			//System.out.println(i);
+   			String a=l_fileContent.get(i);
+   			//System.out.println(a);
+  		    String[] aArr=a.split(" ");
+  		    Country obj=new Country();
+  		    obj.setD_countryId(Integer.parseInt(aArr[0]));
+  		    obj.setD_countryName(aArr[1]);
+  		    obj.setD_continentId(Integer.parseInt(aArr[2]));
+  		    obj.setD_neighbours(Integer.parseInt(aArr[0]), l_neighbouringCountries);
+     		l_countryList.add(obj);
+   			
+   		}
    		
 
 	}
