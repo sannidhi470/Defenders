@@ -97,6 +97,29 @@ public class MapLoader {
    			
    		}
    		
+   		int l_continentId=1;
+   		
+   		for(int i=l_continentLength+1;i<l_countryLength-1;i++)
+   		{
+   			String a=l_fileContent.get(i);
+   			String[] aArr=a.split(" ");
+   			Continent l_continentObj=new Continent();
+   			//System.out.println(aArr[0]+" "+aArr[1]);
+   			l_continentObj.setD_continentId(l_continentId);
+   			l_continentObj.setD_continentName(aArr[0]);
+   			l_continentObj.setD_continentArmyValue(Integer.parseInt(aArr[1]));
+   			l_continentObj.setD_countries(l_continentObj.d_getCountryFromContinentId(l_continentId, l_countryList));
+   			l_continentId++;
+   			continentList.add(l_continentObj);
+   			
+   		}
+        	
+        }
+      
+       catch(Exception e)
+       {
+    	   
+       }
 
 	}
 
