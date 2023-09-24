@@ -120,7 +120,68 @@ public class MapLoader {
        {
     	   
        }
-
+       
+       try
+       {
+    	   for(int i=0;i<continentList.size();i++)
+    	   {
+    		   
+    		   System.out.println("Continent: "+ continentList.get(i).getD_continentName()+" | "+"Army Count: "+continentList.get(i).getD_continentArmyValue());
+    		   
+    		   for(int j=0;j<continentList.get(i).getD_countries().size();j++)
+    		   {
+                   Country l_country= continentList.get(i).getD_countries().get(j);
+                   System.out.println();
+    			   System.out.println("Country: "+l_country.getD_countryName());
+    			   ArrayList<Integer> l_neighbourID = l_country.getD_neighbours();
+    			   System.out.print("Neighbour Countries: ");
+    			   for(Integer f: l_neighbourID)
+    			   {
+    				   System.out.print(l_country.get_nameFromId(l_countryList,f)+" ");
+    			   }
+    			  System.out.println();
+    		   }
+    		   System.out.println("________________________________________");
+    		   
+    	   }
+    	   
+       } 
+       catch (Exception e)
+       {
+		// TODO: handle exception
+       }
+       
+       try
+       {
+    	   for(int i=0;i<continentList.size();i++)
+    	   {
+    		   
+    		   System.out.println("Continent: "+ continentList.get(i).getD_continentName()+" | "+"Army Count: "+continentList.get(i).getD_continentArmyValue());
+    		   
+    		   for(int j=0;j<continentList.get(i).getD_countries().size();j++)
+    		   {
+                   Country l_country= continentList.get(i).getD_countries().get(j);
+                   System.out.println();
+    			   System.out.println("Country: "+l_country.getD_countryName());
+    			   ArrayList<Integer> l_neighbourID = l_country.getD_neighbours();
+    			   System.out.print("Neighbour Countries: ");
+    			   for(Integer f: l_neighbourID)
+    			   {
+    				   System.out.print(l_country.get_nameFromId(l_countryList,f)+" ");
+    			   }
+    			  System.out.println();
+    		   }
+    		   System.out.println("________________________________________");
+    		   
+    	   }
+    	   
+       } 
+       catch (Exception e)
+       {
+		// TODO: handle exception
+       }
+       
+       
 	}
 
 }
