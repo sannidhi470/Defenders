@@ -66,7 +66,21 @@ public class MapLoader {
    			}
    		}
    		
-   		
+   		HashMap<Integer,ArrayList<Integer>> l_neighbouringCountries=new HashMap<Integer,ArrayList<Integer>>(); 
+        for(int i=l_borderLength+1; i<l_fileContent.size(); i++) {
+        	String a = l_fileContent.get(i);
+        	String[] aArr=a.split(",");
+        	String l_borderString=aArr[0];
+        	String[] l_borderStringArr=l_borderString.split(" ");
+        	ArrayList<Integer> l_neighbours=new ArrayList<Integer>();
+        	for(int j=1;j<l_borderStringArr.length;j++)
+        	{
+        		l_neighbours.add(Integer.parseInt(l_borderStringArr[j]));
+        			
+        	}
+
+        		l_neighbouringCountries.put(Integer.parseInt(l_borderStringArr[0]),l_neighbours );
+        	}
    		
    		
    		
