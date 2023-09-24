@@ -35,7 +35,43 @@ public class MapLoader {
             System.err.println(e.getMessage());
         }
        
+     //Loading Map entered by User
+       try {
+   		l_input= new Scanner(new File(l_fileName));
+   		ArrayList<String> l_fileContent=new ArrayList<String>();
+   		while(l_input.hasNextLine())
+   		{
+   			l_fileContent.add(l_input.nextLine());
+   		}
+   		int l_parser=0;
+   		int l_continentLength = 0;
+   		int l_countryLength=0;
+   		int l_borderLength=0;
+   		for(int i=0;i<l_fileContent.size();i++)
+   		{
+   			String a=l_fileContent.get(i);
+   			//System.out.println(a);
+   			if(a.equals("[continents]"))
+   			{
+   				l_continentLength=i;
+   			}
+   			if(a.equals("[countries]"))
+   			{
+   				l_countryLength=i;
+   			}
+   			if(a.equals("[borders]"))
+   			{
+   				l_borderLength=i;
+   				
+   			}
+   		}
+   		
+   		
+   		
+   		
+   		
 
 	}
 
 }
+
