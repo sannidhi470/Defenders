@@ -74,18 +74,24 @@ public class MapEditor {
 //		current_country.setD_neighbours(Integer.parseInt(p_countryId), l_neighbouringCountries);
 		
 	}
-	public static void removeContinent(String p_continentId,String[] p_userCommand,Connectivity p_connectivity)
+	
+	public static void removeNeighbour(int p_countryId,int p_neighbourcountryId, Map p_map,Connectivity p_connectivity)
 	{
-		if(p_connectivity.getD_continentList().size()==0)
+		
+		for(int i=0;i<p_connectivity.getD_countryList().size();i++)
 		{
-			 System.out.println("No continents present");
+			if(p_connectivity.getD_countryList().get(i).getD_countryId()==p_countryId)
+			{
+				for(int j=0;j<p_connectivity.getD_countryList().get(i).getD_neighbours().size();j++)
+				{
+					if(p_neighbourcountryId==p_connectivity.getD_countryList().get(i).getD_neighbours().get(j))
+					{
+						p_connectivity.getD_countryList().get(i).getD_neighbours().remove(j);
+					}
+				}
+			}
 		}
-		else
-		{
-			
-		}
-	}
-	public static void main(String[] args) {
 		
 	}
+	
 }
