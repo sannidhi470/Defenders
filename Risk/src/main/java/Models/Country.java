@@ -8,7 +8,7 @@ public class Country {
 	private int d_countryId;
 	private String d_countryName;
 	private int d_continentId;
-	private ArrayList<Integer> d_neighbours;
+	private ArrayList<Integer> d_neighbours=new ArrayList<>();
 	public Country()
 	{
 		
