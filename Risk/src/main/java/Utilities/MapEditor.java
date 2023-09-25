@@ -112,5 +112,30 @@ public class MapEditor {
 			removeNeighbour(p_connectivity.getD_countryList().get(i).getD_countryId(),l_requiredCountryId,p_map,p_connectivity);
 		}
 	}
+	public static void removeContinent(String p_continentId,Map p_map,Connectivity p_connectivity)
+	{
+		int l_requiredContinentId=0;
+		for(int i=0;i<p_connectivity.getD_continentList().size();i++)
+		{
+			System.out.println(p_connectivity.getD_continentList());
+			System.out.println(p_connectivity.getD_countryList());
+			if(p_connectivity.getD_continentList().get(i).getD_continentName().equals(p_continentId))
+			{
+				l_requiredContinentId=p_connectivity.getD_continentList().get(i).getD_continentId();
+				p_connectivity.getD_continentList().remove(i);
+			}
+		}
+		for(int j=p_connectivity.getD_countryList().size()-1;j>=0;j--)
+		{
+			System.out.println(p_connectivity.getD_countryList());
+
+			if(p_connectivity.getD_countryList().get(j).getD_continentId()==l_requiredContinentId)
+			{
+				removeCountry(p_connectivity.getD_countryList().get(j).getD_countryName(),p_map,p_connectivity);
+			}
+			
+		}
+		
+	}	
 	
 }
