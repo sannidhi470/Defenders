@@ -94,4 +94,23 @@ public class MapEditor {
 		
 	}
 	
+	public static void removeCountry(String p_countryId,Map p_map,Connectivity p_connectivity)
+	{
+		int l_requiredCountryId=0;
+		for(int i=0;i<p_connectivity.getD_countryList().size();i++)
+		{
+			
+			if(p_countryId.equals(p_connectivity.getD_countryList().get(i).getD_countryName()))
+			{
+				l_requiredCountryId=p_connectivity.getD_countryList().get(i).getD_countryId();
+				p_connectivity.getD_countryList().remove(i);
+			}
+
+		}
+		for(int i=0;i<p_connectivity.getD_countryList().size();i++)
+		{
+			removeNeighbour(p_connectivity.getD_countryList().get(i).getD_countryId(),l_requiredCountryId,p_map,p_connectivity);
+		}
+	}
+	
 }
