@@ -44,3 +44,48 @@ public class MapEditor {
 			
 			
 	}
+	
+	public static void addNeighbour(int p_countryId,int p_neighbourcountryId, Map p_map,Connectivity p_connectivity) throws IOException
+	{
+		if(p_connectivity.getD_continentList().size()==0)
+		{
+			System.out.println("Enter the values of continents first..");
+			return;
+		}
+		if(p_connectivity.getD_countryList().size()==0)
+		{
+			System.out.println("Enter the values of countries first..");
+			return;
+		}
+		for(int i=0;i<p_connectivity.getD_countryList().size();i++)
+		{
+			if(p_connectivity.getD_countryList().get(i).getD_countryId()==p_countryId)
+			{
+				p_connectivity.getD_countryList().get(i).getD_neighbours().add(p_neighbourcountryId);
+			}
+		}
+//		HashMap<Integer,ArrayList<Integer>> l_neighbouringCountries = new HashMap<Integer, ArrayList<Integer>>();
+//		ArrayList<Integer> neighbours = new ArrayList<Integer>();
+//		for(int i=0; i<p_neighbourcountryId.length; i++) {
+//			++NeighbourID;
+//			neighbours.add(NeighbourID);
+//		}
+//		l_neighbouringCountries.put(Integer.parseInt(p_countryId), neighbours);
+//		current_country.setD_neighbours(Integer.parseInt(p_countryId), l_neighbouringCountries);
+		
+	}
+	public static void removeContinent(String p_continentId,String[] p_userCommand,Connectivity p_connectivity)
+	{
+		if(p_connectivity.getD_continentList().size()==0)
+		{
+			 System.out.println("No continents present");
+		}
+		else
+		{
+			
+		}
+	}
+	public static void main(String[] args) {
+		
+	}
+}
