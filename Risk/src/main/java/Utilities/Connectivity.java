@@ -10,6 +10,25 @@ public class Connectivity {
 	
 	private List<Country> d_countryList;
 
+	private String d_pathName;
+	
+	private String d_FilepathName;
+
+	public String getD_FilepathName() {
+		return d_FilepathName;
+	}
+
+	public void setD_FilepathName(String d_FilepathName) {
+		this.d_FilepathName = d_FilepathName;
+	}
+
+	public String getD_pathName() {
+		return d_pathName;
+	}
+
+	public void setD_pathName(String d_pathName) {
+		this.d_pathName = d_pathName;
+	}
 
 	public List<Continent> getD_continentList() { 
 		return d_continentList;
