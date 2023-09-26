@@ -7,27 +7,27 @@ public class GameState {
 	List<Order> d_OrdersRemaining;
 	String d_error;
 	
-	public List<Player> getd_players() 
+	public List<Player> get_players() 
 	{
 		return d_players;
 	}
 	
-	public void setd_players(List<Player> p_players) 
+	public void set_players(List<Player> p_players) 
 	{
 		this.d_players = p_players;
 	}
 
-	public List<Order> getd_unexecutedOrders() 
+	public List<Order> get_unexecutedOrders() 
 	{
-		return d_OrdersRemaining;
+		return _OrdersRemaining;
 	}
 	
-	public void setd_unexecutedOrders(List<Order> p_OrdersRemaining) 
+	public void set_unexecutedOrders(List<Order> p_OrdersRemaining) 
 	{
 		this.d_OrdersRemaining = p_OrdersRemaining;
 	}
 	
-	public Map getd_map() {
+	public Map get_map() {
 		return d_map;
 	}
 	
