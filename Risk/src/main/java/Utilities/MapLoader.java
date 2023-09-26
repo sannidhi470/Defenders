@@ -9,6 +9,7 @@ import Models.Map;
 import Services.MapCheck;
 import Services.MapCreater;
 import Services.SaveMap;
+import dnl.utils.text.table.TextTable;
 public class MapLoader {
 
 	public static void main(String[] args) throws IOException {
@@ -136,6 +137,9 @@ public class MapLoader {
     	       
     	       try
     	       {
+    	    	   Map.viewMap(continentList, l_countryList);
+    	    	   
+    	    	   
     	    	   for(int i=0;i<continentList.size();i++)
     	    	   {
     	    		   
@@ -190,6 +194,7 @@ public class MapLoader {
     		 }
     		 MapEditor.addContinent(splitAgain[1],Integer.parseInt(splitAgain[2]), l_connectivity, l_map);
     	 }
+    	 
     	 UserCommand="editcountry -add India 1";
     	  userCommandSplit=UserCommand.split("-");
     	 if(userCommandSplit[0].equals("editcountry "))
@@ -227,6 +232,7 @@ public class MapLoader {
   		 MapEditor.addNeighbour(Integer.parseInt(splitAgain[1]),Integer.parseInt(splitAgain[2]), l_map, l_connectivity);
   	 }
     	 SaveMap.saveMap(l_connectivity);
+  	   	//Map.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList());
      }
      
       
