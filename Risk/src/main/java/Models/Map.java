@@ -26,37 +26,37 @@ public class Map {
 		this.d_mapExist = d_mapExist;
 	}
 	
-	public static void viewMap(ArrayList<Continent> continentList, ArrayList<Country> l_countryList) {
- 	   String[] columnNames = {"Continent", "Country", "Neighbouring Country", "Army Count"};
- 	   String[][] string2DArray = new String[l_countryList.size()][4];
-		   for(int i=0; i<l_countryList.size(); i++) 
+	public static void viewMap(ArrayList<Continent> p_continentList, ArrayList<Country> p_countryList) {
+ 	   String[] l_columnNames = {"Continent", "Country", "Neighbouring Country", "Army Count"};
+ 	   String[][] l_map = new String[p_countryList.size()][4];
+		   for(int l_lineIterator=0; l_lineIterator<p_countryList.size(); l_lineIterator++) 
 		   {
-			   for(int j=0; j<continentList.size(); j++) 
+			   for(int l_continentIterator=0; l_continentIterator<p_continentList.size(); l_continentIterator++) 
 			   {
-				   for(int k=0;k<continentList.get(j).getD_countries().size();k++)
+				   for(int l_countryIterator=0;l_countryIterator<p_continentList.get(l_continentIterator).getD_countries().size();l_countryIterator++)
 	    		   {
-					   if(k==0) 
+					   if(l_countryIterator==0) 
 					   {
-						   string2DArray[i][0] = continentList.get(j).getD_continentName();
+						   l_map[l_lineIterator][0] = p_continentList.get(l_continentIterator).getD_continentName();
 					   }
-				   	   Country l_country= continentList.get(j).getD_countries().get(k);
+				   	   Country l_country= p_continentList.get(l_continentIterator).getD_countries().get(l_countryIterator);
 
-				   	   string2DArray[i][1] = l_country.getD_countryName();
+				   	   l_map[l_lineIterator][1] = l_country.getD_countryName();
 				   	   ArrayList<Integer> l_neighbourID = l_country.getD_neighbours();
-				   	   String temp="";
+				   	   String l_tempNeighbours="";
 				   	   for(Integer f: l_neighbourID)
 	    			   {
-	    				    temp = temp + " "+l_country.get_nameFromId(l_countryList,f)+",";
+				   		l_tempNeighbours = l_tempNeighbours + " "+l_country.get_nameFromId(p_countryList,f)+",";
 	    			   }
-				   	   string2DArray[i][2] = temp;
-				   	   string2DArray[i][3] = Integer.toString(continentList.get(j).getD_continentArmyValue());
-				   	   i=i+1;
+				   	   l_map[l_lineIterator][2] = l_tempNeighbours;
+				   	   l_map[l_lineIterator][3] = Integer.toString(p_continentList.get(l_continentIterator).getD_continentArmyValue());
+				   	l_lineIterator=l_lineIterator+1;
 	    		   }
 			   }
 		   }
 
-		   TextTable tt = new TextTable(columnNames, string2DArray);
-		   tt.printTable();	
+		   TextTable l_tableview = new TextTable(l_columnNames, l_map);
+		   l_tableview.printTable();	
 	}
 	
 	
