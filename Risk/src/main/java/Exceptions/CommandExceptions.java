@@ -2,16 +2,16 @@ package Exceptions;
 
 public class CommandExceptions extends Exception
 	{  	
-	    public CommandExceptions (String str)  
+	    public CommandExceptions (String p_str)  
 	    {    
-	        super(str);  
+	        super(p_str);  
 	    }  
 	}  
 	     
 class Exception1  
 	{   
-	    static void validate (String command) throws CommandExceptions{    
-	      if(command == ""){  
+	    static void validate (String p_command) throws CommandExceptions{    
+	      if(p_command == ""){  
 	    	  throw new CommandExceptions("Enter a valid command!");    
 	      }  
 	      else {   
