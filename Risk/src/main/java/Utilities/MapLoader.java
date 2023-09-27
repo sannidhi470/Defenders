@@ -12,15 +12,17 @@ import Services.SaveMap;
 import dnl.utils.text.table.TextTable;
 public class MapLoader {
 
-	public static void main(String[] args) throws IOException {
+	//public static void main(String[] args) throws IOException 
+	public static void loadMap(Connectivity p_connectivity,String p_mapName) throws IOException
+	{
 		// TODO Auto-generated method stub
-		System.out.print("Enter game command\n");
+		//System.out.print("Enter game command\n");
 		Scanner l_input = new Scanner(System.in);
-		String l_fileName = l_input.nextLine();
+		String l_fileName = p_mapName;
 		String l_copyFileName=l_fileName;
 		ArrayList<Continent> continentList=new ArrayList<Continent>();
 		ArrayList<Country> l_countryList=new ArrayList<Country>();
-		Connectivity l_connectivity=new Connectivity();
+		//Connectivity p_connectivity=new Connectivity();
 		Map l_map=new Map();
 		//Getting file location of map
        try {	   
@@ -29,14 +31,14 @@ public class MapLoader {
   
             // Get the absolute path of file f
             String absolute = f.getAbsolutePath();
-            l_connectivity.setD_pathName(absolute+ File.separator+"src\\main\\resources");
+            p_connectivity.setD_pathName(absolute+ File.separator+"src\\main\\resources");
             // Display the file path of the file object
             // and also the file path of absolute file
           //  System.out.println("Absolute  path: "
           //                    + absolute);
             l_fileName = absolute + File.separator + "src\\main\\resources" + 
             		File.separator + l_fileName+".map";
-            l_connectivity.setD_FilepathName(l_fileName);
+            p_connectivity.setD_FilepathName(l_fileName);
             l_map.setD_mapFileName(l_fileName);
          //   System.out.print(l_fileName);
             
@@ -45,7 +47,7 @@ public class MapLoader {
             System.err.println(e.getMessage());
         }
        
-     if(MapCheck.validateMap(l_copyFileName,l_connectivity.getD_pathName()))
+     if(MapCheck.validateMap(l_copyFileName,p_connectivity.getD_pathName()))
      {
     	//Loading Map entered by User
     	 try {
@@ -161,7 +163,7 @@ public class MapLoader {
     	    		   System.out.println("________________________________________");
     	    		   
     	    	   }
-    	    	   SaveMap.saveMap(l_connectivity);
+    	    	   SaveMap.saveMap(p_connectivity);
     	       } 
     	       catch (Exception e)
     	       {
@@ -176,63 +178,63 @@ public class MapLoader {
 	
      else
      {
-    	 l_connectivity.setD_continentList(new ArrayList<Continent>());
-    	 l_connectivity.setD_countryList(new ArrayList<Country>());
+    	 p_connectivity.setD_continentList(new ArrayList<Continent>());
+    	 p_connectivity.setD_countryList(new ArrayList<Country>());
     	 System.out.println("Map does not exist. Creating a map...");
-    	 System.out.println(l_connectivity.getD_FilepathName());
-    	 System.out.println(l_connectivity.getD_pathName());
-    	 MapCreater.createMap(l_copyFileName,l_connectivity.getD_pathName());
-    	 String UserCommand="editcontinent -add asia 5";
-    	 String[] userCommandSplit=UserCommand.split("-");
-    	 if(userCommandSplit[0].equals("editcontinent "))
-    	 {
-    		
-    		 String[] splitAgain=userCommandSplit[1].split(" ");
-    		 for(String s:splitAgain)
-    		 {
-    			 System.out.println(s);
-    		 }
-    		 MapEditor.addContinent(splitAgain[1],Integer.parseInt(splitAgain[2]), l_connectivity, l_map);
-    	 }
-    	 
-    	 UserCommand="editcountry -add India 1";
-    	  userCommandSplit=UserCommand.split("-");
-    	 if(userCommandSplit[0].equals("editcountry "))
-    	 {
-    		
-    		 String[] splitAgain=userCommandSplit[1].split(" ");
-    		 for(String s:splitAgain)
-    		 {
-    			 System.out.println(s);
-    		 }
-    		 MapEditor.addCountry(splitAgain[1],splitAgain[2], l_map, l_connectivity);
-    	 }
-    	 UserCommand="editcountry -add SriLanka 1";
-   	  userCommandSplit=UserCommand.split("-");
-   	 if(userCommandSplit[0].equals("editcountry "))
-   	 {
-   		
-   		 String[] splitAgain=userCommandSplit[1].split(" ");
-   		 for(String s:splitAgain)
-   		 {
-   			 System.out.println(s);
-   		 }
-   		 MapEditor.addCountry(splitAgain[1],splitAgain[2], l_map, l_connectivity);
-   	 }
-   	 UserCommand="editneighbor -add 1 2";
-  	  userCommandSplit=UserCommand.split("-");
-  	 if(userCommandSplit[0].equals("editneighbor "))
-  	 {
-  		
-  		 String[] splitAgain=userCommandSplit[1].split(" ");
-  		 for(String s:splitAgain)
-  		 {
-  			 System.out.println(s);
-  		 }
-  		 MapEditor.addNeighbour(Integer.parseInt(splitAgain[1]),Integer.parseInt(splitAgain[2]), l_map, l_connectivity);
-  	 }
-    	 SaveMap.saveMap(l_connectivity);
-  	   	//Map.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList());
+    	 System.out.println(p_connectivity.getD_FilepathName());
+    	 System.out.println(p_connectivity.getD_pathName());
+    	 MapCreater.createMap(l_copyFileName,p_connectivity.getD_pathName());
+//    	 String UserCommand="editcontinent -add asia 5";
+//    	 String[] userCommandSplit=UserCommand.split("-");
+//    	 if(userCommandSplit[0].equals("editcontinent "))
+//    	 {
+//    		
+//    		 String[] splitAgain=userCommandSplit[1].split(" ");
+//    		 for(String s:splitAgain)
+//    		 {
+//    			 System.out.println(s);
+//    		 }
+//    		 MapEditor.addContinent(splitAgain[1],Integer.parseInt(splitAgain[2]), p_connectivity);
+//    	 }
+//    	 
+//    	 UserCommand="editcountry -add India 1";
+//    	  userCommandSplit=UserCommand.split("-");
+//    	 if(userCommandSplit[0].equals("editcountry "))
+//    	 {
+//    		
+//    		 String[] splitAgain=userCommandSplit[1].split(" ");
+//    		 for(String s:splitAgain)
+//    		 {
+//    			 System.out.println(s);
+//    		 }
+//    		 MapEditor.addCountry(splitAgain[1],splitAgain[2], p_connectivity);
+//    	 }
+//    	 UserCommand="editcountry -add SriLanka 1";
+//   	  userCommandSplit=UserCommand.split("-");
+//   	 if(userCommandSplit[0].equals("editcountry "))
+//   	 {
+//   		
+//   		 String[] splitAgain=userCommandSplit[1].split(" ");
+//   		 for(String s:splitAgain)
+//   		 {
+//   			 System.out.println(s);
+//   		 }
+//   		 MapEditor.addCountry(splitAgain[1],splitAgain[2], p_connectivity);
+//   	 }
+//   	 UserCommand="editneighbor -add 1 2";
+//  	  userCommandSplit=UserCommand.split("-");
+//  	 if(userCommandSplit[0].equals("editneighbor "))
+//  	 {
+//  		
+//  		 String[] splitAgain=userCommandSplit[1].split(" ");
+//  		 for(String s:splitAgain)
+//  		 {
+//  			 System.out.println(s);
+//  		 }
+//  		 MapEditor.addNeighbour(Integer.parseInt(splitAgain[1]),Integer.parseInt(splitAgain[2]), p_connectivity);
+//  	 }
+    	 SaveMap.saveMap(p_connectivity);
+  	   	//Map.viewMap(p_connectivity.getD_continentList(), p_connectivity.getD_countryList());
      }
      
       

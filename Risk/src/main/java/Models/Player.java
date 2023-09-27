@@ -12,7 +12,10 @@ public class Player {
 	private ArrayList<Country> d_playerCountry;
 	private ArrayList<Order> d_playerOrder;
 	private Order d_order;
-	
+	public Player()
+	{
+		
+	}
 	public Player(String p_playerName, int p_playerId, ArrayList<Country> p_playerCountry,
 			ArrayList<Order> p_playerOrder) {
 		super();

@@ -18,17 +18,17 @@ public class MapEditor {
 	
 	//static int NeighbourID=0;
 	
-	public static void addContinent(String p_continentId,int p_continentvalue,Connectivity p_connectivity,Map p_map) throws IOException
+	public static void addContinent(String p_continentId,int p_continentvalue,Connectivity p_connectivity) throws IOException
 	{
-		
+		System.out.println("hey");
 		    Continent l_continent=new Continent();
 			l_continent.setD_continentId(p_connectivity.getD_continentList().size()+1);
 			l_continent.setD_continentName(p_continentId);
 			l_continent.setD_continentArmyValue(p_continentvalue);
 			p_connectivity.getD_continentList().add(l_continent);
-			
+			System.out.println(p_connectivity);
 	}
-	public static void addCountry(String p_countryId,String p_continentId, Map p_map,Connectivity p_connectivity) throws IOException
+	public static void addCountry(String p_countryId,String p_continentId,Connectivity p_connectivity) throws IOException
 	{
 		Country l_country=new Country();
 		if(p_connectivity.getD_continentList().size()==0)
@@ -45,7 +45,7 @@ public class MapEditor {
 			
 	}
 	
-	public static void addNeighbour(int p_countryId,int p_neighbourcountryId, Map p_map,Connectivity p_connectivity) throws IOException
+	public static void addNeighbour(int p_countryId,int p_neighbourcountryId,Connectivity p_connectivity) throws IOException
 	{
 		if(p_connectivity.getD_continentList().size()==0)
 		{
@@ -75,7 +75,7 @@ public class MapEditor {
 		
 	}
 	
-	public static void removeNeighbour(int p_countryId,int p_neighbourcountryId, Map p_map,Connectivity p_connectivity)
+	public static void removeNeighbour(int p_countryId,int p_neighbourcountryId, Connectivity p_connectivity)
 	{
 		
 		for(int i=0;i<p_connectivity.getD_countryList().size();i++)
@@ -94,7 +94,7 @@ public class MapEditor {
 		
 	}
 	
-	public static void removeCountry(String p_countryId,Map p_map,Connectivity p_connectivity)
+	public static void removeCountry(String p_countryId,Connectivity p_connectivity)
 	{
 		int l_requiredCountryId=0;
 		for(int i=0;i<p_connectivity.getD_countryList().size();i++)
@@ -109,10 +109,10 @@ public class MapEditor {
 		}
 		for(int i=0;i<p_connectivity.getD_countryList().size();i++)
 		{
-			removeNeighbour(p_connectivity.getD_countryList().get(i).getD_countryId(),l_requiredCountryId,p_map,p_connectivity);
+			removeNeighbour(p_connectivity.getD_countryList().get(i).getD_countryId(),l_requiredCountryId,p_connectivity);
 		}
 	}
-	public static void removeContinent(String p_continentId,Map p_map,Connectivity p_connectivity)
+	public static void removeContinent(String p_continentId,Connectivity p_connectivity)
 	{
 		int l_requiredContinentId=0;
 		for(int i=0;i<p_connectivity.getD_continentList().size();i++)
@@ -131,7 +131,7 @@ public class MapEditor {
 
 			if(p_connectivity.getD_countryList().get(j).getD_continentId()==l_requiredContinentId)
 			{
-				removeCountry(p_connectivity.getD_countryList().get(j).getD_countryName(),p_map,p_connectivity);
+				removeCountry(p_connectivity.getD_countryList().get(j).getD_countryName(),p_connectivity);
 			}
 			
 		}
