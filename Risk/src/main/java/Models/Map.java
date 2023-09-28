@@ -27,7 +27,13 @@ public class Map {
 	}
 	
 	public static void viewMap(ArrayList<Continent> p_continentList, ArrayList<Country> p_countryList) {
+		
  	   String[] l_columnNames = {"Continent", "Country", "Neighbouring Country", "Army Count"};
+ 	   if(p_continentList.size() == 0)
+ 	   {
+ 		   System.out.println("No continents or countries exist in the map");
+ 		   return;
+ 	   }
  	   String[][] l_map = new String[p_countryList.size()][4];
 		   for(int l_lineIterator=0; l_lineIterator<p_countryList.size(); l_lineIterator++) 
 		   {
@@ -54,9 +60,17 @@ public class Map {
 	    		   }
 			   }
 		   }
+		   
+		   if(p_countryList.size() == 0 && p_continentList.size()!= 0)
+	 	   {
+	 		  l_map = new String[p_continentList.size()][4];
+	 		  l_map[0][0] = p_continentList.get(0).getD_continentName();
+	 		  l_map[0][3] = Integer.toString(p_continentList.get(0).getD_continentArmyValue());
+	 	   }
 
 		   TextTable l_tableview = new TextTable(l_columnNames, l_map);
-		   l_tableview.printTable();	
+		   l_tableview.printTable();
+		   System.out.println();
 	}
 	
 	

@@ -129,7 +129,11 @@ public class MapLoader {
     	   			continentList.add(l_continentObj);
     	   			
     	   		}
-    	        	
+    	   		
+    	   	 
+    	        	p_connectivity.setD_continentList(continentList);
+    	        	p_connectivity.setD_countryList(l_countryList);
+    	        	//Map.viewMap(p_connectivity.getD_continentList(), p_connectivity.getD_countryList());
     	        }
     	      
     	       catch(Exception e)
@@ -139,35 +143,39 @@ public class MapLoader {
     	       
     	       try
     	       {
-    	    	   Map.viewMap(continentList, l_countryList);
+    	    	  
+    	    	  
     	    	   
-    	    	   
-    	    	   for(int i=0;i<continentList.size();i++)
-    	    	   {
-    	    		   
-    	    		   System.out.println("Continent: "+ continentList.get(i).getD_continentName()+" | "+"Army Count: "+continentList.get(i).getD_continentArmyValue());
-    	    		   
-    	    		   for(int j=0;j<continentList.get(i).getD_countries().size();j++)
-    	    		   {
-    	                   Country l_country= continentList.get(i).getD_countries().get(j);
-    	                   System.out.println();
-    	    			   System.out.println("Country: "+l_country.getD_countryName());
-    	    			   ArrayList<Integer> l_neighbourID = l_country.getD_neighbours();
-    	    			   System.out.print("Neighbour Countries: ");
-    	    			   for(Integer f: l_neighbourID)
-    	    			   {
-    	    				   System.out.print(l_country.get_nameFromId(l_countryList,f)+" ");
-    	    			   }
-    	    			  System.out.println();
-    	    		   }
-    	    		   System.out.println("________________________________________");
-    	    		   
-    	    	   }
-    	    	   SaveMap.saveMap(p_connectivity);
+//    	    	   Map.viewMap(continentList, l_countryList);
+//    	    	   for(int i=0;i<continentList.size();i++)
+//    	    	   {
+//    	    		   
+//    	    		   System.out.println("Continent: "+ continentList.get(i).getD_continentName()+" | "+"Army Count: "+continentList.get(i).getD_continentArmyValue());
+//    	    		   
+//    	    		   for(int j=0;j<continentList.get(i).getD_countries().size();j++)
+//    	    		   {
+//    	                   Country l_country= continentList.get(i).getD_countries().get(j);
+//    	                   System.out.println();
+//    	    			   System.out.println("Country: "+l_country.getD_countryName());
+//    	    			   ArrayList<Integer> l_neighbourID = l_country.getD_neighbours();
+//    	    			   System.out.print("Neighbour Countries: ");
+//    	    			   for(Integer f: l_neighbourID)
+//    	    			   {
+//    	    				   System.out.print(l_country.get_nameFromId(l_countryList,f)+" ");
+//    	    			   }
+//    	    			  System.out.println();
+//    	    		   }
+//    	    		   System.out.println("________________________________________");
+//    	    		   
+//    	    	   }
+    	    	   //SaveMap.saveMap(p_connectivity);
+    	    	   System.out.println("Map "+p_mapName+".map"+" has been successfully loaded...");
     	       } 
     	       catch (Exception e)
     	       {
     			// TODO: handle exception
+    	    	   System.out.println("Map could not be loaded properly");
+    	    	   return;
     	       }
     	       
     	 

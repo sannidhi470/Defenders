@@ -6,9 +6,9 @@ import Models.Country;
 
 public class Connectivity {
 
-    private List<Continent> d_continentList;
+    private ArrayList<Continent> d_continentList;
 	
-	private List<Country> d_countryList;
+	private ArrayList<Country> d_countryList;
 
 	private String d_pathName;
 	
@@ -30,19 +30,19 @@ public class Connectivity {
 		this.d_pathName = d_pathName;
 	}
 
-	public List<Continent> getD_continentList() { 
+	public ArrayList<Continent> getD_continentList() { 
 		return d_continentList;
 	}
 
-	public void setD_continentList(List<Continent> d_continentList) {
+	public void setD_continentList(ArrayList<Continent> d_continentList) {
 		this.d_continentList = d_continentList;
 	}
 
-	public List<Country> getD_countryList() {
+	public ArrayList<Country> getD_countryList() {
 		return d_countryList;
 	}
 
-	public void setD_countryList(List<Country> d_countryList) {
+	public void setD_countryList(ArrayList<Country> d_countryList) {
 		this.d_countryList = d_countryList;
 	}
 }

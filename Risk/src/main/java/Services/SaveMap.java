@@ -45,7 +45,7 @@ public class SaveMap {
 		
 		l_input.close();
 		
-		  
+		 System.out.println("Map has been successfully saved"); 
 		  
 	}
 	

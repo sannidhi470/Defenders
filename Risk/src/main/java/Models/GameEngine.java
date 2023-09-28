@@ -30,6 +30,8 @@ public class GameEngine {
 				l_option = l_sc.next();
 				l_sc.nextLine();
 				flag =1;
+				if(l_option.equals("end"))
+					break;
 			}
 			
 			else if(flag == 1 && l_option.equals("start"))
@@ -116,14 +118,12 @@ public class GameEngine {
 						break;
 						
 					case "showmap":
-						if(l_commands.length == 2)
-						{
+						
+						
+							Map.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList());
 							//function call for "showmap filename" (Map editor command)
-						}
-						else
-						{
-							System.out.println("Invalid Command");
-						}
+						
+					
 						
 						break;
 						
@@ -143,6 +143,8 @@ public class GameEngine {
 						if(l_commands.length == 2)
 						{
 							MapLoader.loadMap(l_connectivity,l_commands[1]);
+						} else {
+							System.out.println("No map entered. Please enter name of map to be loaded");
 						}
 						
 						break;
@@ -190,13 +192,14 @@ public class GameEngine {
 			}
 			else 
 			{
-				System.out.println("Invalid Commands");
+				System.out.println("aaInvalid Commands");
 				flag = 0;
 			}
 			
 		}while(l_option !="end");
 		
 		System.out.println("Thank you for Playing the Game");
+		System.exit(0);
 		
 	}
 ;
