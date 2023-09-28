@@ -9,8 +9,8 @@ public class Player {
 
 	private String d_playerName;
 	private int d_playerId;
-	private ArrayList<Country> d_playerCountry;
-	private ArrayList<Order> d_playerOrder;
+	private ArrayList<Country> d_playerCountry=new ArrayList<>();
+	private ArrayList<Order> d_playerOrder=new ArrayList<>();
 	private Order d_order;
 	public Player()
 	{

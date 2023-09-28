@@ -6,6 +6,7 @@ import Services.SaveMap;
 import Utilities.Connectivity;
 import Utilities.MapEditor;
 import Utilities.MapLoader;
+import Utilities.PlayersGameplay;
 
 public class GameEngine {
 
@@ -155,11 +156,13 @@ public class GameEngine {
 							if(l_commands[i].equals("-add"))
 							{
 								Player l_player = new Player();
+								l_player.setD_playerName(l_commands[i+1]);
 								l_playersArray.add(l_player);
+							
 								i=i+2;
 								
 							}
-							if(l_commands[i].equals("-remove"))
+							else if(l_commands[i].equals("-remove"))
 							{
 								for(int j=0;j<l_playersArray.size();j++)
 								{
@@ -178,7 +181,8 @@ public class GameEngine {
 					case "assigncountries":
 						if(l_playersArray.size()>0)
 						{
-							assigncountries(l_playersArray,l_connectivity.getD_countryList());
+							PlayersGameplay.assigncountries(l_playersArray,l_connectivity.getD_countryList());
+							System.out.println("Countries assigned to players Successfully");
 						}
 						else
 						{
@@ -190,13 +194,7 @@ public class GameEngine {
 					case "deploy":
 						
 						break;
-					//dumy case
-					case "playersCountry":
-						for(Player p:l_playersArray)
-						{
-							playersCountry(p);
-						}
-						
+					
 					default:
 						System.out.println("Invalid Command");
 							
@@ -217,44 +215,8 @@ public class GameEngine {
 		
 	}
 	
-	public static void assigncountries(ArrayList<Player> p_playersArray,ArrayList<Country> p_countryList) 
-	{	
-		int l_num[] = new int[p_playersArray.size()];
-		int sum = 0;
-		
-		while(sum>p_countryList.size())
-		{
-			sum=0;
-			for(int i=0; i<p_playersArray.size(); i++)
-			{
-				int ran = (int) Math.random()*p_countryList.size();
-				sum=sum+ran;
-				l_num[i]=0;
-			}
-			
-		}
-		
-		for(int i=0; i<p_playersArray.size();i++)
-		{
-			for(int j=0; j<l_num[i];j++)
-			{
-				Country l_country = p_countryList.get(j);
-				p_countryList.remove(l_country);
-				
-				p_playersArray.get(i).addCountry(l_country);
-			}
-		}
-		
-		
-		
-	}
 	
 	
-	public static void playersCountry(Player p_player)
-	{
-		ArrayList<Country> l_country = p_player.getD_Country();
-		System.out.println(l_country.toString());
-		
-	}
-
+	
+	
 }
