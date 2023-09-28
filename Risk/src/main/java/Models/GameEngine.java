@@ -195,6 +195,12 @@ public class GameEngine {
 						
 						break;
 					
+					case "playersCountry":
+						for(Player p:l_playersArray)
+						{
+							PlayersGameplay.showPlayersCountry(p);
+						}
+						
 					default:
 						System.out.println("Invalid Command");
 							

@@ -42,5 +42,17 @@ public class PlayersGameplay {
 		
 	}
 	
+	public static void showPlayersCountry(Player p_player)
+	{
+		ArrayList<Country> l_country = new ArrayList<>();
+		System.out.println("Player 1:" + p_player.getD_playerName());
+			l_country=	p_player.getD_Country();
+		for(Country c:l_country)
+		{
+			System.out.println(c.getD_countryName());
+		}
+		
+	}
+	
 
 }
