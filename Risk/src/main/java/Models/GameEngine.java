@@ -30,7 +30,7 @@ public class GameEngine {
 				l_option = l_sc.next();
 				l_sc.nextLine();
 				flag =1;
-				if(l_option.equals("end"))
+				if(l_option.equals("exit"))
 					break;
 			}
 			
@@ -46,8 +46,8 @@ public class GameEngine {
 				{
 					switch(l_commands[0])
 					{
-					case "end":
-						l_option = "end";
+					case "exit":
+						l_option = "exit";
 						break;
 					case "editcontinent":
 						
@@ -176,12 +176,26 @@ public class GameEngine {
 						break;
 						
 					case "assigncountries":
-						//function call
+						if(l_playersArray.size()>0)
+						{
+							assigncountries(l_playersArray,l_connectivity.getD_countryList());
+						}
+						else
+						{
+							System.out.println("No players to assign Countries");
+						}
+						
 						break;
 						
 					case "deploy":
 						
 						break;
+					//dumy case
+					case "playersCountry":
+						for(Player p:l_playersArray)
+						{
+							playersCountry(p);
+						}
 						
 					default:
 						System.out.println("Invalid Command");
@@ -192,15 +206,55 @@ public class GameEngine {
 			}
 			else 
 			{
-				System.out.println("aaInvalid Commands");
+				System.out.println("Invalid Commands");
 				flag = 0;
 			}
 			
-		}while(l_option !="end");
+		}while(l_option !="exit");
 		
 		System.out.println("Thank you for Playing the Game");
 		System.exit(0);
 		
 	}
-;
+	
+	public static void assigncountries(ArrayList<Player> p_playersArray,ArrayList<Country> p_countryList) 
+	{	
+		int l_num[] = new int[p_playersArray.size()];
+		int sum = 0;
+		
+		while(sum>p_countryList.size())
+		{
+			sum=0;
+			for(int i=0; i<p_playersArray.size(); i++)
+			{
+				int ran = (int) Math.random()*p_countryList.size();
+				sum=sum+ran;
+				l_num[i]=0;
+			}
+			
+		}
+		
+		for(int i=0; i<p_playersArray.size();i++)
+		{
+			for(int j=0; j<l_num[i];j++)
+			{
+				Country l_country = p_countryList.get(j);
+				p_countryList.remove(l_country);
+				
+				p_playersArray.get(i).addCountry(l_country);
+			}
+		}
+		
+		
+		
+	}
+	
+	
+	public static void playersCountry(Player p_player)
+	{
+		ArrayList<Country> l_country = p_player.getD_Country();
+		System.out.println(l_country.toString());
+		
+	}
+
 }

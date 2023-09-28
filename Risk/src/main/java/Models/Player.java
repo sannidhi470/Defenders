@@ -52,6 +52,12 @@ public class Player {
 		return d_order;
 	}
 	
+	//new Function
+	public ArrayList<Country> getD_Country()
+	{
+		return d_playerCountry;
+	}
+	
 	public void setD_playerName(String p_playerName) {
 		d_playerName = p_playerName;
 	}
@@ -62,5 +68,12 @@ public class Player {
 	
 	public void setD_Order(Order p_order) {
 		d_order = p_order;
+	}
+	
+	//New Function
+	
+	public void addCountry(Country p_country)
+	{
+		d_playerCountry.add(p_country);
 	}
 }
