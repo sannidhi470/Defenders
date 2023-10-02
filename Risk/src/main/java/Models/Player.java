@@ -11,22 +11,9 @@ public class Player {
 	private int d_playerId;
 	private ArrayList<Country> d_playerCountry=new ArrayList<>();
 	private ArrayList<Order> d_playerOrder=new ArrayList<>();
-	private ArrayList<Continent> d_playerContinent = new ArrayList<>();
-	private int d_armyCount;
-	public int getD_armyCount() {
-		return d_armyCount;
-	}
-	public void setD_armyCount(int d_armyCount) {
-		this.d_armyCount = d_armyCount;
-	}
-	public ArrayList<Continent> getD_playerContinent() {
-		return d_playerContinent;
-	}
-	public void setD_playerContinent(ArrayList<Continent> d_playerContinent) {
-		this.d_playerContinent = d_playerContinent;
-	}
-
 	private Order d_order;
+	private int d_armyCount;
+	private ArrayList<Continent> d_playerContinent=new ArrayList<>();
 	public Player()
 	{
 		
@@ -83,12 +70,27 @@ public class Player {
 	
 	public void setD_Order(Order p_order) {
 		d_order = p_order;
+		this.d_armyCount = this.d_armyCount - p_order.getD_numberOfArmies();
+		System.out.println("Army count chnaged to "+ d_armyCount);
+		
 	}
 	
-	//New Function
 	
 	public void addCountry(Country p_country)
 	{
 		d_playerCountry.add(p_country);
 	}
+	public ArrayList<Continent> getD_playerContinent() {
+		return d_playerContinent;
+	}
+	public void setD_playerContinent(ArrayList<Continent> d_playerContinent) {
+		this.d_playerContinent = d_playerContinent;
+	}
+	public int getD_armyCount() {
+		return d_armyCount;
+	}
+	public void setD_armyCount(int d_armyCount) {
+		this.d_armyCount = d_armyCount;
+	}
+	
 }
