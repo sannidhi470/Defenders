@@ -6,9 +6,9 @@ import Models.Country;
 
 public class Connectivity {
 
-    private ArrayList<Continent> d_continentList;
+    private ArrayList<Continent> d_continentList = new ArrayList<Continent>();
 	
-	private ArrayList<Country> d_countryList;
+	private ArrayList<Country> d_countryList = new ArrayList<Country>();
 
 	private String d_pathName;
 	

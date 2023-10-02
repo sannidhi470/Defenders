@@ -18,23 +18,25 @@ public class MapEditor {
 	
 	//static int NeighbourID=0;
 	
-	public static void addContinent(String p_continentId,int p_continentvalue,Connectivity p_connectivity) throws IOException
+	public static int addContinent(String p_continentId,int p_continentvalue,Connectivity p_connectivity) throws IOException
 	{
-		System.out.println("hey");
+		
+		//System.out.println("hey");
 		    Continent l_continent=new Continent();
 			l_continent.setD_continentId(p_connectivity.getD_continentList().size()+1);
 			l_continent.setD_continentName(p_continentId);
 			l_continent.setD_continentArmyValue(p_continentvalue);
 			p_connectivity.getD_continentList().add(l_continent);
-			System.out.println(p_connectivity);
+			System.out.println("\u001B[32m"+"Continent Added Successfully"+"\u001B[0m");
+			return 0; //Successful execution
 	}
-	public static void addCountry(String p_countryId,String p_continentId,Connectivity p_connectivity) throws IOException
+	public static int addCountry(String p_countryId,String p_continentId,Connectivity p_connectivity) throws IOException
 	{
 		Country l_country=new Country();
 		if(p_connectivity.getD_continentList().size()==0)
 		{
-			System.out.println("Enter the values of continents first..");
-			return;
+			System.out.println("\u001B[31m"+"ERROR: Enter the values of continents first.."+"\u001B[0m");
+			return 1;
 		}
 		
 			l_country.setD_countryId(p_connectivity.getD_countryList().size()+1);
@@ -42,20 +44,23 @@ public class MapEditor {
 			l_country.setD_continentId(Integer.parseInt(p_continentId));
 			p_connectivity.getD_countryList().add(l_country);
 			
+			System.out.println("\u001B[32m"+"Country Added Successfully"+"\u001B[0m");
+			return 0;
+			
 			
 	}
 	
-	public static void addNeighbour(int p_countryId,int p_neighbourcountryId,Connectivity p_connectivity) throws IOException
+	public static int addNeighbour(int p_countryId,int p_neighbourcountryId,Connectivity p_connectivity) throws IOException
 	{
 		if(p_connectivity.getD_continentList().size()==0)
 		{
-			System.out.println("Enter the values of continents first..");
-			return;
+			System.out.println("ERROR: Enter the values of continents first..");
+			return 1;
 		}
 		if(p_connectivity.getD_countryList().size()==0)
 		{
-			System.out.println("Enter the values of countries first..");
-			return;
+			System.out.println("ERROR: Enter the values of countries first..");
+			return 1;
 		}
 		for(int i=0;i<p_connectivity.getD_countryList().size();i++)
 		{
@@ -64,14 +69,8 @@ public class MapEditor {
 				p_connectivity.getD_countryList().get(i).getD_neighbours().add(p_neighbourcountryId);
 			}
 		}
-//		HashMap<Integer,ArrayList<Integer>> l_neighbouringCountries = new HashMap<Integer, ArrayList<Integer>>();
-//		ArrayList<Integer> neighbours = new ArrayList<Integer>();
-//		for(int i=0; i<p_neighbourcountryId.length; i++) {
-//			++NeighbourID;
-//			neighbours.add(NeighbourID);
-//		}
-//		l_neighbouringCountries.put(Integer.parseInt(p_countryId), neighbours);
-//		current_country.setD_neighbours(Integer.parseInt(p_countryId), l_neighbouringCountries);
+		
+		return 0;
 		
 	}
 	
