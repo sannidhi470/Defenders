@@ -11,7 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import Models.Continent;
 import Models.Country;
-import Utilities.Connectivity;
+import Tools.Connectivity;
+import Tools.MapEditor;
 
 class MapEditorTest {
 

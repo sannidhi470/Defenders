@@ -3,7 +3,7 @@ package Models;
 import java.util.ArrayList;
 import java.util.List;
 
-import Utilities.Connectivity;
+import Tools.Connectivity;
 
 public class Player {
 

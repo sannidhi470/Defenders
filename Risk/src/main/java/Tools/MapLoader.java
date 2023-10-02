@@ -1,4 +1,4 @@
-package Utilities;
+package Tools;
 import java.util.*;
 
 import Models.Continent;
@@ -6,9 +6,6 @@ import Models.Country;
 
 import java.io.*;
 import Models.Map;
-import Services.MapCheck;
-import Services.MapCreater;
-import Services.SaveMap;
 import dnl.utils.text.table.TextTable;
 public class MapLoader {
 

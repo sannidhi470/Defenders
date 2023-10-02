@@ -1,7 +1,5 @@
-package Services;
+package Tools;
 import java.io.File;
-
-import Utilities.*;
 public class MapCheck {
 
 	public static boolean validateMap(String p_enteredFileName,String p_pathName)

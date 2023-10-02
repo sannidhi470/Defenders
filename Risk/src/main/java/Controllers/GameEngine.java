@@ -1,12 +1,14 @@
-package Models;
+package Controllers;
 import java.io.IOException;
 import java.util.*;
-
-import Services.SaveMap;
-import Utilities.Connectivity;
-import Utilities.MapEditor;
-import Utilities.MapLoader;
-import Utilities.PlayersGameplay;
+import Models.*;
+import Models.Map;
+import Tools.Connectivity;
+import Tools.MapEditor;
+import Tools.MapLoader;
+import Tools.PlayersGameplay;
+import Tools.SaveMap;
+import Views.ViewMap;
 
 public class GameEngine {
 
@@ -119,7 +121,7 @@ public class GameEngine {
 						
 					case "showmap":
 						l_gamePhase="startup";
-						Map.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList());
+						ViewMap.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList());
 						break;
 						
 					case "savemap":

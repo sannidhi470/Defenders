@@ -1,11 +1,9 @@
-package Services;
+package Tools;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import Utilities.Connectivity;
 
 public class SaveMap {
 
