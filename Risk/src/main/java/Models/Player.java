@@ -11,6 +11,21 @@ public class Player {
 	private int d_playerId;
 	private ArrayList<Country> d_playerCountry=new ArrayList<>();
 	private ArrayList<Order> d_playerOrder=new ArrayList<>();
+	private ArrayList<Continent> d_playerContinent = new ArrayList<>();
+	private int d_armyCount;
+	public int getD_armyCount() {
+		return d_armyCount;
+	}
+	public void setD_armyCount(int d_armyCount) {
+		this.d_armyCount = d_armyCount;
+	}
+	public ArrayList<Continent> getD_playerContinent() {
+		return d_playerContinent;
+	}
+	public void setD_playerContinent(ArrayList<Continent> d_playerContinent) {
+		this.d_playerContinent = d_playerContinent;
+	}
+
 	private Order d_order;
 	public Player()
 	{
