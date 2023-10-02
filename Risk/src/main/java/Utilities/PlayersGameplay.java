@@ -1,6 +1,7 @@
 package Utilities;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
 
@@ -93,17 +94,84 @@ public class PlayersGameplay {
 		}
 	}
 	
-	public static void showPlayersCountry(Player p_player,int l_flag)
+
+	
+	public static ArrayList<String> showPlayersCountry(Player p_player,int p_flag)
 	{
 		ArrayList<Country> l_country = new ArrayList<>();
-		System.out.println("Player 1:" + p_player.getD_playerName());
+		if(p_flag==1)
+			System.out.println("Player:" + p_player.getD_playerName());
 			l_country=	p_player.getD_Country();
+		ArrayList<String> l_countryList=new ArrayList<>();
 		for(Country c:l_country)
 		{
-			System.out.println(c.getD_countryName());
+			if(p_flag==1)
+				System.out.println(c.getD_countryName());
+			l_countryList.add(c.getD_countryName());
 		}
-		
+		return l_countryList;
 	}
 	
-
+	public static ArrayList<String> issueOrder(ArrayList<Player> p_player)
+	{
+		Scanner l_input=new Scanner(System.in);
+		ArrayList<String> l_orders=new ArrayList<>();
+		ArrayList<Integer> l_armiesOfPlayers=new ArrayList<>();
+		for(int i=0;i<p_player.size();i++)
+			l_armiesOfPlayers.add(p_player.get(i).getD_armyCount());
+		System.out.println(l_armiesOfPlayers);
+		int l_temp=1;
+		ArrayList<String> l_playerOrders=new ArrayList<>();
+		while(l_temp>0)
+		{
+			
+			int l_flag=0;
+			for(int i=0;i<l_armiesOfPlayers.size();i++)
+			{
+				if(l_armiesOfPlayers.get(i)==0)
+					l_flag++;
+			}
+			System.out.println("l_flag:"+l_flag+" "+l_armiesOfPlayers);
+			if(l_flag==l_armiesOfPlayers.size())
+			{
+				
+				break;
+			}
+			for(int i=0;i<p_player.size();i++)
+			{
+				String l_tempOrderList="";
+				if(l_armiesOfPlayers.get(i)==0)
+					continue;
+				System.out.println("Player "+p_player.get(i).getD_playerName()+" deploy your troops");
+				l_tempOrderList=l_input.nextLine();
+				l_playerOrders.add(l_tempOrderList);
+				//String[] l_tempOrderListArray=l_tempOrderList.split(" ");
+			//	ArrayList<Integer> l_storeCountryId=new ArrayList<>();
+		//		for(int j=0;j<p_player.get(i).getD_Country().size();j++)
+		//			l_storeCountryId.add(p_player.get(i).getD_Country().get(j).getD_countryId());
+//				System.out.println(l_storeCountryId);
+//				
+//				if(l_tempOrderListArray[0].equals("deploy"))
+//				{
+//					
+//					if(l_storeCountryId.contains(Integer.parseInt(l_tempOrderListArray[1])))
+//					{
+//						System.out.println("yes");
+//						System.out.println(l_armiesOfPlayers.get(i)-Integer.parseInt(l_tempOrderListArray[2]));
+//						l_armiesOfPlayers.set(i, l_armiesOfPlayers.get(i)-Integer.parseInt(l_tempOrderListArray[2]));
+//					}
+//					else
+//						System.out.println("Country"+l_tempOrderListArray[1]+" has not been assigned to Player: "+p_player.get(i).getD_playerName());
+//					System.out.println("list:"+l_armiesOfPlayers);
+//				}
+//				else
+//					System.out.println("Please enter a valid command");
+			}
+		//	return l_playerOrders;
+				
+		}
+		return l_playerOrders;
+			
+		
+	}
 }
