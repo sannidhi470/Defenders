@@ -25,6 +25,14 @@ public class Order {
 	public void setD_numberOfArmies(int p_numberOfArmies) {
 		this.d_numberOfArmies = p_numberOfArmies;
 	}
+	public void execute(Player p_player,Order p_order)
+	{
+		if(p_player.getD_armyCount() !=0)
+		{
+			System.out.println("in execute");
+			p_player.setD_armyCount(p_player.getD_armyCount()-p_order.d_numberOfArmies);
+		}
+	}
 	
 	
 
