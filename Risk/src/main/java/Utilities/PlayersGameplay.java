@@ -11,7 +11,7 @@ import Models.Player;
 
 public class PlayersGameplay {
 	
-
+	static ArrayList<Integer> l_armiesOfPlayers=new ArrayList<>();
 	public static void assigncountries(ArrayList<Player> p_playersArray,ArrayList<Country> p_countryList,ArrayList<Continent> p_continentList) 
 	{	
 		int[] l_num = new int[p_playersArray.size()];
@@ -116,7 +116,7 @@ public class PlayersGameplay {
 	{
 		Scanner l_input=new Scanner(System.in);
 		ArrayList<String> l_orders=new ArrayList<>();
-		ArrayList<Integer> l_armiesOfPlayers=new ArrayList<>();
+		//ArrayList<Integer> l_armiesOfPlayers=new ArrayList<>();
 		for(int i=0;i<p_player.size();i++)
 			l_armiesOfPlayers.add(p_player.get(i).getD_armyCount());
 		System.out.println(l_armiesOfPlayers);
@@ -174,4 +174,28 @@ public class PlayersGameplay {
 			
 		
 	}
+	public static void nextOrder(ArrayList<String> p_playerOrders, ArrayList<Player> p_player)
+	{
+		for(int i=0;i<p_playerOrders.size();i++)
+		{
+			String[] l_tempOrderListArray=p_playerOrders.get(i).split(" ");
+			ArrayList<Integer> l_storeCountryId=new ArrayList<>();
+			for(int j=0;j<p_player.get(i).getD_Country().size();j++)
+				l_storeCountryId.add(p_player.get(i).getD_Country().get(j).getD_countryId());
+			if(l_tempOrderListArray[0].equals("deploy"))
+			{
+				if(l_storeCountryId.contains(Integer.parseInt(l_tempOrderListArray[1])))
+				{
+					//p_player.get(i).execute(l_tempOrderListArray[1], l_tempOrderListArray[2],l_storeCountryId,l_armiesOfPlayers.get(i));
+				}
+			}else 
+				System.out.println("Country"+l_tempOrderListArray[1]+" has not been assigned to Player: "+p_player.get(i).getD_playerName());
+			System.out.println(l_storeCountryId);
+			
+		}
+	}
+	
+
+	
+	
 }
