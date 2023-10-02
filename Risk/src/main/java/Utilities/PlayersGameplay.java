@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import Models.Continent;
 import Models.Country;
 import Models.Player;
 
 public class PlayersGameplay {
 	
 
-	public static void assigncountries(ArrayList<Player> p_playersArray,ArrayList<Country> p_countryList) 
+	public static void assigncountries(ArrayList<Player> p_playersArray,ArrayList<Country> p_countryList,ArrayList<Continent> p_continentList) 
 	{	
 		int[] l_num = new int[p_playersArray.size()];
 		int sum = 0;
@@ -42,10 +43,36 @@ public class PlayersGameplay {
 			p_countryList.removeAll(l_removeCountry);
 			
 		}
+		for(int i=0;i<p_playersArray.size();i++)
+		{
+			ArrayList<String> l_tempCountry=new ArrayList<>();
+			ArrayList<String> tempCountryInContinent=new ArrayList<>();
+			ArrayList<Continent> l_continentsOwned=new ArrayList<>();
+			for(int j=0;j<p_playersArray.get(i).getD_Country().size();j++)
+			{
+				l_tempCountry.add(p_playersArray.get(i).getD_Country().get(j).getD_countryName());
+			}
+			for(int j=0;j<p_continentList.size();j++)
+			{
+				tempCountryInContinent=new ArrayList<>();
+				for(int k=0;k<p_continentList.get(j).getD_countries().size();k++)
+				{
+					tempCountryInContinent.add(p_continentList.get(j).getD_countries().get(k).getD_countryName());
+				}
+				if(l_tempCountry.containsAll(tempCountryInContinent))
+				{
+					l_continentsOwned.add(p_continentList.get(j));
+					p_playersArray.get(i).setD_playerContinent(l_continentsOwned);
+				}
+			}
+			
+				
+		}
+		
 		
 	}
 	
-	public static void showPlayersCountry(Player p_player)
+	public static void showPlayersCountry(Player p_player,int l_flag)
 	{
 		ArrayList<Country> l_country = new ArrayList<>();
 		System.out.println("Player 1:" + p_player.getD_playerName());
