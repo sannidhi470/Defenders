@@ -78,20 +78,20 @@ public class PlayersGameplay {
 	 *
 	 */
 	 
-	public static void assignArmiesToPlayers(ArrayList<Player> d_playersList)
+	public static void assignArmiesToPlayers(ArrayList<Player> p_playersList)
 	{
-		for(int i=0;i<d_playersList.size();i++)
+		for(int i=0;i<p_playersList.size();i++)
 		{
-			int l_countryListSize=d_playersList.get(i).getD_Country().size()/3;
+			int l_countryListSize=p_playersList.get(i).getD_Country().size()/3;
 			int l_armyCount=Math.max(3, l_countryListSize);
 			int l_tempContinentCount=0;
-			if(d_playersList.get(i).getD_playerContinent().size()!=0)
+			if(p_playersList.get(i).getD_playerContinent().size()!=0)
 			{
-				for(int j=0;j<d_playersList.get(i).getD_playerContinent().size();j++)
-					l_tempContinentCount=l_tempContinentCount+ d_playersList.get(i).getD_playerContinent().get(j).getD_continentArmyValue();
+				for(int j=0;j<p_playersList.get(i).getD_playerContinent().size();j++)
+					l_tempContinentCount=l_tempContinentCount+ p_playersList.get(i).getD_playerContinent().get(j).getD_continentArmyValue();
 			}
 			l_armyCount+=l_tempContinentCount;
-			d_playersList.get(i).setD_armyCount(l_armyCount);
+			p_playersList.get(i).setD_armyCount(l_armyCount);
 			System.out.println(l_armyCount);
 		}
 	}
