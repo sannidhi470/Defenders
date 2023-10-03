@@ -33,9 +33,6 @@ public class GameEngine {
 		System.out.println("Enter start to go to the warzone \nEnter exit to exit");
 		String l_option = "";
 		int l_flag = 0;
-		
-		
-		
 		do
 		{	
 			if(l_flag==0)
@@ -49,9 +46,7 @@ public class GameEngine {
 			
 			else if(l_flag == 1 && l_option.equals("start") && l_gamePhase.equals("startup"))
 			{
-				System.out.println("Enter the Commands of Warzone");
-				System.out.println("Game Commands");
-				System.out.println("1. loadmap\n"+"2. editmap (editcontinent,editcountry,editneighbor)\n"+"3. showmap\n"+"4. savemap");
+				System.out.println("Enter the Commands of Warzone"+"\nGame Commands\n"+"1. loadmap\n"+"2. editmap (editcontinent,editcountry,editneighbor)\n"+"3. showmap\n"+"4. savemap\n"+"5. gameplayer\n"+"6. assigncountries");
 				String l_str = l_sc.nextLine();
 				String[] l_commands = l_str.split(" "); 
 				if(l_commands[0]!= null)
