@@ -110,15 +110,51 @@ public class MapEditor {
 			System.out.println("ERROR: Enter the values of countries first..");
 			return 1;
 		}
-		for(int i=0;i<p_connectivity.getD_countryList().size();i++)
+
+		ArrayList<String> find = new ArrayList<String>();
+		for(int i=0; i<p_connectivity.getD_countryList().size(); i++)
 		{
-			if(p_connectivity.getD_countryList().get(i).getD_countryId()==p_countryId) 
+			if(p_countryId == p_connectivity.getD_countryList().get(i).getD_countryId()) 
+			{
+				find.add("Foundp_countryId");
+			}
+			if(p_neighbourcountryId == p_connectivity.getD_countryList().get(i).getD_countryId())
+			{
+				find.add("Foundp_neighbourcountryId");
+			}
+		}
+		if(find.size() == 2)
+		{
+			for(int i=0;i<p_connectivity.getD_countryList().size();i++)
+			{
+				if(p_connectivity.getD_countryList().get(i).getD_countryId()==p_countryId) 
+					{
+					p_connectivity.getD_countryList().get(i).getD_neighbours().add(p_neighbourcountryId);
+					System.out.println("Neighbor "+l_country.get_nameFromId(p_connectivity.getD_countryList(),p_neighbourcountryId)+ "("+p_neighbourcountryId +") added successfully to "+l_country.get_nameFromId(p_connectivity.getD_countryList(),p_countryId)+"("+p_countryId+")");
+					}
+			}	
+			return 0;	
+		} else
+		{
+			if(find.size() == 0)
+			{
+				System.out.println("NeighbourCountryID "+p_neighbourcountryId+" and "+"CountryID "+p_countryId+" don't exist");
+			}
+			else
+			{
+				if(find.get(0) == "Foundp_countryId")
 				{
-				p_connectivity.getD_countryList().get(i).getD_neighbours().add(p_neighbourcountryId);
-				System.out.println("Neighbor "+l_country.get_nameFromId(p_connectivity.getD_countryList(),p_neighbourcountryId)+ "("+p_neighbourcountryId +") added successfully to "+l_country.get_nameFromId(p_connectivity.getD_countryList(),p_countryId)+"("+p_countryId+")");
+					System.out.println("NeighbourCountryID "+p_neighbourcountryId+" does not exist");
 				}
-		}	
-		return 0;	
+				else
+				{
+					System.out.println("CountryID "+p_countryId+" does not exist");
+				}				
+			}
+		
+			return 1;
+		}
+
 	}
 	
 	/**
