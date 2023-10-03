@@ -118,6 +118,14 @@ public class PlayersGameplay {
 		return l_countryList;
 	}
 	
+	/**
+	 *
+	 * This method is used to check whether the army is available or not.
+	 * @param p_army refers to the army left with player.
+	 * @param p_player refers to the player object
+	 *
+	 */
+	
 	public static boolean checkArmyAvailable(int p_army,Player p_player)
 	{
 		if(p_player.getD_armyCount() >= p_army) return true;

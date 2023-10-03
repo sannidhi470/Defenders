@@ -1,5 +1,10 @@
 package Tools;
 
+/**
+ * The class ColorCoding manages the colors.
+ *
+ */
+
 public class ColorCoding {
 	
 	public static String red = "\u001B[31m";
