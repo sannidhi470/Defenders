@@ -80,6 +80,7 @@ public class MapEditor {
 	
 	public static int addNeighbour(int p_countryId,int p_neighbourcountryId,Connectivity p_connectivity)
 	{
+		Country l_country = new Country();
 		if(p_connectivity.getD_continentList().size()==0)
 		{
 			System.out.println("ERROR: Enter the values of continents first..");
@@ -92,7 +93,11 @@ public class MapEditor {
 		}
 		for(int i=0;i<p_connectivity.getD_countryList().size();i++)
 		{
-			if(p_connectivity.getD_countryList().get(i).getD_countryId()==p_countryId) p_connectivity.getD_countryList().get(i).getD_neighbours().add(p_neighbourcountryId);
+			if(p_connectivity.getD_countryList().get(i).getD_countryId()==p_countryId) 
+				{
+				p_connectivity.getD_countryList().get(i).getD_neighbours().add(p_neighbourcountryId);
+				System.out.println("Neighbor "+l_country.get_nameFromId(p_connectivity.getD_countryList(),p_neighbourcountryId)+ "("+p_neighbourcountryId +") added successfully to "+l_country.get_nameFromId(p_connectivity.getD_countryList(),p_countryId)+"("+p_countryId+")");
+				}
 		}	
 		return 0;	
 	}

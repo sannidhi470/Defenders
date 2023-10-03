@@ -39,8 +39,8 @@ public class Map {
 	 *
 	 */
 	
-	public void setD_mapFileName(String d_mapFileName) {
-		this.d_mapFileName = d_mapFileName;
+	public void setD_mapFileName(String p_mapFileName) {
+		this.d_mapFileName = p_mapFileName;
 	}
 	
 	/**
@@ -58,8 +58,9 @@ public class Map {
 	 * @param d_mapExist refers to the boolean checker.
 	 *
 	 */
-	public void setD_mapExist(boolean d_mapExist) {
-		this.d_mapExist = d_mapExist;
+
+	public void setD_mapExist(boolean p_mapExist) {
+		this.d_mapExist = p_mapExist;
 	}
 	
 	

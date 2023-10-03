@@ -25,18 +25,18 @@ public class Continent {
 	
 	/**
 	 * It initiates a new continent.
-	 * @param d_continentId refers to the continent id.
-	 * @param d_continentName refers to the name of the continent.
-	 * @param d_continentArmyValue refers to the number of armies deployed in the continent.
-	 * @param d_countries refers to the list of countries in that aprticular continent.
+	 * @param p_continentId refers to the continent id.
+	 * @param p_continentName refers to the name of the continent.
+	 * @param p_continentArmyValue refers to the number of armies deployed in the continent.
+	 * @param p_countries refers to the list of countries in that particular continent.
 	 */
 	
-	public Continent(int d_continentId, String d_continentName, int d_continentArmyValue, List<Country> d_countries) {
+	public Continent(int p_continentId, String p_continentName, int p_continentArmyValue, List<Country> p_countries) {
 		super();
-		this.d_continentId = d_continentId;
-		this.d_continentName = d_continentName;
-		this.d_continentArmyValue = d_continentArmyValue;
-		this.d_countries = d_countries;
+		this.d_continentId = p_continentId;
+		this.d_continentName = p_continentName;
+		this.d_continentArmyValue = p_continentArmyValue;
+		this.d_countries = p_countries;
 	}
 	
 	/**
@@ -64,8 +64,8 @@ public class Continent {
 	 *
 	 */
 
-	public void setD_countries(List<Country> d_countries) {
-		this.d_countries = d_countries;
+	public void setD_countries(List<Country> p_countries) {
+		this.d_countries = p_countries;
 	}
 	
 	/**
@@ -83,8 +83,8 @@ public class Continent {
 	 *
 	 */
 
-	public void setD_continentId(int d_continentId) {
-		this.d_continentId = d_continentId;
+	public void setD_continentId(int p_continentId) {
+		this.d_continentId = p_continentId;
 	}
 	
 	/**
@@ -102,8 +102,8 @@ public class Continent {
 	 *
 	 */
 
-	public void setD_continentName(String d_continentName) {
-		this.d_continentName = d_continentName;
+	public void setD_continentName(String p_continentName) {
+		this.d_continentName = p_continentName;
 	}
 	
 	/**
@@ -121,8 +121,8 @@ public class Continent {
 	 *
 	 */
 
-	public void setD_continentArmyValue(int d_continentArmyValue) {
-		this.d_continentArmyValue = d_continentArmyValue;
+	public void setD_continentArmyValue(int p_continentArmyValue) {
+		this.d_continentArmyValue = p_continentArmyValue;
 	}
 	
 	/**

@@ -26,17 +26,17 @@ public class Country {
 	
 	/**
 	 * It initiates a new country.
-	 * @param d_countryId refers to the country ID.
-	 * @param d_countryName refers to the name of the country.
-	 * @param d_continentId refers to the continent ID.
-	 * @param d_neighbours refers to the list of neighbours for that particular country.
+	 * @param p_countryId refers to the country ID.
+	 * @param p_countryName refers to the name of the country.
+	 * @param p_continentId refers to the continent ID.
+	 * @param p_neighbours refers to the list of neighbours for that particular country.
 	 */
-	
-	public Country(int d_countryId, String d_countryName, int d_continentId,ArrayList<Integer> d_neighbours) {
-		this.d_countryId = d_countryId;
-		this.d_countryName = d_countryName;
-		this.d_continentId = d_continentId;
-		this.d_neighbours=d_neighbours;
+
+	public Country(int p_countryId, String p_countryName, int p_continentId,ArrayList<Integer> p_neighbours) {
+		this.d_countryId = p_countryId;
+		this.d_countryName = p_countryName;
+		this.d_continentId = p_continentId;
+		this.d_neighbours=p_neighbours;
 	}
 	
 	/**
@@ -55,8 +55,8 @@ public class Country {
 	 * @param l_neighbouringCountries refers to the neighbouring countries.
 	 */
 
-	public void setD_neighbours(int l_countryId,HashMap<Integer,ArrayList<Integer>> l_neighbouringCountries) {
-		this.d_neighbours=l_neighbouringCountries.get(l_countryId);
+	public void setD_neighbours(int p_countryId,HashMap<Integer,ArrayList<Integer>> p_neighbouringCountries) {
+		this.d_neighbours=p_neighbouringCountries.get(p_countryId);
 	}
 	
 	/**
@@ -82,8 +82,8 @@ public class Country {
 	 * @param d_continentId refers to the continent ID
 	 */
 
-	public void setD_continentId(int d_continentId) {
-		this.d_continentId = d_continentId;
+	public void setD_continentId(int p_continentId) {
+		this.d_continentId = p_continentId;
 	}
 	
 	/**
@@ -91,8 +91,8 @@ public class Country {
 	 * @param d_countryId refers to the country ID
 	 */
 
-	public void setD_countryId(int d_countryId) {
-		this.d_countryId = d_countryId;
+	public void setD_countryId(int p_countryId) {
+		this.d_countryId = p_countryId;
 	}
 	
 	/**
@@ -109,8 +109,8 @@ public class Country {
 	 * @param d_countryName refers to the country Name
 	 */
 
-	public void setD_countryName(String d_countryName) {
-		this.d_countryName = d_countryName;
+	public void setD_countryName(String p_countryName) {
+		this.d_countryName = p_countryName;
 	}
 	
 	/**

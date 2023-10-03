@@ -74,24 +74,24 @@ public class PlayersGameplay {
 	/**
 	 *
 	 * This method is used to assign armies to the players once the game begins.
-	 * @param d_playersList refers to the list of players.
+	 * @param p_playersList refers to the list of players.
 	 *
 	 */
 	 
-	public static void assignArmiesToPlayers(ArrayList<Player> d_playersList)
+	public static void assignArmiesToPlayers(ArrayList<Player> p_playersList)
 	{
-		for(int i=0;i<d_playersList.size();i++)
+		for(int i=0;i<p_playersList.size();i++)
 		{
-			int l_countryListSize=d_playersList.get(i).getD_Country().size()/3;
+			int l_countryListSize=p_playersList.get(i).getD_Country().size()/3;
 			int l_armyCount=Math.max(3, l_countryListSize);
 			int l_tempContinentCount=0;
-			if(d_playersList.get(i).getD_playerContinent().size()!=0)
+			if(p_playersList.get(i).getD_playerContinent().size()!=0)
 			{
-				for(int j=0;j<d_playersList.get(i).getD_playerContinent().size();j++)
-					l_tempContinentCount=l_tempContinentCount+ d_playersList.get(i).getD_playerContinent().get(j).getD_continentArmyValue();
+				for(int j=0;j<p_playersList.get(i).getD_playerContinent().size();j++)
+					l_tempContinentCount=l_tempContinentCount+ p_playersList.get(i).getD_playerContinent().get(j).getD_continentArmyValue();
 			}
 			l_armyCount+=l_tempContinentCount;
-			d_playersList.get(i).setD_armyCount(l_armyCount);
+			p_playersList.get(i).setD_armyCount(l_armyCount);
 			System.out.println(l_armyCount);
 		}
 	}
@@ -107,7 +107,7 @@ public class PlayersGameplay {
 	public static ArrayList<String> showPlayersCountry(Player p_player,int p_Displayflag)
 	{
 		ArrayList<Country> l_country = new ArrayList<>();
-		if(p_Displayflag==1) System.out.println("Player:" + p_player.getD_playerName());
+		if(p_Displayflag==1) System.out.println("Player:" + p_player.getD_playerName()+ " has following countries assigned");
 		l_country=	p_player.getD_Country();
 		ArrayList<String> l_countryList=new ArrayList<>();
 		for(Country c:l_country)

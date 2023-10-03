@@ -18,31 +18,31 @@ public class Connectivity {
 		return d_FilepathName;
 	}
 
-	public void setD_FilepathName(String d_FilepathName) {
-		this.d_FilepathName = d_FilepathName;
+	public void setD_FilepathName(String p_FilepathName) {
+		this.d_FilepathName = p_FilepathName;
 	}
 
 	public String getD_pathName() {
 		return d_pathName;
 	}
 
-	public void setD_pathName(String d_pathName) {
-		this.d_pathName = d_pathName;
+	public void setD_pathName(String p_pathName) {
+		this.d_pathName = p_pathName;
 	}
 
 	public ArrayList<Continent> getD_continentList() { 
 		return d_continentList;
 	}
 
-	public void setD_continentList(ArrayList<Continent> d_continentList) {
-		this.d_continentList = d_continentList;
+	public void setD_continentList(ArrayList<Continent> p_continentList) {
+		this.d_continentList = p_continentList;
 	}
 
 	public ArrayList<Country> getD_countryList() {
 		return d_countryList;
 	}
 
-	public void setD_countryList(ArrayList<Country> d_countryList) {
-		this.d_countryList = d_countryList;
+	public void setD_countryList(ArrayList<Country> p_countryList) {
+		this.d_countryList = p_countryList;
 	}
 }
