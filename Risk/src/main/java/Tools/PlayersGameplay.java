@@ -120,7 +120,7 @@ public class PlayersGameplay {
 	
 	public static boolean checkArmyAvailable(int p_army,Player p_player)
 	{
-		if(p_player.getD_armyCount() > p_army) return true;
+		if(p_player.getD_armyCount() >= p_army) return true;
 		else return false;
 				
 	}
