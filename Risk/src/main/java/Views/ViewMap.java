@@ -14,39 +14,49 @@ public class ViewMap {
 	 		   System.out.println("No continents or countries exist in the map");
 	 		   return;
 	 	   }
-	 	   String[][] l_map = new String[p_countryList.size()][4];
-			   for(int l_lineIterator=0; l_lineIterator<p_countryList.size(); l_lineIterator++) 
+	 	   
+	 	   int l_lineCount=0;
+	 	   for(int i=0; i<p_continentList.size();i++) {
+	 		   if(p_continentList.get(i).getD_countries().size()!=0)
+	 			  l_lineCount = l_lineCount + p_continentList.get(i).getD_countries().size();
+	 		   else
+	 			  l_lineCount = l_lineCount+1;
+	 	   }
+	 	   
+	 	   String[][] l_map = new String[l_lineCount][4];
+			   for(int l_lineIterator=0; l_lineIterator<l_lineCount; l_lineIterator++) 
 			   {
 				   for(int l_continentIterator=0; l_continentIterator<p_continentList.size(); l_continentIterator++) 
 				   {
-					   for(int l_countryIterator=0;l_countryIterator<p_continentList.get(l_continentIterator).getD_countries().size();l_countryIterator++)
-		    		   {
-						   if(l_countryIterator==0) 
-						   {
-							   l_map[l_lineIterator][0] = p_continentList.get(l_continentIterator).getD_continentName();
-						   }
-					   	   Country l_country= p_continentList.get(l_continentIterator).getD_countries().get(l_countryIterator);
-
-					   	   l_map[l_lineIterator][1] = l_country.getD_countryName();
-					   	   ArrayList<Integer> l_neighbourID = l_country.getD_neighbours();
-					   	   String l_tempNeighbours="";
-					   	   for(Integer f: l_neighbourID)
-		    			   {
-					   		l_tempNeighbours = l_tempNeighbours + " "+l_country.get_nameFromId(p_countryList,f)+",";
-		    			   }
-					   	   l_map[l_lineIterator][2] = l_tempNeighbours;
-					   	   l_map[l_lineIterator][3] = Integer.toString(p_continentList.get(l_continentIterator).getD_continentArmyValue());
-					   	l_lineIterator=l_lineIterator+1;
-		    		   }
+					   if(p_continentList.get(l_continentIterator).getD_countries().size() != 0) 
+					   {
+						   for(int l_countryIterator=0;l_countryIterator<p_continentList.get(l_continentIterator).getD_countries().size();l_countryIterator++)
+			    		   {
+							   if(l_countryIterator==0) 
+							   {
+								   l_map[l_lineIterator][0] = p_continentList.get(l_continentIterator).getD_continentName();
+							   }
+						   	   Country l_country= p_continentList.get(l_continentIterator).getD_countries().get(l_countryIterator);
+	
+						   	   l_map[l_lineIterator][1] = l_country.getD_countryName();
+						   	   ArrayList<Integer> l_neighbourID = l_country.getD_neighbours();
+						   	   String l_tempNeighbours="";
+						   	   for(Integer f: l_neighbourID)
+			    			   {
+						   		l_tempNeighbours = l_tempNeighbours + " "+l_country.get_nameFromId(p_countryList,f)+",";
+			    			   }
+						   	   l_map[l_lineIterator][2] = l_tempNeighbours;
+						   	   l_map[l_lineIterator][3] = Integer.toString(p_continentList.get(l_continentIterator).getD_continentArmyValue());
+						   	l_lineIterator=l_lineIterator+1;
+			    		   }
+					   } else 
+					   {
+						   l_map[l_lineIterator][0] = p_continentList.get(l_continentIterator).getD_continentName();
+						   l_map[l_lineIterator][3] = Integer.toString(p_continentList.get(l_continentIterator).getD_continentArmyValue());
+						   l_lineIterator=l_lineIterator+1;
+					   }
 				   }
 			   }
-			   
-			   if(p_countryList.size() == 0 && p_continentList.size()!= 0)
-		 	   {
-		 		  l_map = new String[p_continentList.size()][4];
-		 		  l_map[0][0] = p_continentList.get(0).getD_continentName();
-		 		  l_map[0][3] = Integer.toString(p_continentList.get(0).getD_continentArmyValue());
-		 	   }
 
 			   TextTable l_tableview = new TextTable(l_columnNames, l_map);
 			   l_tableview.printTable();
