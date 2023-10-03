@@ -62,6 +62,17 @@ public class MapEditor {
 			System.out.println("\u001B[31m"+"ERROR: Enter the values of continents first.."+"\u001B[0m");
 			return 1;
 		}
+		for(int i=0; i<p_connectivity.getD_continentList().size(); i++) 
+		{
+			for(int j=0; j<p_connectivity.getD_continentList().get(i).getD_countries().size(); j++)
+			{
+				if(p_countryId.equalsIgnoreCase(p_connectivity.getD_continentList().get(i).getD_countries().get(j).getD_countryName()))
+				{
+					System.out.println("Country "+p_countryId+" already exists under this continent");
+					return 1;
+				}
+			}
+		}
 		l_country.setD_countryId(p_connectivity.getD_countryList().size()+1);
 		l_country.setD_countryName(p_countryId);
 		l_country.setD_continentId(Integer.parseInt(p_continentId));
