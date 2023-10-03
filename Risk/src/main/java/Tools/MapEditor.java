@@ -27,6 +27,14 @@ public class MapEditor {
 	{
 		
 	    Continent l_continent=new Continent();
+	    for(int i=0; i<p_connectivity.getD_continentList().size(); i++)
+	    {
+	    	if(p_continentId.equalsIgnoreCase(p_connectivity.getD_continentList().get(i).getD_continentName()))			
+	    	{
+	    		System.out.println("Continent already Exists.");
+	    		return 1;
+	    	}
+	    }
 	    List<Country> l_countries = new ArrayList<Country>();
 		l_continent.setD_continentId(p_connectivity.getD_continentList().size()+1);
 		l_continent.setD_continentName(p_continentId);
