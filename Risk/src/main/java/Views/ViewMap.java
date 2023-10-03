@@ -1,10 +1,24 @@
 package Views;
 import java.util.ArrayList;
+
 import Models.Continent;
 import Models.Country;
 import dnl.utils.text.table.TextTable;
 
+/**
+ * The class ViewMap displays the map in an organised manner.
+ *
+ */
+
 public class ViewMap {
+	
+	/**
+	 *
+	 * This method is used to display the map in an organised manner.
+	 * @param p_continentList refers to the list of continents.
+	 * @param p_countryList refers to the list of countries.
+	 *
+	 */
 
 	public static void viewMap(ArrayList<Continent> p_continentList, ArrayList<Country> p_countryList) {
 		
