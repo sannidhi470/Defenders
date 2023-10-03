@@ -3,7 +3,19 @@ package Tools;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+/**
+ * The class SaveMap saves the map once user creates a new map or make changes to the existing ones.
+ *
+ */
+
 public class SaveMap {
+	
+	/**
+	 *
+	 * This method is used to save the map once user creates a new map or make changes to the existing ones.
+	 * @param p_connectivity 
+	 *
+	 */
 
 	public static void saveMap(Connectivity p_connectivity)
 	{

@@ -7,7 +7,21 @@ import Models.Continent;
 import Models.Country;
 import Models.Player;
 
+/**
+ * The class MapEditor will make changes to the existing map according to the user.
+ *
+ */
+
 public class MapEditor {
+	
+	/**
+	 *
+	 * This method is used to add continent to the user defined maps.
+	 * @param p_continentId refers to the ID of the continent.
+	 * @param p_continentvalue
+	 * @param p_connectivity
+	 *
+	 */
 		
 	public static int addContinent(String p_continentId,int p_continentvalue,Connectivity p_connectivity)
 	{
@@ -22,6 +36,16 @@ public class MapEditor {
 		System.out.println("\u001B[32m"+"Continent Added Successfully"+"\u001B[0m");
 		return 0; //Successful execution
 	}
+	
+	/**
+	 *
+	 * This method is used to add country to the user defined maps.
+	 * @param p_countryId refers to the ID of the country.
+	 * @param p_continentId refers to the ID of the continent.
+	 * @param p_connectivity
+	 *
+	 */
+	
 	public static int addCountry(String p_countryId,String p_continentId,Connectivity p_connectivity)
 	{
 		Country l_country=new Country();
@@ -45,6 +69,15 @@ public class MapEditor {
 		return 0;		
 	}
 	
+	/**
+	 *
+	 * This method is used to add neighbouring countries to the owned countries to the user defined maps.
+	 * @param p_countryId refers to the ID of the country.
+	 * @param p_neighbourcountryId refers to the ID of the neighbouring country.
+	 * @param p_connectivity
+	 *
+	 */
+	
 	public static int addNeighbour(int p_countryId,int p_neighbourcountryId,Connectivity p_connectivity)
 	{
 		if(p_connectivity.getD_continentList().size()==0)
@@ -64,6 +97,15 @@ public class MapEditor {
 		return 0;	
 	}
 	
+	/**
+	 *
+	 * This method is used to remove neighbouring countries to the owned countries to the user defined maps.
+	 * @param p_countryId refers to the ID of the country.
+	 * @param p_neighbourcountryId refers to the ID of the neighbouring country.
+	 * @param p_connectivity
+	 *
+	 */
+	
 	public static void removeNeighbour(int p_countryId,int p_neighbourcountryId, Connectivity p_connectivity)
 	{	
 		for(int i=0;i<p_connectivity.getD_countryList().size();i++)
@@ -78,6 +120,14 @@ public class MapEditor {
 		}
 		
 	}
+	
+	/**
+	 *
+	 * This method is used to remove country to the user defined maps.
+	 * @param p_countryId refers to the ID of the country.
+	 * @param p_connectivity
+	 *
+	 */
 	
 	public static void removeCountry(String p_countryId,Connectivity p_connectivity)
 	{
@@ -96,6 +146,15 @@ public class MapEditor {
 			removeNeighbour(p_connectivity.getD_countryList().get(i).getD_countryId(),l_requiredCountryId,p_connectivity);
 		}
 	}
+	
+	/**
+	 *
+	 * This method is used to remove continent to the user defined maps.
+	 * @param p_continentId refers to the ID of the continent.
+	 * @param p_connectivity
+	 *
+	 */
+	
 	public static void removeContinent(String p_continentId,Connectivity p_connectivity)
 	{
 		int l_requiredContinentId=0;

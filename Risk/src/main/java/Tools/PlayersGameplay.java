@@ -1,13 +1,29 @@
 package Tools;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import Models.Continent;
 import Models.Country;
 import Models.Player;
 
+/**
+ * The class PlayerGameplay manages the player perspective.
+ *
+ */
+
 public class PlayersGameplay {
 	
 	static ArrayList<Integer> l_armiesOfPlayers=new ArrayList<>();
+	
+	/**
+	 *
+	 * This method is used to randomly assign the countries to the user once the game begins.
+	 * @param p_playersArray refers to the number of players playing the game.
+	 * @param p_countryList refers to the list of countries in the Map.
+	 * @param p_continentList refers to all the continents present in the Map.
+	 *
+	 */
+	
 	public static void assigncountries(ArrayList<Player> p_playersArray,ArrayList<Country> p_countryList,ArrayList<Continent> p_continentList) 
 	{	
 		int[] l_playerCountArray = new int[p_playersArray.size()];
@@ -55,7 +71,13 @@ public class PlayersGameplay {
 		}	
 	}
 	
-	
+	/**
+	 *
+	 * This method is used to assign armies to the players once the game begins.
+	 * @param d_playersList refers to the list of players.
+	 *
+	 */
+	 
 	public static void assignArmiesToPlayers(ArrayList<Player> d_playersList)
 	{
 		for(int i=0;i<d_playersList.size();i++)
@@ -74,7 +96,14 @@ public class PlayersGameplay {
 		}
 	}
 	
-	
+	/**
+	 *
+	 * This method is used to show the countries owned by a particular player.
+	 * @param p_player refers to the individual player.
+	 * @param p_Displayflag
+	 *
+	 */
+	 
 	public static ArrayList<String> showPlayersCountry(Player p_player,int p_Displayflag)
 	{
 		ArrayList<Country> l_country = new ArrayList<>();

@@ -1,7 +1,20 @@
 package Tools;
 import java.io.File;
+
+/**
+ * The class MapCheck performs validation of map.
+ *
+ */
+
 public class MapCheck 
 {
+	/**
+	 *
+	 * This method is used to validate the Map.
+	 * @param p_enteredFileName refers to the Map Name being entered.
+	 * @param p_pathName refers to the path.
+	 *
+	 */
 	public static boolean validateMap(String p_enteredFileName,String p_pathName)
 	{
 		p_enteredFileName=p_enteredFileName+".map";		

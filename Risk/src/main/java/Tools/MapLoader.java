@@ -5,8 +5,23 @@ import Models.Country;
 import java.io.*;
 import Models.Map;
 import dnl.utils.text.table.TextTable;
-public class MapLoader 
-{
+
+/**
+ * The class MapLoader will load the map selected by the user.
+ *
+ */
+
+public class MapLoader {
+	
+	/**
+	 *
+	 * This method is used to load the Map selected by the user whether pre-defined or user made.
+	 * @param p_connectivity
+	 * @param p_mapName refers to the Name of the map being loaded.
+	 * @throws IOException is used when a user is trying to load map which doesn't exist.
+	 *
+	 */
+	
 	public static void loadMap(Connectivity p_connectivity,String p_mapName) throws IOException
 	{
 		Scanner l_input = new Scanner(System.in);
