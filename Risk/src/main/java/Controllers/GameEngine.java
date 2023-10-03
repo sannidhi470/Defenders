@@ -39,7 +39,7 @@ public class GameEngine {
 			{
 				System.out.println("Enter the Commands of Warzone");
 				System.out.println("Game Commands");
-				System.out.println("1. loadmap\n"+"2. editmap\n"+"3. showmap\n"+"4. savemap");
+				System.out.println("1. loadmap\n"+"2. editmap (editcontinent,editcountry,editneighbor)\n"+"3. showmap\n"+"4. savemap");
 				String l_str = l_sc.nextLine();
 				String[] l_commands = l_str.split(" "); 
 				if(l_commands[0]!= null)
