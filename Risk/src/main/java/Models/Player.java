@@ -30,6 +30,22 @@ public class Player {
 		
 	}
 	
+	public Player(Player l_player)
+	{
+		this.d_playerName = l_player.getD_playerName();
+		this.d_playerId = l_player.getD_playerId();
+		this.d_playerCountry = l_player.getD_Country();
+		this.d_playerOrder = l_player.getD_playerOrder();
+		this.d_order = l_player.getD_Order();
+		this.d_armyCount = l_player.getD_armyCount();
+		this.d_playerContinent = l_player.getD_playerContinent();
+	}
+	
+	public ArrayList<Order> getD_playerOrder() {
+		
+		return d_playerOrder;
+	}
+
 	/**
 	 * This initiates a new player.
 	 * @param p_playerName refers to the name of the player.

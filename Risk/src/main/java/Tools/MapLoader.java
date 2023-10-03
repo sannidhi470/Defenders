@@ -22,7 +22,7 @@ public class MapLoader {
 	 *
 	 */
 	
-	public static void loadMap(Connectivity p_connectivity,String p_mapName) throws IOException
+	public static void loadMap(Connectivity p_connectivity,String p_mapName)
 	{
 		Scanner l_input = new Scanner(System.in);
 		String l_fileName = p_mapName;

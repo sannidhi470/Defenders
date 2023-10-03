@@ -117,5 +117,13 @@ public class PlayersGameplay {
 		}
 		return l_countryList;
 	}
+	
+	public static boolean checkArmyAvailable(int p_army,Player p_player)
+	{
+		if(p_player.getD_armyCount() > p_army) return true;
+		else return false;
+				
+	}
+
 
 }

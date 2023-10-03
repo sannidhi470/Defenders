@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.*;
 import Models.*;
 import Models.Map;
+import Tools.ColorCoding;
 import Tools.Connectivity;
 import Tools.MapEditor;
 import Tools.MapLoader;
@@ -11,19 +12,30 @@ import Tools.SaveMap;
 import Views.ViewMap;
 
 public class GameEngine {
+	
+	private static ArrayList<Player> l_playersArray = new ArrayList<Player>();
+	
+	public static ArrayList<Player> getL_playersArray()
+	{
+		return l_playersArray;
+	}
 
+	
 	public static void main(String[] args) throws IOException {
 
 		Scanner l_sc = new Scanner(System.in);
 		Connectivity l_connectivity=new Connectivity();
 		l_connectivity.setD_continentList(new ArrayList<Continent>());
 		l_connectivity.setD_countryList(new ArrayList<Country>());
-		ArrayList<Player> l_playersArray = new ArrayList<Player>();
+		
 		String l_gamePhase="startup";
 		System.out.println("\n\n--------Welcome to Warzone--------\n");
 		System.out.println("Enter start to go to the warzone \nEnter exit to exit");
 		String l_option = "";
 		int l_flag = 0;
+		
+		
+		
 		do
 		{	
 			if(l_flag==0)
@@ -245,9 +257,20 @@ public class GameEngine {
 								if(Integer.parseInt(l_tempOrderListArray[1])==(l_connectivity.getD_countryList().get(j).getD_countryId()))
 									l_order.setD_fromCountry(l_connectivity.getD_countryList().get(j));
 							}
-							l_order.setD_numberOfArmies(Integer.parseInt(l_tempOrderListArray[2]));
-							l_playersArray.get(i).setD_Order(l_order);
-							l_playersArray.get(i).issue_order();
+							//l_order.setD_numberOfArmies(Integer.parseInt(l_tempOrderListArray[2]));
+							
+							if(PlayersGameplay.checkArmyAvailable(Integer.parseInt(l_tempOrderListArray[2]),l_playersArray.get(i)))
+							{
+								l_order.setD_numberOfArmies(Integer.parseInt(l_tempOrderListArray[2]));
+								l_playersArray.get(i).setD_Order(l_order);
+								l_playersArray.get(i).issue_order();
+							}
+							else
+							{
+								System.out.println(ColorCoding.red+"Error: Please enter valid number of troops"+ColorCoding.blank);
+								i--;
+							}
+							
 						}
 						else flag++;
 						if(flag==l_playersArray.size())
