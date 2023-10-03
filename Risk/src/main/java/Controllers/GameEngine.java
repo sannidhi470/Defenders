@@ -219,7 +219,7 @@ public class GameEngine {
 				System.out.println("Game Begins!!!!!!!!!!!");
 				for(int i=0;i<l_playersArray.size();i++)
 				{
-					System.out.println("Player "+i+1 +" "+l_playersArray.get(i).getD_playerName()+" Army Count: "+l_playersArray.get(i).getD_armyCount());
+					System.out.println("Player "+ Integer.sum(i,1) +"("+l_playersArray.get(i).getD_playerName()+") has Army Count: "+l_playersArray.get(i).getD_armyCount());
 					PlayersGameplay.showPlayersCountry(l_playersArray.get(i),1);
 				}
 				
@@ -235,11 +235,9 @@ public class GameEngine {
 					{
 						String l_userOrder="";
 						Order l_order=new Order();
-						System.out.println("player army count = "+l_playersArray.get(i).getD_armyCount());
 						if(l_playersArray.get(i).getD_armyCount()!=0)
 						{
-							System.out.println("entered if");
-							System.out.println("Player "+l_playersArray.get(i).getD_playerName()+" deploy your troops");
+							System.out.println("Player "+l_playersArray.get(i).getD_playerName()+" deploy your troops:");
 							l_userOrder=l_sc.nextLine();
 							String[] l_tempOrderListArray=l_userOrder.split(" ");
 							for(int j=0;j<l_connectivity.getD_countryList().size();j++)
