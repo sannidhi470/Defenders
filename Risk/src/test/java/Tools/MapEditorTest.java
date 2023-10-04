@@ -110,5 +110,63 @@ class MapEditorTest {
 		assertEquals(0, MapEditor.addNeighbour(1,1, d_connectivity));
 	}
 	
+	
+	@Test
+	void removeNeighbourWithoutCountryAndNeighbours()
+	{
+		MapLoader.loadMap(d_connectivity, "VeryBasic");
+		assertEquals(1,MapEditor.removeNeighbour(30, 31, d_connectivity));
+	}
+	
+	@Test
+	void removeNeighbourWithCountryWithoutNeighbours()
+	{
+		MapLoader.loadMap(d_connectivity, "VeryBasic");
+		assertEquals(1,MapEditor.removeNeighbour(1, 31, d_connectivity));
+	}
+	
+	@Test
+	void removeNeighbourWrongCountryNeighbour()
+	{
+		MapLoader.loadMap(d_connectivity, "VeryBasic");
+		System.out.println("aaa"+MapEditor.removeNeighbour(1, 6, d_connectivity));
+		assertEquals(1,MapEditor.removeNeighbour(1, 6, d_connectivity));
+	}
+	
+	@Test 
+	void removeNeighbourWithCorrectCountryAndNeighbour()
+	{
+		MapLoader.loadMap(d_connectivity, "VeryBasic");
+		assertEquals(0,MapEditor.removeNeighbour(1, 2, d_connectivity));
+	}
+	
+	@Test
+	void removeCountryWrongCountryTest()
+	{
+		MapLoader.loadMap(d_connectivity, "VeryBasic");
+		System.out.println("aaa "+MapEditor.removeCountry("abc", d_connectivity));
+		assertEquals(1,MapEditor.removeCountry("abc", d_connectivity));
+	}
+	
+	@Test
+	void removeCountryCorrectCountryTest()
+	{
+		MapLoader.loadMap(d_connectivity, "VeryBasic");
+		assertEquals(0,MapEditor.removeCountry("Canada", d_connectivity));
+	}
+	
+	@Test
+	void removeContinentWrongContinentTest()
+	{
+		MapLoader.loadMap(d_connectivity, "VeryBasic");
+		assertEquals(1,MapEditor.removeContinent("india", d_connectivity));
+	}
+	
+	@Test
+	void removeContinentCorrectContinentTest()
+	{
+		MapLoader.loadMap(d_connectivity, "VeryBasic");
+		assertEquals(0,MapEditor.removeContinent("Africa ", d_connectivity));
+	}
 
 }
