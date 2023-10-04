@@ -118,6 +118,8 @@ public class PlayersGameplay {
 	 * This method is used to show the countries owned by a particular player.
 	 * @param p_player refers to the individual player.
 	 * @param p_Displayflag refers to flag being displayed.
+	 * 
+	 * @return list of countries
 	 *
 	 */
 	 
@@ -140,6 +142,8 @@ public class PlayersGameplay {
 	 * This method is used to check whether the army is available or not.
 	 * @param p_army refers to the army left with player.
 	 * @param p_player refers to the player object
+	 * 
+	 * @return boolean type
 	 *
 	 */
 	
