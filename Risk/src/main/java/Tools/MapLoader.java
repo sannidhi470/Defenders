@@ -17,7 +17,6 @@ public class MapLoader {
 	 * This method is used to load the Map selected by the user whether pre-defined or user made.
 	 * @param p_connectivity
 	 * @param p_mapName refers to the Name of the map being loaded.
-	 * @throws IOException is used when a user is trying to load map which doesn't exist.
 	 *
 	 */
 	
