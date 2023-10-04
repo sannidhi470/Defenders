@@ -57,9 +57,22 @@ public class MapEditor {
 	public static int addCountry(String p_countryId,String p_continentId,Connectivity p_connectivity)
 	{
 		Country l_country=new Country();
+		int flag = 0;
 		if(p_connectivity.getD_continentList().size()==0)
 		{
 			System.out.println("\u001B[31m"+"ERROR: Enter the values of continents first.."+"\u001B[0m");
+			return 1;
+		}
+		for(int i=0; i<p_connectivity.getD_continentList().size(); i++) 
+		{
+			if(Integer.parseInt(p_continentId) == p_connectivity.getD_continentList().get(i).getD_continentId())
+			{
+				flag = 1;
+			}
+		}
+		if(flag == 0)
+		{
+			System.out.println("Continent "+p_continentId+" does not exist");
 			return 1;
 		}
 		for(int i=0; i<p_connectivity.getD_continentList().size(); i++) 
@@ -73,6 +86,7 @@ public class MapEditor {
 				}
 			}
 		}
+		
 		l_country.setD_countryId(p_connectivity.getD_countryList().size()+1);
 		l_country.setD_countryName(p_countryId);
 		l_country.setD_continentId(Integer.parseInt(p_continentId));
@@ -85,7 +99,7 @@ public class MapEditor {
 		}
 		
 		System.out.println("\u001B[32m"+"Country Added Successfully"+"\u001B[0m");
-		return 0;		
+		return 0;	
 	}
 	
 	/**
