@@ -12,11 +12,21 @@ import org.junit.jupiter.api.Test;
 import Controllers.GameEngine;
 import Models.Player;
 
+/**
+ * The class PlayerGameplay tests all the player perspective.
+ *
+ */
+
 class PlayersGameplayTest {
 	
 	private ArrayList<Player> d_playersArray = GameEngine.getL_playersArray();
 	private Connectivity d_connectivity=new Connectivity();
 	
+	/**
+	*
+	* This method is used to test assignment of countries and armies to players.
+	*
+	*/
 	@BeforeEach
 	public void addPlayersIfNotThere() 
 	{
@@ -36,7 +46,10 @@ class PlayersGameplayTest {
 		
 	}
 
-	
+	/**
+	 * The method tests if armies are available to attack or not.
+	 *
+	 */
 	@Test
 	void checkArmyAvailableSendMoreTroopsTest() 
 	{
@@ -46,6 +59,10 @@ class PlayersGameplayTest {
 		
 	}
 	
+	/**
+	 * The method tests if assignment of armies is correct.  
+	 * 
+	 */
 	@Test
 	void assignArmiesToPlayersManualCorrectTest()
 	{
@@ -73,6 +90,10 @@ class PlayersGameplayTest {
 		assertEquals(d_playersArray.get(0).getD_armyCount(), l_playerArrayTest.get(0).getD_armyCount());
 	}
 	
+	/**
+	 * The method tests if assignment of armies is wrong.  
+	 * 
+	 */
 	@Test
 	void assignArmiesToPlayersManualWrongTest()
 	{
