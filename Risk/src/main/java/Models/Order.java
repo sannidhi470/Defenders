@@ -1,5 +1,7 @@
 package Models;
 
+import Tools.ColorCoding;
+
 /**
  * The class Order defines Orders and it's properties such as from country, to country and transfer of number of armies.
  *
@@ -82,7 +84,16 @@ public class Order {
 		if(p_player.getD_armyCount() !=0)
 		{
 			p_player.setD_armyCount(p_player.getD_armyCount()-p_order.d_numberOfArmies);
+			for(int i=0;i<p_player.getD_Country().size();i++)
+			{
+				if(p_player.getD_Country().get(i).getD_countryId()==p_order.getD_fromCountry().getD_countryId())
+				{
+					p_player.getD_Country().get(i).setD_armyDeployedOnCountry(p_order.d_numberOfArmies);
+					System.out.println(ColorCoding.green+"Player "+p_player.getD_playerName()+": "+ p_player.getD_Country().get(i).getD_countryName()+" has been assigned with "+p_order.d_numberOfArmies+ColorCoding.blank);
+				}
+			}
 		}
+		
 	}
 	
 	

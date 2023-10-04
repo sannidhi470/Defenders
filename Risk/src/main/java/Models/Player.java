@@ -79,7 +79,7 @@ public class Player {
 
 	public void issue_order(){
 		
-		d_playerOrder.add(d_order);
+		this.d_playerOrder.add(d_order);
 		
 	}
 	

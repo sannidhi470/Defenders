@@ -260,11 +260,13 @@ public class GameEngine {
 							System.out.println("Player "+l_playersArray.get(i).getD_playerName()+" deploy your troops:");
 							l_userOrder=l_sc.nextLine();
 							String[] l_tempOrderListArray=l_userOrder.split(" ");
-							for(int j=0;j<l_connectivity.getD_countryList().size();j++)
+							for(int j=0;j<l_playersArray.get(i).getD_Country().size();j++)
 							{
-								if(Integer.parseInt(l_tempOrderListArray[1])==(l_connectivity.getD_countryList().get(j).getD_countryId()))
-									l_order.setD_fromCountry(l_connectivity.getD_countryList().get(j));
-							}
+								if(Integer.parseInt(l_tempOrderListArray[1])==(l_playersArray.get(i).getD_Country().get(j).getD_countryId()))
+								{
+									l_order.setD_fromCountry(l_playersArray.get(i).getD_Country().get(j));
+								}
+							}	
 							if(PlayersGameplay.checkArmyAvailable(Integer.parseInt(l_tempOrderListArray[2]),l_playersArray.get(i)))
 							{
 								l_order.setD_numberOfArmies(Integer.parseInt(l_tempOrderListArray[2]));
@@ -276,22 +278,40 @@ public class GameEngine {
 								System.out.println(ColorCoding.red+"Error: Please enter valid number of troops"+ColorCoding.blank);
 								i--;
 							}
-							
+							if(l_playersArray.get(i).getD_armyCount()==0) flag++;	
 						}
-						else flag++;
 						if(flag==l_playersArray.size())
 						{
 							l_temp=0;
 							break;
 						}
-							
-
 					}
 				}
 				PlayersGameplay.assignArmiesToPlayers(l_playersArray);
-				
-				for(int i=0;i<l_playersArray.size();i++)
-					l_playersArray.get(i).getD_Order().execute(l_playersArray.get(i), l_playersArray.get(i).next_order());
+				l_temp=1;
+				flag=0;
+				while(l_temp>0) 
+				{
+					for(int i=0;i<l_playersArray.size();i++)
+					{
+						if(l_playersArray.get(i).getD_armyCount()!=0)
+						{
+							l_playersArray.get(i).getD_Order().execute(l_playersArray.get(i), l_playersArray.get(i).next_order());
+							if(l_playersArray.get(i).getD_armyCount()==0)
+							{
+								flag+=1;
+							}
+						}
+						if(flag==l_playersArray.size())
+						{
+							l_temp=0;
+							break;
+						}
+						
+					}
+					
+					
+				}
 				l_gamePhase = "execute";
 				l_flag=0;
 				System.out.println(ColorCoding.green+"All Armies have been successfully deployed. Enter command to proceed"+ColorCoding.blank);
