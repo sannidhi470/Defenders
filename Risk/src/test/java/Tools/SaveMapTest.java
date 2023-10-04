@@ -12,6 +12,12 @@ class SaveMapTest {
 	
 	Connectivity l_connectivity = new Connectivity();
 	
+	/**
+	 *
+	 * This method is used to test whether the map is being saved with correct file path name.
+	 *
+	 */
+	
 
 	@Test
 	void saveMapWithCorrectFilePathTest() {
@@ -23,6 +29,12 @@ class SaveMapTest {
         
         assertEquals(0, SaveMap.saveMap(l_connectivity));
 	}
+	
+	/**
+	 *
+	 * This method is used to test whether the map is being saved with wrong file path name.
+	 *
+	 */
 	
 	@Test
 	void saveMapWithWrongFilePathTest() {
