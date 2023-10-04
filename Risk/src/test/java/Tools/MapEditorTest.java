@@ -16,9 +16,6 @@ class MapEditorTest {
 	/**
 	 *
 	 * This method is used to test if can add continent to the user defined maps.
-	 * @param p_continentId refers to the ID of the continent.
-	 * @param p_continentvalue refers to the control value of the continent.
-	 * @param p_connectivity refers to the object of the connectivity class.
 	 *
 	 */
 	
@@ -31,9 +28,6 @@ class MapEditorTest {
 	/**
 	 *
 	 * This method is to test adding country with continent.
-	 * @param p_countryId refers to the ID of the country.
-	 * @param p_continentId refers to the ID of the continent.
-	 * @param p_connectivity refers to the object of the connectivity class.
 	 *
 	 */
 	
@@ -49,9 +43,6 @@ class MapEditorTest {
 	/**
 	 *
 	 * This method is to test adding country without continent.
-	 * @param p_countryId refers to the ID of the country.
-	 * @param p_continentId refers to the ID of the continent.
-	 * @param p_connectivity refers to the object of the connectivity class.
 	 *
 	 */
 	
@@ -65,9 +56,6 @@ class MapEditorTest {
 	/**
 	 *
 	 * This method is used to test adding neighbouring countries without country and continent.
-	 * @param p_countryId refers to the ID of the country.
-	 * @param p_neighbourcountryId refers to the ID of the neighbouring country.
-	 * @param p_connectivity refers to the object of the connectivity class.
 	 *
 	 */
 	
@@ -80,9 +68,6 @@ class MapEditorTest {
 	/**
 	 *
 	 * This method is used to test adding neighbouring countries with continent without country.
-	 * @param p_countryId refers to the ID of the country.
-	 * @param p_neighbourcountryId refers to the ID of the neighbouring country.
-	 * @param p_connectivity refers to the object of the connectivity class.
 	 *
 	 */
 	
@@ -96,9 +81,6 @@ class MapEditorTest {
 	/**
 	 *
 	 * This method is used to test adding neighbouring countries with continent and country.
-	 * @param p_countryId refers to the ID of the country.
-	 * @param p_neighbourcountryId refers to the ID of the neighbouring country.
-	 * @param p_connectivity refers to the object of the connectivity class.
 	 *
 	 */
 	
@@ -110,6 +92,11 @@ class MapEditorTest {
 		assertEquals(0, MapEditor.addNeighbour(1,1, d_connectivity));
 	}
 	
+	/**
+	 *
+	 * This method is used to test removing neighbour countries without country and neighbours.
+	 *
+	 */
 	
 	@Test
 	void removeNeighbourWithoutCountryAndNeighbours()
@@ -118,12 +105,24 @@ class MapEditorTest {
 		assertEquals(1,MapEditor.removeNeighbour(30, 31, d_connectivity));
 	}
 	
+	/**
+	 *
+	 * This method is used to test removing neighbour with country and without neighbours.
+	 *
+	 */
+	
 	@Test
 	void removeNeighbourWithCountryWithoutNeighbours()
 	{
 		MapLoader.loadMap(d_connectivity, "VeryBasic");
 		assertEquals(1,MapEditor.removeNeighbour(1, 31, d_connectivity));
 	}
+	
+	/**
+	 *
+	 * This method is used to test removing neighbour with wrong country neighbour.
+	 *
+	 */
 	
 	@Test
 	void removeNeighbourWrongCountryNeighbour()
@@ -133,12 +132,24 @@ class MapEditorTest {
 		assertEquals(1,MapEditor.removeNeighbour(1, 6, d_connectivity));
 	}
 	
+	/**
+	 *
+	 * This method is used to test removing neighbour with correct country and neighbour.
+	 *
+	 */
+	
 	@Test 
 	void removeNeighbourWithCorrectCountryAndNeighbour()
 	{
 		MapLoader.loadMap(d_connectivity, "VeryBasic");
 		assertEquals(0,MapEditor.removeNeighbour(1, 2, d_connectivity));
 	}
+	
+	/**
+	 *
+	 * This method is used to test removing country with wrong country.
+	 *
+	 */
 	
 	@Test
 	void removeCountryWrongCountryTest()
@@ -148,6 +159,12 @@ class MapEditorTest {
 		assertEquals(1,MapEditor.removeCountry("abc", d_connectivity));
 	}
 	
+	/**
+	 *
+	 * This method is used to test removing country with correct country.
+	 *
+	 */
+	
 	@Test
 	void removeCountryCorrectCountryTest()
 	{
@@ -155,12 +172,24 @@ class MapEditorTest {
 		assertEquals(0,MapEditor.removeCountry("Canada", d_connectivity));
 	}
 	
+	/**
+	 *
+	 * This method is used to test removing continent with wrong continent.
+	 *
+	 */
+	
 	@Test
 	void removeContinentWrongContinentTest()
 	{
 		MapLoader.loadMap(d_connectivity, "VeryBasic");
 		assertEquals(1,MapEditor.removeContinent("india", d_connectivity));
 	}
+	
+	/**
+	 *
+	 * This method is used to test removing continent with correct continent.
+	 *
+	 */
 	
 	@Test
 	void removeContinentCorrectContinentTest()
