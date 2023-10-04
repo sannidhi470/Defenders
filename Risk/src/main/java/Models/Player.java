@@ -27,6 +27,11 @@ public class Player {
 		
 	}
 	
+	/**
+	 * It initiates a new player.
+	 * @param l_player refers to the object of the player class.
+	 */
+	
 	public Player(Player l_player)
 	{
 		this.d_playerName = l_player.getD_playerName();
@@ -37,6 +42,12 @@ public class Player {
 		this.d_armyCount = l_player.getD_armyCount();
 		this.d_playerContinent = l_player.getD_playerContinent();
 	}
+	
+	/**
+	 * Gets the player orders.
+	 * @return player orders
+	 * 
+	 */
 	
 	public ArrayList<Order> getD_playerOrder() {
 		
