@@ -197,9 +197,11 @@ public class GameEngine {
 						l_gamePhase="startup";
 						if(l_playersArray.size()>0)
 						{
-							PlayersGameplay.assigncountries(l_playersArray,l_connectivity.getD_countryList(),l_connectivity.getD_continentList());
-							System.out.println(ColorCoding.green+"Countries assigned to players Successfully"+ColorCoding.blank+"\n");
-							l_gamePhase="mainGameLoop";
+							if(PlayersGameplay.assigncountries(l_playersArray,l_connectivity.getD_countryList(),l_connectivity.getD_continentList())==0)
+							{
+								System.out.println(ColorCoding.green+"Countries assigned to players Successfully"+ColorCoding.blank+"\n");
+								l_gamePhase="mainGameLoop";
+							}
 						}
 						else
 						{
@@ -292,7 +294,7 @@ public class GameEngine {
 					l_playersArray.get(i).getD_Order().execute(l_playersArray.get(i), l_playersArray.get(i).next_order());
 				l_gamePhase = "execute";
 				l_flag=0;
-				System.out.println("All Armies have been succesfully deployed. Enter command to proceed");
+				System.out.println("All Armies have been successfully deployed. Enter command to proceed");
 			}
 			
 		}while(l_option !="exit");
