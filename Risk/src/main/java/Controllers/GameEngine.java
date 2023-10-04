@@ -236,11 +236,12 @@ public class GameEngine {
 			if(l_gamePhase.equals("mainGameLoop"))
 			{
 				PlayersGameplay.assignArmiesToPlayers(l_playersArray);
-				System.out.println("Game Begins!!!!!!!!!!!");
+				System.out.println("Game Begins!!!!!!!!!!!\n");
 				for(int i=0;i<l_playersArray.size();i++)
 				{
 					System.out.println("Player "+ Integer.sum(i,1) +"("+l_playersArray.get(i).getD_playerName()+") has Army Count: "+l_playersArray.get(i).getD_armyCount());
 					PlayersGameplay.showPlayersCountry(l_playersArray.get(i),1);
+					System.out.println();
 				}
 				
 				int l_temp =1;
@@ -289,6 +290,7 @@ public class GameEngine {
 					l_playersArray.get(i).getD_Order().execute(l_playersArray.get(i), l_playersArray.get(i).next_order());
 				l_gamePhase = "execute";
 				l_flag=0;
+				System.out.println("All Armies have been succesfully deployed. Enter command to proceed");
 			}
 			
 		}while(l_option !="exit");

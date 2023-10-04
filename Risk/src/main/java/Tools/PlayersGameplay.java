@@ -125,7 +125,7 @@ public class PlayersGameplay {
 	public static ArrayList<String> showPlayersCountry(Player p_player,int p_Displayflag)
 	{
 		ArrayList<Country> l_country = new ArrayList<>();
-		if(p_Displayflag==1) System.out.println("\nPlayer:" + p_player.getD_playerName()+ " has following countries assigned\n");
+		if(p_Displayflag==1) System.out.println("\nPlayer:" + p_player.getD_playerName()+ " has following countries assigned");
 		l_country=	p_player.getD_Country();
 		ArrayList<String> l_countryList=new ArrayList<>();
 		for(Country c:l_country)

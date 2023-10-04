@@ -156,7 +156,7 @@ public class Player {
 	public void setD_Order(Order p_order) {
 		d_order = p_order;
 		this.d_armyCount = this.d_armyCount - p_order.getD_numberOfArmies();
-		System.out.println("Army count chnaged to "+ d_armyCount);
+		System.out.println("Army count changed to "+ d_armyCount);
 		
 	}
 	

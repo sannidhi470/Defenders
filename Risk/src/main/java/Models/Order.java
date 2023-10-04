@@ -81,7 +81,6 @@ public class Order {
 	{
 		if(p_player.getD_armyCount() !=0)
 		{
-			System.out.println("in execute");
 			p_player.setD_armyCount(p_player.getD_armyCount()-p_order.d_numberOfArmies);
 		}
 	}
