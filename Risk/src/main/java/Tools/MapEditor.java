@@ -187,46 +187,36 @@ public class MapEditor {
 			if(p_countryId == p_connectivity.getD_countryList().get(i).getD_countryId()) 
 			{
 				find.add("Foundp_countryId");
-			}
-			if(p_neighbourcountryId == p_connectivity.getD_countryList().get(i).getD_countryId())
-			{
-				find.add("Foundp_neighbourcountryId");
+			if(p_connectivity.getD_countryList().get(i).getD_neighbours().contains(p_neighbourcountryId))
+				{
+					find.add("Foundp_neighbourcountryId");
+					break;
+				}
 			}
 		}
 		if(find.size() == 2)
 		{
-		for(int i=0;i<p_connectivity.getD_countryList().size();i++)
-		{
-			if(p_connectivity.getD_countryList().get(i).getD_countryId()==p_countryId)
+			for(int i=0;i<p_connectivity.getD_countryList().size();i++)
 			{
-				for(int j=0;j<p_connectivity.getD_countryList().get(i).getD_neighbours().size();j++)
+				if(p_connectivity.getD_countryList().get(i).getD_countryId()==p_countryId)
 				{
-					if(p_neighbourcountryId==p_connectivity.getD_countryList().get(i).getD_neighbours().get(j)) p_connectivity.getD_countryList().get(i).getD_neighbours().remove(j);
+					for(int j=0;j<p_connectivity.getD_countryList().get(i).getD_neighbours().size();j++)
+					{
+						if(p_neighbourcountryId==p_connectivity.getD_countryList().get(i).getD_neighbours().get(j))
+							{
+							p_connectivity.getD_countryList().get(i).getD_neighbours().remove(j);
+							System.out.println(ColorCoding.green+"Removed neighbor succesfully"+ColorCoding.blank);
+							return 0;
+							}
+					}
 				}
 			}
 		}
-		return 0;
-		}
-		if(find.size() == 0)
-		{
-			System.out.println("NeighbourCountryID "+p_neighbourcountryId+" and "+"CountryID "+p_countryId+" don't exist");
-			return 1;
-		}
-		else
-		{
-			if(find.get(0) == "Foundp_countryId")
-			{
-				System.out.println("NeighbourCountryID "+p_neighbourcountryId+" does not exist");
-				return 1;
-			}
-			else
-			{
-				System.out.println("CountryID "+p_countryId+" does not exist");
-				return 1;
-			}				
-		}
-		
-		
+		if(find.size() == 0) 
+			System.out.println("CountryID "+p_countryId+" don't exist");
+		else if(find.size()==1)
+			System.out.println("NeighbourCountryID "+p_neighbourcountryId+" does not exist");
+		return 1;
 	}
 	
 	/**
