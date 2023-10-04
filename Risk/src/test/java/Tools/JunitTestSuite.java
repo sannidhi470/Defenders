@@ -4,6 +4,7 @@ import org.junit.platform.suite.api.*;
 @SelectClasses(
 		{MapEditorTest.class,
 PlayersGameplayTest.class,
+SaveMapTest.class
 })
 public class JunitTestSuite {
 } 
