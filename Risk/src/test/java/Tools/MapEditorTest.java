@@ -21,6 +21,14 @@ class MapEditorTest {
 
 	Connectivity d_connectivity=new Connectivity();
 	
+	/**
+	 *
+	 * This method is used to test if can add continent to the user defined maps.
+	 * @param p_continentId refers to the ID of the continent.
+	 * @param p_continentvalue
+	 * @param p_connectivity
+	 *
+	 */
 	@Test
 	void addContinentTest() 
 	{
