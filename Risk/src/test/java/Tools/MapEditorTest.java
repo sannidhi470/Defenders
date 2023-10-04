@@ -13,10 +13,12 @@ import Models.Continent;
 import Models.Country;
 import Tools.Connectivity;
 import Tools.MapEditor;
+
 /**
  * The class MapEditor tests if we can add continent,if we can add country with or without continent, if we can add neighbour without country or continent.
  *
  */
+
 class MapEditorTest {
 
 	Connectivity d_connectivity=new Connectivity();
@@ -25,10 +27,11 @@ class MapEditorTest {
 	 *
 	 * This method is used to test if can add continent to the user defined maps.
 	 * @param p_continentId refers to the ID of the continent.
-	 * @param p_continentvalue
-	 * @param p_connectivity
+	 * @param p_continentvalue refers to the control value of the continent.
+	 * @param p_connectivity refers to the object of the connectivity class.
 	 *
 	 */
+	
 	@Test
 	void addContinentTest() 
 	{
@@ -40,9 +43,10 @@ class MapEditorTest {
 	 * This method is to test adding country with continent.
 	 * @param p_countryId refers to the ID of the country.
 	 * @param p_continentId refers to the ID of the continent.
-	 * @param p_connectivity
+	 * @param p_connectivity refers to the object of the connectivity class.
 	 *
 	 */
+	
 	@Test
 	void addCountryWithContinentTest()
 	{
@@ -57,9 +61,10 @@ class MapEditorTest {
 	 * This method is to test adding country without continent.
 	 * @param p_countryId refers to the ID of the country.
 	 * @param p_continentId refers to the ID of the continent.
-	 * @param p_connectivity
+	 * @param p_connectivity refers to the object of the connectivity class.
 	 *
 	 */
+	
 	@Test
 	void addCountryWithOutContinentTest() 
 	{
@@ -72,9 +77,10 @@ class MapEditorTest {
 	 * This method is used to test adding neighbouring countries without country and continent.
 	 * @param p_countryId refers to the ID of the country.
 	 * @param p_neighbourcountryId refers to the ID of the neighbouring country.
-	 * @param p_connectivity
+	 * @param p_connectivity refers to the object of the connectivity class.
 	 *
 	 */
+	
 	@Test
 	void addNeighbourWithoutContinentAndCountryTest() 
 	{
@@ -86,9 +92,10 @@ class MapEditorTest {
 	 * This method is used to test adding neighbouring countries with continent without country.
 	 * @param p_countryId refers to the ID of the country.
 	 * @param p_neighbourcountryId refers to the ID of the neighbouring country.
-	 * @param p_connectivity
+	 * @param p_connectivity refers to the object of the connectivity class.
 	 *
 	 */
+	
 	@Test
 	void addNeighbourWithContinentWithoutCountryTest()
 	{
@@ -101,9 +108,10 @@ class MapEditorTest {
 	 * This method is used to test adding neighbouring countries with continent and country.
 	 * @param p_countryId refers to the ID of the country.
 	 * @param p_neighbourcountryId refers to the ID of the neighbouring country.
-	 * @param p_connectivity
+	 * @param p_connectivity refers to the object of the connectivity class.
 	 *
 	 */
+	
 	@Test
 	void addNeighbourWithContinentAndCountryTest() 
 	{
