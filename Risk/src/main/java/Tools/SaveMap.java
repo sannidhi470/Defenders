@@ -17,9 +17,7 @@ public class SaveMap {
 	 *
 	 */
 
-	public static int saveMap(Connectivity p_connectivity)
-	{
-		
+	public static int saveMap(Connectivity p_connectivity) {
 		ArrayList<String> l_mapData=new ArrayList<String>();
 		l_mapData.add("[continents]"+"\n");
 		for(int i=0;i<p_connectivity.getD_continentList().size();i++)
@@ -53,8 +51,5 @@ public class SaveMap {
     	    System.err.println(e.getMessage());
     	    return 1;
         }
-		
-		
 	}
-	
 }

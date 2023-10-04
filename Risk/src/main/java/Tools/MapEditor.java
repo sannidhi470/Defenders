@@ -176,6 +176,7 @@ public class MapEditor {
 	 * @param p_countryId refers to the ID of the country.
 	 * @param p_neighbourcountryId refers to the ID of the neighbouring country.
 	 * @param p_connectivity refers to the object of the connectivity class.
+	 * @param p_displayMessage refers to the message being displayed.
 	 *
 	 */
 	
@@ -282,8 +283,6 @@ public class MapEditor {
 		{
 			return 1;
 		}
-		
-
 	}
 	
 	/**
@@ -324,7 +323,6 @@ public class MapEditor {
 			{
 				removeCountry(p_connectivity.getD_countryList().get(j).getD_countryName(),p_connectivity);
 			}
-			
 		}
 		
 		return 0;

@@ -14,14 +14,17 @@ import Views.ViewMap;
 * The class GameEngine have the main function, so it starts the game by giving options to players to choose different commands.
 *
 */
+
 public class GameEngine {
 	
 	private static ArrayList<Player> l_playersArray = new ArrayList<Player>();
+	
 	/**
 	* Gets the list of the players.
 	* @return the Player list.
 	*
 	*/
+	
 	public static ArrayList<Player> getL_playersArray()
 	{
 		return l_playersArray;
