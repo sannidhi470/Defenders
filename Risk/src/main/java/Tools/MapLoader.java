@@ -110,7 +110,7 @@ public class MapLoader {
     	       }
     	      try
     	       {
-    	    	  System.out.println("Map "+p_mapName+".map"+" has been successfully loaded...");
+    	    	  System.out.println(ColorCoding.green+"Map "+p_mapName+".map"+" has been successfully loaded..."+ColorCoding.blank);
     	       } 
     	       catch (Exception e)
     	       {
@@ -123,9 +123,7 @@ public class MapLoader {
      {
     	 p_connectivity.setD_continentList(new ArrayList<Continent>());
     	 p_connectivity.setD_countryList(new ArrayList<Country>());
-    	 System.out.println("Map does not exist. Creating a map...");
-    	 System.out.println(p_connectivity.getD_FilepathName());
-    	 System.out.println(p_connectivity.getD_pathName());
+    	 System.out.println(ColorCoding.green+"Map does not exist. Creating a map..."+ColorCoding.green);
     	 MapCreater.createMap(l_copyFileName,p_connectivity.getD_pathName());
     	 SaveMap.saveMap(p_connectivity);
   	 }
