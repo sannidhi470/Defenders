@@ -42,7 +42,7 @@ public class MapEditor {
 		l_continent.setD_countries(l_countries);
 		p_connectivity.getD_continentList().add(l_continent);
 		System.out.println("\u001B[32m"+"Continent Added Successfully"+"\u001B[0m");
-		return 0; //Successful execution
+		return 0;
 	}
 	
 	/**

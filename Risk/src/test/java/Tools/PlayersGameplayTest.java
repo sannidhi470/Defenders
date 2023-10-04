@@ -71,7 +71,6 @@ class PlayersGameplayTest {
 		
 		ArrayList<Player> l_playerArrayTest = new ArrayList<Player>();
 		l_playerArrayTest.add(l_playerTest);
-		//System.out.println(l_playerArrayTest.size());
 		
 		int l_countryListSize=l_playerArrayTest.get(0).getD_Country().size()/3;
 		int l_armyCount=Math.max(3, l_countryListSize);
@@ -103,7 +102,6 @@ class PlayersGameplayTest {
 		
 		ArrayList<Player> l_playerArrayTest = new ArrayList<Player>();
 		l_playerArrayTest.add(l_playerTest);
-		//System.out.println(l_playerArrayTest.size());
 		
 		int l_countryListSize=l_playerArrayTest.get(0).getD_Country().size()/3;
 		int l_armyCount=Math.max(3, l_countryListSize);
@@ -115,7 +113,6 @@ class PlayersGameplayTest {
 		}
 		l_armyCount+=l_tempContinentCount;
 		
-		//Increasing the army count to +1
 		l_playerArrayTest.get(0).setD_armyCount(l_armyCount+1);
 		System.out.println(l_armyCount);
 		

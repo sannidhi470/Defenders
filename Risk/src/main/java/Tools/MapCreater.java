@@ -24,7 +24,6 @@ public class MapCreater {
 		File directory = new File(p_pathName);
 		File f = new File(directory,p_fileName+".map");
 		boolean success;
-		//Need to add exception for file not found
 		try {
 			success = f.createNewFile();
 			if(success) 
@@ -33,7 +32,6 @@ public class MapCreater {
 				System.out.println("Unable to create new file");
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.out.println("Unable to create a new file");
 			e.printStackTrace();
 		}
