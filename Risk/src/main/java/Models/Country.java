@@ -14,6 +14,7 @@ public class Country {
 	private String d_countryName;
 	private int d_continentId;
 	private ArrayList<Integer> d_neighbours=new ArrayList<>();
+	private int d_armyDeployedOnCountry=0;
 	
 	/**
 	 * This is a default constructor.
@@ -24,6 +25,7 @@ public class Country {
 		
 	}
 	
+
 	/**
 	 * It initiates a new country.
 	 * @param p_countryId refers to the country ID.
@@ -131,5 +133,12 @@ public class Country {
 		}
 		return " ";
 		
+	}
+	public int getD_armyDeployedOnCountry() {
+		return d_armyDeployedOnCountry;
+	}
+
+	public void setD_armyDeployedOnCountry(int d_armyDeployedOnCountry) {
+		this.d_armyDeployedOnCountry = d_armyDeployedOnCountry;
 	}
 }
