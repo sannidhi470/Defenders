@@ -1,8 +1,5 @@
 package Models;
 
-import java.util.ArrayList;
-import dnl.utils.text.table.TextTable;
-
 /**
  * The class Map defines Maps and it's properties such as File Name and checker if the file exists or not.
  *

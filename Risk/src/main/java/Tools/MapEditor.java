@@ -5,7 +5,6 @@ import java.util.List;
 
 import Models.Continent;
 import Models.Country;
-import Models.Player;
 
 /**
  * The class MapEditor will make changes to the existing map according to the user.

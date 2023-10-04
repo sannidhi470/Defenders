@@ -1,12 +1,7 @@
 package Tools;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.IOException;
 import java.util.*;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import Controllers.GameEngine;

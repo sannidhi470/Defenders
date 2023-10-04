@@ -1,9 +1,6 @@
 package Models;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import Tools.Connectivity;
 
 /**
  * The class Player defines Players and it's properties such as Name, ID, countries owned by players and orders given by player.

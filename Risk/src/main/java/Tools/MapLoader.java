@@ -4,7 +4,6 @@ import Models.Continent;
 import Models.Country;
 import java.io.*;
 import Models.Map;
-import dnl.utils.text.table.TextTable;
 
 /**
  * The class MapLoader will load the map selected by the user.
@@ -54,7 +53,6 @@ public class MapLoader {
     	   		{
     	   			l_fileContent.add(l_input.nextLine());
     	   		}
-    	   		int l_parser=0;
     	   		int l_continentLength = 0;
     	   		int l_countryLength=0;
     	   		int l_borderLength=0;

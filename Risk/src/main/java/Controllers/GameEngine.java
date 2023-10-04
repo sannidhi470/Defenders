@@ -2,7 +2,6 @@ package Controllers;
 import java.io.IOException;
 import java.util.*;
 import Models.*;
-import Models.Map;
 import Tools.ColorCoding;
 import Tools.Connectivity;
 import Tools.MapEditor;
@@ -296,6 +295,7 @@ public class GameEngine {
 		}while(l_option !="exit");
 		
 		System.out.println("Thank you for Playing the Game");
+		l_sc.close();
 		System.exit(0);
 		
 	}

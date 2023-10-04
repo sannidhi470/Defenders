@@ -1,18 +1,8 @@
 package Tools;
 
-
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.IOException;
-import java.util.ArrayList;
-
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 
-import Models.Continent;
-import Models.Country;
-import Tools.Connectivity;
-import Tools.MapEditor;
 
 /**
  * The class MapEditor tests if we can add continent,if we can add country with or without continent, if we can add neighbour without country or continent.
