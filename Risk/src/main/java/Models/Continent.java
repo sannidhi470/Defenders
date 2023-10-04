@@ -61,7 +61,7 @@ public class Continent {
 	
 	/**
 	 * Sets list of countries to the continent.
-	 *
+	 * @param list of countries
 	 */
 
 	public void setD_countries(List<Country> p_countries) {
@@ -71,7 +71,7 @@ public class Continent {
 	/**
 	 * Gets the number of armies for that continent.
 	 * @return the continent army value.
-	 *
+	 * 
 	 */
 
 	public int getD_continentArmyValue() {
@@ -80,7 +80,7 @@ public class Continent {
 	
 	/**
 	 * Sets the continent ID
-	 *
+	 * @param list of continent
 	 */
 
 	public void setD_continentId(int p_continentId) {
@@ -99,7 +99,7 @@ public class Continent {
 	
 	/**
 	 * Sets the continent Name.
-	 *
+	 * @param continent name
 	 */
 
 	public void setD_continentName(String p_continentName) {
@@ -118,7 +118,7 @@ public class Continent {
 	
 	/**
 	 * Sets the continent army value.
-	 *
+	 * @param army value
 	 */
 
 	public void setD_continentArmyValue(int p_continentArmyValue) {
