@@ -171,7 +171,7 @@ public class GameEngine {
 								Player l_player = new Player();
 								l_player.setD_playerName(l_commands[i+1]);
 								l_playersArray.add(l_player);
-							
+								System.out.println(ColorCoding.green+l_player.getD_playerName()+" added successfully"+ColorCoding.blank);
 								i=i+2;
 								
 							}
@@ -181,6 +181,7 @@ public class GameEngine {
 								{
 									if(l_commands[i+1].equals(l_playersArray.get(j).getD_playerName()))
 									{
+										System.out.println(ColorCoding.green+l_playersArray.get(j).getD_playerName()+" removed successfully"+ColorCoding.blank);
 										l_playersArray.remove(j);
 										i=i+2;
 										break;
@@ -196,14 +197,14 @@ public class GameEngine {
 						if(l_playersArray.size()>0)
 						{
 							PlayersGameplay.assigncountries(l_playersArray,l_connectivity.getD_countryList(),l_connectivity.getD_continentList());
-							System.out.println("Countries assigned to players Successfully");
-							l_gamePhase="assignArmies";
+							System.out.println(ColorCoding.green+"Countries assigned to players Successfully"+ColorCoding.blank+"\n");
+							l_gamePhase="mainGameLoop";
 						}
 						else
 						{
-							System.out.println("No players to assign Countries");
+							System.out.println(ColorCoding.red+"ERROR: No players to assign Countries"+ColorCoding.blank);
 						}
-						l_gamePhase="mainGameLoop";
+						
 						break;
 						
 					case "deploy":
@@ -217,7 +218,7 @@ public class GameEngine {
 						}
 						break;
 					default:
-						System.out.println("Invalid Command");
+						System.out.println(ColorCoding.red+"Invalid Command"+ColorCoding.blank);
 							
 					}	
 				}
@@ -260,8 +261,6 @@ public class GameEngine {
 								if(Integer.parseInt(l_tempOrderListArray[1])==(l_connectivity.getD_countryList().get(j).getD_countryId()))
 									l_order.setD_fromCountry(l_connectivity.getD_countryList().get(j));
 							}
-							//l_order.setD_numberOfArmies(Integer.parseInt(l_tempOrderListArray[2]));
-							
 							if(PlayersGameplay.checkArmyAvailable(Integer.parseInt(l_tempOrderListArray[2]),l_playersArray.get(i)))
 							{
 								l_order.setD_numberOfArmies(Integer.parseInt(l_tempOrderListArray[2]));
