@@ -10,6 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import Controllers.GameEngine;
+import Models.Country;
 import Models.Player;
 
 /**
@@ -45,6 +46,37 @@ class PlayersGameplayTest {
 			PlayersGameplay.assignArmiesToPlayers(d_playersArray);
 		}
 		
+	}
+	@Test
+	void assigncountriesWithoutPlayersTest() {
+		d_playersArray.clear();
+		assertEquals(1, PlayersGameplay.assigncountries(d_playersArray, d_connectivity.getD_countryList(),
+				d_connectivity.getD_continentList()));
+	}
+
+	@Test
+	void assigncountriesWithplayersWithoutCountries() {
+		Player l_player = new Player();
+		l_player.setD_playerName("player2");
+		d_playersArray.add(l_player);
+
+		ArrayList<Country> l_countryList = new ArrayList<Country>();
+
+		assertEquals(1,
+				PlayersGameplay.assigncountries(d_playersArray, l_countryList, d_connectivity.getD_continentList()));
+
+	}
+
+	@Test
+	void assigncountriesWithPlayersAndWithLessCountries() {
+		Player l_player = new Player();
+		l_player.setD_playerName("player2");
+		d_playersArray.add(l_player);
+		Country India = new Country();
+
+		ArrayList<Country> l_countryList = new ArrayList<Country>();
+		l_countryList.add(India);
+
 	}
 
 	/**

@@ -24,8 +24,19 @@ public class PlayersGameplay {
 	 *
 	 */
 	
-	public static void assigncountries(ArrayList<Player> p_playersArray,ArrayList<Country> p_countryList,ArrayList<Continent> p_continentList) 
+	public static int assigncountries(ArrayList<Player> p_playersArray,ArrayList<Country> p_countryList,ArrayList<Continent> p_continentList) 
 	{	
+
+		if (p_playersArray.size() == 0) {
+			System.out.println(ColorCoding.red + "Error: Insufficient Players to assign countries" + ColorCoding.blank);
+			return 1;
+		}
+
+		if (p_countryList.size() < p_playersArray.size()) {
+			System.out.println(
+					ColorCoding.red + "Error: Insufficient country to assign to all players" + ColorCoding.blank);
+			return 1;
+		}
 
 		
 		int[] l_playerCountArray = new int[p_playersArray.size()];
@@ -73,6 +84,7 @@ public class PlayersGameplay {
 				}
 			}				
 		}
+		return 0;
 		
 	}
 	
