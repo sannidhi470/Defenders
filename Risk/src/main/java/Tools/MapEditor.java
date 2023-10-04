@@ -229,16 +229,17 @@ public class MapEditor {
 	
 	public static int removeCountry(String p_countryId,Connectivity p_connectivity)
 	{
-		int l_requiredCountryId=0, flag=1, continentID=0;
+		int l_requiredCountryId=0, flag=1, l_continentID=0, l_countryPresent=0;
 		for(int i=0;i<p_connectivity.getD_countryList().size();i++)
 		{	
-			if(p_countryId.equals(p_connectivity.getD_countryList().get(i).getD_countryName()))
+			if(p_countryId.equalsIgnoreCase(p_connectivity.getD_countryList().get(i).getD_countryName()))
 			{
+				l_countryPresent =1;
 				if(p_connectivity.getD_countryList().get(i).getD_neighbours().size() == 0)
 				{
 					flag =0;
 				}
-				continentID = p_connectivity.getD_countryList().get(i).getD_continentId();
+				l_continentID = p_connectivity.getD_countryList().get(i).getD_continentId();
 				l_requiredCountryId=p_connectivity.getD_countryList().get(i).getD_countryId();
 				p_connectivity.getD_countryList().remove(i);
 			}
@@ -247,7 +248,7 @@ public class MapEditor {
 		
 		for(int i=0; i<p_connectivity.getD_continentList().size(); i++)
 		{
-			if(continentID == p_connectivity.getD_continentList().get(i).getD_continentId())
+			if(l_continentID == p_connectivity.getD_continentList().get(i).getD_continentId())
 			{
 				for(int j=0;j<p_connectivity.getD_continentList().get(i).getD_countries().size();j++)
 				{
@@ -257,6 +258,11 @@ public class MapEditor {
 					}
 				}
 			}
+		}
+		
+		if(l_countryPresent==0)
+		{
+			return 1;
 		}
 		
 		if(flag == 1) 

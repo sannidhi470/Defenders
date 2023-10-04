@@ -125,7 +125,7 @@ public class GameEngine {
 							}
 							else if(l_commands[i].equals("-remove"))
 							{
-								MapEditor.addNeighbour(Integer.parseInt(l_commands[i+1]), Integer.parseInt(l_commands[i+2]), l_connectivity);
+								MapEditor.removeNeighbour(Integer.parseInt(l_commands[i+1]), Integer.parseInt(l_commands[i+2]), l_connectivity);
 								i=i+3;
 							}
 							else

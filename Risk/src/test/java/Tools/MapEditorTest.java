@@ -195,7 +195,7 @@ class MapEditorTest {
 	void removeContinentCorrectContinentTest()
 	{
 		MapLoader.loadMap(d_connectivity, "VeryBasic");
-		assertEquals(0,MapEditor.removeContinent("Africa ", d_connectivity));
+		assertEquals(0,MapEditor.removeContinent("Africa", d_connectivity));
 	}
 
 }
