@@ -177,38 +177,31 @@ public class MapEditor {
 	 * @param p_neighbourcountryId refers to the ID of the neighbouring country.
 	 * @param p_connectivity refers to the object of the connectivity class.
 	 * @param p_displayMessage refers to the message being displayed.
+	 * 
+	 * @return display messages
 	 *
 	 */
 	
-	public static int removeNeighbour(int p_countryId,int p_neighbourcountryId, Connectivity p_connectivity, int p_displayMessage)
-	{	
+	public static int removeNeighbour(int p_countryId,int p_neighbourcountryId, Connectivity p_connectivity, int p_displayMessage) {	
 		ArrayList<String> find = new ArrayList<String>();
-		for(int i=0; i<p_connectivity.getD_countryList().size(); i++)
-		{
-			if(p_countryId == p_connectivity.getD_countryList().get(i).getD_countryId()) 
-			{
+		for(int i=0; i<p_connectivity.getD_countryList().size(); i++) {
+			if(p_countryId == p_connectivity.getD_countryList().get(i).getD_countryId())  {
 				find.add("Foundp_countryId");
-			if(p_connectivity.getD_countryList().get(i).getD_neighbours().contains(p_neighbourcountryId))
-				{
+			if(p_connectivity.getD_countryList().get(i).getD_neighbours().contains(p_neighbourcountryId)) {
 					find.add("Foundp_neighbourcountryId");
 					break;
 				}
 			}
 		}
-		if(find.size() == 2)
-		{
-			for(int i=0;i<p_connectivity.getD_countryList().size();i++)
-			{
-				if(p_connectivity.getD_countryList().get(i).getD_countryId()==p_countryId)
-				{
-					for(int j=0;j<p_connectivity.getD_countryList().get(i).getD_neighbours().size();j++)
-					{
-						if(p_neighbourcountryId==p_connectivity.getD_countryList().get(i).getD_neighbours().get(j))
-							{
+		if(find.size() == 2) {
+			for(int i=0;i<p_connectivity.getD_countryList().size();i++) {
+				if(p_connectivity.getD_countryList().get(i).getD_countryId()==p_countryId) {
+					for(int j=0;j<p_connectivity.getD_countryList().get(i).getD_neighbours().size();j++) {
+						if(p_neighbourcountryId==p_connectivity.getD_countryList().get(i).getD_neighbours().get(j)) {
 							p_connectivity.getD_countryList().get(i).getD_neighbours().remove(j);
 							System.out.println(ColorCoding.green+"Removed neighbor succesfully"+ColorCoding.blank);
 							return 0;
-							}
+						}
 					}
 				}
 			}
@@ -290,6 +283,8 @@ public class MapEditor {
 	 * This method is used to remove continent to the user defined maps.
 	 * @param p_continentId refers to the ID of the continent.
 	 * @param p_connectivity refers to the object of the connectivity class.
+	 * 
+	 * @return display messages.
 	 *
 	 */
 	
