@@ -262,6 +262,7 @@ public class MapEditor {
 		
 		if(l_countryPresent==0)
 		{
+			System.out.println("Country "+p_countryId+" does not exist");
 			return 1;
 		}
 		
@@ -315,7 +316,6 @@ public class MapEditor {
 		}
 		for(int j=p_connectivity.getD_countryList().size()-1;j>=0;j--)
 		{
-			System.out.println(p_connectivity.getD_countryList());
 
 			if(p_connectivity.getD_countryList().get(j).getD_continentId()==l_requiredContinentId)
 			{

@@ -128,7 +128,6 @@ class MapEditorTest {
 	void removeNeighbourWrongCountryNeighbour()
 	{
 		MapLoader.loadMap(d_connectivity, "VeryBasic");
-		System.out.println("aaa"+MapEditor.removeNeighbour(1, 6, d_connectivity));
 		assertEquals(1,MapEditor.removeNeighbour(1, 6, d_connectivity));
 	}
 	
@@ -155,7 +154,6 @@ class MapEditorTest {
 	void removeCountryWrongCountryTest()
 	{
 		MapLoader.loadMap(d_connectivity, "VeryBasic");
-		System.out.println("aaa "+MapEditor.removeCountry("abc", d_connectivity));
 		assertEquals(1,MapEditor.removeCountry("abc", d_connectivity));
 	}
 	
