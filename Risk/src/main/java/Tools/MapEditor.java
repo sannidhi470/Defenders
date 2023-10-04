@@ -18,8 +18,8 @@ public class MapEditor {
 	 *
 	 * This method is used to add continent to the user defined maps.
 	 * @param p_continentId refers to the ID of the continent.
-	 * @param p_continentvalue
-	 * @param p_connectivity
+	 * @param p_continentvalue refers to the control value of the continent.
+	 * @param p_connectivity refers object of the connectivity class.
 	 *
 	 */
 		
@@ -50,7 +50,7 @@ public class MapEditor {
 	 * This method is used to add country to the user defined maps.
 	 * @param p_countryId refers to the ID of the country.
 	 * @param p_continentId refers to the ID of the continent.
-	 * @param p_connectivity
+	 * @param p_connectivity refers to the object of the connectivity class.
 	 *
 	 */
 	
@@ -107,7 +107,7 @@ public class MapEditor {
 	 * This method is used to add neighbouring countries to the owned countries to the user defined maps.
 	 * @param p_countryId refers to the ID of the country.
 	 * @param p_neighbourcountryId refers to the ID of the neighbouring country.
-	 * @param p_connectivity
+	 * @param p_connectivity refers to the object of the connectivity class.
 	 *
 	 */
 	
@@ -176,7 +176,7 @@ public class MapEditor {
 	 * This method is used to remove neighbouring countries to the owned countries to the user defined maps.
 	 * @param p_countryId refers to the ID of the country.
 	 * @param p_neighbourcountryId refers to the ID of the neighbouring country.
-	 * @param p_connectivity
+	 * @param p_connectivity refers to the object of the connectivity class.
 	 *
 	 */
 	
@@ -230,7 +230,7 @@ public class MapEditor {
 	 *
 	 * This method is used to remove country to the user defined maps.
 	 * @param p_countryId refers to the ID of the country.
-	 * @param p_connectivity
+	 * @param p_connectivity refers to the object of the connectivity class.
 	 *
 	 */
 	
@@ -256,7 +256,7 @@ public class MapEditor {
 	 *
 	 * This method is used to remove continent to the user defined maps.
 	 * @param p_continentId refers to the ID of the continent.
-	 * @param p_connectivity
+	 * @param p_connectivity refers to the object of the connectivity class.
 	 *
 	 */
 	
