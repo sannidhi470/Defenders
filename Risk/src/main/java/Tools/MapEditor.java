@@ -290,7 +290,19 @@ public class MapEditor {
 	
 	public static void removeContinent(String p_continentId,Connectivity p_connectivity)
 	{
-		int l_requiredContinentId=0;
+		int l_requiredContinentId=0, flag =0;
+	    for(int i=0; i<p_connectivity.getD_continentList().size(); i++)
+	    {
+	    	if(p_continentId.equalsIgnoreCase(p_connectivity.getD_continentList().get(i).getD_continentName()))			
+	    	{
+	    		flag=1;
+	    	}
+	    }
+	    if(flag==0)
+	    {
+	    	System.out.println("Continent: "+p_continentId+" doesn't exist");
+	    	return;
+	    }
 		for(int i=0;i<p_connectivity.getD_continentList().size();i++)
 		{
 			if(p_connectivity.getD_continentList().get(i).getD_continentName().equals(p_continentId))

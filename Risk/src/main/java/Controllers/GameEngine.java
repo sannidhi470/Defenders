@@ -73,7 +73,6 @@ public class GameEngine {
 						l_gamePhase="startup";
 						for(int i=1; i<l_commands.length;)
 						{
-							System.out.println(l_commands[i]);
 							if(l_commands[i].equals("-add"))
 							{
 								System.out.println("add");
