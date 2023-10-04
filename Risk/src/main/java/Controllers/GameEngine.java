@@ -111,7 +111,7 @@ public class GameEngine {
 							}
 							else
 							{
-								System.out.println("Invalid Command");
+								System.out.println(ColorCoding.red+"ERROR: Invalid Command"+ColorCoding.blank);
 							}
 						}
 						
@@ -133,7 +133,7 @@ public class GameEngine {
 							}
 							else
 							{
-								System.out.println("Invalid Command");
+								System.out.println(ColorCoding.red+"ERROR: Invalid Command"+ColorCoding.blank);
 							}
 						}
 						
@@ -160,7 +160,7 @@ public class GameEngine {
 						{
 							MapLoader.loadMap(l_connectivity,l_commands[1]);
 						} else {
-							System.out.println("No map entered. Please enter name of map to be loaded");
+							System.out.println(ColorCoding.red+"No map entered. Please enter name of map to be loaded"+ColorCoding.blank);
 						}
 						break;
 						
@@ -231,7 +231,7 @@ public class GameEngine {
 			{
 				if(l_gamePhase.equals("startup"))
 				{
-					System.out.println("Invalid Commands");
+					System.out.println(ColorCoding.red+"ERROR: Invalid Command"+ColorCoding.blank);
 					l_flag = 0;
 				}
 			}
@@ -294,7 +294,7 @@ public class GameEngine {
 					l_playersArray.get(i).getD_Order().execute(l_playersArray.get(i), l_playersArray.get(i).next_order());
 				l_gamePhase = "execute";
 				l_flag=0;
-				System.out.println("All Armies have been successfully deployed. Enter command to proceed");
+				System.out.println(ColorCoding.green+"All Armies have been successfully deployed. Enter command to proceed"+ColorCoding.blank);
 			}
 			
 		}while(l_option !="exit");
