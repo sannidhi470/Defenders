@@ -35,6 +35,14 @@ class MapEditorTest {
 		assertEquals(0,MapEditor.addContinent("Asia",10,d_connectivity));
 	}
 	
+	/**
+	 *
+	 * This method is to test adding country with continent.
+	 * @param p_countryId refers to the ID of the country.
+	 * @param p_continentId refers to the ID of the continent.
+	 * @param p_connectivity
+	 *
+	 */
 	@Test
 	void addCountryWithContinentTest()
 	{
@@ -44,6 +52,14 @@ class MapEditorTest {
 		assertEquals(0,MapEditor.addCountry("India", "1", d_connectivity));
 	}
 	
+	/**
+	 *
+	 * This method is to test adding country without continent.
+	 * @param p_countryId refers to the ID of the country.
+	 * @param p_continentId refers to the ID of the continent.
+	 * @param p_connectivity
+	 *
+	 */
 	@Test
 	void addCountryWithOutContinentTest() 
 	{
@@ -51,12 +67,28 @@ class MapEditorTest {
 		assertEquals(1,MapEditor.addCountry("India", "1", d_connectivity));
 	}
 	
+	/**
+	 *
+	 * This method is used to test adding neighbouring countries without country and continent.
+	 * @param p_countryId refers to the ID of the country.
+	 * @param p_neighbourcountryId refers to the ID of the neighbouring country.
+	 * @param p_connectivity
+	 *
+	 */
 	@Test
 	void addNeighbourWithoutContinentAndCountryTest() 
 	{
 		assertEquals(1,MapEditor.addNeighbour(1, 2, d_connectivity));
 	}
 	
+	/**
+	 *
+	 * This method is used to test adding neighbouring countries with continent without country.
+	 * @param p_countryId refers to the ID of the country.
+	 * @param p_neighbourcountryId refers to the ID of the neighbouring country.
+	 * @param p_connectivity
+	 *
+	 */
 	@Test
 	void addNeighbourWithContinentWithoutCountryTest()
 	{
@@ -64,6 +96,14 @@ class MapEditorTest {
 		assertEquals(1,MapEditor.addNeighbour(1, 2, d_connectivity));
 	}
 	
+	/**
+	 *
+	 * This method is used to test adding neighbouring countries with continent and country.
+	 * @param p_countryId refers to the ID of the country.
+	 * @param p_neighbourcountryId refers to the ID of the neighbouring country.
+	 * @param p_connectivity
+	 *
+	 */
 	@Test
 	void addNeighbourWithContinentAndCountryTest() 
 	{
