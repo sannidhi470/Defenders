@@ -123,7 +123,7 @@ public class MapLoader {
      {
     	 p_connectivity.setD_continentList(new ArrayList<Continent>());
     	 p_connectivity.setD_countryList(new ArrayList<Country>());
-    	 System.out.println(ColorCoding.green+"Map does not exist. Creating a map..."+ColorCoding.green);
+    	 System.out.println(ColorCoding.green+"Map does not exist. Creating a map..."+ColorCoding.blank);
     	 MapCreater.createMap(l_copyFileName,p_connectivity.getD_pathName());
     	 SaveMap.saveMap(p_connectivity);
   	 }
