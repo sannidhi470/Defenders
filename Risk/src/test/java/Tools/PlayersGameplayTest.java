@@ -25,12 +25,12 @@ class PlayersGameplayTest {
 	
 	/**
 	*
-	* This method is used to test assignment of countries and armies to players.
+	* This method is used to test addition of players if not there.
 	*
 	*/
 	
 	@BeforeEach
-	public void addPlayersIfNotThere() 
+	public void addPlayersIfNotThereTest() 
 	{
 		
 		if(d_playersArray.size() == 0)
@@ -47,15 +47,28 @@ class PlayersGameplayTest {
 		}
 		
 	}
+	
+	/**
+	 * 
+	 * The method tests if countries are assigned without players.
+	 *
+	 */
+	
 	@Test
 	void assigncountriesWithoutPlayersTest() {
 		d_playersArray.clear();
 		assertEquals(1, PlayersGameplay.assigncountries(d_playersArray, d_connectivity.getD_countryList(),
 				d_connectivity.getD_continentList()));
 	}
+	
+	/**
+	 * 
+	 * The method tests if players are not assigned with countries.
+	 *
+	 */
 
 	@Test
-	void assigncountriesWithplayersWithoutCountries() {
+	void assigncountriesWithplayersWithoutCountriesTest() {
 		Player l_player = new Player();
 		l_player.setD_playerName("player2");
 		d_playersArray.add(l_player);
@@ -64,11 +77,16 @@ class PlayersGameplayTest {
 
 		assertEquals(1,
 				PlayersGameplay.assigncountries(d_playersArray, l_countryList, d_connectivity.getD_continentList()));
-
 	}
+	
+	/**
+	 * 
+	 * The method tests if countries are more than the number of players.
+	 *
+	 */
 
 	@Test
-	void assigncountriesWithPlayersAndWithLessCountries() {
+	void assigncountriesWithPlayersAndWithLessCountriesTest() {
 		Player l_player = new Player();
 		l_player.setD_playerName("player2");
 		d_playersArray.add(l_player);
@@ -80,6 +98,7 @@ class PlayersGameplayTest {
 	}
 
 	/**
+	 * 
 	 * The method tests if armies are available to attack or not.
 	 *
 	 */
@@ -94,6 +113,7 @@ class PlayersGameplayTest {
 	}
 	
 	/**
+	 * 
 	 * The method tests if assignment of armies is correct.  
 	 * 
 	 */
@@ -125,6 +145,7 @@ class PlayersGameplayTest {
 	}
 	
 	/**
+	 * 
 	 * The method tests if assignment of armies is wrong.  
 	 * 
 	 */
@@ -156,9 +177,4 @@ class PlayersGameplayTest {
 		
 		assertNotEquals(d_playersArray.get(0).getD_armyCount(), l_playerArrayTest.get(0).getD_armyCount());
 	}
-	
-	
-	
-	
-
 }
