@@ -11,16 +11,29 @@ import Tools.PlayersGameplay;
 import Tools.SaveMap;
 import Views.ViewMap;
 
+/**
+* The class GameEngine have the main function, so it starts the game by giving options to players to choose different commands.
+*
+*/
 public class GameEngine {
 	
 	private static ArrayList<Player> l_playersArray = new ArrayList<Player>();
-	
+	/**
+	* Gets the list of the players.
+	* @return the Player list.
+	*
+	*/
 	public static ArrayList<Player> getL_playersArray()
 	{
 		return l_playersArray;
 	}
 
-	
+	/**
+	* Starts the game.
+	* @param args The command line arguments.
+	* @throws java.io.IOException when we can't read a file .
+	*
+	*/
 	public static void main(String[] args) throws IOException {
 
 		Scanner l_sc = new Scanner(System.in);
@@ -230,11 +243,6 @@ public class GameEngine {
 					PlayersGameplay.showPlayersCountry(l_playersArray.get(i),1);
 				}
 				
-//				l_gamePhase="issueOrder";
-//				ArrayList<String> l_orders=new ArrayList<>();
-//				l_orders.addAll(PlayersGameplay.issueOrder(l_playersArray));
-//				PlayersGameplay.nextOrder(l_orders, l_playersArray);
-//				l_flag=0;
 				int l_temp =1;
 				int flag=0;
 				while(l_temp>0) {
@@ -291,9 +299,5 @@ public class GameEngine {
 		System.exit(0);
 		
 	}
-	
-	
-	
-	
-	
+
 }
