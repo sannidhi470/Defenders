@@ -17,7 +17,7 @@ public class SaveMap {
 	 *
 	 */
 
-	public static void saveMap(Connectivity p_connectivity)
+	public static int saveMap(Connectivity p_connectivity)
 	{
 		
 		ArrayList<String> l_mapData=new ArrayList<String>();
@@ -45,11 +45,16 @@ public class SaveMap {
 				l_input.write(lines);		
 			l_input.close();		
 			System.out.println("Map has been successfully saved");
+			return 0;
 		}
         catch (Exception e)
         {
     	    System.out.println("Map could not be saved properly");
-    	    return;
-        }	  
+    	    System.err.println(e.getMessage());
+    	    return 1;
+        }
+		
+		
 	}
+	
 }
