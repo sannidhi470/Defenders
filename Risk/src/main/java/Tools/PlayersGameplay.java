@@ -25,9 +25,7 @@ public class PlayersGameplay {
 	 *
 	 */
 	
-	public static int assigncountries(ArrayList<Player> p_playersArray,ArrayList<Country> p_countryList,ArrayList<Continent> p_continentList) 
-	{	
-
+	public static int assigncountries(ArrayList<Player> p_playersArray,ArrayList<Country> p_countryList,ArrayList<Continent> p_continentList) {	
 		if (p_playersArray.size() == 0) {
 			System.out.println(ColorCoding.red + "Error: Insufficient Players to assign countries" + ColorCoding.blank);
 			return 1;
@@ -38,7 +36,6 @@ public class PlayersGameplay {
 					ColorCoding.red + "Error: Insufficient country to assign to all players" + ColorCoding.blank);
 			return 1;
 		}
-
 		
 		int[] l_playerCountArray = new int[p_playersArray.size()];
 		int sum = 0;
@@ -47,20 +44,16 @@ public class PlayersGameplay {
 		do
 		{
 			sum=0;
-			for(int i=0; i<p_playersArray.size(); i++)
-			{
+			for(int i=0; i<p_playersArray.size(); i++) {
 				int randomResult = (int) ((Math.random()*range) + 1);
 				sum=sum+randomResult;
 				l_playerCountArray[i]=randomResult;
 			}
-			
 		}	while(sum>p_countryList.size());
 		
-		for(int i=0; i<p_playersArray.size();i++)
-		{
+		for(int i=0; i<p_playersArray.size();i++) {
 			ArrayList<Country> l_removeCountry=new ArrayList<>();
-			for(int j=0; j<l_playerCountArray[i];j++)
-			{
+			for(int j=0; j<l_playerCountArray[i];j++) {
 				Country l_country = p_countryList.get(j);		
 				l_removeCountry.add(l_country);
 				p_playersArray.get(i).addCountry(l_country);
@@ -68,8 +61,7 @@ public class PlayersGameplay {
 			p_countryList.removeAll(l_removeCountry);
 			
 		}
-		for(int i=0;i<p_playersArray.size();i++)
-		{
+		for(int i=0;i<p_playersArray.size();i++) {
 			ArrayList<String> l_tempCountry=new ArrayList<>();
 			ArrayList<String> tempCountryInContinent=new ArrayList<>();
 			ArrayList<Continent> l_continentsOwned=new ArrayList<>();
@@ -86,7 +78,6 @@ public class PlayersGameplay {
 			}				
 		}
 		return 0;
-		
 	}
 	
 	/**
@@ -96,8 +87,7 @@ public class PlayersGameplay {
 	 *
 	 */
 	 
-	public static void assignArmiesToPlayers(ArrayList<Player> p_playersList)
-	{
+	public static void assignArmiesToPlayers(ArrayList<Player> p_playersList) {
 		for(int i=0;i<p_playersList.size();i++)
 		{
 			int l_countryListSize=p_playersList.get(i).getD_Country().size()/3;
@@ -123,8 +113,7 @@ public class PlayersGameplay {
 	 *
 	 */
 	 
-	public static ArrayList<String> showPlayersCountry(Player p_player,int p_Displayflag)
-	{
+	public static ArrayList<String> showPlayersCountry(Player p_player,int p_Displayflag) {
 		ArrayList<Country> l_country = new ArrayList<>();
 		if(p_Displayflag==1) System.out.println("\nPlayer:" + p_player.getD_playerName()+ " has following countries assigned");
 		l_country=	p_player.getD_Country();
@@ -147,12 +136,8 @@ public class PlayersGameplay {
 	 *
 	 */
 	
-	public static boolean checkArmyAvailable(int p_army,Player p_player)
-	{
+	public static boolean checkArmyAvailable(int p_army,Player p_player) {
 		if(p_player.getD_armyCount() >= p_army) return true;
-		else return false;
-				
+		else return false;			
 	}
-
-
 }
