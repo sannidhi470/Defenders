@@ -27,6 +27,7 @@ class PlayersGameplayTest {
 	* This method is used to test assignment of countries and armies to players.
 	*
 	*/
+	
 	@BeforeEach
 	public void addPlayersIfNotThere() 
 	{
@@ -50,6 +51,7 @@ class PlayersGameplayTest {
 	 * The method tests if armies are available to attack or not.
 	 *
 	 */
+	
 	@Test
 	void checkArmyAvailableSendMoreTroopsTest() 
 	{
@@ -63,6 +65,7 @@ class PlayersGameplayTest {
 	 * The method tests if assignment of armies is correct.  
 	 * 
 	 */
+	
 	@Test
 	void assignArmiesToPlayersManualCorrectTest()
 	{
@@ -93,6 +96,7 @@ class PlayersGameplayTest {
 	 * The method tests if assignment of armies is wrong.  
 	 * 
 	 */
+	
 	@Test
 	void assignArmiesToPlayersManualWrongTest()
 	{
