@@ -13,7 +13,10 @@ import Models.Continent;
 import Models.Country;
 import Tools.Connectivity;
 import Tools.MapEditor;
-
+/**
+ * The class MapEditor tests if we can add continent,if we can add country with or without continent, if we can add neighbour without country or continent.
+ *
+ */
 class MapEditorTest {
 
 	Connectivity d_connectivity=new Connectivity();
