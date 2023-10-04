@@ -179,7 +179,7 @@ public class MapEditor {
 	 *
 	 */
 	
-	public static int removeNeighbour(int p_countryId,int p_neighbourcountryId, Connectivity p_connectivity)
+	public static int removeNeighbour(int p_countryId,int p_neighbourcountryId, Connectivity p_connectivity, int p_displayMessage)
 	{	
 		ArrayList<String> find = new ArrayList<String>();
 		for(int i=0; i<p_connectivity.getD_countryList().size(); i++)
@@ -212,10 +212,13 @@ public class MapEditor {
 				}
 			}
 		}
-		if(find.size() == 0) 
-			System.out.println("CountryID "+p_countryId+" don't exist");
-		else if(find.size()==1)
-			System.out.println("NeighbourCountryID "+p_neighbourcountryId+" does not exist");
+		if(p_displayMessage !=0) {
+			if(find.size() == 0) 
+				System.out.println("CountryID "+p_countryId+" don't exist");
+			else if(find.size()==1)
+				System.out.println("NeighbourCountryID "+p_neighbourcountryId+" does not exist");			
+		}
+
 		return 1;
 	}
 	
@@ -270,7 +273,7 @@ public class MapEditor {
 		{
 			for(int i=0;i<p_connectivity.getD_countryList().size();i++)
 			{
-				removeNeighbour(p_connectivity.getD_countryList().get(i).getD_countryId(),l_requiredCountryId,p_connectivity);
+				removeNeighbour(p_connectivity.getD_countryList().get(i).getD_countryId(),l_requiredCountryId,p_connectivity,0);
 				
 			}
 			return 0;

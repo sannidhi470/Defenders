@@ -102,7 +102,7 @@ class MapEditorTest {
 	void removeNeighbourWithoutCountryAndNeighbours()
 	{
 		MapLoader.loadMap(d_connectivity, "VeryBasic");
-		assertEquals(1,MapEditor.removeNeighbour(30, 31, d_connectivity));
+		assertEquals(1,MapEditor.removeNeighbour(30, 31, d_connectivity,1));
 	}
 	
 	/**
@@ -115,7 +115,7 @@ class MapEditorTest {
 	void removeNeighbourWithCountryWithoutNeighbours()
 	{
 		MapLoader.loadMap(d_connectivity, "VeryBasic");
-		assertEquals(1,MapEditor.removeNeighbour(1, 31, d_connectivity));
+		assertEquals(1,MapEditor.removeNeighbour(1, 31, d_connectivity,1));
 	}
 	
 	/**
@@ -128,7 +128,7 @@ class MapEditorTest {
 	void removeNeighbourWrongCountryNeighbour()
 	{
 		MapLoader.loadMap(d_connectivity, "VeryBasic");
-		assertEquals(1,MapEditor.removeNeighbour(1, 6, d_connectivity));
+		assertEquals(1,MapEditor.removeNeighbour(1, 6, d_connectivity,1));
 	}
 	
 	/**
@@ -141,7 +141,7 @@ class MapEditorTest {
 	void removeNeighbourWithCorrectCountryAndNeighbour()
 	{
 		MapLoader.loadMap(d_connectivity, "VeryBasic");
-		assertEquals(0,MapEditor.removeNeighbour(1, 2, d_connectivity));
+		assertEquals(0,MapEditor.removeNeighbour(1, 2, d_connectivity,1));
 	}
 	
 	/**
