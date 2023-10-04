@@ -179,7 +179,7 @@ public class MapEditor {
 	 *
 	 */
 	
-	public static void removeNeighbour(int p_countryId,int p_neighbourcountryId, Connectivity p_connectivity)
+	public static int removeNeighbour(int p_countryId,int p_neighbourcountryId, Connectivity p_connectivity)
 	{	
 		ArrayList<String> find = new ArrayList<String>();
 		for(int i=0; i<p_connectivity.getD_countryList().size(); i++)
@@ -205,20 +205,24 @@ public class MapEditor {
 				}
 			}
 		}
+		return 0;
 		}
 		if(find.size() == 0)
 		{
 			System.out.println("NeighbourCountryID "+p_neighbourcountryId+" and "+"CountryID "+p_countryId+" don't exist");
+			return 1;
 		}
 		else
 		{
 			if(find.get(0) == "Foundp_countryId")
 			{
 				System.out.println("NeighbourCountryID "+p_neighbourcountryId+" does not exist");
+				return 1;
 			}
 			else
 			{
 				System.out.println("CountryID "+p_countryId+" does not exist");
+				return 1;
 			}				
 		}
 		
@@ -233,7 +237,7 @@ public class MapEditor {
 	 *
 	 */
 	
-	public static void removeCountry(String p_countryId,Connectivity p_connectivity)
+	public static int removeCountry(String p_countryId,Connectivity p_connectivity)
 	{
 		int l_requiredCountryId=0, flag=1, continentID=0;
 		for(int i=0;i<p_connectivity.getD_countryList().size();i++)
@@ -270,12 +274,15 @@ public class MapEditor {
 			for(int i=0;i<p_connectivity.getD_countryList().size();i++)
 			{
 				removeNeighbour(p_connectivity.getD_countryList().get(i).getD_countryId(),l_requiredCountryId,p_connectivity);
-			}			
+				
+			}
+			return 0;
 		}
 		else
 		{
-			return;
+			return 1;
 		}
+		
 
 	}
 	
@@ -287,7 +294,7 @@ public class MapEditor {
 	 *
 	 */
 	
-	public static void removeContinent(String p_continentId,Connectivity p_connectivity)
+	public static int removeContinent(String p_continentId,Connectivity p_connectivity)
 	{
 		int l_requiredContinentId=0, flag =0;
 	    for(int i=0; i<p_connectivity.getD_continentList().size(); i++)
@@ -300,7 +307,7 @@ public class MapEditor {
 	    if(flag==0)
 	    {
 	    	System.out.println("Continent: "+p_continentId+" doesn't exist");
-	    	return;
+	    	return 1;
 	    }
 		for(int i=0;i<p_connectivity.getD_continentList().size();i++)
 		{
@@ -321,6 +328,7 @@ public class MapEditor {
 			
 		}
 		
+		return 0;
 	}	
 	
 }
