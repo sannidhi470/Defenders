@@ -1,6 +1,8 @@
 package Tools;
 
 import java.util.ArrayList;
+
+import Controllers.GameEngine;
 import Models.Continent;
 import Models.Country;
 import Models.Player;
@@ -139,5 +141,130 @@ public class PlayersGameplay {
 	public static boolean checkArmyAvailable(int p_army,Player p_player) {
 		if(p_player.getD_armyCount() >= p_army) return true;
 		else return false;			
+	}
+	
+	
+	
+	public static int advance(Player p_player,Country p_fromCountry,Country p_toCountry,int p_troops)
+	{
+		//Check whether the fromCountry belongs to player or not
+		if(p_player.getD_Country().contains(p_fromCountry))
+		{
+			//Check whether the toCountry belongs to player or not
+			if(p_player.getD_Country().contains(p_toCountry))
+			{
+				//Check whether the toCountry is the neighbor of fromCountry or not 
+				if(p_fromCountry.getD_neighbours().contains(p_toCountry))
+				{
+					//check p_troops is less then p_formCountry.getDarmyDeployed
+					if(p_troops<=p_fromCountry.getD_armyDeployedOnCountry())
+					{
+						int l_troopsaddition = p_toCountry.getD_armyDeployedOnCountry() + p_troops;
+						p_toCountry.setD_armyDeployedOnCountry(l_troopsaddition); 
+						
+						int l_troopsDeduction = p_fromCountry.getD_armyDeployedOnCountry() - p_troops;
+						p_fromCountry.setD_armyDeployedOnCountry(l_troopsDeduction);
+			
+						return 0;
+					}
+					else
+					{
+						System.out.println(ColorCoding.red+"Error: Can't move more armies then the armies in the country"+ColorCoding.blank);
+						return 1;
+					}
+					
+				}
+				else
+				{
+					System.out.println(ColorCoding.red+"Error: Country where the troops are advanced is not the neighbour of the country form where the troops are sent"+ColorCoding.blank);
+					return 1;
+				}	
+			}
+			else //Attack on toCountry as it doesn't belong to player 
+			{
+				//Already checked whether fromCountry belongs to player or not 
+				attack(p_player,p_fromCountry,p_toCountry,p_troops);
+				return 0;
+			}
+		}
+		else
+		{
+			System.out.println(ColorCoding.red+"Error: Country doesn't belongs to player from where he wants to advance the troops"+ColorCoding.blank);
+			return 1;
+		}
+		
+	}
+	
+	
+	public static int attack(Player p_player,Country p_fromCountry,Country p_toCountry,int p_troops)
+	{
+	
+		//check toCountry is neighbor of fromCountry or not 
+		if(p_fromCountry.getD_neighbours().contains(p_toCountry))
+		{
+			//check p_troops is less then p_formCountry.getDarmyDeployed
+			if(p_troops<=p_fromCountry.getD_armyDeployedOnCountry())
+			{
+				//attaing country: 60% chance of killing 1 unit
+				int l_troopsSource = p_fromCountry.getD_armyDeployedOnCountry();
+				l_troopsSource = (int) (l_troopsSource*1.6);
+				
+				//defending country: 70% chance of killing 1 unit
+				int l_troopsDestination = p_toCountry.getD_armyDeployedOnCountry();
+				l_troopsDestination = (int) (l_troopsDestination*1.7);
+				
+				if(l_troopsSource>l_troopsDestination)
+				{
+					//Attacker captures the country.
+					p_player.getD_Country().add(p_toCountry);
+					
+					//Remove p_toCountry from the player which it is assigned to 
+					removeCountry(GameEngine.getL_playersArray(),p_toCountry);
+					
+					int l_troopsLeft = l_troopsSource - l_troopsDestination; 
+					p_toCountry.setD_armyDeployedOnCountry(l_troopsLeft);
+					p_fromCountry.setD_armyDeployedOnCountry(0);
+				}
+				else if(l_troopsSource<l_troopsDestination)
+				{
+					//Defender defeats the attacker
+					int l_troopsLeft = l_troopsDestination - l_troopsSource;
+					p_toCountry.setD_armyDeployedOnCountry(l_troopsLeft);
+					p_fromCountry.setD_armyDeployedOnCountry(0);
+				}
+				else
+				{
+					p_toCountry.setD_armyDeployedOnCountry(0);
+					p_fromCountry.setD_armyDeployedOnCountry(0);
+				}
+				
+				return 0;
+			}
+			else
+			{
+				System.out.println(ColorCoding.red+"Error: Can't attack with more armies then the armies in the country"+ColorCoding.blank);
+				return 1;
+			}
+			
+		}
+		else
+		{
+			System.out.println(ColorCoding.red+"Error: Can't attack the country "+p_toCountry.getD_countryName()+" as it is not a neighbour"+ColorCoding.blank);
+			return 1;
+		}
+	}
+	
+	public static int removeCountry(ArrayList<Player> p_playersArray,Country p_country)
+	{
+		for(Player p:p_playersArray)
+		{
+			if(p.getD_Country().contains(p_country))
+			{
+//////////////////////////need to check whether the country actually been removed from player or not 
+			    p.getD_Country().remove(p_country);
+				return 0;
+			}
+		}
+		return 1;
 	}
 }
