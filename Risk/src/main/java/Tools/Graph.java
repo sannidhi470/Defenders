@@ -2,7 +2,7 @@ package Tools;
 
 import java.util.LinkedList;
 
-public class Graph extends countriesAsGraph{
+public class Graph extends validateGraph{
 	 
 	
 	public Graph(int d_noOfCountries,Connectivity p_connectivity)
