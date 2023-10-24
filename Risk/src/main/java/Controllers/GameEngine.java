@@ -397,8 +397,25 @@ public class GameEngine {
 				
 			}
 		//After countries are deployed
-				}while(terminateFlag!=l_playersArray.size());
 				
+				}while(terminateFlag!=l_playersArray.size());
+				int l_executeOrder=0;
+				Set<String> l_emptyOrders=new HashSet<>();
+				while(l_executeOrder!=l_playersArray.size())
+				{
+					for(int j=0;j<l_playersArray.size();j++)
+					{
+						
+						if(l_emptyOrders.contains(l_playersArray.get(j).getD_playerName())) continue;
+						if(l_playersArray.get(j).getD_playerOrder().size()==0) 
+						{
+							l_emptyOrders.add(l_playersArray.get(j).getD_playerName());
+							l_executeOrder++;
+							continue;	
+						}
+						l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),1);
+					}
+				}
 				
 				
 				
