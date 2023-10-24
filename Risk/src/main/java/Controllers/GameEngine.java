@@ -61,7 +61,7 @@ public class GameEngine {
 			
 			else if(l_flag == 1 && l_option.equals("start") && l_gamePhase.equals("startup"))
 			{
-				System.out.println("Enter the Commands of Warzone"+"\nGame Commands\n"+"1. loadmap\n"+"2. editmap (editcontinent,editcountry,editneighbor)\n"+"3. showmap\n"+"4. savemap\n"+"5. gameplayer\n"+"6. assigncountries");
+				System.out.println("Enter the Commands of Warzone"+"\nGame Commands\n"+"1. loadmap\n"+"2. validatemap\n"+"3. editmap (editcontinent,editcountry,editneighbor)\n"+"4. showmap\n"+"5. savemap\n"+"6. gameplayer\n"+"7. assigncountries\n"+"8. help");
 				String l_str = l_sc.nextLine();
 				String[] l_commands = l_str.split(" "); 
 				if(l_commands[0]!= null)
@@ -152,6 +152,7 @@ public class GameEngine {
 						
 					case "validatemap":
 						l_gamePhase="startup";
+//						ValidateMap l_validateMap=new ValidateMap(l_connectivity.getD_countryList().size(),l_connectivity);
 						Tools.Graph graph=new Tools.Graph(l_connectivity.getD_countryList().size(),l_connectivity);
 						if(graph.continentConnection(l_connectivity, graph))
 							graph.isConnected(graph);				
@@ -166,18 +167,19 @@ public class GameEngine {
 							System.out.println(ColorCoding.red+"No map entered. Please enter name of map to be loaded"+ColorCoding.blank);
 						}
 						break;
+						
 					case "help":
-						System.out.println("\nloadmap filename: \n	Game starts by user selection of a user-saved map file, which loads the map as a connected directed graph\n__________________________________________________________\n"
-								+ "validatemap: \n	Verification of map correctness\n__________________________________________________________\n"
-								+ "editmap filename: \n	User-driven creation/deletion of map elements: country, continent, and connectivity between countries.\n__________________________________________________________\n"
-								+ "	editcontinent -add continentID continentvalue -remove continentID\n"
-								+ "	editcountry -add countryID continentID -remove countryID\n"
-								+ "	editneighbor -add countryID neighborcountryID -remove countryID neighborcountryID\n__________________________________________________________\n"
-								+ "showmap: \n	show all countries and continents, armies on each country, ownership, and connectivity\n__________________________________________________________\n"
-								+ "savemap: \n	save a map\n__________________________________________________________\n"
-								+ "assigncountries: \n	countries get randomly assigned to players\n__________________________________________________________\n"
-								+ "gameplayer -add playername -remove playername : \n	Command to add or remove players from the game\n__________________________________________________________\n");
-						break;
+							System.out.println("\nloadmap filename: \n	Game starts by user selection of a user-saved map file, which loads the map as a connected directed graph\n__________________________________________________________\n"
+									+ "validatemap: \n	Verification of map correctness\n__________________________________________________________\n"
+									+ "editmap filename: \n	User-driven creation/deletion of map elements: country, continent, and connectivity between countries.\n__________________________________________________________\n"
+									+ "	editcontinent -add continentID continentvalue -remove continentID\n"
+									+ "	editcountry -add countryID continentID -remove countryID\n"
+									+ "	editneighbor -add countryID neighborcountryID -remove countryID neighborcountryID\n__________________________________________________________\n"
+									+ "showmap: \n	show all countries and continents, armies on each country, ownership, and connectivity\n__________________________________________________________\n"
+									+ "savemap: \n	save a map\n__________________________________________________________\n"
+									+ "assigncountries: \n	countries get randomly assigned to players\n__________________________________________________________\n"
+									+ "gameplayer -add playername -remove playername : \n	Command to add or remove players from the game\n__________________________________________________________\n");
+						
 					case "gameplayer":
 						for(int i=1;i<l_commands.length;)
 						{
@@ -310,7 +312,7 @@ public class GameEngine {
 					{
 						if(l_playersArray.get(i).getD_armyCount()!=0)
 						{
-							l_playersArray.get(i).getD_Order().execute(l_playersArray.get(i), l_playersArray.get(i).next_order());
+							l_playersArray.get(i).getD_Order().execute(l_playersArray.get(i), l_playersArray.get(i).next_order(),0);
 							if(l_playersArray.get(i).getD_armyCount()==0)
 							{
 								flag+=1;
@@ -329,7 +331,44 @@ public class GameEngine {
 				l_gamePhase = "execute";
 				l_flag=0;
 				System.out.println(ColorCoding.green+"All Armies have been successfully deployed. Enter command to proceed"+ColorCoding.blank);
+				
+				
+				ArrayList<String> playerNames=new ArrayList<>();
+				int terminateFlag=0;
+				do{
+				for(int i=0;i<l_playersArray.size();i++)
+				{
+					int l_flag1=1;
+					do {
+					if(playerNames.contains(l_playersArray.get(i).getD_playerName()))
+						continue;
+					System.out.println(ColorCoding.cyan+"\n"+l_playersArray.get(i).getD_playerName()+"!! Do you want to give command or pass?(Press enter to continue / pass)"+ColorCoding.blank);
+					String l_passContinue=l_sc.nextLine();
+					if(l_passContinue.equals("pass"))
+					{
+						playerNames.add(l_playersArray.get(i).getD_playerName());
+						terminateFlag++;
+						continue;
+					}
+					Order l_order=new Order();
+					System.out.println("\nEnter the Command for player: "+l_playersArray.get(i).getD_playerName());
+					String l_orderinput=l_sc.nextLine();
+					String[] l_inputOrderArray=l_orderinput.split(" ");
+					//make a function to validate command..
+					
+					}while(l_flag1==0);
+					
+				
 			}
+		//After countries are deployed
+				}while(terminateFlag!=l_playersArray.size());
+				
+				
+				
+				
+			}
+			
+			
 			
 		}while(l_option !="exit");
 		
