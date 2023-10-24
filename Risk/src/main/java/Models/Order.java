@@ -88,8 +88,10 @@ public class Order {
 	 * @param p_order refers to the order object
 	 *
 	 */
-	public void execute(Player p_player,Order p_order)
+	public void execute(Player p_player,Order p_order,int flag)
 	{
+		if(flag==0)
+		{
 		if(p_player.getD_armyCount() !=0)
 		{
 			p_player.setD_armyCount(p_player.getD_armyCount()-p_order.d_numberOfArmies);
@@ -102,8 +104,34 @@ public class Order {
 				}
 			}
 		}
+		}
+		else
+		{
+			String[] l_orderContent=p_order.getOrderContent().split(" ");
+			switch(l_orderContent[0])
+			{
+			case "advance":
+				System.out.println(p_player.getD_playerName()+"is calling"+"Advance");
+				break;
+			case "bomb":
+				System.out.println(p_player.getD_playerName()+"is calling"+"bomb");
+				break;
+			case "blockade":
+				System.out.println(p_player.getD_playerName()+"is calling"+"blockade");
+				break;
+			case "airlift":
+				System.out.println(p_player.getD_playerName()+"is calling"+"airlift");
+				break;
+			case "negotiate":
+				System.out.println(p_player.getD_playerName()+"is calling"+"negotiate");
+				break;
+			}
 		
 	}
+	
+	
+
+}
 	
 	
 
