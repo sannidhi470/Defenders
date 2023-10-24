@@ -27,8 +27,11 @@ public class validateGraph {
             } 
         }
         
-        if(connected) 
-        	System.out.println(ColorCoding.green+"Graph is connected"+ColorCoding.blank); 
+        if(connected)
+        {
+        	System.out.println(ColorCoding.green+"Graph is connected"+ColorCoding.blank);
+        	System.out.println(ColorCoding.green+"\n----- ✓ Loaded Map is a valid map ✓ -----\n"+ColorCoding.blank);      	
+        }
         else 
         	System.out.println(ColorCoding.red+"Graph is disconnected"+ColorCoding.blank);
     }

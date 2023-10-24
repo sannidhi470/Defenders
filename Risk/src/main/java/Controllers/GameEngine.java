@@ -152,7 +152,6 @@ public class GameEngine {
 						
 					case "validatemap":
 						l_gamePhase="startup";
-//						ValidateMap l_validateMap=new ValidateMap(l_connectivity.getD_countryList().size(),l_connectivity);
 						Tools.Graph graph=new Tools.Graph(l_connectivity.getD_countryList().size(),l_connectivity);
 						if(graph.continentConnection(l_connectivity, graph))
 							graph.isConnected(graph);				
@@ -166,6 +165,10 @@ public class GameEngine {
 						} else {
 							System.out.println(ColorCoding.red+"No map entered. Please enter name of map to be loaded"+ColorCoding.blank);
 						}
+						System.out.println(ColorCoding.cyan+"\n--------Validating the loaded map--------\n"+ColorCoding.blank);
+						Tools.Graph l_graph=new Tools.Graph(l_connectivity.getD_countryList().size(),l_connectivity);
+						if(l_graph.continentConnection(l_connectivity, l_graph))
+							l_graph.isConnected(l_graph);
 						break;
 						
 					case "help":
