@@ -43,5 +43,16 @@ public class validateGraph {
             } 
         }
     }
-
+	public boolean continentConnection(Connectivity p_connectivity,validateGraph graph)
+	{
+		for(int i=0; i<p_connectivity.getD_continentList().size();i++)
+		{
+			if(p_connectivity.getD_continentList().get(i).getD_countries().size() == 0)
+			{
+				System.out.println(ColorCoding.red+"Graph is disconnected"+" as "+p_connectivity.getD_continentList().get(i).getD_continentName()+" has no countries assigned to it"+ColorCoding.blank);
+				return false;
+			}
+		}
+		return true;
+	}
 }
