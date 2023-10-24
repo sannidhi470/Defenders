@@ -163,7 +163,18 @@ public class GameEngine {
 							System.out.println(ColorCoding.red+"No map entered. Please enter name of map to be loaded"+ColorCoding.blank);
 						}
 						break;
-						
+					case "help":
+						System.out.println("\nloadmap filename: \n	Game starts by user selection of a user-saved map file, which loads the map as a connected directed graph\n__________________________________________________________\n"
+								+ "validatemap: \n	Verification of map correctness\n__________________________________________________________\n"
+								+ "editmap filename: \n	User-driven creation/deletion of map elements: country, continent, and connectivity between countries.\n__________________________________________________________\n"
+								+ "	editcontinent -add continentID continentvalue -remove continentID\n"
+								+ "	editcountry -add countryID continentID -remove countryID\n"
+								+ "	editneighbor -add countryID neighborcountryID -remove countryID neighborcountryID\n__________________________________________________________\n"
+								+ "showmap: \n	show all countries and continents, armies on each country, ownership, and connectivity\n__________________________________________________________\n"
+								+ "savemap: \n	save a map\n__________________________________________________________\n"
+								+ "assigncountries: \n	countries get randomly assigned to players\n__________________________________________________________\n"
+								+ "gameplayer -add playername -remove playername : \n	Command to add or remove players from the game\n__________________________________________________________\n");
+						break;
 					case "gameplayer":
 						for(int i=1;i<l_commands.length;)
 						{
