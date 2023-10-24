@@ -152,6 +152,9 @@ public class GameEngine {
 						
 					case "validatemap":
 						l_gamePhase="startup";
+						Tools.Graph graph=new Tools.Graph(l_connectivity.getD_countryList().size(),l_connectivity);
+						if(graph.continentConnection(l_connectivity, graph))
+							graph.isConnected(graph);				
 						break;
 						
 					case "loadmap":
