@@ -32,5 +32,16 @@ public class validateGraph {
         else 
         	System.out.println(ColorCoding.red+"Graph is disconnected"+ColorCoding.blank);
     }
+	
+	public void DFS(int source, LinkedList<Integer> adjacencyList [], boolean[] visited){ 
+		  
+        visited[source] = true; 
+        for (int i = 0; i <adjacencyList[source].size() ; i++) { 
+            int neighbour = adjacencyList[source].get(i); 
+            if(visited[neighbour]==false){ 
+                DFS(neighbour, adjacencyList, visited); 
+            } 
+        }
+    }
 
 }
