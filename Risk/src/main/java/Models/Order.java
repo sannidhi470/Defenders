@@ -12,6 +12,15 @@ public class Order {
 	private Country d_fromCountry;
 	private Country d_toCountry;
 	private int d_numberOfArmies;
+	private String orderContent;
+	
+	public String getOrderContent() {
+		return orderContent;
+	}
+
+	public void setOrderContent(String orderContent) {
+		this.orderContent = orderContent;
+	}
 	
 	/**
 	 * Gets the country from which order is taken.
