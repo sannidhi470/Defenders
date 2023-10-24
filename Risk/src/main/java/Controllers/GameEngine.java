@@ -355,6 +355,42 @@ public class GameEngine {
 					String l_orderinput=l_sc.nextLine();
 					String[] l_inputOrderArray=l_orderinput.split(" ");
 					//make a function to validate command..
+					switch(l_inputOrderArray[0])
+					{
+					case "advance":
+						//System.out.println("Call Advance");
+						l_order.setOrderContent(l_orderinput);
+						l_playersArray.get(i).getD_playerOrder().add(l_order);
+						l_flag1=1;
+						break;
+					case "bomb":
+						//System.out.println("Call Bomb");
+						l_order.setOrderContent(l_orderinput);
+						l_playersArray.get(i).getD_playerOrder().add(l_order);
+						l_flag1=1;
+						break;
+					case "blockade":
+						//System.out.println("Call Blockade");
+						l_order.setOrderContent(l_orderinput);
+						l_playersArray.get(i).getD_playerOrder().add(l_order);
+						l_flag1=1;
+						break;
+					case "airlift":
+						//System.out.println("Call airlift");
+						l_order.setOrderContent(l_orderinput);
+						l_playersArray.get(i).getD_playerOrder().add(l_order);
+						l_flag1=1;
+						break;
+					case "negotiate":
+						//System.out.println("Call negotiate");
+						l_order.setOrderContent(l_orderinput);
+						l_playersArray.get(i).getD_playerOrder().add(l_order);
+						l_flag1=1;
+						break;
+					default:
+						System.out.println(ColorCoding.red+"Invalid Command!!"+ColorCoding.blank);
+						l_flag1=0;
+					}
 					
 					}while(l_flag1==0);
 					
