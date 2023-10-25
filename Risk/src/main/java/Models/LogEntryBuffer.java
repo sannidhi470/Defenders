@@ -3,23 +3,15 @@ package Models;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 
 import Tools.Observable;
-import Tools.Observer;
 import Views.LogWriter;
 
 
 public class LogEntryBuffer implements Observable {
 	
 	private LogWriter d_logWriter= new LogWriter();
-	
-	private LogEntryBuffer d_logEntryBuffer;
-	
-	private List<Observer> d_ObserverList= new ArrayList<>();
 	
 	
 	public void log(String p_log) {

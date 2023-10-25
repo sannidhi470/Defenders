@@ -48,8 +48,10 @@ public class GameEngine{
 		l_connectivity.setD_countryList(new ArrayList<Country>());
 		
 		String l_gamePhase="startup";
-		d_logEntryBuffer.log("\n\n--------Welcome to Warzone--------\n");
+		d_logEntryBuffer.log("Startup Phase");
+		d_logEntryBuffer.log("--------Welcome to Warzone--------");
 		System.out.println("\n\n--------Welcome to Warzone--------\n");
+		d_logEntryBuffer.log("Entered Option to Enter the Game OR Could have exited the Game");
 		System.out.println("Enter start to go to the warzone \nEnter exit to exit");
 		String l_option = "";
 		int l_flag = 0;
@@ -66,6 +68,7 @@ public class GameEngine{
 			
 			else if(l_flag == 1 && l_option.equals("start") && l_gamePhase.equals("startup"))
 			{
+				d_logEntryBuffer.log("Entered the Commands of Warzone");
 				System.out.println("Enter the Commands of Warzone"+"\nGame Commands\n"+"1. loadmap\n"+"2. validatemap\n"+"3. editmap (editcontinent,editcountry,editneighbor)\n"+"4. showmap\n"+"5. savemap\n"+"6. gameplayer\n"+"7. assigncountries\n"+"8. help");
 				String l_str = l_sc.nextLine();
 				String[] l_commands = l_str.split(" "); 
@@ -82,6 +85,7 @@ public class GameEngine{
 						{
 							if(l_commands[i].equals("-add"))
 							{
+								d_logEntryBuffer.log("Added Country");
 								System.out.println("add");
 									MapEditor.addContinent(l_commands[i+1],Integer.parseInt(l_commands[i+2]), l_connectivity);
 									i=i+3;
@@ -93,6 +97,7 @@ public class GameEngine{
 							}
 							else
 							{
+								d_logEntryBuffer.log("Invalid Command");
 								System.out.println("Invalid Command");
 								break;
 							}
@@ -116,6 +121,7 @@ public class GameEngine{
 							}
 							else
 							{
+								d_logEntryBuffer.log("ERROR: Invalid Command");
 								System.out.println(ColorCoding.red+"ERROR: Invalid Command"+ColorCoding.blank);
 							}
 						}
@@ -138,6 +144,7 @@ public class GameEngine{
 							}
 							else
 							{
+								d_logEntryBuffer.log("ERROR: Invalid Command");
 								System.out.println(ColorCoding.red+"ERROR: Invalid Command"+ColorCoding.blank);
 							}
 						}
@@ -168,8 +175,10 @@ public class GameEngine{
 						{
 							MapLoader.loadMap(l_connectivity,l_commands[1]);
 						} else {
+							d_logEntryBuffer.log("No map entered. Please enter name of map to be loaded");
 							System.out.println(ColorCoding.red+"No map entered. Please enter name of map to be loaded"+ColorCoding.blank);
 						}
+						d_logEntryBuffer.log("Validating the loaded Map");
 						System.out.println(ColorCoding.cyan+"\n--------Validating the loaded map--------\n"+ColorCoding.blank);
 						Tools.Graph l_graph=new Tools.Graph(l_connectivity.getD_countryList().size(),l_connectivity);
 						if(l_graph.continentConnection(l_connectivity, l_graph))
@@ -177,6 +186,7 @@ public class GameEngine{
 						break;
 						
 					case "help":
+							d_logEntryBuffer.log("Help is being used by Player");
 							System.out.println("\nloadmap filename: \n	Game starts by user selection of a user-saved map file, which loads the map as a connected directed graph\n__________________________________________________________\n"
 									+ "validatemap: \n	Verification of map correctness\n__________________________________________________________\n"
 									+ "editmap filename: \n	User-driven creation/deletion of map elements: country, continent, and connectivity between countries.\n__________________________________________________________\n"
@@ -196,6 +206,7 @@ public class GameEngine{
 								Player l_player = new Player();
 								l_player.setD_playerName(l_commands[i+1]);
 								l_playersArray.add(l_player);
+								d_logEntryBuffer.log(l_player.getD_playerName() + "added successfully");
 								System.out.println(ColorCoding.green+l_player.getD_playerName()+" added successfully"+ColorCoding.blank);
 								i=i+2;
 								
@@ -206,6 +217,7 @@ public class GameEngine{
 								{
 									if(l_commands[i+1].equals(l_playersArray.get(j).getD_playerName()))
 									{
+										d_logEntryBuffer.log(l_playersArray.get(j).getD_playerName()+ "removed successfully");
 										System.out.println(ColorCoding.green+l_playersArray.get(j).getD_playerName()+" removed successfully"+ColorCoding.blank);
 										l_playersArray.remove(j);
 										i=i+2;
@@ -223,12 +235,14 @@ public class GameEngine{
 						{
 							if(PlayersGameplay.assigncountries(l_playersArray,l_connectivity.getD_countryList(),l_connectivity.getD_continentList())==0)
 							{
+								d_logEntryBuffer.log("Countries assigned to players Successfully");
 								System.out.println(ColorCoding.green+"Countries assigned to players Successfully"+ColorCoding.blank+"\n");
 								l_gamePhase="mainGameLoop";
 							}
 						}
 						else
 						{
+							d_logEntryBuffer.log("ERROR: No players to assign Countries");
 							System.out.println(ColorCoding.red+"ERROR: No players to assign Countries"+ColorCoding.blank);
 						}
 						
@@ -245,6 +259,7 @@ public class GameEngine{
 						}
 						break;
 					default:
+						d_logEntryBuffer.log("Invalid Command");
 						System.out.println(ColorCoding.red+"Invalid Command"+ColorCoding.blank);
 							
 					}	
@@ -255,6 +270,7 @@ public class GameEngine{
 			{
 				if(l_gamePhase.equals("startup"))
 				{
+					d_logEntryBuffer.log("Invalid Command");
 					System.out.println(ColorCoding.red+"ERROR: Invalid Command"+ColorCoding.blank);
 					l_flag = 0;
 				}
@@ -264,9 +280,11 @@ public class GameEngine{
 			if(l_gamePhase.equals("mainGameLoop"))
 			{
 				PlayersGameplay.assignArmiesToPlayers(l_playersArray);
+				d_logEntryBuffer.log("Game Begins");
 				System.out.println("Game Begins!!!!!!!!!!!\n");
 				for(int i=0;i<l_playersArray.size();i++)
 				{
+					d_logEntryBuffer.log("Player "+ Integer.sum(i,1) +"("+l_playersArray.get(i).getD_playerName()+") has Army Count: "+l_playersArray.get(i).getD_armyCount());
 					System.out.println("Player "+ Integer.sum(i,1) +"("+l_playersArray.get(i).getD_playerName()+") has Army Count: "+l_playersArray.get(i).getD_armyCount());
 					PlayersGameplay.showPlayersCountry(l_playersArray.get(i),1);
 					System.out.println();
@@ -281,6 +299,7 @@ public class GameEngine{
 						Order l_order=new Order();
 						if(l_playersArray.get(i).getD_armyCount()!=0)
 						{
+							d_logEntryBuffer.log("Player "+l_playersArray.get(i).getD_playerName()+" deploy your troops:");
 							System.out.println("Player "+l_playersArray.get(i).getD_playerName()+" deploy your troops:");
 							l_userOrder=l_sc.nextLine();
 							String[] l_tempOrderListArray=l_userOrder.split(" ");
@@ -299,6 +318,7 @@ public class GameEngine{
 							}
 							else
 							{
+								d_logEntryBuffer.log("Error: Please enter valid number of troops");
 								System.out.println(ColorCoding.red+"Error: Please enter valid number of troops"+ColorCoding.blank);
 								i--;
 							}
@@ -338,6 +358,7 @@ public class GameEngine{
 				}
 				l_gamePhase = "execute";
 				l_flag=0;
+				d_logEntryBuffer.log("All Armies have been successfully deployed. Enter command to proceed");
 				System.out.println(ColorCoding.green+"All Armies have been successfully deployed. Enter command to proceed"+ColorCoding.blank);
 				
 				
@@ -350,6 +371,7 @@ public class GameEngine{
 					do {
 					if(playerNames.contains(l_playersArray.get(i).getD_playerName()))
 						continue;
+					d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+"Asked whether he/she wants to give a command");
 					System.out.println(ColorCoding.cyan+"\n"+l_playersArray.get(i).getD_playerName()+"!! Do you want to give command or pass?(Press enter to continue / pass)"+ColorCoding.blank);
 					String l_passContinue=l_sc.nextLine();
 					if(l_passContinue.equals("pass"))
@@ -359,6 +381,7 @@ public class GameEngine{
 						continue;
 					}
 					Order l_order=new Order();
+					d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+ "Asked for Command");
 					System.out.println("\nEnter the Command for player: "+l_playersArray.get(i).getD_playerName());
 					String l_orderinput=l_sc.nextLine();
 					String[] l_inputOrderArray=l_orderinput.split(" ");
@@ -396,6 +419,7 @@ public class GameEngine{
 						l_flag1=1;
 						break;
 					default:
+						d_logEntryBuffer.log("Invalid Command!!");
 						System.out.println(ColorCoding.red+"Invalid Command!!"+ColorCoding.blank);
 						l_flag1=0;
 					}
@@ -433,6 +457,7 @@ public class GameEngine{
 			
 		}while(l_option !="exit");
 		
+		d_logEntryBuffer.log("The Game is Ended");
 		System.out.println("Thank you for Playing the Game");
 		l_sc.close();
 		System.exit(0);
