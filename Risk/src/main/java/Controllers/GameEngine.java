@@ -15,9 +15,10 @@ import Views.ViewMap;
 *
 */
 
-public class GameEngine {
+public class GameEngine{
 	
 	private static ArrayList<Player> l_playersArray = new ArrayList<Player>();
+		
 	
 	/**
 	* Gets the list of the players.
@@ -29,6 +30,7 @@ public class GameEngine {
 	{
 		return l_playersArray;
 	}
+	
 
 	/**
 	* Starts the game.
@@ -38,12 +40,15 @@ public class GameEngine {
 	*/
 	public static void main(String[] args) throws IOException {
 
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
+
 		Scanner l_sc = new Scanner(System.in);
 		Connectivity l_connectivity=new Connectivity();
 		l_connectivity.setD_continentList(new ArrayList<Continent>());
 		l_connectivity.setD_countryList(new ArrayList<Country>());
 		
 		String l_gamePhase="startup";
+		d_logEntryBuffer.log("\n\n--------Welcome to Warzone--------\n");
 		System.out.println("\n\n--------Welcome to Warzone--------\n");
 		System.out.println("Enter start to go to the warzone \nEnter exit to exit");
 		String l_option = "";
