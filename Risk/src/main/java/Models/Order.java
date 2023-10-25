@@ -88,8 +88,8 @@ public class Order {
 	 * @param p_order refers to the order object
 	 *
 	 */
-	public void execute(Player p_player,Order p_order,int flag)
-	{
+	public void execute(Player p_player,Order p_order,int flag) {
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 		if(flag==0)
 		{
 		if(p_player.getD_armyCount() !=0)
@@ -100,6 +100,7 @@ public class Order {
 				if(p_player.getD_Country().get(i).getD_countryId()==p_order.getD_fromCountry().getD_countryId())
 				{
 					p_player.getD_Country().get(i).setD_armyDeployedOnCountry(p_order.d_numberOfArmies);
+					d_logEntryBuffer.log("Player "+p_player.getD_playerName()+": " + p_player.getD_Country().get(i).getD_countryName() + " has been assigned with " + p_order.d_numberOfArmies);
 					System.out.println(ColorCoding.green+"Player "+p_player.getD_playerName()+": "+ p_player.getD_Country().get(i).getD_countryName()+" has been assigned with "+p_order.d_numberOfArmies+ColorCoding.blank);
 				}
 			}
@@ -111,18 +112,23 @@ public class Order {
 			switch(l_orderContent[0])
 			{
 			case "advance":
+				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"Advance");
 				System.out.println(p_player.getD_playerName()+"is calling"+"Advance");
 				break;
 			case "bomb":
+				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"bomb");
 				System.out.println(p_player.getD_playerName()+"is calling"+"bomb");
 				break;
 			case "blockade":
+				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"blockade");
 				System.out.println(p_player.getD_playerName()+"is calling"+"blockade");
 				break;
 			case "airlift":
+				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"airlift");
 				System.out.println(p_player.getD_playerName()+"is calling"+"airlift");
 				break;
 			case "negotiate":
+				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"negotiate");
 				System.out.println(p_player.getD_playerName()+"is calling"+"negotiate");
 				break;
 			}
