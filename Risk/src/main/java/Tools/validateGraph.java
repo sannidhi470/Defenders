@@ -66,6 +66,17 @@ public class validateGraph {
 				}
 				else
 					l_continents.add(p_connectivity.getD_continentList().get(i).getD_continentName());
+			for(int j=0; j<p_connectivity.getD_continentList().get(i).getD_countries().size(); j++)
+			{
+
+				if(l_countries.contains(p_connectivity.getD_continentList().get(i).getD_countries().get(j).getD_countryName()))
+				{
+					System.out.println(ColorCoding.red+"Map is INVALID as Duplicate country "+p_connectivity.getD_continentList().get(i).getD_countries().get(j).getD_countryName()+" detected"+ColorCoding.blank);
+					return false;
+				}
+				else
+					l_countries.add(p_connectivity.getD_continentList().get(i).getD_countries().get(j).getD_countryName());
+			}
 		}
 		return true;
 	}
