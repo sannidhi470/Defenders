@@ -174,7 +174,7 @@ public class PlayersGameplay {
 				}
 				else
 				{
-					System.out.println(ColorCoding.red+"Error: Country where the troops are advanced is not the neighbour of the country form where the troops are sent"+ColorCoding.blank);
+					System.out.println(ColorCoding.red+"Error: "+p_toCountry+ " is not the neighbour of "+ p_toCountry+" troops can't be advanced or country can't be attacked"+ColorCoding.blank);
 					return 1;
 				}	
 			}
