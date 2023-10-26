@@ -341,7 +341,7 @@ public class GameEngine{
 					{
 						if(l_playersArray.get(i).getD_armyCount()!=0)
 						{
-							l_playersArray.get(i).getD_Order().execute(l_playersArray.get(i), l_playersArray.get(i).next_order(),0);
+							l_playersArray.get(i).getD_Order().execute(l_playersArray.get(i), l_playersArray.get(i).next_order(),l_connectivity,0);
 							if(l_playersArray.get(i).getD_armyCount()==0)
 							{
 								flag+=1;
@@ -447,14 +447,15 @@ public class GameEngine{
 							l_executeOrder++;
 							continue;	
 						}
-						l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),1);
+						l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),l_connectivity,1);
 					}
 				}
 				
-				
+				 System.out.println("End of while loop");
+                 l_flag=0;
 				
 			}
-			
+			System.out.println("End of main game loop");
 			
 			
 		}while(l_option !="exit");

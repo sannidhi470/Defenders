@@ -16,6 +16,7 @@ public class Player {
 	private Order d_order;
 	private int d_armyCount;
 	private ArrayList<Continent> d_playerContinent=new ArrayList<>();
+	private ArrayList<String> Cards = new ArrayList<>();
 	
 	/**
 	 * This is a default constructor.
@@ -221,4 +222,11 @@ public class Player {
 		this.d_armyCount = d_armyCount;
 	}
 	
+	public ArrayList<String> getCards() {
+		return Cards;
+	}
+
+	public void setCards(ArrayList<String> cards) {
+		Cards = cards;
+	}
 }

@@ -1,6 +1,9 @@
 package Models;
 
+import Controllers.GameEngine;
 import Tools.ColorCoding;
+import Tools.Connectivity;
+import Tools.PlayersGameplay;
 
 /**
  * The class Order defines Orders and it's properties such as from country, to country and transfer of number of armies.
@@ -88,7 +91,7 @@ public class Order {
 	 * @param p_order refers to the order object
 	 *
 	 */
-	public void execute(Player p_player,Order p_order,int flag) {
+	public void execute(Player p_player,Order p_order,Connectivity p_connectivity,int flag) {
 		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 		if(flag==0)
 		{
@@ -109,11 +112,13 @@ public class Order {
 		else
 		{
 			String[] l_orderContent=p_order.getOrderContent().split(" ");
+			Country l_getCountry=new Country();
 			switch(l_orderContent[0])
 			{
 			case "advance":
 				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"Advance");
 				System.out.println(p_player.getD_playerName()+"is calling"+"Advance");
+				PlayersGameplay.advance(p_player,GameEngine.getL_playersArray(),l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[1]) , l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[2]), Integer.parseInt( l_orderContent[3]),p_connectivity.getD_continentList());
 				break;
 			case "bomb":
 				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"bomb");
