@@ -293,8 +293,9 @@ public class GameEngine{
 				
 				int l_temp =1;
 				int flag=0;
+				ArrayList<String> l_tempName=new ArrayList<>();
 				while(l_temp>0) {
-					for(int i=0;i<l_playersArray.size();i++)
+					for(int i=0;i<l_playersArray.size();)
 					{
 						String l_userOrder="";
 						Order l_order=new Order();
@@ -316,14 +317,27 @@ public class GameEngine{
 								l_order.setD_numberOfArmies(Integer.parseInt(l_tempOrderListArray[2]));
 								l_playersArray.get(i).setD_Order(l_order);
 								l_playersArray.get(i).issue_order();
+								i++;
 							}
 							else
 							{
 								d_logEntryBuffer.log("Error: Please enter valid number of troops");
 								System.out.println(ColorCoding.red+"Error: Please enter valid number of troops"+ColorCoding.blank);
-								i--;
+								//i--;
 							}
-							if(l_playersArray.get(i).getD_armyCount()==0) flag++;	
+							for(int j=0;j<l_playersArray.size();j++)
+							{
+								if(l_tempName.contains(l_playersArray.get(j).getD_playerName()))
+									continue;
+								else
+								{
+								if(l_playersArray.get(j).getD_armyCount()==0)
+									{
+										l_tempName.add(l_playersArray.get(j).getD_playerName());
+										flag++;	
+									}
+								}
+							}
 						}
 						if(flag==l_playersArray.size())
 						{
