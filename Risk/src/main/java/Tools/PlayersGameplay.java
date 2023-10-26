@@ -232,6 +232,8 @@ public class PlayersGameplay {
 					int l_troopsLeft = l_troopsSource - l_troopsDestination; 
 					p_toCountry.setD_armyDeployedOnCountry(l_troopsLeft);
 					p_fromCountry.setD_armyDeployedOnCountry(0);
+					
+					System.out.println("Attack on "+p_toCountry+ " from "+p_fromCountry+" was successful.");
 				}
 				else if(l_troopsSource<l_troopsDestination)
 				{
@@ -239,11 +241,13 @@ public class PlayersGameplay {
 					int l_troopsLeft = l_troopsDestination - l_troopsSource;
 					p_toCountry.setD_armyDeployedOnCountry(l_troopsLeft);
 					p_fromCountry.setD_armyDeployedOnCountry(0);
+					System.out.println(p_toCountry+" defended itself successuflly from "+p_fromCountry);
 				}
 				else
 				{
 					p_toCountry.setD_armyDeployedOnCountry(0);
 					p_fromCountry.setD_armyDeployedOnCountry(0);
+					System.out.println(p_toCountry+" defended itself successuflly from "+p_fromCountry);
 				}
 
 				return 0;
