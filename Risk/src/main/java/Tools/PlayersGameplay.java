@@ -3,6 +3,7 @@ package Tools;
 import java.util.ArrayList;
 import Models.Continent;
 import Models.Country;
+import Models.LogEntryBuffer;
 import Models.Player;
 
 /**
@@ -25,15 +26,18 @@ public class PlayersGameplay {
 	 *
 	 */
 	
-	public static int assigncountries(ArrayList<Player> p_playersArray,ArrayList<Country> p_countryList,ArrayList<Continent> p_continentList) {	
+	public static int assigncountries(ArrayList<Player> p_playersArray,ArrayList<Country> p_countryList,ArrayList<Continent> p_continentList) {
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
+		
 		if (p_playersArray.size() == 0) {
+			d_logEntryBuffer.log("Error: Insufficient Players to assign countries");
 			System.out.println(ColorCoding.red + "Error: Insufficient Players to assign countries" + ColorCoding.blank);
 			return 1;
 		}
 
 		if (p_countryList.size() < p_playersArray.size()) {
-			System.out.println(
-					ColorCoding.red + "Error: Insufficient country to assign to all players" + ColorCoding.blank);
+			d_logEntryBuffer.log("Error: Insufficient country to assign to all players");
+			System.out.println(ColorCoding.red + "Error: Insufficient country to assign to all players" + ColorCoding.blank);
 			return 1;
 		}
 		
@@ -137,7 +141,9 @@ public class PlayersGameplay {
 	 */
 	
 	public static boolean checkArmyAvailable(int p_army,Player p_player) {
-		if(p_player.getD_armyCount() >= p_army) return true;
-		else return false;			
+		if(p_player.getD_armyCount() >= p_army) 
+			return true;
+		else 
+			return false;			
 	}
 }
