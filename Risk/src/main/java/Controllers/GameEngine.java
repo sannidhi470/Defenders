@@ -41,6 +41,7 @@ public class GameEngine{
 	public static void main(String[] args) throws IOException {
 
 		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
+		d_logEntryBuffer.clearFile();
 
 		Scanner l_sc = new Scanner(System.in);
 		Connectivity l_connectivity=new Connectivity();
@@ -357,6 +358,7 @@ public class GameEngine{
 					
 				}
 				l_gamePhase = "execute";
+				d_logEntryBuffer.log("Execute Phase");
 				l_flag=0;
 				d_logEntryBuffer.log("All Armies have been successfully deployed. Enter command to proceed");
 				System.out.println(ColorCoding.green+"All Armies have been successfully deployed. Enter command to proceed"+ColorCoding.blank);

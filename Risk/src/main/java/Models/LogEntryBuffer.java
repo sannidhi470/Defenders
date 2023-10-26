@@ -27,7 +27,7 @@ public class LogEntryBuffer implements Observable {
 		PrintWriter l_writeData = null;
 		String l_fileName= "LogEntry";
 		try {
-			l_writeData= new PrintWriter(new BufferedWriter(new FileWriter("logFile/" + l_fileName + ".log", false)));
+			l_writeData= new PrintWriter(new BufferedWriter(new FileWriter("logFiles/" + l_fileName + ".log", false)));
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

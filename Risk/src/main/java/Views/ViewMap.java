@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import Models.Continent;
 import Models.Country;
+import Models.LogEntryBuffer;
 import dnl.utils.text.table.TextTable;
 
 /**
@@ -21,10 +22,12 @@ public class ViewMap {
 	 */
 
 	public static void viewMap(ArrayList<Continent> p_continentList, ArrayList<Country> p_countryList) {
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 		
 	 	   String[] l_columnNames = {"Continent", "Country", "Neighbouring Country", "Army Count"};
 	 	   if(p_continentList.size() == 0)
 	 	   {
+	 		   d_logEntryBuffer.log("No continents or countries exist in the map");
 	 		   System.out.println("No continents or countries exist in the map");
 	 		   return;
 	 	   }
