@@ -5,6 +5,7 @@ import java.util.List;
 
 import Models.Continent;
 import Models.Country;
+import Models.LogEntryBuffer;
 
 /**
  * The class MapEditor will make changes to the existing map according to the user.
@@ -22,14 +23,15 @@ public class MapEditor {
 	 *
 	 */
 		
-	public static int addContinent(String p_continentId,int p_continentvalue,Connectivity p_connectivity)
-	{
+	public static int addContinent(String p_continentId,int p_continentvalue,Connectivity p_connectivity) {
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 		
 	    Continent l_continent=new Continent();
 	    for(int i=0; i<p_connectivity.getD_continentList().size(); i++)
 	    {
 	    	if(p_continentId.equalsIgnoreCase(p_connectivity.getD_continentList().get(i).getD_continentName()))			
 	    	{
+	    		d_logEntryBuffer.log("Continent Already Exists");
 	    		System.out.println("Continent already Exists.");
 	    		return 1;
 	    	}
@@ -40,6 +42,7 @@ public class MapEditor {
 		l_continent.setD_continentArmyValue(p_continentvalue);
 		l_continent.setD_countries(l_countries);
 		p_connectivity.getD_continentList().add(l_continent);
+		d_logEntryBuffer.log("Continent Added Successfully");
 		System.out.println("\u001B[32m"+"Continent Added Successfully"+"\u001B[0m");
 		return 0;
 	}
@@ -53,12 +56,14 @@ public class MapEditor {
 	 *
 	 */
 	
-	public static int addCountry(String p_countryId,String p_continentId,Connectivity p_connectivity)
-	{
+	public static int addCountry(String p_countryId,String p_continentId,Connectivity p_connectivity) {
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
+		
 		Country l_country=new Country();
 		int flag = 0;
 		if(p_connectivity.getD_continentList().size()==0)
 		{
+			d_logEntryBuffer.log("ERROR: Enter the values of continents first..");
 			System.out.println("\u001B[31m"+"ERROR: Enter the values of continents first.."+"\u001B[0m");
 			return 1;
 		}
@@ -71,6 +76,7 @@ public class MapEditor {
 		}
 		if(flag == 0)
 		{
+			d_logEntryBuffer.log("Continent "+p_continentId+" does not exist");
 			System.out.println("Continent "+p_continentId+" does not exist");
 			return 1;
 		}
@@ -80,6 +86,7 @@ public class MapEditor {
 			{
 				if(p_countryId.equalsIgnoreCase(p_connectivity.getD_continentList().get(i).getD_countries().get(j).getD_countryName()))
 				{
+					d_logEntryBuffer.log("Country "+p_countryId+" already exists under this continent");
 					System.out.println("Country "+p_countryId+" already exists under this continent");
 					return 1;
 				}
@@ -92,11 +99,13 @@ public class MapEditor {
 		p_connectivity.getD_countryList().add(l_country);
 		for(int i=0; i<p_connectivity.getD_continentList().size(); i++) {
 			if(p_connectivity.getD_continentList().get(i).getD_continentId() == Integer.parseInt(p_continentId)) {
+				d_logEntryBuffer.log("Macthed with continentID "+p_continentId);
 				System.out.println("Macthed with continentID "+p_continentId);
 				p_connectivity.getD_continentList().get(i).getD_countries().add(l_country);
 			}
 		}
 		
+		d_logEntryBuffer.log("Country Added Successfully");
 		System.out.println("\u001B[32m"+"Country Added Successfully"+"\u001B[0m");
 		return 0;	
 	}
@@ -110,16 +119,19 @@ public class MapEditor {
 	 *
 	 */
 	
-	public static int addNeighbour(int p_countryId,int p_neighbourcountryId,Connectivity p_connectivity)
-	{
+	public static int addNeighbour(int p_countryId,int p_neighbourcountryId,Connectivity p_connectivity) {
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
+		
 		Country l_country = new Country();
 		if(p_connectivity.getD_continentList().size()==0)
 		{
+			d_logEntryBuffer.log("ERROR: Enter the values of continents first..");
 			System.out.println("ERROR: Enter the values of continents first..");
 			return 1;
 		}
 		if(p_connectivity.getD_countryList().size()==0)
 		{
+			d_logEntryBuffer.log("ERROR: Enter the values of countries first..");
 			System.out.println("ERROR: Enter the values of countries first..");
 			return 1;
 		}
@@ -143,6 +155,7 @@ public class MapEditor {
 				if(p_connectivity.getD_countryList().get(i).getD_countryId()==p_countryId) 
 					{
 					p_connectivity.getD_countryList().get(i).getD_neighbours().add(p_neighbourcountryId);
+					d_logEntryBuffer.log("Neighbor "+l_country.get_nameFromId(p_connectivity.getD_countryList(),p_neighbourcountryId)+ "("+p_neighbourcountryId +") added successfully to "+l_country.get_nameFromId(p_connectivity.getD_countryList(),p_countryId)+"("+p_countryId+")");
 					System.out.println("Neighbor "+l_country.get_nameFromId(p_connectivity.getD_countryList(),p_neighbourcountryId)+ "("+p_neighbourcountryId +") added successfully to "+l_country.get_nameFromId(p_connectivity.getD_countryList(),p_countryId)+"("+p_countryId+")");
 					}
 			}	
@@ -151,16 +164,19 @@ public class MapEditor {
 		{
 			if(find.size() == 0)
 			{
+				d_logEntryBuffer.log("NeighbourCountryID "+p_neighbourcountryId+" and "+"CountryID "+p_countryId+" don't exist");
 				System.out.println("NeighbourCountryID "+p_neighbourcountryId+" and "+"CountryID "+p_countryId+" don't exist");
 			}
 			else
 			{
 				if(find.get(0) == "Foundp_countryId")
 				{
+					d_logEntryBuffer.log("NeighbourCountryID "+p_neighbourcountryId+" does not exist");
 					System.out.println("NeighbourCountryID "+p_neighbourcountryId+" does not exist");
 				}
 				else
 				{
+					d_logEntryBuffer.log("CountryID "+p_countryId+" does not exist");
 					System.out.println("CountryID "+p_countryId+" does not exist");
 				}				
 			}
@@ -182,7 +198,9 @@ public class MapEditor {
 	 *
 	 */
 	
-	public static int removeNeighbour(int p_countryId,int p_neighbourcountryId, Connectivity p_connectivity, int p_displayMessage) {	
+	public static int removeNeighbour(int p_countryId,int p_neighbourcountryId, Connectivity p_connectivity, int p_displayMessage) {
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
+		
 		ArrayList<String> find = new ArrayList<String>();
 		for(int i=0; i<p_connectivity.getD_countryList().size(); i++) {
 			if(p_countryId == p_connectivity.getD_countryList().get(i).getD_countryId())  {
@@ -199,6 +217,7 @@ public class MapEditor {
 					for(int j=0;j<p_connectivity.getD_countryList().get(i).getD_neighbours().size();j++) {
 						if(p_neighbourcountryId==p_connectivity.getD_countryList().get(i).getD_neighbours().get(j)) {
 							p_connectivity.getD_countryList().get(i).getD_neighbours().remove(j);
+							d_logEntryBuffer.log("Removed Neighbour Successfully");
 							System.out.println(ColorCoding.green+"Removed neighbor succesfully"+ColorCoding.blank);
 							return 0;
 						}
@@ -207,10 +226,14 @@ public class MapEditor {
 			}
 		}
 		if(p_displayMessage !=0) {
-			if(find.size() == 0) 
+			if(find.size() == 0) {
+				d_logEntryBuffer.log("CountryID "+p_countryId+" don't exist");
 				System.out.println("CountryID "+p_countryId+" don't exist");
-			else if(find.size()==1)
-				System.out.println("NeighbourCountryID "+p_neighbourcountryId+" does not exist");			
+			}
+			else if(find.size()==1) {
+				d_logEntryBuffer.log("NeighbourCountryID "+p_neighbourcountryId+" does not exist");
+				System.out.println("NeighbourCountryID "+p_neighbourcountryId+" does not exist");	
+			}
 		}
 
 		return 1;
@@ -224,8 +247,9 @@ public class MapEditor {
 	 *
 	 */
 	
-	public static int removeCountry(String p_countryId,Connectivity p_connectivity)
-	{
+	public static int removeCountry(String p_countryId,Connectivity p_connectivity) {
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
+		
 		int l_requiredCountryId=0, flag=1, l_continentID=0, l_countryPresent=0;
 		for(int i=0;i<p_connectivity.getD_countryList().size();i++)
 		{	
@@ -257,14 +281,13 @@ public class MapEditor {
 			}
 		}
 		
-		if(l_countryPresent==0)
-		{
+		if(l_countryPresent==0) {
+			d_logEntryBuffer.log("Country "+p_countryId+" does not exist");
 			System.out.println("Country "+p_countryId+" does not exist");
 			return 1;
 		}
 		
-		if(flag == 1) 
-		{
+		if(flag == 1) {
 			for(int i=0;i<p_connectivity.getD_countryList().size();i++)
 			{
 				removeNeighbour(p_connectivity.getD_countryList().get(i).getD_countryId(),l_requiredCountryId,p_connectivity,0);
@@ -288,8 +311,9 @@ public class MapEditor {
 	 *
 	 */
 	
-	public static int removeContinent(String p_continentId,Connectivity p_connectivity)
-	{
+	public static int removeContinent(String p_continentId,Connectivity p_connectivity) {
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
+		
 		int l_requiredContinentId=0, flag =0;
 	    for(int i=0; i<p_connectivity.getD_continentList().size(); i++)
 	    {
@@ -300,6 +324,7 @@ public class MapEditor {
 	    }
 	    if(flag==0)
 	    {
+	    	d_logEntryBuffer.log("Continent: "+p_continentId+" doesn't exist");
 	    	System.out.println("Continent: "+p_continentId+" doesn't exist");
 	    	return 1;
 	    }
