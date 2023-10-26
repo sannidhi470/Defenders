@@ -6,12 +6,14 @@ import java.util.LinkedList;
 
 import Models.Continent;
 import Models.Country;
+import Models.LogEntryBuffer;
 
 public class validateGraph {
 	public int d_noOfCountries;
 	public LinkedList[] d_adjacentCountriesList;
 
-	public void isConnected(validateGraph graph){ 
+	public void isConnected(validateGraph graph){
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 		  
         int vertices = graph.d_noOfCountries+1; 
         LinkedList<Integer> adjacencyList [] = graph.d_adjacentCountriesList;
@@ -30,11 +32,15 @@ public class validateGraph {
         
         if(connected)
         {
+        	d_logEntryBuffer.log("Graph is connected");
         	System.out.println(ColorCoding.green+"Graph is connected"+ColorCoding.blank);
+        	d_logEntryBuffer.log("\n----- ✓ Loaded Map is a valid map ✓ -----\n");
         	System.out.println(ColorCoding.green+"\n----- ✓ Loaded Map is a valid map ✓ -----\n"+ColorCoding.blank);      	
         }
-        else 
+        else {
+        	d_logEntryBuffer.log("Graph is disconnected");
         	System.out.println(ColorCoding.red+"Graph is disconnected"+ColorCoding.blank);
+        }
     }
 	
 	public void DFS(int source, LinkedList<Integer> adjacencyList [], boolean[] visited){ 
@@ -47,8 +53,9 @@ public class validateGraph {
             } 
         }
     }
-	public boolean continentConnection(Connectivity p_connectivity,validateGraph graph)
-	{
+	public boolean continentConnection(Connectivity p_connectivity,validateGraph graph) {
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
+		
 		ArrayList<String> l_countries = new ArrayList<>();
 		ArrayList<String> l_continents = new ArrayList<>();
 		for(int i=0; i<p_connectivity.getD_continentList().size();i++)
@@ -56,11 +63,13 @@ public class validateGraph {
 			System.out.println(p_connectivity.getD_continentList().get(i).getD_continentName());
 			if(p_connectivity.getD_continentList().get(i).getD_countries().size() == 0)
 			{
+				d_logEntryBuffer.log("Graph is disconnected"+" as "+p_connectivity.getD_continentList().get(i).getD_continentName()+" has no countries assigned to it");
 				System.out.println(ColorCoding.red+"Graph is disconnected"+" as "+p_connectivity.getD_continentList().get(i).getD_continentName()+" has no countries assigned to it"+ColorCoding.blank);
 				return false;
 			}
 				if(l_continents.contains(p_connectivity.getD_continentList().get(i).getD_continentName()))
 				{
+					d_logEntryBuffer.log("Map is INVALID as Duplicate continent "+p_connectivity.getD_continentList().get(i).getD_continentName()+" detected");
 					System.out.println(ColorCoding.red+"Map is INVALID as Duplicate continent "+p_connectivity.getD_continentList().get(i).getD_continentName()+" detected"+ColorCoding.blank);
 					return false;
 				}
@@ -71,6 +80,7 @@ public class validateGraph {
 
 				if(l_countries.contains(p_connectivity.getD_continentList().get(i).getD_countries().get(j).getD_countryName()))
 				{
+					d_logEntryBuffer.log("Map is INVALID as Duplicate country "+p_connectivity.getD_continentList().get(i).getD_countries().get(j).getD_countryName()+" detected");
 					System.out.println(ColorCoding.red+"Map is INVALID as Duplicate country "+p_connectivity.getD_continentList().get(i).getD_countries().get(j).getD_countryName()+" detected"+ColorCoding.blank);
 					return false;
 				}
