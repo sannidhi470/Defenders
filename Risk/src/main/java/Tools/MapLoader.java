@@ -2,6 +2,8 @@ package Tools;
 import java.util.*;
 import Models.Continent;
 import Models.Country;
+import Models.LogEntryBuffer;
+
 import java.io.*;
 import Models.Map;
 
@@ -20,8 +22,9 @@ public class MapLoader {
 	 *
 	 */
 	
-	public static void loadMap(Connectivity p_connectivity,String p_mapName)
-	{
+	public static void loadMap(Connectivity p_connectivity,String p_mapName) {
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
+		
 		Scanner l_input = new Scanner(System.in);
 		String l_fileName = p_mapName;
 		String l_copyFileName=l_fileName;
@@ -107,6 +110,7 @@ public class MapLoader {
     	       }
     	      try
     	       {
+    	    	  d_logEntryBuffer.log("Map "+p_mapName+".map"+" has been successfully loaded...");
     	    	  System.out.println(ColorCoding.green+"Map "+p_mapName+".map"+" has been successfully loaded..."+ColorCoding.blank);
     	       } 
     	       catch (Exception e)
@@ -120,6 +124,7 @@ public class MapLoader {
      {
     	 p_connectivity.setD_continentList(new ArrayList<Continent>());
     	 p_connectivity.setD_countryList(new ArrayList<Country>());
+    	 d_logEntryBuffer.log("Map does not exist. Creating a map...");
     	 System.out.println(ColorCoding.green+"Map does not exist. Creating a map..."+ColorCoding.blank);
     	 MapCreater.createMap(l_copyFileName,p_connectivity.getD_pathName());
     	 SaveMap.saveMap(p_connectivity);
