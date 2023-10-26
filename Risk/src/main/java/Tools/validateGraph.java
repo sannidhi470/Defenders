@@ -1,5 +1,6 @@
 package Tools;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -48,13 +49,23 @@ public class validateGraph {
     }
 	public boolean continentConnection(Connectivity p_connectivity,validateGraph graph)
 	{
+		ArrayList<String> l_countries = new ArrayList<>();
+		ArrayList<String> l_continents = new ArrayList<>();
 		for(int i=0; i<p_connectivity.getD_continentList().size();i++)
 		{
+			System.out.println(p_connectivity.getD_continentList().get(i).getD_continentName());
 			if(p_connectivity.getD_continentList().get(i).getD_countries().size() == 0)
 			{
 				System.out.println(ColorCoding.red+"Graph is disconnected"+" as "+p_connectivity.getD_continentList().get(i).getD_continentName()+" has no countries assigned to it"+ColorCoding.blank);
 				return false;
 			}
+				if(l_continents.contains(p_connectivity.getD_continentList().get(i).getD_continentName()))
+				{
+					System.out.println(ColorCoding.red+"Map is INVALID as Duplicate continent "+p_connectivity.getD_continentList().get(i).getD_continentName()+" detected"+ColorCoding.blank);
+					return false;
+				}
+				else
+					l_continents.add(p_connectivity.getD_continentList().get(i).getD_continentName());
 		}
 		return true;
 	}
