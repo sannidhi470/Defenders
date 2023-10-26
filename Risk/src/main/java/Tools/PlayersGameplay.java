@@ -159,7 +159,6 @@ public class PlayersGameplay {
 					{
 						int l_troopsaddition = p_toCountry.getD_armyDeployedOnCountry() + p_troops;
 						p_toCountry.setD_armyDeployedOnCountry(l_troopsaddition); 
-
 						int l_troopsDeduction = p_fromCountry.getD_armyDeployedOnCountry() - p_troops;
 						p_fromCountry.setD_armyDeployedOnCountry(l_troopsDeduction);
 						System.out.println(ColorCoding.green+p_troops+" Troops advanced from "+p_fromCountry.getD_countryName()+" to "+p_toCountry.getD_countryName()+ColorCoding.blank);
@@ -167,14 +166,14 @@ public class PlayersGameplay {
 					}
 					else
 					{
-						System.out.println(ColorCoding.red+"Error: Can't move more armies then the armies in the country"+ColorCoding.blank);
+						System.out.println(ColorCoding.red+"Error: Can't move more armies than the armies in the country"+ColorCoding.blank);
 						return 1;
 					}
 
 				}
 				else
 				{
-					System.out.println(ColorCoding.red+"Error: "+p_toCountry+ " is not the neighbour of "+ p_toCountry+" troops can't be advanced or country can't be attacked"+ColorCoding.blank);
+					System.out.println(ColorCoding.red+"Error: "+p_toCountry.getD_countryName()+ " is not the neighbour of "+ p_toCountry.getD_countryName()+" troops can't be advanced or country can't be attacked"+ColorCoding.blank);
 					return 1;
 				}	
 			}
@@ -187,7 +186,7 @@ public class PlayersGameplay {
 		}
 		else
 		{
-			System.out.println(ColorCoding.red+"Error: Country doesn't belongs to player from where he wants to advance the troops"+ColorCoding.blank);
+			System.out.println(ColorCoding.red+"Error: "+p_fromCountry.getD_countryName()+" doesn't belongs to player from where he wants to advance the troops"+ColorCoding.blank);
 			return 1;
 		}
 
@@ -233,7 +232,7 @@ public class PlayersGameplay {
 					p_toCountry.setD_armyDeployedOnCountry(l_troopsLeft);
 					p_fromCountry.setD_armyDeployedOnCountry(0);
 					
-					System.out.println("Attack on "+p_toCountry+ " from "+p_fromCountry+" was successful.");
+					System.out.println("Attack on "+p_toCountry.getD_countryName()+ " from "+p_fromCountry.getD_countryName()+" was successful.");
 				}
 				else if(l_troopsSource<l_troopsDestination)
 				{
@@ -241,13 +240,13 @@ public class PlayersGameplay {
 					int l_troopsLeft = l_troopsDestination - l_troopsSource;
 					p_toCountry.setD_armyDeployedOnCountry(l_troopsLeft);
 					p_fromCountry.setD_armyDeployedOnCountry(0);
-					System.out.println(p_toCountry+" defended itself successuflly from "+p_fromCountry);
+					System.out.println(p_toCountry.getD_countryName()+" defended itself successuflly from "+p_fromCountry.getD_countryName());
 				}
 				else
 				{
 					p_toCountry.setD_armyDeployedOnCountry(0);
 					p_fromCountry.setD_armyDeployedOnCountry(0);
-					System.out.println(p_toCountry+" defended itself successuflly from "+p_fromCountry);
+					System.out.println(p_toCountry.getD_countryName()+" defended itself successuflly from "+p_fromCountry.getD_countryName());
 				}
 
 				return 0;
