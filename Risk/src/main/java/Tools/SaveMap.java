@@ -3,6 +3,8 @@ package Tools;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+import Models.LogEntryBuffer;
+
 /**
  * The class SaveMap saves the map once user creates a new map or make changes to the existing ones.
  *
@@ -18,6 +20,8 @@ public class SaveMap {
 	 */
 
 	public static int saveMap(Connectivity p_connectivity) {
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
+		
 		ArrayList<String> l_mapData=new ArrayList<String>();
 		l_mapData.add("[continents]"+"\n");
 		for(int i=0;i<p_connectivity.getD_continentList().size();i++)
@@ -41,12 +45,14 @@ public class SaveMap {
 			FileWriter l_input=new FileWriter(p_connectivity.getD_FilepathName());
 			for(String lines:l_mapData) 
 				l_input.write(lines);		
-			l_input.close();		
+			l_input.close();	
+			d_logEntryBuffer.log("Map has been successfully saved");
 			System.out.println("Map has been successfully saved");
 			return 0;
 		}
         catch (Exception e)
         {
+        	d_logEntryBuffer.log("Map could not be saved properly");
     	    System.out.println("Map could not be saved properly");
     	    System.err.println(e.getMessage());
     	    return 1;
