@@ -314,6 +314,70 @@ public class PlayersGameplay {
 		return 0;
 	}
 	
+	public static boolean AirliftDeploy(Country p_sourceCountry, Country p_targetCountry, int p_armiesToAirlift, Player p_player) {
+		
+		Country d_sourceCountryObj = p_sourceCountry;
+		Country d_targetCountryObj = p_targetCountry;
+		
+		String d_sourceCountry = d_sourceCountryObj.getD_countryName();
+	    String d_targetCountry = d_targetCountryObj.getD_countryName();
+	    
+	    int d_armiesToAirlift = p_armiesToAirlift;
+	    
+	    Player d_player = p_player;
+	    
+	    
+	    int flag =0;
+	    int flag1 =0;
+
+	    ArrayList<Country> l_country = new ArrayList<>();
+	    l_country=	p_player.getD_Country();
+	    Country l_sourceCountry=new Country();
+	    Country l_targetCountry=new Country();
+	    
+	    
+		for(Country c:l_country)
+		{
+			if(c.getD_countryName().equals(d_sourceCountry)) {
+				
+				flag=1;
+				l_sourceCountry=c;
+			}
+		}
+	    if (flag==0) {
+            System.out.println(d_player.getD_playerName() + " can not use Airlift card as it doesn't own the source country.");
+            return false;
+	    }
+	    
+	    for(Country c:l_country)
+		{
+			if(c.getD_countryName().equals(d_targetCountry)) {
+				flag1=1;
+				l_targetCountry=c;
+			}
+		}
+	    if (flag1==0) {
+            System.out.println(d_player.getD_playerName() + " can not use Airlift card as it doesn't own the target country.");
+            return false;
+	    }
+	    
+	    if(l_sourceCountry.getD_armyDeployedOnCountry()<d_armiesToAirlift) {
+	    	System.out.println(d_player.getD_playerName() + " doesn't have enough army on this country to airlift.");
+            return false;
+	    }
+	  
+	    int x = l_sourceCountry.getD_armyDeployedOnCountry();
+	    x = x - d_armiesToAirlift;
+	    
+	    int y  = l_targetCountry.getD_armyDeployedOnCountry();
+	    y = y + d_armiesToAirlift;
+	    
+	    l_sourceCountry.setD_armyDeployedOnCountry(x);
+	    l_targetCountry.setD_armyDeployedOnCountry(y);
+	    
+		return false;
+	}
+	
 	public static String generateCard()
 	{
 		String[] l_cards = {"bomb","reinforcement","blockade","airlift","diplomacy"};
