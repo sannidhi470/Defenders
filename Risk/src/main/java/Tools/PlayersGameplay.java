@@ -322,4 +322,15 @@ public class PlayersGameplay {
 		return l_cards[ran.nextInt(l_cards.length)];
 		
 	}
+	
+	public static Player winnerPlayer(ArrayList<Player> p_players,Connectivity p_connectivity)
+	{
+		Player l_winner=new Player();
+		for(Player p:p_players)
+		{
+			if(p.getD_Country().size()==p_connectivity.getD_countryList().size())
+				return l_winner;
+		}
+		return null;
+	}
 }
