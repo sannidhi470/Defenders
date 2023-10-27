@@ -378,12 +378,24 @@ public class GameEngine{
 				System.out.println(ColorCoding.green+"All Armies have been successfully deployed. Enter command to proceed"+ColorCoding.blank);
 				
 				
-				ArrayList<String> playerNames=new ArrayList<>();
+				
 				int terminateFlag=0;
+				int l_winner=0;
+				int l_flag1=0;
+				int l_executeOrder=0;
+				while(l_winner==0) {
+					terminateFlag=0;
+					l_flag1=0;
+					ArrayList<String> playerNames=new ArrayList<>();
 				do{
+					if(PlayersGameplay.winnerPlayer(l_playersArray, l_connectivity)!=null)
+					{
+						l_winner++;
+						break;
+					}
 				for(int i=0;i<l_playersArray.size();i++)
 				{
-					int l_flag1=1;
+					 l_flag1=1;
 					do {
 					if(playerNames.contains(l_playersArray.get(i).getD_playerName()))
 						continue;
@@ -447,8 +459,11 @@ public class GameEngine{
 		//After countries are deployed
 				
 				}while(terminateFlag!=l_playersArray.size());
-				int l_executeOrder=0;
+				
+				 l_executeOrder=0;
 				Set<String> l_emptyOrders=new HashSet<>();
+				
+				
 				while(l_executeOrder!=l_playersArray.size())
 				{
 					for(int j=0;j<l_playersArray.size();j++)
@@ -464,16 +479,11 @@ public class GameEngine{
 						l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),l_connectivity,1);
 					}
 				}
-				
-				 System.out.println("End of while loop");
-                 l_flag=0;
-				
 			}
-			System.out.println("End of main game loop");
-			
-			
+				
+                 l_flag=0;
+			}
 		}while(l_option !="exit");
-		
 		d_logEntryBuffer.log("The Game is Ended");
 		System.out.println("Thank you for Playing the Game");
 		l_sc.close();
