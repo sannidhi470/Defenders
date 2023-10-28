@@ -131,6 +131,7 @@ public class Order {
 			case "airlift":
 				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"airlift");
 				System.out.println(p_player.getD_playerName()+"is calling"+"airlift");
+				PlayersGameplay.AirliftDeploy(l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[1]), l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[2]), flag, p_player);
 				break;
 			case "negotiate":
 				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"negotiate");

@@ -159,7 +159,6 @@ public class PlayersGameplay {
 					{
 						int l_troopsaddition = p_toCountry.getD_armyDeployedOnCountry() + p_troops;
 						p_toCountry.setD_armyDeployedOnCountry(l_troopsaddition); 
-
 						int l_troopsDeduction = p_fromCountry.getD_armyDeployedOnCountry() - p_troops;
 						p_fromCountry.setD_armyDeployedOnCountry(l_troopsDeduction);
 						System.out.println(ColorCoding.green+p_troops+" Troops advanced from "+p_fromCountry.getD_countryName()+" to "+p_toCountry.getD_countryName()+ColorCoding.blank);
@@ -167,14 +166,14 @@ public class PlayersGameplay {
 					}
 					else
 					{
-						System.out.println(ColorCoding.red+"Error: Can't move more armies then the armies in the country"+ColorCoding.blank);
+						System.out.println(ColorCoding.red+"Error: Can't move more armies than the armies in the country"+ColorCoding.blank);
 						return 1;
 					}
 
 				}
 				else
 				{
-					System.out.println(ColorCoding.red+"Error: "+p_toCountry+ " is not the neighbour of "+ p_toCountry+" troops can't be advanced or country can't be attacked"+ColorCoding.blank);
+					System.out.println(ColorCoding.red+"Error: "+p_toCountry.getD_countryName()+ " is not the neighbour of "+ p_toCountry.getD_countryName()+" troops can't be advanced or country can't be attacked"+ColorCoding.blank);
 					return 1;
 				}	
 			}
@@ -187,7 +186,7 @@ public class PlayersGameplay {
 		}
 		else
 		{
-			System.out.println(ColorCoding.red+"Error: Country doesn't belongs to player from where he wants to advance the troops"+ColorCoding.blank);
+			System.out.println(ColorCoding.red+"Error: "+p_fromCountry.getD_countryName()+" doesn't belongs to player from where he wants to advance the troops"+ColorCoding.blank);
 			return 1;
 		}
 
@@ -233,7 +232,7 @@ public class PlayersGameplay {
 					p_toCountry.setD_armyDeployedOnCountry(l_troopsLeft);
 					p_fromCountry.setD_armyDeployedOnCountry(0);
 					
-					System.out.println("Attack on "+p_toCountry+ " from "+p_fromCountry+" was successful.");
+					System.out.println("Attack on "+p_toCountry.getD_countryName()+ " from "+p_fromCountry.getD_countryName()+" was successful.");
 				}
 				else if(l_troopsSource<l_troopsDestination)
 				{
@@ -241,13 +240,13 @@ public class PlayersGameplay {
 					int l_troopsLeft = l_troopsDestination - l_troopsSource;
 					p_toCountry.setD_armyDeployedOnCountry(l_troopsLeft);
 					p_fromCountry.setD_armyDeployedOnCountry(0);
-					System.out.println(p_toCountry+" defended itself successuflly from "+p_fromCountry);
+					System.out.println(p_toCountry.getD_countryName()+" defended itself successuflly from "+p_fromCountry.getD_countryName());
 				}
 				else
 				{
 					p_toCountry.setD_armyDeployedOnCountry(0);
 					p_fromCountry.setD_armyDeployedOnCountry(0);
-					System.out.println(p_toCountry+" defended itself successuflly from "+p_fromCountry);
+					System.out.println(p_toCountry.getD_countryName()+" defended itself successuflly from "+p_fromCountry.getD_countryName());
 				}
 
 				return 0;
@@ -330,6 +329,70 @@ public class PlayersGameplay {
 		return 0;
 	}
 	
+	public static boolean AirliftDeploy(Country p_sourceCountry, Country p_targetCountry, int p_armiesToAirlift, Player p_player) {
+		
+		Country d_sourceCountryObj = p_sourceCountry;
+		Country d_targetCountryObj = p_targetCountry;
+		
+		String d_sourceCountry = d_sourceCountryObj.getD_countryName();
+	    String d_targetCountry = d_targetCountryObj.getD_countryName();
+	    
+	    int d_armiesToAirlift = p_armiesToAirlift;
+	    
+	    Player d_player = p_player;
+	    
+	    
+	    int flag =0;
+	    int flag1 =0;
+
+	    ArrayList<Country> l_country = new ArrayList<>();
+	    l_country=	p_player.getD_Country();
+	    Country l_sourceCountry=new Country();
+	    Country l_targetCountry=new Country();
+	    
+	    
+		for(Country c:l_country)
+		{
+			if(c.getD_countryName().equals(d_sourceCountry)) {
+				
+				flag=1;
+				l_sourceCountry=c;
+			}
+		}
+	    if (flag==0) {
+            System.out.println(d_player.getD_playerName() + " can not use Airlift card as it doesn't own the source country.");
+            return false;
+	    }
+	    
+	    for(Country c:l_country)
+		{
+			if(c.getD_countryName().equals(d_targetCountry)) {
+				flag1=1;
+				l_targetCountry=c;
+			}
+		}
+	    if (flag1==0) {
+            System.out.println(d_player.getD_playerName() + " can not use Airlift card as it doesn't own the target country.");
+            return false;
+	    }
+	    
+	    if(l_sourceCountry.getD_armyDeployedOnCountry()<d_armiesToAirlift) {
+	    	System.out.println(d_player.getD_playerName() + " doesn't have enough army on this country to airlift.");
+            return false;
+	    }
+	  
+	    int x = l_sourceCountry.getD_armyDeployedOnCountry();
+	    x = x - d_armiesToAirlift;
+	    
+	    int y  = l_targetCountry.getD_armyDeployedOnCountry();
+	    y = y + d_armiesToAirlift;
+	    
+	    l_sourceCountry.setD_armyDeployedOnCountry(x);
+	    l_targetCountry.setD_armyDeployedOnCountry(y);
+	    
+		return false;
+	}
+	
 	public static String generateCard()
 	{
 		String[] l_cards = {"bomb","reinforcement","blockade","airlift","diplomacy"};
@@ -337,5 +400,16 @@ public class PlayersGameplay {
 		 
 		return l_cards[ran.nextInt(l_cards.length)];
 		
+	}
+	
+	public static Player winnerPlayer(ArrayList<Player> p_players,Connectivity p_connectivity)
+	{
+		Player l_winner=new Player();
+		for(Player p:p_players)
+		{
+			if(p.getD_Country().size()==p_connectivity.getD_countryList().size())
+				return l_winner;
+		}
+		return null;
 	}
 }
