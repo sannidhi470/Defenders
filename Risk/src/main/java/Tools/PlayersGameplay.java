@@ -292,6 +292,21 @@ public class PlayersGameplay {
 		return 1;
 	}
 	
+	public static void bomb(Player p_player,ArrayList<Player> p_playersArray,Country p_fromCountry,Country p_toCountry,int p_troops,ArrayList<Continent> p_continent) {
+		if(p_fromCountry.getD_neighbours().contains(p_toCountry.getD_countryId())) {
+			int l_targetArmies=(int) Math.floor(p_toCountry.getD_armyDeployedOnCountry()/2);
+			p_toCountry.setD_armyDeployedOnCountry(l_targetArmies);
+			if(p_toCountry.getD_armyDeployedOnCountry()==0) {
+				removeCountry(p_playersArray, p_toCountry, p_continent);
+				updateContinent(p_playersArray, p_continent);
+				System.out.println("The Country "+ p_toCountry + " is a now a neutral Country");
+			}
+			else {
+				System.out.println("The country "+ p_toCountry + "now has " + l_targetArmies+ " armies");
+			}
+		}
+	}
+	
 	public static int updateContinent(ArrayList<Player> p_playersArray, ArrayList<Continent> p_continentList)
 	{
 		
