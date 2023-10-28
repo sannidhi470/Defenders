@@ -136,6 +136,8 @@ public class Order {
 			case "negotiate":
 				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"negotiate");
 				System.out.println(p_player.getD_playerName()+"is calling"+"negotiate");
+				
+				PlayersGameplay.negotiate(p_player,GameEngine.getL_playersArray(),l_orderContent[1]);
 				break;
 			}
 		

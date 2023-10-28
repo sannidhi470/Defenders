@@ -182,9 +182,21 @@ public class PlayersGameplay {
 			}
 			else //Attack on toCountry as it doesn't belong to player 
 			{
-				//Already checked whether fromCountry belongs to player or not 
-				attack(p_player,p_playersArray,p_fromCountry,p_toCountry,p_troops,p_continent);
-				return 0;
+				Player l_toplayer = findPlayerWithCountry(p_playersArray,p_toCountry);
+				System.out.println(p_player.getDiplomacyWith());
+				
+				if(!p_player.getDiplomacyWith().contains(l_toplayer.getD_playerId()))
+				{
+					//Already checked whether fromCountry belongs to player or not 
+					attack(p_player,p_playersArray,p_fromCountry,p_toCountry,p_troops,p_continent);
+					return 0;
+				}
+				else
+				{
+					System.out.println(ColorCoding.red+"Attack is not possible between "+p_fromCountry+" and "+p_toCountry+" because of diplomacy"+ColorCoding.blank);
+					return 1;
+				}
+						
 			}
 		}
 		else
@@ -196,6 +208,17 @@ public class PlayersGameplay {
 	}
 
 
+	private static Player findPlayerWithCountry(ArrayList<Player> p_playersArray, Country p_toCountry) {
+		
+		for(Player p: p_playersArray)
+		{
+			if(p.getD_Country().contains(p_toCountry))
+				return p;
+		}
+		System.out.println(ColorCoding.red+"Error: Coutry "+p_toCountry+" Does not belong to any player"+ColorCoding.blank);
+		return null;
+	}
+	
 	public static int attack(Player p_player,ArrayList<Player> p_playersArray,Country p_fromCountry,Country p_toCountry,int p_troops,ArrayList<Continent> p_continent)
 	{
 		
@@ -300,7 +323,7 @@ public class PlayersGameplay {
 			}
 		}catch(Exception e)
 		{
-			System.out.println(ColorCoding.red+"Coutry "+p_toCountry+" Does not exist"+ColorCoding.blank);
+			System.out.println(ColorCoding.red+"Error: Coutry "+p_toCountry+" Does not exist"+ColorCoding.blank);
 			return 1;
 		}
 	
@@ -453,5 +476,32 @@ public class PlayersGameplay {
 				return l_winner;
 		}
 		return null;
+	}
+	
+	public static void negotiate(Player p_player,ArrayList<Player> p_playersArray, String p_toPlayerID) {
+		
+		
+		p_player.addDiplomacyWith(Integer.parseInt(p_toPlayerID));
+		
+		for(Player p: p_playersArray)
+		{
+			if(p.getD_playerId() == Integer.parseInt(p_toPlayerID))
+			{
+				p.addDiplomacyWith(p_player.getD_playerId());
+			}
+			
+			System.out.println(p.getD_playerName()+" = "+p.getDiplomacyWith());
+		}
+		
+		
+	}
+	
+	public static void resetDiplomacy(ArrayList<Player> p_playersArray) {
+
+		for(Player p:p_playersArray)
+		{
+			p.clearDiplomacyWith();
+		}
+		
 	}
 }

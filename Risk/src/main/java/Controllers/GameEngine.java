@@ -505,6 +505,9 @@ public class GameEngine{
 						l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),l_connectivity,1);
 					}
 				}
+				
+				PlayersGameplay.resetDiplomacy(l_playersArray);
+				
 			}
 				
                  l_flag=0;

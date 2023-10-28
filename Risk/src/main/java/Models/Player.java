@@ -16,7 +16,10 @@ public class Player {
 	private Order d_order;
 	private int d_armyCount;
 	private ArrayList<Continent> d_playerContinent=new ArrayList<>();
-	private ArrayList<String> Cards = new ArrayList<>();
+	private ArrayList<String> d_cards = new ArrayList<>();
+	//private int d_diplomacyWith=-1; //Holds ID of player with whom diplomacy is executed
+	private ArrayList<Integer> d_diplomacyWith = new ArrayList<>();
+	private static int d_objCount = 1;
 	
 	/**
 	 * This is a default constructor.
@@ -25,7 +28,8 @@ public class Player {
 	
 	public Player()
 	{
-		
+		this.setD_playerId(d_objCount);
+		d_objCount++;
 	}
 	
 	/**
@@ -223,10 +227,26 @@ public class Player {
 	}
 	
 	public ArrayList<String> getCards() {
-		return Cards;
+		return d_cards;
 	}
 
 	public void setCards(ArrayList<String> cards) {
-		Cards = cards;
+		d_cards = cards;
+	}
+
+	public ArrayList<Integer> getDiplomacyWith() {
+		return d_diplomacyWith;
+	}
+
+	public void setDiplomacyWith(ArrayList<Integer> diplomacyWith) {
+		d_diplomacyWith = diplomacyWith;
+	}
+	
+	public void addDiplomacyWith(Integer l_toPlayerID) {
+		d_diplomacyWith.add(l_toPlayerID);
+	}
+	
+	public void clearDiplomacyWith() {
+		d_diplomacyWith.clear();
 	}
 }
