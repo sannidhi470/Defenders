@@ -39,6 +39,7 @@ public class Country {
 		this.d_countryName = p_countryName;
 		this.d_continentId = p_continentId;
 		this.d_neighbours=p_neighbours;
+		this.d_armyDeployedOnCountry =0;
 	}
 	
 	/**
