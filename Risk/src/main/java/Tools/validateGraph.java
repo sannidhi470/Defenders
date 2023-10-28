@@ -60,7 +60,6 @@ public class validateGraph {
 		ArrayList<String> l_continents = new ArrayList<>();
 		for(int i=0; i<p_connectivity.getD_continentList().size();i++)
 		{
-			System.out.println(p_connectivity.getD_continentList().get(i).getD_continentName());
 			if(p_connectivity.getD_continentList().get(i).getD_countries().size() == 0)
 			{
 				d_logEntryBuffer.log("Graph is disconnected"+" as "+p_connectivity.getD_continentList().get(i).getD_continentName()+" has no countries assigned to it");

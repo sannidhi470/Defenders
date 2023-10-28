@@ -125,8 +125,7 @@ public class GameEngine{
 								d_logEntryBuffer.log("ERROR: Invalid Command");
 								System.out.println(ColorCoding.red+"ERROR: Invalid Command"+ColorCoding.blank);
 							}
-						}
-						
+						}					
 						break;
 						
 					case "editneighbor":
@@ -172,18 +171,27 @@ public class GameEngine{
 						
 					case "loadmap":
 						l_gamePhase="startup";
+						int l_newMapCreated = 0;
 						if(l_commands.length == 2)
 						{
-							MapLoader.loadMap(l_connectivity,l_commands[1]);
+							l_newMapCreated =MapLoader.loadMap(l_connectivity,l_commands[1]);
 						} else {
 							d_logEntryBuffer.log("No map entered. Please enter name of map to be loaded");
 							System.out.println(ColorCoding.red+"No map entered. Please enter name of map to be loaded"+ColorCoding.blank);
 						}
-						d_logEntryBuffer.log("Validating the loaded Map");
-						System.out.println(ColorCoding.cyan+"\n--------Validating the loaded map--------\n"+ColorCoding.blank);
-						Tools.Graph l_graph=new Tools.Graph(l_connectivity.getD_countryList().size(),l_connectivity);
-						if(l_graph.continentConnection(l_connectivity, l_graph))
-							l_graph.isConnected(l_graph);
+						if(l_newMapCreated == 0 )
+						{
+							d_logEntryBuffer.log("Validating the loaded Map");
+							System.out.println(ColorCoding.cyan+"\n--------Validating the loaded map--------\n"+ColorCoding.blank);
+							Tools.Graph l_graph=new Tools.Graph(l_connectivity.getD_countryList().size(),l_connectivity);
+							if(l_graph.continentConnection(l_connectivity, l_graph))
+								l_graph.isConnected(l_graph);							
+						}
+						else
+						{
+							System.out.println(ColorCoding.green+"Skipping Map Validation as it is a newly created map"+ColorCoding.blank);
+						}
+
 						break;
 						
 					case "help":

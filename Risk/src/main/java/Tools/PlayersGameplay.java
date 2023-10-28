@@ -96,7 +96,7 @@ public class PlayersGameplay {
 			if(p_playersList.get(i).getD_playerContinent().size()!=0)
 			{
 				for(int j=0;j<p_playersList.get(i).getD_playerContinent().size();j++)
-					l_tempContinentCount=l_tempContinentCount+ p_playersList.get(i).getD_playerContinent().get(j).getD_continentArmyValue();
+					l_tempContinentCount=l_tempContinentCount+ p_playersList.get(i).getD_playerContinent().get(j).getD_continentBonusValue();
 			}
 			l_armyCount+=l_tempContinentCount;
 			p_playersList.get(i).setD_armyCount(l_armyCount);

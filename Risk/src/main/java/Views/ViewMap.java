@@ -24,7 +24,7 @@ public class ViewMap {
 	public static void viewMap(ArrayList<Continent> p_continentList, ArrayList<Country> p_countryList) {
 		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 		
-	 	   String[] l_columnNames = {"Continent", "Country", "Neighbouring Country", "Army Count"};
+	 	   String[] l_columnNames = {"Continent", "Country", "Neighbouring Country", "Continent Bonus"};
 	 	   if(p_continentList.size() == 0)
 	 	   {
 	 		   d_logEntryBuffer.log("No continents or countries exist in the map");
@@ -63,13 +63,13 @@ public class ViewMap {
 						   		l_tempNeighbours = l_tempNeighbours + " "+l_country.get_nameFromId(p_countryList,f)+",";
 			    			   }
 						   	   l_map[l_lineIterator][2] = l_tempNeighbours;
-						   	   l_map[l_lineIterator][3] = Integer.toString(p_continentList.get(l_continentIterator).getD_continentArmyValue());
+						   	   l_map[l_lineIterator][3] = Integer.toString(p_continentList.get(l_continentIterator).getD_continentBonusValue());
 						   	l_lineIterator=l_lineIterator+1;
 			    		   }
 					   } else 
 					   {
 						   l_map[l_lineIterator][0] = p_continentList.get(l_continentIterator).getD_continentName();
-						   l_map[l_lineIterator][3] = Integer.toString(p_continentList.get(l_continentIterator).getD_continentArmyValue());
+						   l_map[l_lineIterator][3] = Integer.toString(p_continentList.get(l_continentIterator).getD_continentBonusValue());
 						   l_lineIterator=l_lineIterator+1;
 					   }
 				   }

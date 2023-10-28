@@ -128,7 +128,7 @@ class PlayersGameplayTest {
 		if(l_playerArrayTest.get(0).getD_playerContinent().size()!=0)
 		{
 			for(int j=0;j<l_playerArrayTest.get(0).getD_playerContinent().size();j++)
-				l_tempContinentCount=l_tempContinentCount+ l_playerArrayTest.get(0).getD_playerContinent().get(j).getD_continentArmyValue();
+				l_tempContinentCount=l_tempContinentCount+ l_playerArrayTest.get(0).getD_playerContinent().get(j).getD_continentBonusValue();
 		}
 		l_armyCount+=l_tempContinentCount;
 		l_playerArrayTest.get(0).setD_armyCount(l_armyCount);
@@ -161,7 +161,7 @@ class PlayersGameplayTest {
 		if(l_playerArrayTest.get(0).getD_playerContinent().size()!=0)
 		{
 			for(int j=0;j<l_playerArrayTest.get(0).getD_playerContinent().size();j++)
-				l_tempContinentCount=l_tempContinentCount+ l_playerArrayTest.get(0).getD_playerContinent().get(j).getD_continentArmyValue();
+				l_tempContinentCount=l_tempContinentCount+ l_playerArrayTest.get(0).getD_playerContinent().get(j).getD_continentBonusValue();
 		}
 		l_armyCount+=l_tempContinentCount;
 		

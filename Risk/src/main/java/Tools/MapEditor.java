@@ -39,7 +39,7 @@ public class MapEditor {
 	    List<Country> l_countries = new ArrayList<Country>();
 		l_continent.setD_continentId(p_connectivity.getD_continentList().size()+1);
 		l_continent.setD_continentName(p_continentId);
-		l_continent.setD_continentArmyValue(p_continentvalue);
+		l_continent.setD_continentBonusValue(p_continentvalue);
 		l_continent.setD_countries(l_countries);
 		p_connectivity.getD_continentList().add(l_continent);
 		d_logEntryBuffer.log("Continent Added Successfully");
