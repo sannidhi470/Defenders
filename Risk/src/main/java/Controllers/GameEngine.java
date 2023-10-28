@@ -295,10 +295,11 @@ public class GameEngine{
 				int flag=0;
 				ArrayList<String> l_tempName=new ArrayList<>();
 				while(l_temp>0) {
-					for(int i=0;i<l_playersArray.size();)
+					for(int i=0;i<l_playersArray.size();i++)
 					{
 						String l_userOrder="";
 						Order l_order=new Order();
+						boolean l_validUserCommand =false;
 						if(l_playersArray.get(i).getD_armyCount()!=0)
 						{
 							d_logEntryBuffer.log("Player "+l_playersArray.get(i).getD_playerName()+" deploy your troops:");
@@ -310,20 +311,28 @@ public class GameEngine{
 								if(Integer.parseInt(l_tempOrderListArray[1])==(l_playersArray.get(i).getD_Country().get(j).getD_countryId()))
 								{
 									l_order.setD_fromCountry(l_playersArray.get(i).getD_Country().get(j));
+									l_validUserCommand= true;
 								}
-							}	
-							if(PlayersGameplay.checkArmyAvailable(Integer.parseInt(l_tempOrderListArray[2]),l_playersArray.get(i)))
+							}
+							if(l_validUserCommand)
 							{
-								l_order.setD_numberOfArmies(Integer.parseInt(l_tempOrderListArray[2]));
-								l_playersArray.get(i).setD_Order(l_order);
-								l_playersArray.get(i).issue_order();
-								i++;
+								if(PlayersGameplay.checkArmyAvailable(Integer.parseInt(l_tempOrderListArray[2]),l_playersArray.get(i)))
+								{
+									l_order.setD_numberOfArmies(Integer.parseInt(l_tempOrderListArray[2]));
+									l_playersArray.get(i).setD_Order(l_order);
+									l_playersArray.get(i).issue_order();
+									//i++;
+								}
+								else
+								{
+									d_logEntryBuffer.log("Error: Please enter valid number of troops");
+									System.out.println(ColorCoding.red+"Error: Please enter valid number of troops"+ColorCoding.blank);
+									//i--;
+								}
 							}
 							else
 							{
-								d_logEntryBuffer.log("Error: Please enter valid number of troops");
-								System.out.println(ColorCoding.red+"Error: Please enter valid number of troops"+ColorCoding.blank);
-								//i--;
+								System.out.println(ColorCoding.red+"INVALID Command as player "+l_playersArray.get(i).getD_playerName()+" doesn't control country with countryID "+l_tempOrderListArray[1]+ColorCoding.blank);
 							}
 							for(int j=0;j<l_playersArray.size();j++)
 							{
@@ -338,6 +347,7 @@ public class GameEngine{
 									}
 								}
 							}
+
 						}
 						if(flag==l_playersArray.size())
 						{
