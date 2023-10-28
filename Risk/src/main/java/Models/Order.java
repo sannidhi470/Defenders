@@ -117,7 +117,7 @@ public class Order {
 			{
 			case "advance":
 				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"Advance");
-				System.out.println(p_player.getD_playerName()+"is calling"+"Advance");
+				//System.out.println(p_player.getD_playerName()+"is calling"+"Advance");
 				PlayersGameplay.advance(p_player,GameEngine.getL_playersArray(),l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[1]) , l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[2]), Integer.parseInt( l_orderContent[3]),p_connectivity.getD_continentList());
 				break;
 			case "bomb":
