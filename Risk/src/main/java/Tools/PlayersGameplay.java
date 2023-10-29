@@ -458,6 +458,9 @@ public class PlayersGameplay {
 		return false;
 	}
 	
+	public static void Blockade(Country p_sourceCountry,Player p_player) {
+	}
+	
 	public static String generateCard()
 	{
 		String[] l_cards = {"bomb","reinforcement","blockade","airlift","diplomacy"};
