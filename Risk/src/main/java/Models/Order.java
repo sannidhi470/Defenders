@@ -128,7 +128,7 @@ public class Order {
 				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"blockade");
 				System.out.println(p_player.getD_playerName()+"is calling"+"blockade");
 				if(p_player.getCards().contains("blockade"))
-					PlayersGameplay.Blockade(l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[1]),p_player);
+					PlayersGameplay.Blockade(l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[1]),p_player,null,p_connectivity.getD_continentList());
 				else
 					System.out.println(ColorCoding.red+p_player.getD_playerName()+" doesn't have blockade card "+ColorCoding.blank);
 				break;

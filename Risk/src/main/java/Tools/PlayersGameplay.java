@@ -458,7 +458,42 @@ public class PlayersGameplay {
 		return false;
 	}
 	
-	public static void Blockade(Country p_sourceCountry,Player p_player) {
+	public static boolean Blockade(Country p_sourceCountry,Player p_player,ArrayList<Player> p_playersArray,ArrayList<Continent> p_continent) {
+		Country d_sourceCountryObj = p_sourceCountry;
+		String d_sourceCountry = d_sourceCountryObj.getD_countryName();
+	    Player d_player = p_player;
+	    int flag =0;
+	    ArrayList<Country> l_country = new ArrayList<>();
+	    l_country=	p_player.getD_Country();
+	    Country l_sourceCountry = new Country();
+	    
+		for(Country c:l_country)
+		{
+			if(c.getD_countryName().equals(d_sourceCountry)) {
+				
+				flag=1;
+				l_sourceCountry=c;
+				}
+		}
+	    if (flag==0) {
+            System.out.println(d_player.getD_playerName() + " can not use Blockade card as it doesn't own the given country.");
+            return false;
+	    }
+	    
+	    if(l_sourceCountry.getD_armyDeployedOnCountry()<0) {
+	    	System.out.println(d_player.getD_playerName() + " doesn't have enough army on this country to blockade.");
+            return false;
+	    }
+	    
+	    int x = l_sourceCountry.getD_armyDeployedOnCountry();
+	    x = x*2*(1/2);
+	    
+	    l_sourceCountry.setD_armyDeployedOnCountry(x);
+	    //removeCountry(p_playersArray, d_sourceCountryObj, p_continent);
+		//updateContinent(p_playersArray, p_continent);
+		System.out.println("The Country "+ d_sourceCountryObj.getD_countryName() + " is a now a neutral Country");
+	    
+	    return false;
 	}
 	
 	public static String generateCard()
