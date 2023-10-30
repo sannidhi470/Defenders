@@ -329,14 +329,6 @@ public class GameEngine{
 									l_order.setD_numberOfArmies(Integer.parseInt(l_tempOrderListArray[2]));
 									l_playersArray.get(i).setD_Order(l_order);
 									l_playersArray.get(i).issue_order();
-									for(int j=0;j<l_playersArray.get(i).getD_Country().size();j++)
-									{
-										if(Integer.parseInt(l_tempOrderListArray[1])==(l_playersArray.get(i).getD_Country().get(j).getD_countryId()))
-										{
-											//Setting army count of country as per user's 'deploy' command
-											l_playersArray.get(i).getD_Country().get(j).setD_armyDeployedOnCountry(l_playersArray.get(i).getD_Country().get(j).getD_armyDeployedOnCountry()+Integer.parseInt(l_tempOrderListArray[2]));
-										}
-									}
 									//i++;
 								}
 								else
