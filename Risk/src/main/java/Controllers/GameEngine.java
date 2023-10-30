@@ -154,7 +154,7 @@ public class GameEngine{
 						
 					case "showmap":
 						l_gamePhase="startup";
-						ViewMap.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList());
+						ViewMap.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList(), getL_playersArray());
 						break;
 						
 					case "savemap":
@@ -329,14 +329,6 @@ public class GameEngine{
 									l_order.setD_numberOfArmies(Integer.parseInt(l_tempOrderListArray[2]));
 									l_playersArray.get(i).setD_Order(l_order);
 									l_playersArray.get(i).issue_order();
-									for(int j=0;j<l_playersArray.get(i).getD_Country().size();j++)
-									{
-										if(Integer.parseInt(l_tempOrderListArray[1])==(l_playersArray.get(i).getD_Country().get(j).getD_countryId()))
-										{
-											//Setting army count of country as per user's 'deploy' command
-											l_playersArray.get(i).getD_Country().get(j).setD_armyDeployedOnCountry(l_playersArray.get(i).getD_Country().get(j).getD_armyDeployedOnCountry()+Integer.parseInt(l_tempOrderListArray[2]));
-										}
-									}
 									//i++;
 								}
 								else
@@ -402,7 +394,7 @@ public class GameEngine{
 				l_flag=0;
 				d_logEntryBuffer.log("All Armies have been successfully deployed. Enter command to proceed");
 				System.out.println(ColorCoding.green+"All Armies have been successfully deployed. Enter command to proceed"+ColorCoding.blank);
-				ViewMap.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList());
+				ViewMap.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList(), getL_playersArray());
 				
 				
 				int terminateFlag=0;
@@ -437,6 +429,8 @@ public class GameEngine{
 					Order l_order=new Order();
 					d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+ "Asked for Command");
 					System.out.println("\nEnter the Command for player: "+l_playersArray.get(i).getD_playerName());
+					System.out.println("Cards available: "+l_playersArray.get(i).getCards());
+					
 					String l_orderinput=l_sc.nextLine();
 					String[] l_inputOrderArray=l_orderinput.split(" ");
 					//make a function to validate command..

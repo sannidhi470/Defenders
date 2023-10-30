@@ -176,26 +176,39 @@ public class PlayersGameplay {
 				}
 				else
 				{
-					System.out.println(ColorCoding.red+"Error: "+p_toCountry.getD_countryName()+ " is not the neighbour of "+ p_toCountry.getD_countryName()+" troops can't be advanced or country can't be attacked"+ColorCoding.blank);
+					System.out.println(ColorCoding.red+"Error: "+p_fromCountry.getD_countryName()+ " is not the neighbour of "+ p_toCountry.getD_countryName()+" troops can't be advanced or country can't be attacked"+ColorCoding.blank);
 					return 1;
 				}	
 			}
 			else //Attack on toCountry as it doesn't belong to player 
 			{
 				Player l_toplayer = findPlayerWithCountry(p_playersArray,p_toCountry);
-				System.out.println(p_player.getDiplomacyWith());
 				
-				if(!p_player.getDiplomacyWith().contains(l_toplayer.getD_playerId()))
+				if(l_toplayer != null)
 				{
-					//Already checked whether fromCountry belongs to player or not 
-					attack(p_player,p_playersArray,p_fromCountry,p_toCountry,p_troops,p_continent);
-					return 0;
+					System.out.println(p_player.getDiplomacyWith());
+					
+					if(!p_player.getDiplomacyWith().contains(l_toplayer.getD_playerId()))
+					{
+						//Already checked whether fromCountry belongs to player or not 
+						attack(p_player,p_playersArray,p_fromCountry,p_toCountry,p_troops,p_continent);
+						return 0;
+					}
+					else
+					{
+						System.out.println(ColorCoding.red+"Attack is not possible between "+p_fromCountry+" and "+p_toCountry+" because of diplomacy"+ColorCoding.blank);
+						return 1;
+					}
+					
 				}
 				else
 				{
-					System.out.println(ColorCoding.red+"Attack is not possible between "+p_fromCountry+" and "+p_toCountry+" because of diplomacy"+ColorCoding.blank);
-					return 1;
+					//This will be called if to country is a neutral country
+					attack(p_player,p_playersArray,p_fromCountry,p_toCountry,p_troops,p_continent);
+					return 0;
 				}
+				
+				
 						
 			}
 		}
@@ -215,7 +228,6 @@ public class PlayersGameplay {
 			if(p.getD_Country().contains(p_toCountry))
 				return p;
 		}
-		System.out.println(ColorCoding.red+"Error: Coutry "+p_toCountry+" Does not belong to any player"+ColorCoding.blank);
 		return null;
 	}
 	
