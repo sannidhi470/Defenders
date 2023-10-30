@@ -396,15 +396,15 @@ public class PlayersGameplay {
 	
 	public static boolean AirliftDeploy(Country p_sourceCountry, Country p_targetCountry, int p_armiesToAirlift, Player p_player) {
 		
-		Country d_sourceCountryObj = p_sourceCountry;
-		Country d_targetCountryObj = p_targetCountry;
+		Country l_sourceCountryObj = p_sourceCountry;
+		Country l_targetCountryObj = p_targetCountry;
 		
-		String d_sourceCountry = d_sourceCountryObj.getD_countryName();
-	    String d_targetCountry = d_targetCountryObj.getD_countryName();
+		String l_sourceCountryVar = l_sourceCountryObj.getD_countryName();
+	    String l_targetCountryVar = l_targetCountryObj.getD_countryName();
 	    
-	    int d_armiesToAirlift = p_armiesToAirlift;
+	    int l_armiesToAirlift = p_armiesToAirlift;
 	    
-	    Player d_player = p_player;
+	    Player l_player = p_player;
 	    
 	    
 	    int flag =0;
@@ -418,39 +418,39 @@ public class PlayersGameplay {
 	    
 		for(Country c:l_country)
 		{
-			if(c.getD_countryName().equals(d_sourceCountry)) {
+			if(c.getD_countryName().equals(l_sourceCountryVar)) {
 				
 				flag=1;
 				l_sourceCountry=c;
 			}
 		}
 	    if (flag==0) {
-            System.out.println(d_player.getD_playerName() + " can not use Airlift card as it doesn't own the source country.");
+            System.out.println(l_player.getD_playerName() + " can not use Airlift card as it doesn't own the source country.");
             return false;
 	    }
 	    
 	    for(Country c:l_country)
 		{
-			if(c.getD_countryName().equals(d_targetCountry)) {
+			if(c.getD_countryName().equals(l_targetCountryVar)) {
 				flag1=1;
 				l_targetCountry=c;
 			}
 		}
 	    if (flag1==0) {
-            System.out.println(d_player.getD_playerName() + " can not use Airlift card as it doesn't own the target country.");
+            System.out.println(l_player.getD_playerName() + " can not use Airlift card as it doesn't own the target country.");
             return false;
 	    }
 	    
-	    if(l_sourceCountry.getD_armyDeployedOnCountry()<d_armiesToAirlift) {
-	    	System.out.println(d_player.getD_playerName() + " doesn't have enough army on this country to airlift.");
+	    if(l_sourceCountry.getD_armyDeployedOnCountry()<l_armiesToAirlift) {
+	    	System.out.println(l_player.getD_playerName() + " doesn't have enough army on this country to airlift.");
             return false;
 	    }
 	  
 	    int x = l_sourceCountry.getD_armyDeployedOnCountry();
-	    x = x - d_armiesToAirlift;
+	    x = x - l_armiesToAirlift;
 	    
 	    int y  = l_targetCountry.getD_armyDeployedOnCountry();
-	    y = y + d_armiesToAirlift;
+	    y = y + l_armiesToAirlift;
 	    
 	    l_sourceCountry.setD_armyDeployedOnCountry(x);
 	    l_targetCountry.setD_armyDeployedOnCountry(y);
@@ -459,39 +459,39 @@ public class PlayersGameplay {
 	}
 	
 	public static boolean Blockade(Country p_sourceCountry,Player p_player,ArrayList<Player> p_playersArray,ArrayList<Continent> p_continent) {
-		Country d_sourceCountryObj = p_sourceCountry;
-		String d_sourceCountry = d_sourceCountryObj.getD_countryName();
-	    Player d_player = p_player;
+		Country l_sourceCountryObj = p_sourceCountry;
+		String l_sourceCountry = l_sourceCountryObj.getD_countryName();
+	    Player l_player = p_player;
 	    int flag =0;
 	    ArrayList<Country> l_country = new ArrayList<>();
 	    l_country=	p_player.getD_Country();
-	    Country l_sourceCountry = new Country();
+	    Country l_sourceCountrynew = new Country();
 	    
 		for(Country c:l_country)
 		{
-			if(c.getD_countryName().equals(d_sourceCountry)) {
+			if(c.getD_countryName().equals(l_sourceCountry)) {
 				
 				flag=1;
-				l_sourceCountry=c;
+				l_sourceCountrynew=c;
 				}
 		}
 	    if (flag==0) {
-            System.out.println(d_player.getD_playerName() + " can not use Blockade card as it doesn't own the given country.");
+            System.out.println(l_player.getD_playerName() + " can not use Blockade card as it doesn't own "+ l_sourceCountrynew.getD_countryName());
             return false;
 	    }
 	    
-	    if(l_sourceCountry.getD_armyDeployedOnCountry()<0) {
-	    	System.out.println(d_player.getD_playerName() + " doesn't have enough army on this country to blockade.");
+	    if(l_sourceCountrynew.getD_armyDeployedOnCountry()<0) {
+	    	System.out.println(l_player.getD_playerName() + " doesn't have enough army on this country to blockade.");
             return false;
 	    }
 	    
-	    int x = l_sourceCountry.getD_armyDeployedOnCountry();
-	    x = x*2*(1/2);
+	    int x = l_sourceCountrynew.getD_armyDeployedOnCountry();
+	    x = x*3;
 	    
-	    l_sourceCountry.setD_armyDeployedOnCountry(x);
-	    //removeCountry(p_playersArray, d_sourceCountryObj, p_continent);
-		//updateContinent(p_playersArray, p_continent);
-		System.out.println("The Country "+ d_sourceCountryObj.getD_countryName() + " is a now a neutral Country");
+	    l_sourceCountrynew.setD_armyDeployedOnCountry(x);
+	    removeCountry(p_playersArray, l_sourceCountryObj, p_continent);
+		updateContinent(p_playersArray, p_continent);
+		System.out.println("The Country "+ l_sourceCountryObj.getD_countryName() + " is a now a neutral Country");
 	    
 	    return false;
 	}
