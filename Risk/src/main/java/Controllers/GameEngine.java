@@ -437,6 +437,8 @@ public class GameEngine{
 					Order l_order=new Order();
 					d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+ "Asked for Command");
 					System.out.println("\nEnter the Command for player: "+l_playersArray.get(i).getD_playerName());
+					System.out.println("Cards available: "+l_playersArray.get(i).getCards());
+					
 					String l_orderinput=l_sc.nextLine();
 					String[] l_inputOrderArray=l_orderinput.split(" ");
 					//make a function to validate command..
