@@ -154,7 +154,7 @@ public class GameEngine{
 						
 					case "showmap":
 						l_gamePhase="startup";
-						ViewMap.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList());
+						ViewMap.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList(), getL_playersArray());
 						break;
 						
 					case "savemap":
@@ -402,7 +402,7 @@ public class GameEngine{
 				l_flag=0;
 				d_logEntryBuffer.log("All Armies have been successfully deployed. Enter command to proceed");
 				System.out.println(ColorCoding.green+"All Armies have been successfully deployed. Enter command to proceed"+ColorCoding.blank);
-				ViewMap.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList());
+				ViewMap.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList(), getL_playersArray());
 				
 				
 				int terminateFlag=0;

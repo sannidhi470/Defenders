@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import Models.Continent;
 import Models.Country;
 import Models.LogEntryBuffer;
+import Models.Player;
 import dnl.utils.text.table.TextTable;
 
 /**
@@ -21,10 +22,10 @@ public class ViewMap {
 	 *
 	 */
 
-	public static void viewMap(ArrayList<Continent> p_continentList, ArrayList<Country> p_countryList) {
+	public static void viewMap(ArrayList<Continent> p_continentList, ArrayList<Country> p_countryList, ArrayList<Player> p_playerList) {
 		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 		
-	 	   String[] l_columnNames = {"Continent", "Country", "Neighbouring Country", "Continent Bonus", "Armies deployed"};
+	 	   String[] l_columnNames = {"Continent", "Country", "Neighbouring Country", "Continent Bonus", "Armies deployed", "Country Owner"};
 	 	   if(p_continentList.size() == 0)
 	 	   {
 	 		   d_logEntryBuffer.log("No continents or countries exist in the map");
@@ -40,7 +41,7 @@ public class ViewMap {
 	 			  l_lineCount = l_lineCount+1;
 	 	   }
 	 	   
-	 	   String[][] l_map = new String[l_lineCount][5];
+	 	   String[][] l_map = new String[l_lineCount][6];
 			   for(int l_lineIterator=0; l_lineIterator<l_lineCount; l_lineIterator++) 
 			   {
 				   for(int l_continentIterator=0; l_continentIterator<p_continentList.size(); l_continentIterator++) 
@@ -65,6 +66,17 @@ public class ViewMap {
 						   	   l_map[l_lineIterator][2] = l_tempNeighbours;
 						   	   l_map[l_lineIterator][3] = Integer.toString(p_continentList.get(l_continentIterator).getD_continentBonusValue());
 						   	   l_map[l_lineIterator][4] = Integer.toString(l_country.getD_armyDeployedOnCountry());
+						   	   l_map[l_lineIterator][5] = "Neutral";
+						   	   for(int l_playerIterator=0; l_playerIterator<p_playerList.size(); l_playerIterator++)
+						   	   {
+						   		   for(int l_countryOwned=0; l_countryOwned<p_playerList.get(l_playerIterator).getD_Country().size(); l_countryOwned++)
+						   		   {
+						   			   if(p_playerList.get(l_playerIterator).getD_Country().get(l_countryOwned).getD_countryId() == l_country.getD_countryId())
+						   			   {
+						   				  l_map[l_lineIterator][5] = p_playerList.get(l_playerIterator).getD_playerName();
+						   			   }
+						   		   }
+						   	   }
 						   	l_lineIterator=l_lineIterator+1;
 			    		   }
 					   } else 
