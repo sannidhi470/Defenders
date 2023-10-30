@@ -234,6 +234,11 @@ public class Player {
 		d_cards = cards;
 	}
 
+	public void removeCard(String card)
+	{
+		d_cards.remove(card);
+	}
+	
 	public ArrayList<Integer> getDiplomacyWith() {
 		return d_diplomacyWith;
 	}
@@ -249,4 +254,6 @@ public class Player {
 	public void clearDiplomacyWith() {
 		d_diplomacyWith.clear();
 	}
+	
+	
 }
