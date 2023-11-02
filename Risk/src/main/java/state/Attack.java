@@ -209,7 +209,6 @@ public class Attack extends MainPlay {
 	@Override
 	public void endGame() {
 		// TODO Auto-generated method stub
-		super.endGame();
 		System.out.println("Thank you for Playing the Game");
 		System.exit(0);
 	}

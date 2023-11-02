@@ -93,7 +93,6 @@ public class PlaySetup extends Play {
 	}
 
 	public void endGame() {
-		super.endGame();
 		System.out.println("Thank you for Playing the Game");
 		System.exit(0);
 	}

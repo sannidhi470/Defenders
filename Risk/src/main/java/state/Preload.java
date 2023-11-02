@@ -126,7 +126,12 @@ public class Preload extends Edit {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Do you want to make more edits on the map (yes/no)?");
 		String user_output = sc.nextLine();
-		if(user_output.equalsIgnoreCase("no"))
+		if(user_output.equalsIgnoreCase("exit"))
+		{
+			System.out.println("Thank you for Playing the Game");
+			System.exit(0);
+		}
+		else if(user_output.equalsIgnoreCase("no"))
 		{
 			ge.setPhase(new PostLoad(ge));
 		}
@@ -171,7 +176,6 @@ public class Preload extends Edit {
 	@Override
 	public void endGame() {
 		// TODO Auto-generated method stub
-		super.endGame();
 		System.out.println("Thank you for Playing the Game");
 		System.exit(0);
 	}
