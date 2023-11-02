@@ -59,7 +59,7 @@ public abstract class Phase {
 	abstract public void editCountry(String[] l_commands,Connectivity l_connectivity);
 	abstract public void editContinent(String[] l_commands,Connectivity l_connectivity);
 	abstract public void editNeighbor(String[] l_commands,Connectivity l_connectivity);
-	abstract public void saveMap(Connectivity l_connectivity);
+	abstract public void saveMap(Connectivity l_connectivity, String p_mapName);
 
 	// Play commands
 	// game setup commands

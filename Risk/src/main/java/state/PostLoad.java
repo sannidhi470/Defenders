@@ -22,9 +22,9 @@ public class PostLoad extends Edit {
 		printInvalidCommandMessage(); 
 	}
 
-	public void saveMap(Connectivity l_connectivity) {
-		SaveMap.saveMap(l_connectivity);
-		ge.setPhase(new PlaySetup(ge));
+	public void saveMap(Connectivity l_connectivity, String p_mapName) {
+		int l_saveMapResult = SaveMap.saveMap(l_connectivity, p_mapName);
+		if(l_saveMapResult == 0) ge.setPhase(new PlaySetup(ge));
 	}
 
 	public void next() {

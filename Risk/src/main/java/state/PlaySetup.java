@@ -133,7 +133,7 @@ public class PlaySetup extends Play {
 	}
 
 	@Override
-	public void saveMap(Connectivity l_connectivity) {
+	public void saveMap(Connectivity l_connectivity, String p_mapName) {
 		// TODO Auto-generated method stub
 		printInvalidCommandMessage();
 	}

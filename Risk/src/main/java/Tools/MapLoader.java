@@ -34,6 +34,7 @@ public class MapLoader {
 		try 
 		{	   
 			File f = new File("");
+			p_connectivity.setD_mapName(p_mapName);
 			String absolute = f.getAbsolutePath();
             p_connectivity.setD_pathName(absolute+ File.separator+"src/main/resources");
             l_fileName = absolute + File.separator + "src/main/resources" + File.separator + l_fileName+".map";
@@ -128,7 +129,7 @@ public class MapLoader {
     	 d_logEntryBuffer.log("Map does not exist. Creating a map...");
     	 System.out.println(ColorCoding.green+"Map does not exist. Creating a map..."+ColorCoding.blank);
     	 MapCreater.createMap(l_copyFileName,p_connectivity.getD_pathName());
-    	 SaveMap.saveMap(p_connectivity);
+    	 SaveMap.saveMap(p_connectivity, l_copyFileName);
     	 return 1;
   	 }
        

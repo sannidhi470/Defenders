@@ -19,7 +19,7 @@ public class SaveMap {
 	 *
 	 */
 
-	public static int saveMap(Connectivity p_connectivity) {
+	public static int saveMap(Connectivity p_connectivity, String p_mapName) {
 		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 		
 		ArrayList<String> l_mapData=new ArrayList<String>();
@@ -42,13 +42,22 @@ public class SaveMap {
 		
 		try 
 		{
-			FileWriter l_input=new FileWriter(p_connectivity.getD_FilepathName());
-			for(String lines:l_mapData) 
-				l_input.write(lines);		
-			l_input.close();	
-			d_logEntryBuffer.log("Map has been successfully saved");
-			System.out.println("Map has been successfully saved");
-			return 0;
+			if(p_mapName.equals(p_connectivity.getD_mapName()))
+			{
+				FileWriter l_input=new FileWriter(p_connectivity.getD_FilepathName());
+				for(String lines:l_mapData) 
+					l_input.write(lines);		
+				l_input.close();	
+				d_logEntryBuffer.log("Map has been successfully saved");
+				System.out.println("Map has been successfully saved");
+				return 0;
+			}
+			else
+			{
+				System.out.println(ColorCoding.red+"ERROR: Saving mapName '"+p_mapName+"' should be the same name as Loading mapName '"+p_connectivity.getD_mapName()+"'"+ColorCoding.blank);
+				return 1;
+			}
+
 		}
         catch (Exception e)
         {

@@ -51,6 +51,7 @@ public class GameEngine {
 		
 		l_connectivity.setD_continentList(new ArrayList<Continent>());
 		l_connectivity.setD_countryList(new ArrayList<Country>());
+		boolean l_check_if_map_loaded = false;
 		Scanner keyboard = new Scanner(System.in);
 		Scanner phase_command = new Scanner(System.in);
 		String[] l_commands;
@@ -75,7 +76,6 @@ public class GameEngine {
 			}
 			
 			do {
-				boolean l_check_if_map_loaded = false;
 				System.out.println(" ====================================================================================================");
 				System.out.println("| #   PHASE                   : command                                                             |"); 
 				System.out.println(" ====================================================================================================");
@@ -130,7 +130,7 @@ public class GameEngine {
 					break;						
 				case "savemap":
 					//setPhase(new PostLoad(this));
-					gamePhase.saveMap(l_connectivity);
+					gamePhase.saveMap(l_connectivity, l_commands[1]);
 					break;				
 				case "gameplayer":
 					gamePhase.setPlayers(l_commands);

@@ -19,6 +19,16 @@ public class Connectivity {
 	
 	private String d_FilepathName;
 	
+	private String d_mapName;
+	
+	public String getD_mapName() {
+		return d_mapName;
+	}
+
+	public void setD_mapName(String d_mapName) {
+		this.d_mapName = d_mapName;
+	}
+
 	/**
 	 * Gets the File path address.
 	 * @return file path
