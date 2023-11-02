@@ -66,7 +66,7 @@ public class Attack extends MainPlay {
 			{
 				playerNames.add(l_playersArray.get(i).getD_playerName());
 				terminateFlag++;
-				continue;
+				break;
 			}
 			Order l_order=new Order();
 			//d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+ "Asked for Command");
