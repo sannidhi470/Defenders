@@ -75,6 +75,7 @@ public class GameEngine {
 			}
 			
 			do {
+				boolean l_check_if_map_loaded = false;
 				System.out.println(" ====================================================================================================");
 				System.out.println("| #   PHASE                   : command                                                             |"); 
 				System.out.println(" ====================================================================================================");
@@ -103,13 +104,16 @@ public class GameEngine {
 				switch (l_commands[0]) {
 				case "loadmap":					
 					gamePhase.loadMap(l_connectivity,l_commands);
+					l_check_if_map_loaded = true;
 					break;
 				case "validatemap":
 //					d_logEntryBuffer.log("Validating the loaded Map");
-					gamePhase.validateMap(l_connectivity);
+					if(l_check_if_map_loaded) gamePhase.validateMap(l_connectivity);
+					else System.out.println(ColorCoding.red+"ERROR: Map cannot be validated before loading it"+ColorCoding.blank);
 					break;
 				case "showmap":
-					gamePhase.viewMap(l_connectivity.getD_continentList(),l_connectivity.getD_countryList(),Play.getL_playersArray());
+					if(l_check_if_map_loaded) gamePhase.viewMap(l_connectivity.getD_continentList(),l_connectivity.getD_countryList(),Play.getL_playersArray());
+					else System.out.println(ColorCoding.red+"ERROR: Map cannot be viewed before loading it"+ColorCoding.blank);
 					break;
 				case "help":
 					gamePhase.help();
@@ -118,7 +122,8 @@ public class GameEngine {
 					gamePhase.editCountry(l_commands, l_connectivity);
 					break;
 				case "editcontinent":
-					gamePhase.editContinent(l_commands, l_connectivity);
+					if(l_check_if_map_loaded) gamePhase.editContinent(l_commands, l_connectivity);
+					else System.out.println(ColorCoding.red+"ERROR: Map cannot be edited before loading it"+ColorCoding.blank);
 					break;	
 				case "editneighbor":
 					gamePhase.editNeighbor(l_commands, l_connectivity);
