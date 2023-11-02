@@ -9,6 +9,7 @@ import Models.Order;
 import Tools.ColorCoding;
 import Tools.Connectivity;
 import Tools.PlayersGameplay;
+import Views.ViewMap;
 
 /**
  *	ConcreteState of the State pattern. In this example, defines behavior 
@@ -145,7 +146,7 @@ public class Attack extends MainPlay {
 				l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),l_connectivity,1);
 			}
 		}
-		
+		ViewMap.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList(), l_playersArray);
 		PlayersGameplay.resetDiplomacy(l_playersArray);
 		
 	}

@@ -9,9 +9,6 @@ import Models.LogEntryBuffer;
 import Models.Player;
 import Tools.Connectivity;
 import Views.ViewMap;
-import dnl.utils.text.table.TextTable;
-import Models.Continent;
-import Models.Country;
 
 /**
  *	State of the State pattern. Here implemented as a abstract class. 

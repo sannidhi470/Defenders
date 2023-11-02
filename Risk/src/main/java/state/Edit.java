@@ -1,7 +1,6 @@
 package state;
 
 import Controllers.GameEngine;
-import Tools.Connectivity;
 
 /**
  *	ConcreteState of the State pattern. In this example, defines behavior 
