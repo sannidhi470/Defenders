@@ -1,6 +1,10 @@
 package Models;
 
+import Controllers.GameEngine;
 import Tools.ColorCoding;
+import Tools.Connectivity;
+import Tools.PlayersGameplay;
+import state.Play;
 
 /**
  * The class Order defines Orders and it's properties such as from country, to country and transfer of number of armies.
@@ -12,6 +16,15 @@ public class Order {
 	private Country d_fromCountry;
 	private Country d_toCountry;
 	private int d_numberOfArmies;
+	private String orderContent;
+	
+	public String getOrderContent() {
+		return orderContent;
+	}
+
+	public void setOrderContent(String orderContent) {
+		this.orderContent = orderContent;
+	}
 	
 	/**
 	 * Gets the country from which order is taken.
@@ -79,8 +92,10 @@ public class Order {
 	 * @param p_order refers to the order object
 	 *
 	 */
-	public void execute(Player p_player,Order p_order)
-	{
+	public void execute(Player p_player,Order p_order,Connectivity p_connectivity,int flag) {
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
+		if(flag==0)
+		{
 		if(p_player.getD_armyCount() !=0)
 		{
 			p_player.setD_armyCount(p_player.getD_armyCount()-p_order.d_numberOfArmies);
@@ -88,13 +103,67 @@ public class Order {
 			{
 				if(p_player.getD_Country().get(i).getD_countryId()==p_order.getD_fromCountry().getD_countryId())
 				{
-					p_player.getD_Country().get(i).setD_armyDeployedOnCountry(p_order.d_numberOfArmies);
+					p_player.getD_Country().get(i).setD_armyDeployedOnCountry(p_order.d_numberOfArmies+ p_player.getD_Country().get(i).getD_armyDeployedOnCountry());
+					d_logEntryBuffer.log("Player "+p_player.getD_playerName()+": " + p_player.getD_Country().get(i).getD_countryName() + " has been assigned with " + p_order.d_numberOfArmies);
 					System.out.println(ColorCoding.green+"Player "+p_player.getD_playerName()+": "+ p_player.getD_Country().get(i).getD_countryName()+" has been assigned with "+p_order.d_numberOfArmies+ColorCoding.blank);
 				}
 			}
 		}
+		}
+		else
+		{
+			String[] l_orderContent=p_order.getOrderContent().split(" ");
+			Country l_getCountry=new Country();
+			switch(l_orderContent[0])
+			{
+			case "advance":
+				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"Advance");
+				//System.out.println(p_player.getD_playerName()+"is calling"+"Advance");
+				PlayersGameplay.advance(p_player,Play.getL_playersArray(),l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[1]) , l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[2]), Integer.parseInt( l_orderContent[3]),p_connectivity.getD_continentList());
+				break;
+			case "bomb":
+				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"bomb");
+				System.out.println(p_player.getD_playerName()+"is calling"+"bomb");
+				break;
+			case "blockade":
+				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"blockade");
+				System.out.println(p_player.getD_playerName()+"is calling"+"blockade");
+				if(p_player.getCards().contains("blockade"))
+					PlayersGameplay.Blockade(l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[1]),p_player,null,p_connectivity.getD_continentList());
+				else
+					System.out.println(ColorCoding.red+p_player.getD_playerName()+" doesn't have blockade card "+ColorCoding.blank);
+				break;
+			case "airlift":
+				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"airlift");
+				System.out.println(p_player.getD_playerName()+"is calling"+"airlift");
+				if(p_player.getCards().contains("airlift"))
+					PlayersGameplay.AirliftDeploy(l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[1]), l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[2]), Integer.parseInt( l_orderContent[3]), p_player);
+				else
+					System.out.println(ColorCoding.red+p_player.getD_playerName()+" doesn't have airlift card "+ColorCoding.blank);
+				break;
+			case "negotiate":
+				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling "+"negotiate");
+				System.out.println(p_player.getD_playerName()+"is calling "+"negotiate");
+				
+				if(p_player.getCards().contains("diplomacy"))
+				{
+					PlayersGameplay.negotiate(p_player,Play.getL_playersArray(),l_orderContent[1]);
+					
+					//remove diplomacy card from players
+					p_player.removeCard("diplomacy");
+				}
+					
+				
+				else
+					System.out.println(ColorCoding.red+p_player.getD_playerName()+" doesn't have diplomacy card "+ColorCoding.blank);
+				break;
+			}
 		
 	}
+	
+	
+
+}
 	
 	
 

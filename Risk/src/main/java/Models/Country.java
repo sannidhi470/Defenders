@@ -39,6 +39,7 @@ public class Country {
 		this.d_countryName = p_countryName;
 		this.d_continentId = p_continentId;
 		this.d_neighbours=p_neighbours;
+		this.d_armyDeployedOnCountry =0;
 	}
 	
 	/**
@@ -140,5 +141,16 @@ public class Country {
 
 	public void setD_armyDeployedOnCountry(int d_armyDeployedOnCountry) {
 		this.d_armyDeployedOnCountry = d_armyDeployedOnCountry;
+	}
+	
+	public Country getCountryFromName(ArrayList<Country> p_countryList,String p_countryName)
+	{
+		for(Country c:p_countryList)
+		{
+			if(c.getD_countryName().equals(p_countryName))
+				return c;
+		}
+		return null;
+		
 	}
 }

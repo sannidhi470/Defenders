@@ -16,6 +16,10 @@ public class Player {
 	private Order d_order;
 	private int d_armyCount;
 	private ArrayList<Continent> d_playerContinent=new ArrayList<>();
+	private ArrayList<String> d_cards = new ArrayList<>();
+	//private int d_diplomacyWith=-1; //Holds ID of player with whom diplomacy is executed
+	private ArrayList<Integer> d_diplomacyWith = new ArrayList<>();
+	private static int d_objCount = 1;
 	
 	/**
 	 * This is a default constructor.
@@ -24,7 +28,8 @@ public class Player {
 	
 	public Player()
 	{
-		
+		this.setD_playerId(d_objCount);
+		d_objCount++;
 	}
 	
 	/**
@@ -162,8 +167,10 @@ public class Player {
 	 */
 	
 	public void setD_Order(Order p_order) {
+		//LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 		d_order = p_order;
 		this.d_armyCount = this.d_armyCount - p_order.getD_numberOfArmies();
+		//d_logEntryBuffer.log("Army count changed to "+ d_armyCount);
 		System.out.println("Army count changed to "+ d_armyCount);
 		
 	}
@@ -218,5 +225,35 @@ public class Player {
 	public void setD_armyCount(int d_armyCount) {
 		this.d_armyCount = d_armyCount;
 	}
+	
+	public ArrayList<String> getCards() {
+		return d_cards;
+	}
+
+	public void setCards(ArrayList<String> cards) {
+		d_cards = cards;
+	}
+
+	public void removeCard(String card)
+	{
+		d_cards.remove(card);
+	}
+	
+	public ArrayList<Integer> getDiplomacyWith() {
+		return d_diplomacyWith;
+	}
+
+	public void setDiplomacyWith(ArrayList<Integer> diplomacyWith) {
+		d_diplomacyWith = diplomacyWith;
+	}
+	
+	public void addDiplomacyWith(Integer l_toPlayerID) {
+		d_diplomacyWith.add(l_toPlayerID);
+	}
+	
+	public void clearDiplomacyWith() {
+		d_diplomacyWith.clear();
+	}
+	
 	
 }

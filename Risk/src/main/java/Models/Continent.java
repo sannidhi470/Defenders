@@ -10,7 +10,7 @@ public class Continent {
 
 	private int d_continentId;
 	private String d_continentName;
-	private int d_continentArmyValue;
+	private int d_continentBonusValue;
 	private List<Country> d_countries;
 	
 	/**
@@ -31,11 +31,11 @@ public class Continent {
 	 * @param p_countries refers to the list of countries in that particular continent.
 	 */
 	
-	public Continent(int p_continentId, String p_continentName, int p_continentArmyValue, List<Country> p_countries) {
+	public Continent(int p_continentId, String p_continentName, int p_continentBonusValue, List<Country> p_countries) {
 		super();
 		this.d_continentId = p_continentId;
 		this.d_continentName = p_continentName;
-		this.d_continentArmyValue = p_continentArmyValue;
+		this.d_continentBonusValue = p_continentBonusValue;
 		this.d_countries = p_countries;
 	}
 	
@@ -74,8 +74,8 @@ public class Continent {
 	 * 
 	 */
 
-	public int getD_continentArmyValue() {
-		return d_continentArmyValue;
+	public int getD_continentBonusValue() {
+		return d_continentBonusValue;
 	}
 	
 	/**
@@ -113,7 +113,7 @@ public class Continent {
 	 */
 	
 	public int getD_d_continentArmyValue() {
-		return d_continentArmyValue;
+		return d_continentBonusValue;
 	}
 	
 	/**
@@ -121,8 +121,8 @@ public class Continent {
 	 * @param army value
 	 */
 
-	public void setD_continentArmyValue(int p_continentArmyValue) {
-		this.d_continentArmyValue = p_continentArmyValue;
+	public void setD_continentBonusValue(int p_continentArmyValue) {
+		this.d_continentBonusValue = p_continentArmyValue;
 	}
 	
 	/**
