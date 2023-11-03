@@ -255,5 +255,15 @@ public class Player {
 		d_diplomacyWith.clear();
 	}
 	
+	public void removeAllCountryAndContinentAssigned()
+	{
+		d_playerCountry.clear();
+		d_playerContinent.clear();
+	}
+	
+	public void removeCountry(Country c)
+	{
+		d_playerCountry.remove(c);
+	}
 	
 }
