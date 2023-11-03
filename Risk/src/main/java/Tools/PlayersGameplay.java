@@ -518,7 +518,7 @@ public class PlayersGameplay {
 	    l_sourceCountry.setD_armyDeployedOnCountry(x);
 	    l_targetCountry.setD_armyDeployedOnCountry(y);
 	    
-		return false;
+		return true;
 	}
 	
 	public static boolean Blockade(String l_sourceCountryObj,Player p_player,ArrayList<Player> p_playersArray,ArrayList<Continent> p_continent) {
@@ -556,7 +556,7 @@ public class PlayersGameplay {
 		updateContinent(p_playersArray, p_continent);
 		System.out.println("The Country "+ l_sourceCountryObj + " is a now a neutral Country with army count "+l_sourceCountrynew.getD_armyDeployedOnCountry());
 
-	    return false;
+	    return true;
 	}
 	
 	public static String generateCard()

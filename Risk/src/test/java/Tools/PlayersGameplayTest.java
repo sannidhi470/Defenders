@@ -657,6 +657,7 @@ class PlayersGameplayTest {
 		assertEquals(result, false);
 	}
 	
+	@Test
 	void airliftSuccessfulAttackTest()
 	{
 		Player l_player1 = d_playersArray.get(0);
@@ -673,11 +674,43 @@ class PlayersGameplayTest {
 		country2.setD_armyDeployedOnCountry(1);
 		
 		boolean result = PlayersGameplay.AirliftDeploy(countryName1, countryName2, 2,l_player1);
-		assertEquals(result, false);
 		
+		assertEquals(result, true);
 		assertEquals(l_player1.getCards().size(),1);
 		assertEquals(country1.getD_armyDeployedOnCountry(),2);
 		assertEquals(country2.getD_armyDeployedOnCountry(),3);
+	
+	}
+	
+	@Test
+	void blockadeCountryNotFoundTest()
+	{
+		Player l_player1 = d_playersArray.get(0);
 		
+		Country country1 = d_connectivity.getD_countryList().get(0);	
+		String countryName1 = country1.getD_countryName();
+			
+		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
+		
+		boolean result = PlayersGameplay.Blockade(countryName1,l_player1,d_playersArray,continentList);
+		assertEquals(result, false);
+	}
+	
+	@Test
+	void blockadeSuccessfulTest()
+	{
+		Player l_player1 = d_playersArray.get(0);
+		
+		Country country1 = d_connectivity.getD_countryList().get(0);	
+		String countryName1 = country1.getD_countryName();
+			
+		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
+		
+		country1.setD_armyDeployedOnCountry(4);
+		
+		boolean result = PlayersGameplay.Blockade(countryName1,l_player1,d_playersArray,continentList);
+		
+		assertEquals(result, true);
+		assertEquals(country1.getD_armyDeployedOnCountry(),12);
 	}
 }
