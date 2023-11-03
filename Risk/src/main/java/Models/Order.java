@@ -127,21 +127,21 @@ public class Order {
 			case "blockade":
 				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"blockade");
 				System.out.println(p_player.getD_playerName()+"is calling"+"blockade");
-				if(p_player.getCards().contains("blockade"))
-				{
-					PlayersGameplay.Blockade(l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[1]),p_player,null,p_connectivity.getD_continentList());
+				if(p_player.getCards().contains("blockade")){
+					PlayersGameplay.Blockade(l_getCountry.get_nameFromId(p_connectivity.getD_countryList(), Integer.parseInt(l_orderContent[1])),p_player,Play.getL_playersArray(),p_connectivity.getD_continentList());
 					p_player.removeCard("blockade");
 				}
+					else
 				
-				else
+					//System.out.println(""+l_getCountry.get_nameFromId(p_connectivity.getD_countryList(), Integer.parseInt(l_orderContent[1])));
 					System.out.println(ColorCoding.red+p_player.getD_playerName()+" doesn't have blockade card "+ColorCoding.blank);
 				break;
 			case "airlift":
 				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"airlift");
 				System.out.println(p_player.getD_playerName()+"is calling"+"airlift");
-				if(p_player.getCards().contains("airlift"))
-				{
-					PlayersGameplay.AirliftDeploy(l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[1]), l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[2]), Integer.parseInt( l_orderContent[3]), p_player);
+				if(p_player.getCards().contains("airlift")) {
+					
+					PlayersGameplay.AirliftDeploy(l_getCountry.get_nameFromId(p_connectivity.getD_countryList(), Integer.parseInt(l_orderContent[1])),l_getCountry.get_nameFromId(p_connectivity.getD_countryList(), Integer.parseInt(l_orderContent[2])), Integer.parseInt( l_orderContent[3]), p_player);
 					p_player.removeCard("airlift");
 				}
 				else

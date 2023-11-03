@@ -459,13 +459,11 @@ public class PlayersGameplay {
 		return 0;
 	}
 	
-	public static boolean AirliftDeploy(Country p_sourceCountry, Country p_targetCountry, int p_armiesToAirlift, Player p_player) {
+
+	public static boolean AirliftDeploy(String l_sourceCountryObj, String l_targetCountryObj, int p_armiesToAirlift, Player p_player) {
 		
-		Country l_sourceCountryObj = p_sourceCountry;
-		Country l_targetCountryObj = p_targetCountry;
-		
-		String l_sourceCountryVar = l_sourceCountryObj.getD_countryName();
-	    String l_targetCountryVar = l_targetCountryObj.getD_countryName();
+		String l_sourceCountryVar = l_sourceCountryObj;
+	    String l_targetCountryVar = l_targetCountryObj;
 	    
 	    int l_armiesToAirlift = p_armiesToAirlift;
 	    
@@ -523,9 +521,9 @@ public class PlayersGameplay {
 		return false;
 	}
 	
-	public static boolean Blockade(Country p_sourceCountry,Player p_player,ArrayList<Player> p_playersArray,ArrayList<Continent> p_continent) {
-		Country l_sourceCountryObj = p_sourceCountry;
-		String l_sourceCountry = l_sourceCountryObj.getD_countryName();
+	public static boolean Blockade(String l_sourceCountryObj,Player p_player,ArrayList<Player> p_playersArray,ArrayList<Continent> p_continent) {
+		
+		String l_sourceCountry = l_sourceCountryObj;
 	    Player l_player = p_player;
 	    int flag =0;
 	    ArrayList<Country> l_country = new ArrayList<>();
@@ -554,10 +552,10 @@ public class PlayersGameplay {
 	    x = x*3;
 	    
 	    l_sourceCountrynew.setD_armyDeployedOnCountry(x);
-	    removeCountry(p_playersArray, l_sourceCountryObj, p_continent);
+	    removeCountry(p_playersArray, l_sourceCountrynew, p_continent);
 		updateContinent(p_playersArray, p_continent);
-		System.out.println("The Country "+ l_sourceCountryObj.getD_countryName() + " is a now a neutral Country");
-	    
+		System.out.println("The Country "+ l_sourceCountryObj + " is a now a neutral Country with army count "+l_sourceCountrynew.getD_armyDeployedOnCountry());
+
 	    return false;
 	}
 	
