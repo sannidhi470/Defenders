@@ -602,4 +602,82 @@ class PlayersGameplayTest {
 		
 		assertEquals(result, 1);	
 	}
+	
+	@Test
+	void airliftSourceCountryNotFoundTest()
+	{
+		Player l_player1 = d_playersArray.get(0);
+		
+		Country country1 = d_connectivity.getD_countryList().get(0);
+		Country country2 = d_connectivity.getD_countryList().get(2);
+			
+		String countryName1 = country1.getD_countryName();
+		String countryName2 = country2.getD_countryName();
+		
+		l_player1.addCountry(country2);
+		
+		boolean result = PlayersGameplay.AirliftDeploy(countryName1, countryName2, 2,l_player1);
+		assertEquals(result, false);
+	}
+	
+	@Test
+	void airliftTargetCountryNotFoundTest()
+	{
+		Player l_player1 = d_playersArray.get(0);
+		
+		Country country1 = d_connectivity.getD_countryList().get(0);
+		Country country2 = d_connectivity.getD_countryList().get(2);
+			
+		String countryName1 = country1.getD_countryName();
+		String countryName2 = country2.getD_countryName();
+		
+		l_player1.addCountry(country1);
+		
+		boolean result = PlayersGameplay.AirliftDeploy(countryName1, countryName2, 2,l_player1);
+		assertEquals(result, false);
+	}
+	
+	@Test
+	void airliftWithNotEnoughTroopsTest()
+	{
+		Player l_player1 = d_playersArray.get(0);
+		
+		Country country1 = d_connectivity.getD_countryList().get(0);
+		Country country2 = d_connectivity.getD_countryList().get(1);
+			
+		String countryName1 = country1.getD_countryName();
+		String countryName2 = country2.getD_countryName();
+		
+		l_player1.addCountry(country1);
+		l_player1.addCountry(country2);
+		
+		country1.setD_armyDeployedOnCountry(1);
+		
+		boolean result = PlayersGameplay.AirliftDeploy(countryName1, countryName2, 2,l_player1);
+		assertEquals(result, false);
+	}
+	
+	void airliftSuccessfulAttackTest()
+	{
+		Player l_player1 = d_playersArray.get(0);
+		
+		Country country1 = d_connectivity.getD_countryList().get(0);
+		Country country2 = d_connectivity.getD_countryList().get(1);
+			
+		String countryName1 = country1.getD_countryName();
+		String countryName2 = country2.getD_countryName();
+		
+		l_player1.addCountry(country1);
+		
+		country1.setD_armyDeployedOnCountry(4);
+		country2.setD_armyDeployedOnCountry(1);
+		
+		boolean result = PlayersGameplay.AirliftDeploy(countryName1, countryName2, 2,l_player1);
+		assertEquals(result, false);
+		
+		assertEquals(l_player1.getCards().size(),1);
+		assertEquals(country1.getD_armyDeployedOnCountry(),2);
+		assertEquals(country2.getD_armyDeployedOnCountry(),3);
+		
+	}
 }
