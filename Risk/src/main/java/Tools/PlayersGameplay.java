@@ -559,7 +559,7 @@ public class PlayersGameplay {
 		return true;
 	}
 	
-	public static boolean Blockade(String l_sourceCountryObj,Player p_player,ArrayList<Player> p_playersArray,ArrayList<Continent> p_continent) {
+public static boolean Blockade(String l_sourceCountryObj,Player p_player,ArrayList<Player> p_playersArray,ArrayList<Continent> p_continent) {
 		
 		String l_sourceCountry = l_sourceCountryObj;
 	    Player l_player = p_player;
@@ -591,6 +591,8 @@ public class PlayersGameplay {
 	    
 	    l_sourceCountrynew.setD_armyDeployedOnCountry(x);
 	    removeCountry(p_playersArray, l_sourceCountrynew, p_continent);
+	    l_neutralCountry.add(l_sourceCountrynew);
+	    
 		updateContinent(p_playersArray, p_continent);
 		System.out.println("The Country "+ l_sourceCountryObj + " is a now a neutral Country with army count "+l_sourceCountrynew.getD_armyDeployedOnCountry());
 

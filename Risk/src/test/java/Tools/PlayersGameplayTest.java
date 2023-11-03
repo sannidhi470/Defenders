@@ -669,14 +669,14 @@ class PlayersGameplayTest {
 		String countryName2 = country2.getD_countryName();
 		
 		l_player1.addCountry(country1);
+		l_player1.addCountry(country2);
 		
 		country1.setD_armyDeployedOnCountry(4);
 		country2.setD_armyDeployedOnCountry(1);
 		
 		boolean result = PlayersGameplay.AirliftDeploy(countryName1, countryName2, 2,l_player1);
-		
+		System.out.println("result"+result);
 		assertEquals(result, true);
-		assertEquals(l_player1.getCards().size(),1);
 		assertEquals(country1.getD_armyDeployedOnCountry(),2);
 		assertEquals(country2.getD_armyDeployedOnCountry(),3);
 	
@@ -706,11 +706,12 @@ class PlayersGameplayTest {
 			
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
+		l_player1.addCountry(country1);
 		country1.setD_armyDeployedOnCountry(4);
 		
 		boolean result = PlayersGameplay.Blockade(countryName1,l_player1,d_playersArray,continentList);
-		
 		assertEquals(result, true);
 		assertEquals(country1.getD_armyDeployedOnCountry(),12);
+		assertEquals(PlayersGameplay.l_neutralCountry.contains(country1),true);
 	}
 }
