@@ -355,7 +355,7 @@ class PlayersGameplayTest {
 		PlayersGameplay.addNutrealCountry(country2);
 		country1.setD_armyDeployedOnCountry(10);
 		
-		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 2, continentList);
+		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 2, continentList,d_connectivity);
 		//System.out.println("result:"+result);
 		assertEquals(result, 1);
 	}
@@ -374,7 +374,7 @@ class PlayersGameplayTest {
 		l_player1.addCountry(country2);
 		country1.setD_armyDeployedOnCountry(10);
 		
-		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 2, continentList);
+		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 2, continentList,d_connectivity);
 		
 		assertEquals(result, 1);
 	}
@@ -396,7 +396,7 @@ class PlayersGameplayTest {
 		country1.setD_armyDeployedOnCountry(3);
 		country2.setD_armyDeployedOnCountry(1);
 		
-		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 10, continentList);
+		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 10, continentList,d_connectivity);
 		
 		assertEquals(result, 1);
 	}
@@ -418,7 +418,7 @@ class PlayersGameplayTest {
 		country1.setD_armyDeployedOnCountry(3);
 		country2.setD_armyDeployedOnCountry(1);
 		
-		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, -2, continentList);
+		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, -2, continentList,d_connectivity);
 		//System.out.println("Resutl:"+result);
 		assertEquals(result, 1);
 	}
@@ -440,7 +440,7 @@ class PlayersGameplayTest {
 		country1.setD_armyDeployedOnCountry(4);
 		country2.setD_armyDeployedOnCountry(1);
 		
-		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 2, continentList);
+		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 2, continentList,d_connectivity);
 		assertEquals(result, 1);
 	}
 	
@@ -463,7 +463,7 @@ class PlayersGameplayTest {
 		country1.setD_armyDeployedOnCountry(4);
 		country2.setD_armyDeployedOnCountry(0);
 		
-		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 3, continentList);
+		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 3, continentList,d_connectivity);
 		
 		
 		//System.out.println("p1 COntinent: ");
@@ -501,7 +501,7 @@ class PlayersGameplayTest {
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
 	
-		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 3, continentList);
+		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 3, continentList,d_connectivity);
 	
 		assertEquals(result, 1);
 	//	assertEquals(l_player1.getCards().size(),1);
@@ -524,7 +524,7 @@ class PlayersGameplayTest {
 			
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 	
-		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 3, continentList);
+		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 3, continentList,d_connectivity);
 		assertEquals(result, 0);
 		assertEquals(l_player1.getCards().size(),1);
 		assertEquals(l_player1.getD_Country().size(),2);
