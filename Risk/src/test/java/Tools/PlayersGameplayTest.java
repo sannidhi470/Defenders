@@ -2,6 +2,8 @@ package Tools;
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -49,6 +51,12 @@ class PlayersGameplayTest {
 			//PlayersGameplay.assignArmiesToPlayers(d_playersArray);
 		}
 		
+	}
+	
+	@AfterEach
+	public void clean()
+	{
+		PlayersGameplay.clearNutrealCountry();
 	}
 	
 	/**
@@ -202,7 +210,6 @@ class PlayersGameplayTest {
 		Country country1 = d_connectivity.getD_countryList().get(0);
 		Country country2 = d_connectivity.getD_countryList().get(1);
 		
-		PlayersGameplay.clearNutrealCountry();
 		PlayersGameplay.addNutrealCountry(country1);
 		PlayersGameplay.addNutrealCountry(country2);
 		country1.setD_armyDeployedOnCountry(10);
@@ -231,7 +238,6 @@ class PlayersGameplayTest {
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
 		l_player1.addCountry(country1);
-		PlayersGameplay.clearNutrealCountry();
 		PlayersGameplay.addNutrealCountry(country2);
 		
 		
@@ -345,7 +351,6 @@ class PlayersGameplayTest {
 			
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
-		PlayersGameplay.clearNutrealCountry();
 		PlayersGameplay.addNutrealCountry(country1);
 		PlayersGameplay.addNutrealCountry(country2);
 		country1.setD_armyDeployedOnCountry(10);
@@ -461,7 +466,7 @@ class PlayersGameplayTest {
 		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 3, continentList);
 		
 		
-		System.out.println("p1 COntinent: ");
+		//System.out.println("p1 COntinent: ");
 //		for(Continent c:l_player1.getD_playerContinent())
 //		{
 //			System.out.println(c.getD_continentName());
@@ -492,7 +497,6 @@ class PlayersGameplayTest {
 		l_player1.addCountry(country1);
 		country1.setD_armyDeployedOnCountry(10);
 		
-		PlayersGameplay.clearNutrealCountry();
 			
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
@@ -516,7 +520,6 @@ class PlayersGameplayTest {
 		l_player1.addCountry(country1);
 		country1.setD_armyDeployedOnCountry(10);
 		
-		PlayersGameplay.clearNutrealCountry();
 		PlayersGameplay.addNutrealCountry(country2);
 			
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
@@ -526,5 +529,77 @@ class PlayersGameplayTest {
 		assertEquals(l_player1.getCards().size(),1);
 		assertEquals(l_player1.getD_Country().size(),2);
 		assertEquals(PlayersGameplay.getNutrealCountry().size(),0);
+	}
+	
+	@Test//attack from player who has used diplomacy to another player 
+	void attackWithDeplomacySamePlayer()
+	{
+		Player l_player1 = d_playersArray.get(0);
+		Player l_player2 = d_playersArray.get(1);
+		
+		Country country1 = d_connectivity.getD_countryList().get(0);
+		Country country2 = d_connectivity.getD_countryList().get(1);
+		
+			
+		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
+		
+		l_player1.addCountry(country1);
+		l_player2.addCountry(country2);
+		
+		country1.setD_armyDeployedOnCountry(4);
+		country2.setD_armyDeployedOnCountry(3);
+		
+		//l_player1.addCard("diplomacy");
+		PlayersGameplay.negotiate(l_player1, d_playersArray, Integer.toString(l_player2.getD_playerId()));
+		
+//		for(Player p:d_playersArray)
+//		{
+//			System.out.println("mmm:"+p.getD_playerId());
+//		}
+//		System.out.println("N1:"+l_player1.getDiplomacyWith());
+//		System.out.println("N2:"+l_player2.getDiplomacyWith());
+		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 3, continentList,d_connectivity);
+		//System.out.println("Result: "+result);
+		
+		l_player1.clearDiplomacyWith();
+		l_player2.clearDiplomacyWith();
+		
+		assertEquals(result, 1);
+	}
+	
+	@Test//attack from player who has not used diplomacy but used by other player 
+	void attackWithDeplomacyDifferentPlayerTest()
+	{
+		Player l_player1 = d_playersArray.get(0);
+		Player l_player2 = d_playersArray.get(1);
+		
+		Country country1 = d_connectivity.getD_countryList().get(0);
+		Country country2 = d_connectivity.getD_countryList().get(1);
+		
+			
+		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
+		
+		l_player1.addCountry(country1);
+		l_player2.addCountry(country2);
+		
+		country1.setD_armyDeployedOnCountry(4);
+		country2.setD_armyDeployedOnCountry(3);
+		
+		//l_player1.addCard("diplomacy");
+		PlayersGameplay.negotiate(l_player2, d_playersArray, Integer.toString(l_player1.getD_playerId()));
+		
+//		for(Player p:d_playersArray)
+//		{
+//			System.out.println("mmm:"+p.getD_playerId());
+//		}
+//		System.out.println("N1:"+l_player1.getDiplomacyWith());
+//		System.out.println("N2:"+l_player2.getDiplomacyWith());
+		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 3, continentList,d_connectivity);
+		//System.out.println("Result: "+result);
+		
+		l_player1.clearDiplomacyWith();
+		l_player2.clearDiplomacyWith();
+		
+		assertEquals(result, 1);	
 	}
 }

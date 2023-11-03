@@ -239,6 +239,11 @@ public class Player {
 		d_cards.remove(card);
 	}
 	
+	public void addCard(String card)
+	{
+		d_cards.add(card);
+	}
+	
 	public ArrayList<Integer> getDiplomacyWith() {
 		return d_diplomacyWith;
 	}

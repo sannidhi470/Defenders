@@ -205,7 +205,7 @@ public class PlayersGameplay {
 					}
 					else
 					{
-						System.out.println(ColorCoding.red+"Attack is not possible between "+p_fromCountry+" and "+p_toCountry+" because of diplomacy"+ColorCoding.blank);
+						System.out.println(ColorCoding.red+"Attack is not possible between "+p_fromCountry.getD_countryName()+" and "+p_toCountry.getD_countryName()+" because of diplomacy"+ColorCoding.blank);
 						return 1;
 					}
 					
