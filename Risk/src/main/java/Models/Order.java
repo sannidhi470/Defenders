@@ -91,7 +91,7 @@ public class Order {
 	 * @param p_order refers to the order object
 	 *
 	 */
-	public void execute(Player p_player,Order p_order,Connectivity p_connectivity,int flag) {
+	public void execute(Player p_player,Order p_order,Connectivity p_connectivity,int flag,int fortify_flag) {
 		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 		if(flag==0)
 		{
@@ -118,7 +118,7 @@ public class Order {
 			case "advance":
 				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"Advance");
 				//System.out.println(p_player.getD_playerName()+"is calling"+"Advance");
-				PlayersGameplay.advance(p_player,Play.getL_playersArray(),l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[1]) , l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[2]), Integer.parseInt( l_orderContent[3]),p_connectivity.getD_continentList(),p_connectivity);
+				PlayersGameplay.advance(p_player,Play.getL_playersArray(),l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[1]) , l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[2]), Integer.parseInt( l_orderContent[3]),p_connectivity.getD_continentList(),p_connectivity,fortify_flag);
 				break;
 			case "bomb":
 				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"bomb");

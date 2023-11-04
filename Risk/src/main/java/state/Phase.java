@@ -70,7 +70,7 @@ public abstract class Phase {
 	abstract public void attack(Connectivity l_connectivity);
 
 	// fortify commands
-	abstract public void fortify();
+	abstract public void fortify(Connectivity l_connectivity);
 
 	// end command
 	abstract public void endGame();

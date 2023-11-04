@@ -168,7 +168,7 @@ public class Preload extends Edit {
 	}
 
 	@Override
-	public void fortify() {
+	public void fortify(Connectivity l_connectivity) {
 		// TODO Auto-generated method stub
 		printInvalidCommandMessage(); 
 	}

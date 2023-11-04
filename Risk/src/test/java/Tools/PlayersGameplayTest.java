@@ -216,7 +216,7 @@ class PlayersGameplayTest {
 		
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
-		int result = PlayersGameplay.advance(l_player1, d_playersArray, country2, country1, 4, continentList,d_connectivity);
+		int result = PlayersGameplay.advance(l_player1, d_playersArray, country2, country1, 4, continentList,d_connectivity,0);
 		
 		
 		//System.out.println("Resulr: "+result);
@@ -241,7 +241,7 @@ class PlayersGameplayTest {
 		PlayersGameplay.addNutrealCountry(country2);
 		
 		
-		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 4, continentList,d_connectivity);
+		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 4, continentList,d_connectivity,0);
 		assertEquals(result, 0);
 		
 	}
@@ -271,7 +271,7 @@ class PlayersGameplayTest {
 		
 		
 		
-		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 4, continentList,d_connectivity);
+		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 4, continentList,d_connectivity,0);
 		//System.out.println("Player1 Country: "+l_player1.getD_Country());
 		//System.out.println("Resulr: "+result);
 		//System.out.println("army:"+country1.getD_armyDeployedOnCountry());
@@ -293,7 +293,7 @@ class PlayersGameplayTest {
 		
 		country1.setD_armyDeployedOnCountry(2);
 		
-		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, -2, continentList,d_connectivity);
+		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, -2, continentList,d_connectivity,0);
 		
 		assertEquals(result, 1);
 	}
@@ -313,7 +313,7 @@ class PlayersGameplayTest {
 		
 		country1.setD_armyDeployedOnCountry(5);
 		
-		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 2, continentList,d_connectivity);
+		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 2, continentList,d_connectivity,0);
 		
 		assertEquals(result, 1);
 		
@@ -334,7 +334,7 @@ class PlayersGameplayTest {
 		
 		country1.setD_armyDeployedOnCountry(5);
 		
-		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 2, continentList,d_connectivity);
+		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 2, continentList,d_connectivity,0);
 		
 		assertEquals(result, 0);
 		assertEquals(country1.getD_armyDeployedOnCountry(), 3);
@@ -558,7 +558,7 @@ class PlayersGameplayTest {
 //		}
 //		System.out.println("N1:"+l_player1.getDiplomacyWith());
 //		System.out.println("N2:"+l_player2.getDiplomacyWith());
-		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 3, continentList,d_connectivity);
+		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 3, continentList,d_connectivity,0);
 		//System.out.println("Result: "+result);
 		
 		l_player1.clearDiplomacyWith();
@@ -594,7 +594,7 @@ class PlayersGameplayTest {
 //		}
 //		System.out.println("N1:"+l_player1.getDiplomacyWith());
 //		System.out.println("N2:"+l_player2.getDiplomacyWith());
-		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 3, continentList,d_connectivity);
+		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 3, continentList,d_connectivity,0);
 		//System.out.println("Result: "+result);
 		
 		l_player1.clearDiplomacyWith();
@@ -710,6 +710,7 @@ class PlayersGameplayTest {
 		country1.setD_armyDeployedOnCountry(4);
 		
 		boolean result = PlayersGameplay.Blockade(countryName1,l_player1,d_playersArray,continentList);
+		
 		assertEquals(result, true);
 		assertEquals(country1.getD_armyDeployedOnCountry(),12);
 		assertEquals(PlayersGameplay.l_neutralCountry.contains(country1),true);

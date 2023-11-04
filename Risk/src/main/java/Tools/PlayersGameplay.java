@@ -18,6 +18,7 @@ public class PlayersGameplay {
 	
 	static ArrayList<Integer> l_armiesOfPlayers=new ArrayList<>();
 	static ArrayList<Country> l_neutralCountry = new ArrayList<>();
+	private static Player l_winner;
 	
 	/**
 	 *
@@ -143,7 +144,7 @@ public class PlayersGameplay {
 			return false;			
 	}
 	
-	public static int advance(Player p_player,ArrayList<Player> p_playersArray,Country p_fromCountry,Country p_toCountry,int p_troops,ArrayList<Continent> p_continent,Connectivity p_connectivity)
+	public static int advance(Player p_player,ArrayList<Player> p_playersArray,Country p_fromCountry,Country p_toCountry,int p_troops,ArrayList<Continent> p_continent,Connectivity p_connectivity, int fortify_flag)
 	{
 		//Check whether Countries belongs to map or not
 		if(p_connectivity.getD_countryList().contains(p_fromCountry) && p_connectivity.getD_countryList().contains(p_toCountry))
@@ -194,6 +195,9 @@ public class PlayersGameplay {
 				}
 				else //Attack on toCountry as it doesn't belong to player 
 				{
+					if(fortify_flag==0)
+					{
+						System.out.println("Inside fortify");
 					Player l_toplayer = findPlayerWithCountry(p_playersArray,p_toCountry);
 					
 					if(l_toplayer != null)
@@ -203,6 +207,7 @@ public class PlayersGameplay {
 						if(!p_player.getDiplomacyWith().contains(l_toplayer.getD_playerId()))
 						{
 							//Already checked whether fromCountry belongs to player or not 
+							
 							attack(p_player,p_playersArray,p_fromCountry,p_toCountry,p_troops,p_continent,p_connectivity);
 							return 0;
 						}
@@ -221,8 +226,14 @@ public class PlayersGameplay {
 					}
 					
 					
-							
+					}
+					else
+					{
+						System.out.println("Attack cannot be done on fortify phase");
+						return 1;
+					}
 				}
+				
 			}
 			else
 			{
@@ -559,7 +570,7 @@ public class PlayersGameplay {
 		return true;
 	}
 	
-public static boolean Blockade(String l_sourceCountryObj,Player p_player,ArrayList<Player> p_playersArray,ArrayList<Continent> p_continent) {
+	public static boolean Blockade(String l_sourceCountryObj,Player p_player,ArrayList<Player> p_playersArray,ArrayList<Continent> p_continent) {
 		
 		String l_sourceCountry = l_sourceCountryObj;
 	    Player l_player = p_player;
@@ -610,11 +621,16 @@ public static boolean Blockade(String l_sourceCountryObj,Player p_player,ArrayLi
 	
 	public static Player winnerPlayer(ArrayList<Player> p_players,Connectivity p_connectivity)
 	{
-		Player l_winner=new Player();
+		Player l_winner = new Player();
 		for(Player p:p_players)
 		{
 			if(p.getD_Country().size()==p_connectivity.getD_countryList().size())
+			{
+				l_winner.setD_playerId(p.getD_playerId());
+				l_winner.setD_playerName(p.getD_playerName());
+				l_winner.setD_armyCount(p.getD_armyCount());
 				return l_winner;
+			}
 		}
 		return null;
 	}

@@ -1,7 +1,18 @@
 package state;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Scanner;
+
 import Controllers.GameEngine;
+import Models.Continent;
+import Models.Country;
+import Models.Order;
+import Models.Player;
+import Tools.ColorCoding;
 import Tools.Connectivity;
+import Tools.PlayersGameplay;
+import Views.ViewMap;
 
 public class Fortify extends MainPlay {
 
@@ -16,9 +27,105 @@ public class Fortify extends MainPlay {
 		printInvalidCommandMessage(); 
 	}
 
-	public void fortify() {
-		System.out.println("fortification done");
-		ge.setPhase(new Reinforcement(ge));
+	public void fortify(Connectivity l_connectivity) {
+		Scanner sc = new Scanner(System.in);
+		Country l_getCountry=new Country();
+		Player p_player;
+		System.out.println("Do you want to fortify (yes/no)?");
+		String user_output = sc.nextLine();
+		if(user_output.equalsIgnoreCase("yes"))
+		{
+			int terminateFlag=0;
+			int l_flag1=0;
+			int l_executeOrder=0;
+				terminateFlag=0;
+				l_flag1=0;
+				ArrayList<String> playerNames=new ArrayList<>();
+			do{
+			for(int i=0;i<l_playersArray.size();i++)
+			{
+				 l_flag1=1;
+				do {
+				if(playerNames.contains(l_playersArray.get(i).getD_playerName()))
+					continue;
+				//d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+"Asked whether he/she wants to give a command");
+				System.out.println(ColorCoding.cyan+"\n"+l_playersArray.get(i).getD_playerName()+"!! Do you want to give command or pass?(Press enter to continue / pass)"+ColorCoding.blank);
+				Scanner l_sc = new Scanner(System.in);
+				String l_passContinue=l_sc.nextLine();
+				if(l_passContinue.equalsIgnoreCase("exit"))
+				{
+					System.out.println("Thank you for Playing the Game");
+					System.exit(0);
+				}
+				if(l_passContinue.equals("pass"))
+				{
+					playerNames.add(l_playersArray.get(i).getD_playerName());
+					terminateFlag++;
+					break;
+				}
+				Order l_order=new Order();
+				//d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+ "Asked for Command");
+				System.out.println("\nEnter the Command for player: "+l_playersArray.get(i).getD_playerName());
+				System.out.println("Cards available: "+l_playersArray.get(i).getCards());
+				String l_orderinput=l_sc.nextLine();
+				if(l_orderinput.equalsIgnoreCase("exit"))
+				{
+					System.out.println("Thank you for Playing the Game");
+					System.exit(0);
+				}
+				String[] l_inputOrderArray=l_orderinput.split(" ");
+				//make a function to validate command..
+				switch(l_inputOrderArray[0])
+				{
+				case "advance":
+					//System.out.println("Call Advance");
+					l_order.setOrderContent(l_orderinput);
+					l_playersArray.get(i).getD_playerOrder().add(l_order);
+					l_flag1=1;
+					break;
+				default:
+					//d_logEntryBuffer.log("Invalid Command!!");
+					System.out.println(ColorCoding.red+"Invalid Command!!"+ColorCoding.blank);
+					l_flag1=0;
+				}
+				
+				}while(l_flag1==0);
+				
+			
+		}
+	//After countries are deployed
+			
+			}while(terminateFlag!=l_playersArray.size());
+			
+			 l_executeOrder=0;
+			 HashSet<String> l_emptyOrders=new HashSet<>();
+			
+			
+			while(l_executeOrder!=l_playersArray.size())
+			{
+				for(int j=0;j<l_playersArray.size();j++)
+				{
+					
+					if(l_emptyOrders.contains(l_playersArray.get(j).getD_playerName())) continue;
+					if(l_playersArray.get(j).getD_playerOrder().size()==0) 
+					{
+						l_emptyOrders.add(l_playersArray.get(j).getD_playerName());
+						l_executeOrder++;
+						continue;	
+					}
+					l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),l_connectivity,1,1);
+				}
+			}
+			ViewMap.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList(), l_playersArray);
+			PlayersGameplay.resetDiplomacy(l_playersArray);
+			System.out.println("fortification done");
+			ge.setPhase(new Reinforcement(ge));
+		}
+		else if (user_output.equalsIgnoreCase("no"))
+		{
+			ge.setPhase(new Reinforcement(ge));
+		}
+		
 	}
 
 	public void next() {

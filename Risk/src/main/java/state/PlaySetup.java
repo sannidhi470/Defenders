@@ -88,7 +88,7 @@ public class PlaySetup extends Play {
 		printInvalidCommandMessage(); 
 	}
 
-	public void fortify() {
+	public void fortify(Connectivity l_connectivity) {
 		printInvalidCommandMessage(); 
 	}
 

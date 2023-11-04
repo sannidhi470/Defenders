@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import Controllers.GameEngine;
 import Models.Order;
+import Models.Player;
 import Tools.ColorCoding;
 import Tools.Connectivity;
 import Tools.PlayersGameplay;
@@ -35,16 +36,26 @@ public class Attack extends MainPlay {
 
 	public void attack(Connectivity l_connectivity) {
 		int terminateFlag=0;
+		int winner_check=0;
 		int l_winner=0;
 		int l_flag1=0;
 		int l_executeOrder=0;
-		while(l_winner==0) {
+		while(l_winner==0) 
+		{
 			terminateFlag=0;
 			l_flag1=0;
 			ArrayList<String> playerNames=new ArrayList<>();
+			if(winner_check>0)
+			{
+				ge.setPhase(new Fortify(ge));
+				break;
+			}
+			
 		do{
 			if(PlayersGameplay.winnerPlayer(l_playersArray, l_connectivity)!=null)
 			{
+				Player winner = PlayersGameplay.winnerPlayer(l_playersArray, l_connectivity);
+				System.out.println("Winner is:"+winner.getD_playerName());
 				l_winner++;
 				break;
 			}
@@ -65,6 +76,7 @@ public class Attack extends MainPlay {
 			}
 			if(l_passContinue.equals("pass"))
 			{
+				System.out.println("In here");
 				playerNames.add(l_playersArray.get(i).getD_playerName());
 				terminateFlag++;
 				break;
@@ -118,14 +130,17 @@ public class Attack extends MainPlay {
 				System.out.println(ColorCoding.red+"Invalid Command!!"+ColorCoding.blank);
 				l_flag1=0;
 			}
-			
+
 			}while(l_flag1==0);
+			
+
 			
 		
 	}
 //After countries are deployed
 		
 		}while(terminateFlag!=l_playersArray.size());
+		
 		
 		 l_executeOrder=0;
 		 HashSet<String> l_emptyOrders=new HashSet<>();
@@ -143,18 +158,19 @@ public class Attack extends MainPlay {
 					l_executeOrder++;
 					continue;	
 				}
-				l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),l_connectivity,1);
+				l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),l_connectivity,1,0);
 			}
 		}
 		ViewMap.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList(), l_playersArray);
+		winner_check++;
 		PlayersGameplay.resetDiplomacy(l_playersArray);
+	}
+		
+		System.out.println("attack done");
 		
 	}
-		System.out.println("attack done");
-		ge.setPhase(new Fortify(ge));
-	}
 
-	public void fortify() {
+	public void fortify(Connectivity l_connectivity) {
 		printInvalidCommandMessage(); 
 	}
 
@@ -213,5 +229,6 @@ public class Attack extends MainPlay {
 		System.out.println("Thank you for Playing the Game");
 		System.exit(0);
 	}
+
 
 }

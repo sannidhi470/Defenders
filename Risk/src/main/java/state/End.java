@@ -42,7 +42,7 @@ public class End extends Phase {
 		printInvalidCommandMessage(); 
 	}
 
-	public void fortify() {
+	public void fortify(Connectivity l_connectivity) {
 		printInvalidCommandMessage(); 
 	}
 

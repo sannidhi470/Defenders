@@ -148,7 +148,7 @@ public class GameEngine {
 					gamePhase.attack(l_connectivity);
 					break;
 				case "fortify":
-					gamePhase.fortify();
+					gamePhase.fortify(l_connectivity);
 					break;
 				case "exit":
 					gamePhase.endGame();

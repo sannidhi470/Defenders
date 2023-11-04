@@ -111,7 +111,7 @@ public class Reinforcement extends MainPlay {
 			{
 				if(l_playersArray.get(i).getD_armyCount()!=0)
 				{
-					l_playersArray.get(i).getD_Order().execute(l_playersArray.get(i), l_playersArray.get(i).next_order(),l_connectivity,0);
+					l_playersArray.get(i).getD_Order().execute(l_playersArray.get(i), l_playersArray.get(i).next_order(),l_connectivity,0,0);
 					if(l_playersArray.get(i).getD_armyCount()==0)
 					{
 						flag+=1;
@@ -140,7 +140,7 @@ public class Reinforcement extends MainPlay {
 		printInvalidCommandMessage(); 
 	}
 
-	public void fortify() {
+	public void fortify(Connectivity l_connectivity) {
 		printInvalidCommandMessage(); 
 	}
 
