@@ -603,6 +603,11 @@ class PlayersGameplayTest {
 		assertEquals(result, 1);	
 	}
 	
+	/**
+	 *
+	 * This method is used to test if we can use airlift without source country.
+	 *
+	 */
 	@Test
 	void airliftSourceCountryNotFoundTest()
 	{
@@ -620,6 +625,11 @@ class PlayersGameplayTest {
 		assertEquals(result, false);
 	}
 	
+	/**
+	 *
+	 * This method is used to test if we can use airlift without target country.
+	 *
+	 */
 	@Test
 	void airliftTargetCountryNotFoundTest()
 	{
@@ -637,6 +647,11 @@ class PlayersGameplayTest {
 		assertEquals(result, false);
 	}
 	
+	/**
+	 *
+	 * This method is used to test if we can use airlift without enough troops.
+	 *
+	 */
 	@Test
 	void airliftWithNotEnoughTroopsTest()
 	{
@@ -657,6 +672,11 @@ class PlayersGameplayTest {
 		assertEquals(result, false);
 	}
 	
+	/**
+	 *
+	 * This method is used to test that airlift works successfully.
+	 *
+	 */
 	@Test
 	void airliftSuccessfulAttackTest()
 	{
@@ -682,6 +702,11 @@ class PlayersGameplayTest {
 	
 	}
 	
+	/**
+	 *
+	 * This method is used to test if we can use blockade without given country.
+	 *
+	 */
 	@Test
 	void blockadeCountryNotFoundTest()
 	{
@@ -696,6 +721,11 @@ class PlayersGameplayTest {
 		assertEquals(result, false);
 	}
 	
+	/**
+	 *
+	 * This method is used to test that blockade works successfully.
+	 *
+	 */
 	@Test
 	void blockadeSuccessfulTest()
 	{
