@@ -101,6 +101,7 @@ public class PlayersGameplay {
 			}
 			l_armyCount+=l_tempContinentCount;
 			p_playersList.get(i).setD_armyCount(l_armyCount);
+			System.out.println(ColorCoding.green+"Player "+p_playersList.get(i).getD_playerName()+" has been alloted "+p_playersList.get(i).getD_armyCount()+" amries for this round"+ColorCoding.blank);
 		}
 	}
 	

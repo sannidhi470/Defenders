@@ -140,6 +140,11 @@ public class Player {
 		return d_playerCountry;
 	}
 	
+	public void setD_Country(ArrayList<Country> p_countryList)
+	{
+		d_playerCountry = p_countryList;
+	}
+	
 	/**
 	 * Sets the player name.
 	 * @param p_playerName refers to the name of the player

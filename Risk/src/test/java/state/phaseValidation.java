@@ -59,26 +59,14 @@ public class phaseValidation {
 			gameEngine.getPhase().attack(d_connectivity);
 			assertEquals("Fortify",gameEngine.getPhaseName());
 			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
-//			for(int i=0; i<Play.getL_playersArray().size(); i++)
-//			{
-//				System.out.println("Player name ="+Play.getL_playersArray().get(i).getD_playerName());
-//				for(int j=0; j<Play.getL_playersArray().get(i).getD_Country().size(); j++)
-//				{
-//					System.out.println("Countries owned ="+Play.getL_playersArray().get(i).getD_Country().get(j).getD_countryId());
-//				}
-//				//creating deploy command for each player
-//				int l_armyCount = Play.getL_playersArray().get(i).getD_armyCount();
-//				//need to add skip for test case in reinforce
-//				gameEngine.getPhase().reinforce(d_connectivity);
-//			}
+			gameEngine.getPhase().fortify(d_connectivity);
+			assertEquals("Reinforcement",gameEngine.getPhaseName());
+			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
+			gameEngine.getPhase().reinforce(d_connectivity);
+			assertEquals("Attack",gameEngine.getPhaseName());
+			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
+			gameEngine.getPhase().attack(d_connectivity);
 		}
-	}
-	@Test
-	public void checkPostLoad()
-	{
-
-//		gameEngine.setPhase(new Preload(gameEngine));
-
 	}
 	
 }

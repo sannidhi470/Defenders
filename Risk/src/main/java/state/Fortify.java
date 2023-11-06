@@ -32,7 +32,13 @@ public class Fortify extends MainPlay {
 		Country l_getCountry=new Country();
 		Player p_player;
 		System.out.println("Do you want to fortify (yes/no)?");
-		String user_output = sc.nextLine();
+		String user_output = "";
+		if(ge.getCheckIfTest())
+		{
+			user_output = "no";
+		}
+		else
+			user_output = sc.nextLine();
 		if(user_output.equalsIgnoreCase("yes"))
 		{
 			int terminateFlag=0;
@@ -120,10 +126,12 @@ public class Fortify extends MainPlay {
 			PlayersGameplay.resetDiplomacy(l_playersArray);
 			System.out.println("fortification done");
 			ge.setPhase(new Reinforcement(ge));
+			PlayersGameplay.assignArmiesToPlayers(l_playersArray);
 		}
 		else if (user_output.equalsIgnoreCase("no"))
 		{
 			ge.setPhase(new Reinforcement(ge));
+			PlayersGameplay.assignArmiesToPlayers(l_playersArray);
 		}
 		
 	}
