@@ -476,9 +476,10 @@ public class PlayersGameplay {
 		return 1;
 	}
 	
-	public static void bomb(Player p_player,ArrayList<Player> p_playersArray,Country p_fromCountry,Country p_toCountry,int p_troops,ArrayList<Continent> p_continent) {
+	public static int bomb(ArrayList<Player> p_playersArray,Country p_fromCountry,Country p_toCountry,ArrayList<Continent> p_continent) {
+		int l_targetArmies=0;
 		if(p_fromCountry.getD_neighbours().contains(p_toCountry.getD_countryId())) {
-			int l_targetArmies=(int) Math.floor(p_toCountry.getD_armyDeployedOnCountry()/2);
+			l_targetArmies=(int) Math.floor(p_toCountry.getD_armyDeployedOnCountry()/2);
 			p_toCountry.setD_armyDeployedOnCountry(l_targetArmies);
 			if(p_toCountry.getD_armyDeployedOnCountry()==0) {
 				removeCountry(p_playersArray, p_toCountry, p_continent);
@@ -489,6 +490,7 @@ public class PlayersGameplay {
 				System.out.println("The country "+ p_toCountry + "now has " + l_targetArmies+ " armies");
 			}
 		}
+		return l_targetArmies;
 	}
 	
 	/**

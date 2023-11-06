@@ -742,4 +742,58 @@ class PlayersGameplayTest {
 		assertEquals(country1.getD_armyDeployedOnCountry(),12);
 		assertEquals(PlayersGameplay.l_neutralCountry.contains(country1),true);
 	}
+	
+	@Test
+	void bombValidTargetTest() {
+		Player l_player1= d_playersArray.get(0);
+		Player l_player2= d_playersArray.get(1);
+		Country country1= d_connectivity.getD_countryList().get(0);
+		Country country2= d_connectivity.getD_countryList().get(1);
+		
+		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
+		
+		l_player1.addCountry(country1);
+		l_player2.addCountry(country2);
+		
+		country2.setD_armyDeployedOnCountry(4);
+		
+		int result=PlayersGameplay.bomb(d_playersArray, country1, country2, continentList);
+		assertEquals(result, 2);
+	}
+	
+	void bombInvalidTargetTest() {
+		Player l_player1 = d_playersArray.get(0);
+		Player l_player2 = d_playersArray.get(1);
+		Country country1 = d_connectivity.getD_countryList().get(0);
+		Country country2 = d_connectivity.getD_countryList().get(2);
+		
+		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
+		
+		l_player1.addCountry(country1);
+		l_player2.addCountry(country2);
+		
+		country2.setD_armyDeployedOnCountry(4);
+		
+		int result=PlayersGameplay.bomb(d_playersArray, country1, country2, continentList);
+		assertEquals(result, 4);
+	}
+	
+	void bombNeutralizeCOuntryTest() {
+		Player l_player1 = d_playersArray.get(0);
+		Player l_player2 = d_playersArray.get(1);
+		Country country1 = d_connectivity.getD_countryList().get(0);
+		Country country2 = d_connectivity.getD_countryList().get(2);
+		
+		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
+		
+		l_player1.addCountry(country1);
+		l_player2.addCountry(country2);
+		
+		country2.setD_armyDeployedOnCountry(1);
+		
+		int result=PlayersGameplay.bomb(d_playersArray, country1, country2, continentList);
+		assertEquals(result, 0);
+		assertFalse(PlayersGameplay.showPlayersCountry(l_player2, 1).contains(country2));
+	}
+	
 }
