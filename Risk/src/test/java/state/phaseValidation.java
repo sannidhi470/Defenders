@@ -47,7 +47,12 @@ public class phaseValidation {
 			}
 			assertEquals("PlaySetup",gameEngine.getPhaseName());
 			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
-			mapCommand = d_commands[4].split("-");
+			mapCommand = d_commands[4].split(" ");
+			gameEngine.getPhase().setPlayers(mapCommand);
+			gameEngine.getPhase().assignCountries(gameEngine.getConnectivity());
+			gameEngine.getPhase().next();
+			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
+			
 		}
 	}
 	@Test
