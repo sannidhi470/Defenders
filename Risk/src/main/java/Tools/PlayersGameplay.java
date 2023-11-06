@@ -144,6 +144,21 @@ public class PlayersGameplay {
 			return false;			
 	}
 	
+	/**
+	 *
+	 * This method is used to advance troops to country belonging to same player or to attack if country doesn't belong to player
+	 * @param p_player refers to the individual player.
+	 * @param p_playersArray refers to the list of players.
+	 * @param p_fromCountry refers to the country from which troops are advanced or attacked to other country 
+	 * @param p_toCountry refers to the country to which troops are sent or attack happens
+	 * @param p_troops refers to number of troops to be sent or used for attacking 
+	 * @param p_continent refers to list of continents.
+	 * @param p_connectivity refers to map and used to access countries and continents in the map 
+	 * @param fortify_flag refers to the fortify phase 
+	 * 
+	 * @return 0 for successful advance/attack and 1 for failed advance/attack
+	 *
+	 */
 	public static int advance(Player p_player,ArrayList<Player> p_playersArray,Country p_fromCountry,Country p_toCountry,int p_troops,ArrayList<Continent> p_continent,Connectivity p_connectivity, int fortify_flag)
 	{
 		//Check whether Countries belongs to map or not
@@ -185,7 +200,6 @@ public class PlayersGameplay {
 							System.out.println(ColorCoding.red+"Error: Can't move negative armies"+ColorCoding.blank);
 							return 1;
 						}
-
 					}
 					else
 					{
@@ -203,7 +217,6 @@ public class PlayersGameplay {
 					if(l_toplayer != null)
 					{
 						System.out.println(p_player.getDiplomacyWith());
-						
 						if(!p_player.getDiplomacyWith().contains(l_toplayer.getD_playerId()))
 						{
 							//Already checked whether fromCountry belongs to player or not 
@@ -215,17 +228,14 @@ public class PlayersGameplay {
 						{
 							System.out.println(ColorCoding.red+"Attack is not possible between "+p_fromCountry.getD_countryName()+" and "+p_toCountry.getD_countryName()+" because of diplomacy"+ColorCoding.blank);
 							return 1;
-						}
-						
+						}	
 					}
 					else
 					{
 						//This will be called if to country is a neutral country
 						attack(p_player,p_playersArray,p_fromCountry,p_toCountry,p_troops,p_continent,p_connectivity);
 						return 0;
-					}
-					
-					
+					}		
 					}
 					else
 					{
@@ -233,7 +243,6 @@ public class PlayersGameplay {
 						return 1;
 					}
 				}
-				
 			}
 			else
 			{
@@ -255,25 +264,44 @@ public class PlayersGameplay {
 			}
 			return 1;
 		}
-		
-		
 	}
 
 
-	private static Player findPlayerWithCountry(ArrayList<Player> p_playersArray, Country p_toCountry) 
+	/**
+	 *
+	 * This method is used to find player with given country 
+	 * @param p_playersArray refers to the list of players. 
+	 * @param p_Country refers to the country 
+	 * 
+	 * @return player to which the country belongs or null if country dosn't belongs to anyone 
+	 *
+	 */
+	private static Player findPlayerWithCountry(ArrayList<Player> p_playersArray, Country p_Country) 
 	{
-		
 		for(Player p: p_playersArray)
 		{
-			if(p.getD_Country().contains(p_toCountry))
+			if(p.getD_Country().contains(p_Country))
 				return p;
 		}
 		return null;
 	}
 	
+	/**
+	 *
+	 * This method is used to attack on other country 
+	 * @param p_player refers to the individual player.
+	 * @param p_playersArray refers to the list of players.
+	 * @param p_fromCountry refers to the country from which troops are advanced or attacked to other country 
+	 * @param p_toCountry refers to the country to which troops are sent or attack happens
+	 * @param p_troops refers to number of troops to be sent or used for attacking 
+	 * @param p_continent refers to list of continents.
+	 * @param p_connectivity refers to map and used to access countries and continents in the map 
+	 * 
+	 * @return 0 for successful attack and 1 for failed attack
+	 *
+	 */
 	public static int attack(Player p_player,ArrayList<Player> p_playersArray,Country p_fromCountry,Country p_toCountry,int p_troops,ArrayList<Continent> p_continent,Connectivity p_connectivity)
-	{
-		
+	{	
 		System.out.println("Calling Attack");
 		if(p_troops>=0)
 		{
@@ -295,7 +323,6 @@ public class PlayersGameplay {
 								if(p_troops<=p_fromCountry.getD_armyDeployedOnCountry())
 								{
 									//attacking country: 60% chance of killing 1 unit
-									//int l_troopsSource = p_fromCountry.getD_armyDeployedOnCountry();
 									int l_troopsSource = p_troops;
 									
 									//defending country: 70% chance of killing 1 unit
@@ -317,32 +344,14 @@ public class PlayersGameplay {
 										System.out.println("Destination Troops = "+l_troopsDestination);
 
 									}
-									
-
-									
-									
-								
 									if(l_troopsSource>l_troopsDestination)
-									{
-										
-										//Attacker captures the country.
-										
+									{							
 										//Remove p_toCountry from the player which it is assigned to, or form neutral country.
-										removeCountry(p_playersArray,p_toCountry,p_continent);
-										
-										//Player l_toPlayer = PlayersGameplay.findPlayerWithCountry(p_playersArray, p_toCountry);
-									//	l_toPlayer.removeCountry(p_toCountry);
-										
-										p_player.getD_Country().add(p_toCountry);
-										
-										System.out.println(ColorCoding.green+"Attack Successfull!!"+ColorCoding.blank);
-									
+										removeCountry(p_playersArray,p_toCountry,p_continent);	
+										p_player.getD_Country().add(p_toCountry);										
+										System.out.println(ColorCoding.green+"Attack Successfull!!"+ColorCoding.blank);									
 										//add card to player
 										p_player.getCards().add(generateCard());
-
-										
-										
-										
 										//Remove Continent if Player doesn't have any country belonging to it. OR Add Continent if player
 										//has won All countries in that Continent
 										updateContinent(p_playersArray, p_continent);
@@ -350,8 +359,7 @@ public class PlayersGameplay {
 										int l_troopsLeft = l_troopsSource - l_troopsDestination; 
 										p_toCountry.setD_armyDeployedOnCountry(l_troopsLeft);
 										p_fromCountry.setD_armyDeployedOnCountry(p_fromCountry.getD_armyDeployedOnCountry()-p_troops);
-										//p_fromCountry.setD_armyDeployedOnCountry(0);
-										
+
 										System.out.println("Attack on "+p_toCountry.getD_countryName()+ " from "+p_fromCountry.getD_countryName()+" was successful.");
 										System.out.println("After change "+p_fromCountry.getD_countryName()+" has "+p_fromCountry.getD_armyDeployedOnCountry()+" troops");
 										System.out.println("After change "+p_toCountry.getD_countryName()+" has "+p_toCountry.getD_armyDeployedOnCountry()+" troops" );
@@ -396,9 +404,7 @@ public class PlayersGameplay {
 						{
 							System.out.println(ColorCoding.red+"Error: Can't attack Own country"+ColorCoding.blank);
 							return 1;
-						}
-						
-			
+						}		
 					}
 					else
 					{
@@ -419,9 +425,7 @@ public class PlayersGameplay {
 						return 1;
 					}
 					return 1;
-				}
-			
-				
+				}			
 			}catch(Exception e)
 			{
 				System.out.println(ColorCoding.red+"Error: Coutry "+p_toCountry+" Does not exist"+ColorCoding.blank);
@@ -434,11 +438,19 @@ public class PlayersGameplay {
 			System.out.println(ColorCoding.red+"Error: Can't attack with negative number of troops"+ColorCoding.blank);
 			return 1;
 		}
-		
-		
-	
 	}
 
+	/**
+	 *
+	 * This method is used to remove country form players if it is with any players and update continent list with players 
+	 * or remove it form neutral country list. 
+	 * @param p_playersArray refers to the players Array.
+	 * @param p_country refers to the country.
+	 * @param p_continent refers to list of continent.
+	 * 
+	 * @return 0 for successful removal of country and 1 if failed.
+	 *
+	 */	
 	public static int removeCountry(ArrayList<Player> p_playersArray,Country p_country,ArrayList<Continent> p_continent)
 	{
 		//if p_country is assigned to players
@@ -479,6 +491,15 @@ public class PlayersGameplay {
 		}
 	}
 	
+	/**
+	 *
+	 * This method is used to update continent list of players if country gets added or removed. 
+	 * @param p_playersArray refers to the players Array.
+	 * @param p_continentList refers to list of continent.
+	 * 
+	 * @return 0 after successful update
+	 *
+	 */	
 	public static int updateContinent(ArrayList<Player> p_playersArray, ArrayList<Continent> p_continentList)
 	{
 		
@@ -610,9 +631,13 @@ public class PlayersGameplay {
 	    return true;
 	}
 	
+	/**
+	 *
+	 * This method will generate random cards and adds to players if player capture the new territory.
+	 */	
 	public static String generateCard()
 	{
-		String[] l_cards = {"bomb","reinforcement","blockade","airlift","diplomacy"};
+		String[] l_cards = {"bomb","blockade","airlift","diplomacy"};
 		Random ran = new Random();
 		 
 		return l_cards[ran.nextInt(l_cards.length)];
@@ -635,6 +660,14 @@ public class PlayersGameplay {
 		return null;
 	}
 	
+	/**
+	 *
+	 * This method adds diplomacy between two players if any of the used diplomacy card
+	 * @param p_player refers to the player.
+	 * @param p_playersArray refers to the players Array.
+	 * @param p_toPlayerID refers to other player ID with whom diplomacy is set 
+	 * 
+	 */	
 	public static void negotiate(Player p_player,ArrayList<Player> p_playersArray, String p_toPlayerID) {
 		
 		
@@ -653,6 +686,12 @@ public class PlayersGameplay {
 		
 	}
 	
+	/**
+	 *
+	 * This method will remove diplomacy between players after each turn
+	 * @param p_playersArray refers to the players Array.
+	 * 
+	 */	
 	public static void resetDiplomacy(ArrayList<Player> p_playersArray) {
 
 		for(Player p:p_playersArray)
@@ -662,16 +701,34 @@ public class PlayersGameplay {
 		
 	}
 	
+	/**
+	 *
+	 * This method will add country to neutral country list.
+	 * @param c refers to the country.
+	 * 
+	 */	
 	public static void addNutrealCountry(Country c)
 	{
 		l_neutralCountry.add(c);
 	}
 	
+	/**
+	 *
+	 * This method will return neutral country list.
+	 *
+	 *@return neutral country list
+	 */	
 	public static ArrayList<Country> getNutrealCountry()
 	{
 		return l_neutralCountry;
 	}
 	
+	
+	/**
+	 *
+	 * This method will clear the neutral country list.
+	 *
+	 */	
 	public static void clearNutrealCountry()
 	{
 		l_neutralCountry.clear();

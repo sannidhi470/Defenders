@@ -200,13 +200,16 @@ class PlayersGameplayTest {
 	}
 	
 	
-	
-	@Test //Advance from country that doesn't belong to players.	
+	/**
+	 * 
+	 * The method will Advance from country that doesn't belong to players and test  
+	 * 
+	 */
+	@Test 
 	void advanceFromCountryNotBelongToPlayerTest()
 	{	
 		Player l_player1 = d_playersArray.get(0);
-		
-		
+	
 		Country country1 = d_connectivity.getD_countryList().get(0);
 		Country country2 = d_connectivity.getD_countryList().get(1);
 		
@@ -216,23 +219,23 @@ class PlayersGameplayTest {
 		
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
-		int result = PlayersGameplay.advance(l_player1, d_playersArray, country2, country1, 4, continentList,d_connectivity,0);
-		
-		
-		//System.out.println("Resulr: "+result);
+		int result = PlayersGameplay.advance(l_player1, d_playersArray, country2, country1, 4, continentList,d_connectivity,0);		
 		assertEquals(result, 1);
 		
 	}
 	
-	@Test //Advance from country that belong to players, to country doesn't belong to player.That also means attack on neutral country	
+	/**
+	 * 
+	 * The method will Advance from country that belong to players, to country doesn't belong to player.That also means attack on neutral country and test  
+	 * 
+	 */
+	@Test 
 	void advanceToCountryNotBelongToPlayerTest()
 	{	
 		Player l_player1 = d_playersArray.get(0);
-		Player l_player2 = d_playersArray.get(1);
-		
+
 		Country country1 = d_connectivity.getD_countryList().get(0);
 		Country country2 = d_connectivity.getD_countryList().get(1);
-		
 		
 		country1.setD_armyDeployedOnCountry(10);
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
@@ -240,52 +243,46 @@ class PlayersGameplayTest {
 		l_player1.addCountry(country1);
 		PlayersGameplay.addNutrealCountry(country2);
 		
-		
 		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 4, continentList,d_connectivity,0);
 		assertEquals(result, 0);
 		
 	}
 	
+	/**
+	 * 
+	 * The method will Advance with insufficient troops and test  
+	 * 
+	 */
 	@Test
 	void advanceWithInsufficientTroops()
 	{
 		
 		Player l_player1 = d_playersArray.get(0);
-		
-		//System.out.println("XXXXX1"+d_connectivity.getD_countryList());
-		
-		
+	
 		Country country1 = d_connectivity.getD_countryList().get(0);
-		Country country2 = d_connectivity.getD_countryList().get(1);
-		
-		
-		
+		Country country2 = d_connectivity.getD_countryList().get(1);	
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
 		l_player1.addCountry(country1);
 		l_player1.addCountry(country2);
-		
-		//System.out.println("Player1 Country:zzzzzzzz "+l_player1.getD_Country());
-		
 		country1.setD_armyDeployedOnCountry(2);
 		
-		
-		
 		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 4, continentList,d_connectivity,0);
-		//System.out.println("Player1 Country: "+l_player1.getD_Country());
-		//System.out.println("Resulr: "+result);
-		//System.out.println("army:"+country1.getD_armyDeployedOnCountry());
 		assertEquals(result, 1);
 	}
 	
+	/**
+	 * 
+	 * The method will Advance negative number of troops and test  
+	 * 
+	 */
 	@Test
 	void advanceNegativeNumberTroopsTest()
 	{
 		Player l_player1 = d_playersArray.get(0);
 		
 		Country country1 = d_connectivity.getD_countryList().get(0);
-		Country country2 = d_connectivity.getD_countryList().get(1);
-			
+		Country country2 = d_connectivity.getD_countryList().get(1);			
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
 		l_player1.addCountry(country1);
@@ -293,19 +290,22 @@ class PlayersGameplayTest {
 		
 		country1.setD_armyDeployedOnCountry(2);
 		
-		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, -2, continentList,d_connectivity,0);
-		
+		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, -2, continentList,d_connectivity,0);		
 		assertEquals(result, 1);
 	}
 	
+	/**
+	 * 
+	 * The method will Advance troops to non neighbour country and test  
+	 * 
+	 */
 	@Test
 	void advanceToNonNeighbourTest()
 	{
 		Player l_player1 = d_playersArray.get(0);
 		
 		Country country1 = d_connectivity.getD_countryList().get(0);
-		Country country2 = d_connectivity.getD_countryList().get(2);
-			
+		Country country2 = d_connectivity.getD_countryList().get(2);	
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
 		l_player1.addCountry(country1);
@@ -313,20 +313,23 @@ class PlayersGameplayTest {
 		
 		country1.setD_armyDeployedOnCountry(5);
 		
-		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 2, continentList,d_connectivity,0);
-		
+		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 2, continentList,d_connectivity,0);	
 		assertEquals(result, 1);
 		
 	}
 	
+	/**
+	 * 
+	 * The method will do correct advance and test  
+	 * 
+	 */
 	@Test
 	void advanceCorrectTest()
 	{
 		Player l_player1 = d_playersArray.get(0);
 		
 		Country country1 = d_connectivity.getD_countryList().get(0);
-		Country country2 = d_connectivity.getD_countryList().get(1);
-			
+		Country country2 = d_connectivity.getD_countryList().get(1);		
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
 		l_player1.addCountry(country1);
@@ -334,21 +337,24 @@ class PlayersGameplayTest {
 		
 		country1.setD_armyDeployedOnCountry(5);
 		
-		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 2, continentList,d_connectivity,0);
-		
+		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 2, continentList,d_connectivity,0);		
 		assertEquals(result, 0);
 		assertEquals(country1.getD_armyDeployedOnCountry(), 3);
 		assertEquals(country2.getD_armyDeployedOnCountry(),2);
 	}
 	
+	/**
+	 * 
+	 * The method will attack form country that doesn't belong to player and test  
+	 * 
+	 */
 	@Test
 	void attackFromCountryNotBelongToPlayerTest()
 	{
 		Player l_player1 = d_playersArray.get(0);
 		
 		Country country1 = d_connectivity.getD_countryList().get(0);
-		Country country2 = d_connectivity.getD_countryList().get(1);
-			
+		Country country2 = d_connectivity.getD_countryList().get(1);			
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
 		PlayersGameplay.addNutrealCountry(country1);
@@ -356,29 +362,36 @@ class PlayersGameplayTest {
 		country1.setD_armyDeployedOnCountry(10);
 		
 		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 2, continentList,d_connectivity);
-		//System.out.println("result:"+result);
 		assertEquals(result, 1);
 	}
 	
+	/**
+	 * 
+	 * The method will attack to county belonging to own player and test  
+	 * 
+	 */
 	@Test
 	void attackToOwnCountryTest()
 	{
 		Player l_player1 = d_playersArray.get(0);
 		
 		Country country1 = d_connectivity.getD_countryList().get(0);
-		Country country2 = d_connectivity.getD_countryList().get(1);
-			
+		Country country2 = d_connectivity.getD_countryList().get(1);			
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
 		l_player1.addCountry(country1);
 		l_player1.addCountry(country2);
 		country1.setD_armyDeployedOnCountry(10);
 		
-		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 2, continentList,d_connectivity);
-		
+		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 2, continentList,d_connectivity);		
 		assertEquals(result, 1);
 	}
 	
+	/**
+	 * 
+	 * The method will attack the country with more troops than available and test  
+	 * 
+	 */
 	@Test
 	void attackWithMoreTroopsTest()
 	{
@@ -386,8 +399,7 @@ class PlayersGameplayTest {
 		Player l_player2 = d_playersArray.get(1);
 		
 		Country country1 = d_connectivity.getD_countryList().get(0);
-		Country country2 = d_connectivity.getD_countryList().get(1);
-			
+		Country country2 = d_connectivity.getD_countryList().get(1);	
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
 		l_player1.addCountry(country1);
@@ -396,11 +408,16 @@ class PlayersGameplayTest {
 		country1.setD_armyDeployedOnCountry(3);
 		country2.setD_armyDeployedOnCountry(1);
 		
-		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 10, continentList,d_connectivity);
-		
+		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 10, continentList,d_connectivity);	
 		assertEquals(result, 1);
 	}
 	
+	
+	/**
+	 * 
+	 * The method will attack the country with negative number of troops and test  
+	 * 
+	 */
 	@Test
 	void attackWithNegativeNumberOfTroopsTest()
 	{
@@ -408,8 +425,7 @@ class PlayersGameplayTest {
 		Player l_player2 = d_playersArray.get(1);
 		
 		Country country1 = d_connectivity.getD_countryList().get(0);
-		Country country2 = d_connectivity.getD_countryList().get(1);
-			
+		Country country2 = d_connectivity.getD_countryList().get(1);			
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
 		l_player1.addCountry(country1);
@@ -419,10 +435,14 @@ class PlayersGameplayTest {
 		country2.setD_armyDeployedOnCountry(1);
 		
 		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, -2, continentList,d_connectivity);
-		//System.out.println("Resutl:"+result);
 		assertEquals(result, 1);
 	}
 	
+	/**
+	 * 
+	 * The method will attack the non neighbouring country and test  
+	 * 
+	 */
 	@Test
 	void attackToNonNeighbourTest()
 	{
@@ -430,8 +450,7 @@ class PlayersGameplayTest {
 		Player l_player2 = d_playersArray.get(1);
 		
 		Country country1 = d_connectivity.getD_countryList().get(0);
-		Country country2 = d_connectivity.getD_countryList().get(2);
-			
+		Country country2 = d_connectivity.getD_countryList().get(2);			
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
 		l_player1.addCountry(country1);
@@ -444,6 +463,11 @@ class PlayersGameplayTest {
 		assertEquals(result, 1);
 	}
 	
+	/**
+	 * 
+	 * The method will do successful attack and test  
+	 * 
+	 */
 	@Test
 	void attackSuccessfulTest()
 	{
@@ -452,8 +476,7 @@ class PlayersGameplayTest {
 		
 		Country country1 = d_connectivity.getD_countryList().get(0);
 		Country country2 = d_connectivity.getD_countryList().get(1);
-		Country country3 = d_connectivity.getD_countryList().get(2);
-			
+		Country country3 = d_connectivity.getD_countryList().get(2);			
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
 		l_player1.addCountry(country1);
@@ -464,20 +487,6 @@ class PlayersGameplayTest {
 		country2.setD_armyDeployedOnCountry(0);
 		
 		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 3, continentList,d_connectivity);
-		
-		
-		//System.out.println("p1 COntinent: ");
-//		for(Continent c:l_player1.getD_playerContinent())
-//		{
-//			System.out.println(c.getD_continentName());
-//		}
-//		
-//		System.out.println("p2 Countrys: ");
-//		for(Country c:l_player2.getD_Country())
-//		{
-//			System.out.println(c.getD_countryName());
-//		}
-		
 		assertEquals(result, 0);
 		assertEquals(l_player1.getCards().size(),1);
 		assertEquals(l_player1.getD_Country().size(),3);
@@ -485,6 +494,11 @@ class PlayersGameplayTest {
 		assertEquals(l_player2.getD_Country().size(),0);
 	}
 	
+	/**
+	 * 
+	 * The method will attack on country that is not in map and test  
+	 * 
+	 */
 	@Test
 	void attackCountryNotInMap()
 	{
@@ -493,22 +507,20 @@ class PlayersGameplayTest {
 		Country country1 = d_connectivity.getD_countryList().get(0);
 		Country country2 = new Country();
 		country2.setD_countryName("aaa");
-	
 		l_player1.addCountry(country1);
 		country1.setD_armyDeployedOnCountry(10);
-		
-			
+
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
-		
-	
+
 		int result = PlayersGameplay.attack(l_player1, d_playersArray, country1, country2, 3, continentList,d_connectivity);
-	
 		assertEquals(result, 1);
-	//	assertEquals(l_player1.getCards().size(),1);
-	//	assertEquals(l_player1.getD_Country().size(),2);
-		
 	}
 	
+	/**
+	 * 
+	 * The method will attack on neutral country and test  
+	 * 
+	 */
 	@Test
 	void attackNutrealCountry()
 	{
@@ -519,7 +531,6 @@ class PlayersGameplayTest {
 	
 		l_player1.addCountry(country1);
 		country1.setD_armyDeployedOnCountry(10);
-		
 		PlayersGameplay.addNutrealCountry(country2);
 			
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
@@ -531,16 +542,20 @@ class PlayersGameplayTest {
 		assertEquals(PlayersGameplay.getNutrealCountry().size(),0);
 	}
 	
-	@Test//attack from player who has used diplomacy to another player 
+	
+	/**
+	 * 
+	 * The method will attack from player who has used diplomacy to another player and test  
+	 * 
+	 */
+	@Test
 	void attackWithDeplomacySamePlayer()
 	{
 		Player l_player1 = d_playersArray.get(0);
 		Player l_player2 = d_playersArray.get(1);
 		
 		Country country1 = d_connectivity.getD_countryList().get(0);
-		Country country2 = d_connectivity.getD_countryList().get(1);
-		
-			
+		Country country2 = d_connectivity.getD_countryList().get(1);	
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
 		l_player1.addCountry(country1);
@@ -549,25 +564,20 @@ class PlayersGameplayTest {
 		country1.setD_armyDeployedOnCountry(4);
 		country2.setD_armyDeployedOnCountry(3);
 		
-		//l_player1.addCard("diplomacy");
 		PlayersGameplay.negotiate(l_player1, d_playersArray, Integer.toString(l_player2.getD_playerId()));
 		
-//		for(Player p:d_playersArray)
-//		{
-//			System.out.println("mmm:"+p.getD_playerId());
-//		}
-//		System.out.println("N1:"+l_player1.getDiplomacyWith());
-//		System.out.println("N2:"+l_player2.getDiplomacyWith());
 		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 3, continentList,d_connectivity,0);
-		//System.out.println("Result: "+result);
-		
 		l_player1.clearDiplomacyWith();
-		l_player2.clearDiplomacyWith();
-		
+		l_player2.clearDiplomacyWith();	
 		assertEquals(result, 1);
 	}
 	
-	@Test//attack from player who has not used diplomacy but used by other player 
+	/**
+	 * 
+	 * The method will attack from player who has not used diplomacy but used by other player and test  
+	 * 
+	 */
+	@Test
 	void attackWithDeplomacyDifferentPlayerTest()
 	{
 		Player l_player1 = d_playersArray.get(0);
@@ -575,8 +585,6 @@ class PlayersGameplayTest {
 		
 		Country country1 = d_connectivity.getD_countryList().get(0);
 		Country country2 = d_connectivity.getD_countryList().get(1);
-		
-			
 		ArrayList<Continent> continentList = d_connectivity.getD_continentList();
 		
 		l_player1.addCountry(country1);
@@ -584,22 +592,11 @@ class PlayersGameplayTest {
 		
 		country1.setD_armyDeployedOnCountry(4);
 		country2.setD_armyDeployedOnCountry(3);
-		
-		//l_player1.addCard("diplomacy");
 		PlayersGameplay.negotiate(l_player2, d_playersArray, Integer.toString(l_player1.getD_playerId()));
 		
-//		for(Player p:d_playersArray)
-//		{
-//			System.out.println("mmm:"+p.getD_playerId());
-//		}
-//		System.out.println("N1:"+l_player1.getDiplomacyWith());
-//		System.out.println("N2:"+l_player2.getDiplomacyWith());
 		int result = PlayersGameplay.advance(l_player1, d_playersArray, country1, country2, 3, continentList,d_connectivity,0);
-		//System.out.println("Result: "+result);
-		
 		l_player1.clearDiplomacyWith();
-		l_player2.clearDiplomacyWith();
-		
+		l_player2.clearDiplomacyWith();	
 		assertEquals(result, 1);	
 	}
 	
