@@ -51,8 +51,13 @@ public class phaseValidation {
 			gameEngine.getPhase().setPlayers(mapCommand);
 			gameEngine.getPhase().assignCountries(gameEngine.getConnectivity());
 			gameEngine.getPhase().next();
+			assertEquals("Reinforcement",gameEngine.getPhaseName());
 			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
 			gameEngine.getPhase().reinforce(d_connectivity);
+			assertEquals("Attack",gameEngine.getPhaseName());
+			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
+			gameEngine.getPhase().attack(d_connectivity);
+			assertEquals("Fortify",gameEngine.getPhaseName());
 			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
 //			for(int i=0; i<Play.getL_playersArray().size(); i++)
 //			{

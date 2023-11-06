@@ -122,7 +122,7 @@ public class Country {
 	 * @param p_countryId refers to the country ID.
 	 */
 
-	public String get_nameFromId(ArrayList<Country> p_countryList,int p_countryId)  
+	public static String get_nameFromId(ArrayList<Country> p_countryList,int p_countryId)
 	{
 		for(Country i:p_countryList)
 		{

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 import Controllers.GameEngine;
+import Models.Country;
 import Models.Order;
 import Models.Player;
 import Tools.ColorCoding;
@@ -40,6 +41,7 @@ public class Attack extends MainPlay {
 		int l_winner=0;
 		int l_flag1=0;
 		int l_executeOrder=0;
+		int l_testFlag =0;
 		while(l_winner==0) 
 		{
 			terminateFlag=0;
@@ -68,7 +70,15 @@ public class Attack extends MainPlay {
 			//d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+"Asked whether he/she wants to give a command");
 			System.out.println(ColorCoding.cyan+"\n"+l_playersArray.get(i).getD_playerName()+"!! Do you want to give command or pass?(Press enter to continue / pass)"+ColorCoding.blank);
 			Scanner l_sc = new Scanner(System.in);
-			String l_passContinue=l_sc.nextLine();
+			String l_passContinue = "";
+			if(ge.getCheckIfTest())
+			{
+				if(l_testFlag == 0) l_passContinue = "continue";
+				else if(l_testFlag == 1 || l_testFlag==2) l_passContinue = "pass";
+				l_testFlag++;
+			}
+			else
+				l_passContinue=l_sc.nextLine();
 			if(l_passContinue.equalsIgnoreCase("exit"))
 			{
 				System.out.println("Thank you for Playing the Game");
@@ -76,7 +86,6 @@ public class Attack extends MainPlay {
 			}
 			if(l_passContinue.equals("pass"))
 			{
-				System.out.println("In here");
 				playerNames.add(l_playersArray.get(i).getD_playerName());
 				terminateFlag++;
 				break;
@@ -85,7 +94,17 @@ public class Attack extends MainPlay {
 			//d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+ "Asked for Command");
 			System.out.println("\nEnter the Command for player: "+l_playersArray.get(i).getD_playerName());
 			System.out.println("Cards available: "+l_playersArray.get(i).getCards());
-			String l_orderinput=l_sc.nextLine();
+			String l_orderinput = "";
+			if(ge.getCheckIfTest())
+			{
+				String l_neighbor = Country.get_nameFromId(l_playersArray.get(i).getD_Country(), l_playersArray.get(i).getD_Country().get(0).getD_neighbours().get(0));
+				System.out.println(l_neighbor);
+				l_orderinput = "advance " + l_playersArray.get(i).getD_Country().get(0).getD_countryName() + " "+l_neighbor+ " "+l_playersArray.get(i).getD_Country().get(0).getD_armyDeployedOnCountry();
+				System.out.println("For testcase, we have the following command\n"+l_orderinput);
+			}
+			else
+				l_orderinput=l_sc.nextLine();
+
 			if(l_orderinput.equalsIgnoreCase("exit"))
 			{
 				System.out.println("Thank you for Playing the Game");
