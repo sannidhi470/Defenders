@@ -476,6 +476,15 @@ public class PlayersGameplay {
 		return 1;
 	}
 	
+	/**
+	 * 
+	 * This method is used to bomb one country when the other player uses the bomb card.
+	 * @param p_playersArray refers to the list of players.
+	 * @param p_fromCountry refers to the country from which troops are advanced or attacked to other country
+	 * @param p_toCountry refers to the country to which attack is made.
+	 * @param p_continent refers to list of continents.
+	 * @return l_targetArmies refers to the number of armies left on that country after bomb card is used.
+	 */
 	public static int bomb(ArrayList<Player> p_playersArray,Country p_fromCountry,Country p_toCountry,ArrayList<Continent> p_continent) {
 		int l_targetArmies=0;
 		if(p_fromCountry.getD_neighbours().contains(p_toCountry.getD_countryId())) {

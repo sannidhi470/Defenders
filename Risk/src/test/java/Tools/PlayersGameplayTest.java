@@ -743,6 +743,11 @@ class PlayersGameplayTest {
 		assertEquals(PlayersGameplay.l_neutralCountry.contains(country1),true);
 	}
 	
+	/**
+	 *
+	 * This method is used to test that bomb works successfully.
+	 *
+	 */
 	@Test
 	void bombValidTargetTest() {
 		Player l_player1= d_playersArray.get(0);
@@ -761,6 +766,11 @@ class PlayersGameplayTest {
 		assertEquals(result, 2);
 	}
 	
+	/**
+	 *
+	 * This method is used to test that bomb doesn't work when countries are not neighbours..
+	 *
+	 */
 	void bombInvalidTargetTest() {
 		Player l_player1 = d_playersArray.get(0);
 		Player l_player2 = d_playersArray.get(1);
@@ -778,6 +788,11 @@ class PlayersGameplayTest {
 		assertEquals(result, 4);
 	}
 	
+	/**
+	 *
+	 * This method is used to test that bomb makes the country neutral when there is no army present.
+	 *
+	 */
 	void bombNeutralizeCOuntryTest() {
 		Player l_player1 = d_playersArray.get(0);
 		Player l_player2 = d_playersArray.get(1);
