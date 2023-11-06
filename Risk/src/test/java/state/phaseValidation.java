@@ -52,18 +52,20 @@ public class phaseValidation {
 			gameEngine.getPhase().assignCountries(gameEngine.getConnectivity());
 			gameEngine.getPhase().next();
 			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
-			for(int i=0; i<Play.getL_playersArray().size(); i++)
-			{
-				System.out.println("Player name ="+Play.getL_playersArray().get(i).getD_playerName());
-				for(int j=0; j<Play.getL_playersArray().get(i).getD_Country().size(); j++)
-				{
-					System.out.println("Countries owned ="+Play.getL_playersArray().get(i).getD_Country().get(j).getD_countryId());
-				}
-				//creating deploy command for each player
-				int l_armyCount = Play.getL_playersArray().get(i).getD_armyCount();
-				//need to add skip for test case in reinforce
-				gameEngine.getPhase().reinforce(d_connectivity);
-			}
+			gameEngine.getPhase().reinforce(d_connectivity);
+			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
+//			for(int i=0; i<Play.getL_playersArray().size(); i++)
+//			{
+//				System.out.println("Player name ="+Play.getL_playersArray().get(i).getD_playerName());
+//				for(int j=0; j<Play.getL_playersArray().get(i).getD_Country().size(); j++)
+//				{
+//					System.out.println("Countries owned ="+Play.getL_playersArray().get(i).getD_Country().get(j).getD_countryId());
+//				}
+//				//creating deploy command for each player
+//				int l_armyCount = Play.getL_playersArray().get(i).getD_armyCount();
+//				//need to add skip for test case in reinforce
+//				gameEngine.getPhase().reinforce(d_connectivity);
+//			}
 		}
 	}
 	@Test

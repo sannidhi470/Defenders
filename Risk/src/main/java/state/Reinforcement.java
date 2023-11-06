@@ -45,7 +45,15 @@ public class Reinforcement extends MainPlay {
 					//d_logEntryBuffer.log("Player "+l_playersArray.get(i).getD_playerName()+" deploy your troops:");
 					System.out.println("Player "+l_playersArray.get(i).getD_playerName()+" deploy your troops:");
 					Scanner l_sc = new Scanner(System.in);
-					l_userOrder=l_sc.nextLine();
+					if(ge.getCheckIfTest())
+					{
+						int l_countryID = l_playersArray.get(i).getD_Country().get(0).getD_countryId();
+						int l_armycount = l_playersArray.get(i).getD_armyCount();
+						l_userOrder = "deploy "+l_countryID+" "+l_armycount;
+						System.out.println("For testcase, we have the following command\n"+l_userOrder);
+					}
+					else
+						l_userOrder=l_sc.nextLine();
 					if(l_userOrder.equalsIgnoreCase("exit"))
 					{
 						System.out.println("Thank you for Playing the Game");
