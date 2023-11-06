@@ -46,7 +46,10 @@ public abstract class Phase {
 	}
 
 	// common commands
-	abstract public void loadMap(Connectivity l_connectivity, String[] l_commands);
+	public void loadMap(Connectivity l_connectivity, String[] l_commands) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	public void viewMap(ArrayList<Continent> p_continentList, ArrayList<Country> p_countryList, ArrayList<Player> p_players) {
 		ViewMap.viewMap(p_continentList, p_countryList,p_players);
