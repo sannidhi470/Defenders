@@ -124,8 +124,16 @@ public class Preload extends Edit {
 
 	public void next() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Do you want to make more edits on the map (yes/no)?");
-		String user_output = sc.nextLine();
+		String user_output;
+		if(ge.getCheckIfTest()) {
+			user_output = "no";
+		}
+		else
+		{
+			System.out.println("Do you want to make more edits on the map (yes/no)?");
+			user_output = sc.nextLine();
+		}
+
 		if(user_output.equalsIgnoreCase("exit"))
 		{
 			System.out.println("Thank you for Playing the Game");

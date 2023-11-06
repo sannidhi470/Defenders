@@ -23,7 +23,16 @@ public class GameEngine {
 	 */
 	private Phase gamePhase;
 	private Connectivity connectivity;
+	private boolean checkIfTest = false;
 	
+	public boolean getCheckIfTest() {
+		return checkIfTest;
+	}
+
+	public void setCheckIfTest(boolean checkIfTest) {
+		this.checkIfTest = checkIfTest;
+	}
+
 	int mystart;
 	String mycommand;
 
@@ -34,6 +43,16 @@ public class GameEngine {
 	public void setPhase(Phase p_phase) {
 		gamePhase = p_phase;
 		System.out.println("new phase: " + p_phase.getClass().getSimpleName());
+	}
+	
+	public String getPhaseName()
+	{
+		return gamePhase.getClass().getSimpleName();
+	}
+	
+	public Phase getPhase()
+	{
+		return gamePhase;
 	}
 	
 	/**
