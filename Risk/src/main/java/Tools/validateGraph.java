@@ -8,7 +8,7 @@ public class validateGraph {
 	public int d_noOfCountries;
 	public LinkedList[] d_adjacentCountriesList;
 
-	public void isConnected(validateGraph graph){
+	public int isConnected(validateGraph graph){
 		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 		  
         int vertices = graph.d_noOfCountries+1; 
@@ -32,10 +32,12 @@ public class validateGraph {
         	System.out.println(ColorCoding.green+"Graph is connected"+ColorCoding.blank);
         	d_logEntryBuffer.log("\n----- ✓ Loaded Map is a valid map ✓ -----\n");
         	System.out.println(ColorCoding.green+"\n----- ✓ Loaded Map is a valid map ✓ -----\n"+ColorCoding.blank);      	
+        	return 0;
         }
         else {
         	d_logEntryBuffer.log("Graph is disconnected");
         	System.out.println(ColorCoding.red+"Graph is disconnected"+ColorCoding.blank);
+        	return 1;
         }
         
     }
