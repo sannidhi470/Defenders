@@ -508,11 +508,21 @@ public class PlayersGameplay {
 		return 0;
 	}
 	
-
-	public static boolean AirliftDeploy(String l_sourceCountryObj, String l_targetCountryObj, int p_armiesToAirlift, Player p_player) {
+	/**
+	 *
+	 * This method is used to airlift armies from one country to another once the player uses airlift card.
+	 * @param p_sourceCountryObj refers to the source country for airlift.
+	 * @param p_targetCountryObj refers to the target country for airlift.
+	 * @param p_armiesToAirlift refers to the number of armies player wants to airlift.
+	 * @param p_player refers to the player who used airlift card.
+	 * 
+	 * @return result
+	 *
+	 */
+	public static boolean AirliftDeploy(String p_sourceCountryObj, String p_targetCountryObj, int p_armiesToAirlift, Player p_player) {
 		
-		String l_sourceCountryVar = l_sourceCountryObj;
-	    String l_targetCountryVar = l_targetCountryObj;
+		String l_sourceCountryVar = p_sourceCountryObj;
+	    String l_targetCountryVar = p_targetCountryObj;
 	    
 	    int l_armiesToAirlift = p_armiesToAirlift;
 	    
@@ -570,9 +580,20 @@ public class PlayersGameplay {
 		return true;
 	}
 	
-	public static boolean Blockade(String l_sourceCountryObj,Player p_player,ArrayList<Player> p_playersArray,ArrayList<Continent> p_continent) {
+	/**
+	 *
+	 * This method is used to make a country neutral and increase its army count once the player uses blockade card.
+	 * @param p_sourceCountryObj refers to the country for blockade.
+	 * @param p_player refers to the player who used blockade card.
+	 * @param p_playersArray refers to the list of players.
+	 * @param p_continent refers to the list of continents.
+	 * 
+	 * @return result
+	 *
+	 */
+	public static boolean Blockade(String p_sourceCountryObj,Player p_player,ArrayList<Player> p_playersArray,ArrayList<Continent> p_continent) {
 		
-		String l_sourceCountry = l_sourceCountryObj;
+		String l_sourceCountry = p_sourceCountryObj;
 	    Player l_player = p_player;
 	    int flag =0;
 	    ArrayList<Country> l_country = new ArrayList<>();
@@ -605,7 +626,7 @@ public class PlayersGameplay {
 	    l_neutralCountry.add(l_sourceCountrynew);
 	    
 		updateContinent(p_playersArray, p_continent);
-		System.out.println("The Country "+ l_sourceCountryObj + " is a now a neutral Country with army count "+l_sourceCountrynew.getD_armyDeployedOnCountry());
+		System.out.println("The Country "+ p_sourceCountryObj + " is a now a neutral Country with army count "+l_sourceCountrynew.getD_armyDeployedOnCountry());
 
 	    return true;
 	}
