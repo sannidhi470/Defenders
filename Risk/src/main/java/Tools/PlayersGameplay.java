@@ -31,15 +31,17 @@ public class PlayersGameplay {
 	 *
 	 */
 	
-	public static int assigncountries(ArrayList<Player> p_playersArray,ArrayList<Country> p_countryList,ArrayList<Continent> p_continentList) {	
+	public static int assigncountries(ArrayList<Player> p_playersArray,ArrayList<Country> p_countryList,ArrayList<Continent> p_continentList) {
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 		if (p_playersArray.size() == 0) {
+			d_logEntryBuffer.log("Error: Insufficient Players to assign countries");
 			System.out.println(ColorCoding.red + "Error: Insufficient Players to assign countries" + ColorCoding.blank);
 			return 1;
 		}
 
 		if (p_countryList.size() < p_playersArray.size()) {
-			System.out.println(
-					ColorCoding.red + "Error: Insufficient country to assign to all players" + ColorCoding.blank);
+			d_logEntryBuffer.log("Error: Insufficient country to assign to all players");
+			System.out.println(ColorCoding.red + "Error: Insufficient country to assign to all players" + ColorCoding.blank);
 			return 1;
 		}
 		
@@ -89,6 +91,7 @@ public class PlayersGameplay {
 	 */
 	 
 	public static void assignArmiesToPlayers(ArrayList<Player> p_playersList) {
+		LogEntryBuffer d_logEntryBuffer= new LogEntryBuffer();
 		for(int i=0;i<p_playersList.size();i++)
 		{
 			int l_countryListSize=p_playersList.get(i).getD_Country().size()/3;
@@ -101,6 +104,7 @@ public class PlayersGameplay {
 			}
 			l_armyCount+=l_tempContinentCount;
 			p_playersList.get(i).setD_armyCount(l_armyCount);
+			d_logEntryBuffer.log("Player "+p_playersList.get(i).getD_playerName()+" has been alloted "+p_playersList.get(i).getD_armyCount()+" amries for this round");
 			System.out.println(ColorCoding.green+"Player "+p_playersList.get(i).getD_playerName()+" has been alloted "+p_playersList.get(i).getD_armyCount()+" amries for this round"+ColorCoding.blank);
 		}
 	}
@@ -116,13 +120,20 @@ public class PlayersGameplay {
 	 */
 	 
 	public static ArrayList<String> showPlayersCountry(Player p_player,int p_Displayflag) {
+		LogEntryBuffer d_logEntryBuffer= new LogEntryBuffer();
 		ArrayList<Country> l_country = new ArrayList<>();
-		if(p_Displayflag==1) System.out.println("\nPlayer:" + p_player.getD_playerName()+ " has following countries assigned");
+		if(p_Displayflag==1) {
+			d_logEntryBuffer.log("Player:" + p_player.getD_playerName()+ " has following countries assigned");
+			System.out.println("\nPlayer:" + p_player.getD_playerName()+ " has following countries assigned");
+		}
 		l_country=	p_player.getD_Country();
 		ArrayList<String> l_countryList=new ArrayList<>();
 		for(Country c:l_country)
 		{
-			if(p_Displayflag==1) System.out.println(c.getD_countryName());
+			if(p_Displayflag==1) {
+				d_logEntryBuffer.log(c.getD_countryName());
+				System.out.println(c.getD_countryName());
+			}
 			l_countryList.add(c.getD_countryName());
 		}
 		return l_countryList;
@@ -160,8 +171,8 @@ public class PlayersGameplay {
 	 * @return 0 for successful advance/attack and 1 for failed advance/attack
 	 *
 	 */
-	public static int advance(Player p_player,ArrayList<Player> p_playersArray,Country p_fromCountry,Country p_toCountry,int p_troops,ArrayList<Continent> p_continent,Connectivity p_connectivity, int fortify_flag)
-	{
+	public static int advance(Player p_player,ArrayList<Player> p_playersArray,Country p_fromCountry,Country p_toCountry,int p_troops,ArrayList<Continent> p_continent,Connectivity p_connectivity, int fortify_flag) {
+		LogEntryBuffer d_logEntryBuffer= new LogEntryBuffer();
 		//Check whether Countries belongs to map or not
 		if(p_connectivity.getD_countryList().contains(p_fromCountry) && p_connectivity.getD_countryList().contains(p_toCountry))
 		{
@@ -180,30 +191,37 @@ public class PlayersGameplay {
 							//check p_troops is less then p_formCountry.getDarmyDeployed
 							if(p_troops<=p_fromCountry.getD_armyDeployedOnCountry())
 							{
+								d_logEntryBuffer.log("Calling Advance");
 								System.out.println("Calling Advance");
 								int l_troopsaddition = p_toCountry.getD_armyDeployedOnCountry() + p_troops;
 								p_toCountry.setD_armyDeployedOnCountry(l_troopsaddition); 
 								int l_troopsDeduction = p_fromCountry.getD_armyDeployedOnCountry() - p_troops;
 								p_fromCountry.setD_armyDeployedOnCountry(l_troopsDeduction);
+								d_logEntryBuffer.log(p_troops+" Troops advanced from "+p_fromCountry.getD_countryName()+" to "+p_toCountry.getD_countryName());
 								System.out.println(ColorCoding.green+p_troops+" Troops advanced from "+p_fromCountry.getD_countryName()+" to "+p_toCountry.getD_countryName()+ColorCoding.blank);
+								d_logEntryBuffer.log("After change "+p_fromCountry.getD_countryName()+" has "+p_fromCountry.getD_armyDeployedOnCountry()+" troops");
 								System.out.println("After change "+p_fromCountry.getD_countryName()+" has "+p_fromCountry.getD_armyDeployedOnCountry()+" troops");
-								System.out.println("After change "+p_toCountry.getD_countryName()+" has "+p_toCountry.getD_armyDeployedOnCountry()+" troops" );
+								d_logEntryBuffer.log("After change "+p_toCountry.getD_countryName()+" has "+p_toCountry.getD_armyDeployedOnCountry()+" troops");
+								System.out.println("After change "+p_toCountry.getD_countryName()+" has "+p_toCountry.getD_armyDeployedOnCountry()+" troops");
 								return 0;
 							}
 							else
 							{
+								d_logEntryBuffer.log("Error: Can't move more armies than the armies in the country");
 								System.out.println(ColorCoding.red+"Error: Can't move more armies than the armies in the country"+ColorCoding.blank);
 								return 1;
 							}
 						}
 						else
 						{
+							d_logEntryBuffer.log("Error: Can't move negative armies");
 							System.out.println(ColorCoding.red+"Error: Can't move negative armies"+ColorCoding.blank);
 							return 1;
 						}
 					}
 					else
 					{
+						d_logEntryBuffer.log("Error: "+p_fromCountry.getD_countryName()+ " is not the neighbour of "+ p_toCountry.getD_countryName()+" troops can't be advanced or country can't be attacked");
 						System.out.println(ColorCoding.red+"Error: "+p_fromCountry.getD_countryName()+ " is not the neighbour of "+ p_toCountry.getD_countryName()+" troops can't be advanced or country can't be attacked"+ColorCoding.blank);
 						return 1;
 					}	
@@ -212,8 +230,9 @@ public class PlayersGameplay {
 				{
 					if(fortify_flag==0)
 					{
+						d_logEntryBuffer.log("Inside fortify");
 						System.out.println("Inside fortify");
-					Player l_toplayer = findPlayerWithCountry(p_playersArray,p_toCountry);
+						Player l_toplayer = findPlayerWithCountry(p_playersArray,p_toCountry);
 					
 					if(l_toplayer != null)
 					{
@@ -227,6 +246,7 @@ public class PlayersGameplay {
 						}
 						else
 						{
+							d_logEntryBuffer.log("Attack is not possible between "+p_fromCountry.getD_countryName()+" and "+p_toCountry.getD_countryName()+" because of diplomacy");
 							System.out.println(ColorCoding.red+"Attack is not possible between "+p_fromCountry.getD_countryName()+" and "+p_toCountry.getD_countryName()+" because of diplomacy"+ColorCoding.blank);
 							return 1;
 						}	
@@ -240,6 +260,7 @@ public class PlayersGameplay {
 					}
 					else
 					{
+						d_logEntryBuffer.log("Attack cannot be done on fortify phase");
 						System.out.println("Attack cannot be done on fortify phase");
 						return 1;
 					}
@@ -247,6 +268,7 @@ public class PlayersGameplay {
 			}
 			else
 			{
+				d_logEntryBuffer.log("Error: "+p_fromCountry.getD_countryName()+" doesn't belongs to player from where he wants to advance the troops");
 				System.out.println(ColorCoding.red+"Error: "+p_fromCountry.getD_countryName()+" doesn't belongs to player from where he wants to advance the troops"+ColorCoding.blank);
 				return 1;
 			}
@@ -255,11 +277,13 @@ public class PlayersGameplay {
 		{
 			if(!p_connectivity.getD_countryList().contains(p_fromCountry))
 			{
+				d_logEntryBuffer.log("Error: Country "+p_fromCountry.getD_countryName()+" doesn't belong to Map");
 				System.out.println(ColorCoding.red+"Error: Country "+p_fromCountry.getD_countryName()+" doesn't belong to Map"+ColorCoding.blank);
 				return 1;
 			}
 			else if(!p_connectivity.getD_countryList().contains(p_toCountry))
 			{
+				d_logEntryBuffer.log("Error: Country "+p_toCountry.getD_countryName()+" doesn't belong to Map");
 				System.out.println(ColorCoding.red+"Error: Country "+p_toCountry.getD_countryName()+" doesn't belong to Map"+ColorCoding.blank);
 				return 1;
 			}
@@ -452,8 +476,8 @@ public class PlayersGameplay {
 	 * @return 0 for successful removal of country and 1 if failed.
 	 *
 	 */	
-	public static int removeCountry(ArrayList<Player> p_playersArray,Country p_country,ArrayList<Continent> p_continent)
-	{
+	public static int removeCountry(ArrayList<Player> p_playersArray,Country p_country,ArrayList<Continent> p_continent) {
+		LogEntryBuffer d_logEntryBuffer= new LogEntryBuffer();
 		//if p_country is assigned to players
 		for(Player p:p_playersArray)
 		{
@@ -472,8 +496,10 @@ public class PlayersGameplay {
 			updateContinent(p_playersArray, p_continent);
 			return 0;
 		}
-		else
+		else {
+			d_logEntryBuffer.log("Error: "+p_country.getD_countryName()+" doesnot exist.");
 			System.out.println(ColorCoding.red+"Error: "+p_country.getD_countryName()+" doesnot exist."+ColorCoding.blank);
+		}
 		return 1;
 	}
 	
@@ -487,16 +513,21 @@ public class PlayersGameplay {
 	 * @return l_targetArmies refers to the number of armies left on that country after bomb card is used.
 	 */
 	public static int bomb(ArrayList<Player> p_playersArray,Country p_fromCountry,Country p_toCountry,ArrayList<Continent> p_continent) {
+		LogEntryBuffer d_logEntryBuffer= new LogEntryBuffer();
+		
 		int l_targetArmies=0;
+		
 		if(p_fromCountry.getD_neighbours().contains(p_toCountry.getD_countryId())) {
 			l_targetArmies=(int) Math.floor(p_toCountry.getD_armyDeployedOnCountry()/2);
 			p_toCountry.setD_armyDeployedOnCountry(l_targetArmies);
 			if(p_toCountry.getD_armyDeployedOnCountry()==0) {
 				removeCountry(p_playersArray, p_toCountry, p_continent);
 				updateContinent(p_playersArray, p_continent);
+				d_logEntryBuffer.log("The Country "+ p_toCountry + " is a now a neutral Country");
 				System.out.println("The Country "+ p_toCountry + " is a now a neutral Country");
 			}
 			else {
+				d_logEntryBuffer.log("The country "+ p_toCountry + "now has " + l_targetArmies+ " armies");
 				System.out.println("The country "+ p_toCountry + "now has " + l_targetArmies+ " armies");
 			}
 		}
@@ -512,9 +543,7 @@ public class PlayersGameplay {
 	 * @return 0 after successful update
 	 *
 	 */	
-	public static int updateContinent(ArrayList<Player> p_playersArray, ArrayList<Continent> p_continentList)
-	{
-		
+	public static int updateContinent(ArrayList<Player> p_playersArray, ArrayList<Continent> p_continentList) {
 		
 		for(Player p:p_playersArray)
 		{
@@ -553,6 +582,7 @@ public class PlayersGameplay {
 	 *
 	 */
 	public static boolean AirliftDeploy(String p_sourceCountryObj, String p_targetCountryObj, int p_armiesToAirlift, Player p_player) {
+		LogEntryBuffer d_logEntryBuffer= new LogEntryBuffer();
 		
 		String l_sourceCountryVar = p_sourceCountryObj;
 	    String l_targetCountryVar = p_targetCountryObj;
@@ -580,6 +610,7 @@ public class PlayersGameplay {
 			}
 		}
 	    if (flag==0) {
+	    	d_logEntryBuffer.log(l_player.getD_playerName() + " can not use Airlift card as it doesn't own the source country.");
             System.out.println(l_player.getD_playerName() + " can not use Airlift card as it doesn't own the source country.");
             return false;
 	    }
@@ -592,11 +623,13 @@ public class PlayersGameplay {
 			}
 		}
 	    if (flag1==0) {
+	    	d_logEntryBuffer.log(l_player.getD_playerName() + " can not use Airlift card as it doesn't own the target country.");
             System.out.println(l_player.getD_playerName() + " can not use Airlift card as it doesn't own the target country.");
             return false;
 	    }
 	    
 	    if(l_sourceCountry.getD_armyDeployedOnCountry()<l_armiesToAirlift) {
+	    	d_logEntryBuffer.log(l_player.getD_playerName() + " doesn't have enough army on this country to airlift.");
 	    	System.out.println(l_player.getD_playerName() + " doesn't have enough army on this country to airlift.");
             return false;
 	    }
@@ -625,6 +658,7 @@ public class PlayersGameplay {
 	 *
 	 */
 	public static boolean Blockade(String p_sourceCountryObj,Player p_player,ArrayList<Player> p_playersArray,ArrayList<Continent> p_continent) {
+		LogEntryBuffer d_logEntryBuffer= new LogEntryBuffer();
 		
 		String l_sourceCountry = p_sourceCountryObj;
 	    Player l_player = p_player;
@@ -633,20 +667,21 @@ public class PlayersGameplay {
 	    l_country=	p_player.getD_Country();
 	    Country l_sourceCountrynew = new Country();
 	    
-		for(Country c:l_country)
-		{
+		for(Country c:l_country) {
 			if(c.getD_countryName().equals(l_sourceCountry)) {
 				
 				flag=1;
 				l_sourceCountrynew=c;
-				}
+			}
 		}
 	    if (flag==0) {
+	    	d_logEntryBuffer.log(l_player.getD_playerName() + " can not use Blockade card as it doesn't own "+ l_sourceCountrynew.getD_countryName());
             System.out.println(l_player.getD_playerName() + " can not use Blockade card as it doesn't own "+ l_sourceCountrynew.getD_countryName());
             return false;
 	    }
 	    
 	    if(l_sourceCountrynew.getD_armyDeployedOnCountry()<0) {
+	    	d_logEntryBuffer.log(l_player.getD_playerName() + " doesn't have enough army on this country to blockade.");
 	    	System.out.println(l_player.getD_playerName() + " doesn't have enough army on this country to blockade.");
             return false;
 	    }
@@ -659,6 +694,7 @@ public class PlayersGameplay {
 	    l_neutralCountry.add(l_sourceCountrynew);
 	    
 		updateContinent(p_playersArray, p_continent);
+		d_logEntryBuffer.log("The Country "+ p_sourceCountryObj + " is a now a neutral Country with army count "+l_sourceCountrynew.getD_armyDeployedOnCountry());
 		System.out.println("The Country "+ p_sourceCountryObj + " is a now a neutral Country with army count "+l_sourceCountrynew.getD_armyDeployedOnCountry());
 
 	    return true;
@@ -668,8 +704,7 @@ public class PlayersGameplay {
 	 *
 	 * This method will generate random cards and adds to players if player capture the new territory.
 	 */	
-	public static String generateCard()
-	{
+	public static String generateCard() {
 		String[] l_cards = {"bomb","blockade","airlift","diplomacy"};
 		Random ran = new Random();
 		 
@@ -677,8 +712,7 @@ public class PlayersGameplay {
 		
 	}
 	
-	public static Player winnerPlayer(ArrayList<Player> p_players,Connectivity p_connectivity)
-	{
+	public static Player winnerPlayer(ArrayList<Player> p_players,Connectivity p_connectivity) {
 		Player l_winner = new Player();
 		for(Player p:p_players)
 		{
@@ -702,17 +736,15 @@ public class PlayersGameplay {
 	 * 
 	 */	
 	public static void negotiate(Player p_player,ArrayList<Player> p_playersArray, String p_toPlayerID) {
-		
+		LogEntryBuffer d_logEntryBuffer= new LogEntryBuffer();
 		
 		p_player.addDiplomacyWith(Integer.parseInt(p_toPlayerID));
 		
-		for(Player p: p_playersArray)
-		{
-			if(p.getD_playerId() == Integer.parseInt(p_toPlayerID))
-			{
+		for(Player p: p_playersArray) {
+			if(p.getD_playerId() == Integer.parseInt(p_toPlayerID)) {
 				p.addDiplomacyWith(p_player.getD_playerId());
 			}
-			
+			d_logEntryBuffer.log(p.getD_playerName()+" = "+p.getDiplomacyWith());
 			System.out.println(p.getD_playerName()+" = "+p.getDiplomacyWith());
 		}
 		
