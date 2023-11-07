@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import Controllers.GameEngine;
 import Models.Country;
+import Models.LogEntryBuffer;
 import Models.Order;
 import Models.Player;
 import Tools.ColorCoding;
@@ -37,6 +38,8 @@ public class Attack extends MainPlay {
 	}
 
 	public void attack(Connectivity l_connectivity) {
+		LogEntryBuffer d_logEntryBuffer= new LogEntryBuffer();
+		
 		int terminateFlag=0;
 		int winner_check=0;
 		int l_winner=0;
@@ -50,6 +53,7 @@ public class Attack extends MainPlay {
 			ArrayList<String> playerNames=new ArrayList<>();
 			if(ge.getCheckIfTest() && l_testFlag == 3)
 			{
+				d_logEntryBuffer.log("For the testcase, Winner is assigned");
 				System.out.println("For the testcase, Winner is assigned\n");
 				l_playersArray.get(0).setD_Country(l_connectivity.getD_countryList());
 			}
@@ -63,6 +67,7 @@ public class Attack extends MainPlay {
 			if(PlayersGameplay.winnerPlayer(l_playersArray, l_connectivity)!=null)
 			{
 				Player winner = PlayersGameplay.winnerPlayer(l_playersArray, l_connectivity);
+				d_logEntryBuffer.log("CONGRATULATIONS!!! Our Winner is:"+winner.getD_playerName());
 				System.out.println("CONGRATULATIONS!!! Our Winner is:"+winner.getD_playerName());
 				l_winner++;
 				System.exit(0);
@@ -75,7 +80,7 @@ public class Attack extends MainPlay {
 			do {
 			if(playerNames.contains(l_playersArray.get(i).getD_playerName()))
 				continue;
-			//d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+"Asked whether he/she wants to give a command");
+			d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+"Asked whether he/she wants to give a command");
 			System.out.println(ColorCoding.cyan+"\n"+l_playersArray.get(i).getD_playerName()+"!! Do you want to give command or pass?(Press enter to continue / pass)"+ColorCoding.blank);
 			Scanner l_sc = new Scanner(System.in);
 			String l_passContinue = "";
@@ -99,7 +104,7 @@ public class Attack extends MainPlay {
 				break;
 			}
 			Order l_order=new Order();
-			//d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+ "Asked for Command");
+			d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+ "Asked for Command");
 			System.out.println("\nEnter the Command for player: "+l_playersArray.get(i).getD_playerName());
 			System.out.println("Cards available: "+l_playersArray.get(i).getCards());
 			String l_orderinput = "";
