@@ -115,6 +115,7 @@ public class GameEngine {
 				System.out.println("| 8.  End                     : end game                                                            |");
 				System.out.println("| 9.  Any                     : next phase                                                          |");
 				System.out.println(" ====================================================================================================");
+				d_logEntryBuffer.log("enter a " + gamePhase.getClass().getSimpleName() + " phase command: ");
 				System.out.println("enter a " + gamePhase.getClass().getSimpleName() + " phase command: ");
 				mycommand = phase_command.nextLine();
 				l_commands = mycommand.split(" "); 
@@ -135,11 +136,17 @@ public class GameEngine {
 				case "validatemap":
 //					d_logEntryBuffer.log("Validating the loaded Map");
 					if(l_check_if_map_loaded) gamePhase.validateMap(l_connectivity);
-					else System.out.println(ColorCoding.red+"ERROR: Map cannot be validated before loading it"+ColorCoding.blank);
+					else {
+						d_logEntryBuffer.log("ERROR: Map cannot be validated before loading it");
+						System.out.println(ColorCoding.red+"ERROR: Map cannot be validated before loading it"+ColorCoding.blank);
+					}
 					break;
 				case "showmap":
 					if(l_check_if_map_loaded) gamePhase.viewMap(l_connectivity.getD_continentList(),l_connectivity.getD_countryList(),Play.getL_playersArray());
-					else System.out.println(ColorCoding.red+"ERROR: Map cannot be viewed before loading it"+ColorCoding.blank);
+					else {
+						d_logEntryBuffer.log("ERROR: Map cannot be viewed before loading it");
+						System.out.println(ColorCoding.red+"ERROR: Map cannot be viewed before loading it"+ColorCoding.blank);
+					}
 					break;
 				case "help":
 					gamePhase.help();
@@ -149,7 +156,10 @@ public class GameEngine {
 					break;
 				case "editcontinent":
 					if(l_check_if_map_loaded) gamePhase.editContinent(l_commands, l_connectivity);
-					else System.out.println(ColorCoding.red+"ERROR: Map cannot be edited before loading it"+ColorCoding.blank);
+					else {
+						d_logEntryBuffer.log("ERROR: Map cannot be edited before loading it");
+						System.out.println(ColorCoding.red+"ERROR: Map cannot be edited before loading it"+ColorCoding.blank);
+					}
 					break;	
 				case "editneighbor":
 					gamePhase.editNeighbor(l_commands, l_connectivity);
@@ -180,6 +190,7 @@ public class GameEngine {
 					gamePhase.endGame();
 					break;
 				default: 
+					d_logEntryBuffer.log("This command does not exist");
 					System.out.println("This command does not exist");
 				}
 				}
