@@ -105,7 +105,7 @@ public class GameEngine {
 				System.out.println("| 5.  Play:MainPlay:Reinforce : deploy                                                              |");
 				System.out.println("| 6.  Play:MainPlay:Attack    : advance, bomb, airlift, blockade, negotiate                         |");
 				System.out.println("| 7.  Play:MainPlay:Fortify   : fortify                                                             |");
-				System.out.println("| 8.  End                     : end game                                                             |");
+				System.out.println("| 8.  End                     : end game                                                            |");
 				System.out.println("| 9.  Any                     : next phase                                                          |");
 				System.out.println(" ====================================================================================================");
 				System.out.println("enter a " + gamePhase.getClass().getSimpleName() + " phase command: ");
