@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import Models.LogEntryBuffer;
 
+/**
+ * This class is used for validating the graph representation of map
+ */
 public class validateGraph {
 	public int d_noOfCountries;
 	public LinkedList[] d_adjacentCountriesList;
@@ -18,7 +21,6 @@ public class validateGraph {
 
         DFS(1, adjacencyList, visited);
         boolean connected = true; 
-       // System.out.println("test"+visited.length);
         for (int i = 1; i <visited.length ; i++) { 
             if(!visited[i]){ 
                 connected = false; 
@@ -41,6 +43,12 @@ public class validateGraph {
         }
         
     }
+	/**
+	 * 
+	 * @param source refers to the source country from where we are about to traverse from
+	 * @param adjacencyList refers to the adjacent countries/neighbors list
+	 * @param visited refers to the list of visited countries in the traversal
+	 */
 	
 	public void DFS(int source, LinkedList<Integer> adjacencyList [], boolean[] visited){ 
 		  
@@ -52,6 +60,12 @@ public class validateGraph {
             } 
         }
     }
+	/**
+	 * 
+	 * @param p_connectivity refers to the connectivity object 
+	 * @param graph is the graph representation of the map
+	 * @return true if continents are connected; false if continents are not connected
+	 */
 	public boolean continentConnection(Connectivity p_connectivity,validateGraph graph) {
 		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 		

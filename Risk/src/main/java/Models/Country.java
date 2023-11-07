@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * The class Country defines Countries and it's properties such as ID, Name, Continent ID and list of neighbours.
+ * The class Country defines Countries and it's properties such as ID, Name, Continent ID, list of neighbors and number of armies deployed on the country.
  *
  */
 
@@ -54,8 +54,8 @@ public class Country {
 	
 	/**
 	 * Sets the list of neighbours.
-	 * @param l_countryId refers to the country ID.
-	 * @param l_neighbouringCountries refers to the neighbouring countries.
+	 * @param p_countryId refers to the country ID.
+	 * @param p_neighbouringCountries refers to the neighbouring countries.
 	 */
 
 	public void setD_neighbours(int p_countryId,HashMap<Integer,ArrayList<Integer>> p_neighbouringCountries) {
@@ -72,7 +72,7 @@ public class Country {
 	}
 	
 	/**
-	 * Gets the continent ID.4
+	 * Gets the continent ID.
 	 * @return continent ID
 	 */
 
@@ -135,14 +135,29 @@ public class Country {
 		return " ";
 		
 	}
+	
+	/**
+	 * Used to get the number of armies currently deployed on the country
+	 * @return army count of the country
+	 */
 	public int getD_armyDeployedOnCountry() {
 		return d_armyDeployedOnCountry;
 	}
-
+	
+	/**
+	 * 
+	 * @param d_armyDeployedOnCountry Set the number of armies currently deployed on the country
+	 */
 	public void setD_armyDeployedOnCountry(int d_armyDeployedOnCountry) {
 		this.d_armyDeployedOnCountry = d_armyDeployedOnCountry;
 	}
 	
+	/**
+	 * 
+	 * @param p_countryList List of objects of individual countries 
+	 * @param p_countryName Name of particular country
+	 * @return name of country if country is present; null if such country does not exist
+	 */
 	public Country getCountryFromName(ArrayList<Country> p_countryList,String p_countryName)
 	{
 		for(Country c:p_countryList)
