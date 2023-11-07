@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import Models.Continent;
 import Models.Country;
+import Models.LogEntryBuffer;
 import Tools.ColorCoding;
 import Tools.Connectivity;
 import state.Phase;
@@ -17,6 +18,8 @@ import state.*;
  *  It contains a State object (in this example the State class is the class Phase). 
  */
 public class GameEngine {
+	
+	LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 
 	/**
 	 * State object of the GameEngine 
@@ -42,6 +45,7 @@ public class GameEngine {
 	 */
 	public void setPhase(Phase p_phase) {
 		gamePhase = p_phase;
+		d_logEntryBuffer.log("new phase: " + p_phase.getClass().getSimpleName());
 		System.out.println("new phase: " + p_phase.getClass().getSimpleName());
 	}
 	
@@ -66,6 +70,7 @@ public class GameEngine {
 	 */
 	
 	public void start() {
+		d_logEntryBuffer.clearFile();
 		Connectivity l_connectivity=new Connectivity();
 		
 		l_connectivity.setD_continentList(new ArrayList<Continent>());
@@ -75,6 +80,7 @@ public class GameEngine {
 		Scanner phase_command = new Scanner(System.in);
 		String[] l_commands;
 		do {
+			d_logEntryBuffer.log("Choice of Starting the Game or Ending it");
 			System.out.println("1. Edit Map");
 			System.out.println("2. Play Game");
 			System.out.println("3. Quit");
@@ -90,6 +96,7 @@ public class GameEngine {
 				setPhase(new PlaySetup(this));
 				break;
 			case 3:
+				d_logEntryBuffer.log("Bye!");
 				System.out.println("Bye!");
 				return;
 			}
