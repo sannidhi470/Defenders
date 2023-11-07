@@ -8,7 +8,7 @@ import Models.Player;
 import dnl.utils.text.table.TextTable;
 
 /**
- * The class ViewMap displays the map in an organised manner.
+ * The class ViewMap displays the map in an tabular manner.
  *
  */
 
@@ -16,9 +16,10 @@ public class ViewMap {
 	
 	/**
 	 *
-	 * This method is used to display the map in an organised manner.
+	 * This method is used to display the map in an tabular manner.
 	 * @param p_continentList refers to the list of continents.
 	 * @param p_countryList refers to the list of countries.
+	 * @param p_playerList refers to the list of players.
 	 *
 	 */
 

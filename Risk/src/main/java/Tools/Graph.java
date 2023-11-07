@@ -2,9 +2,17 @@ package Tools;
 
 import java.util.LinkedList;
 
+/**
+ * Graph class is used to recreate .map file in the graph format
+ * 
+ */
 public class Graph extends validateGraph{
 	 
-	
+	/**
+	 * 
+	 * @param d_noOfCountries refers to the total number of countries in the map
+	 * @param p_connectivity refers to the connectivity object
+	 */
 	public Graph(int d_noOfCountries,Connectivity p_connectivity)
 	{
 		this.d_noOfCountries=d_noOfCountries;
@@ -20,6 +28,11 @@ public class Graph extends validateGraph{
 		}
 
 	}
+	/**
+	 * 
+	 * @param d_noOfCountries refers to the total number of countries
+	 * @param p_countryId refers to the countryID of a particular country
+	 */
 	public void addCountries(int d_noOfCountries,int p_countryId)
 	{
 		d_adjacentCountriesList[d_noOfCountries].add(p_countryId);
