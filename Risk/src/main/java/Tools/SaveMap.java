@@ -12,12 +12,12 @@ import Models.LogEntryBuffer;
 
 public class SaveMap {
 	
-	/**
-	 *
-	 * This method is used to save the map once user creates a new map or make changes to the existing ones.
-	 * @param p_connectivity 
-	 *
-	 */
+/**
+ * 
+ * This method is used to save the map once user creates a new map or make changes to the existing ones.
+ * @param p_connectivity refers to the connectivity object
+ * @return 0 in case of successful save of map; 1 in case of unsuccessful map save
+ */
 
 	public static int saveMap(Connectivity p_connectivity, String p_mapName) {
 		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
