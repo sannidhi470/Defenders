@@ -172,10 +172,10 @@ public class Player {
 	 */
 	
 	public void setD_Order(Order p_order) {
-		//LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 		d_order = p_order;
 		this.d_armyCount = this.d_armyCount - p_order.getD_numberOfArmies();
-		//d_logEntryBuffer.log("Army count changed to "+ d_armyCount);
+		d_logEntryBuffer.log("Army count changed to "+ d_armyCount);
 		System.out.println("Army count changed to "+ d_armyCount);
 		
 	}

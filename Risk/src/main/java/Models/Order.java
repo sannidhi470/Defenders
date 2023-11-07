@@ -166,8 +166,10 @@ public class Order {
 				}
 					
 				
-				else
+				else {
+					d_logEntryBuffer.log(p_player.getD_playerName()+" doesn't have diplomacy card");
 					System.out.println(ColorCoding.red+p_player.getD_playerName()+" doesn't have diplomacy card "+ColorCoding.blank);
+				}
 				break;
 			}
 		
