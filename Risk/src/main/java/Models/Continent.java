@@ -2,7 +2,7 @@ package Models;
 import java.util.*;
 
 /**
- * The class Continent defines Continents and it's properties such as ID, Name, Control Value and list of countries it has.
+ * The class Continent defines Continents and it's properties such as ID, Name, Bonus Value and list of countries it has.
  *
  */
 
@@ -27,7 +27,7 @@ public class Continent {
 	 * It initiates a new continent.
 	 * @param p_continentId refers to the continent id.
 	 * @param p_continentName refers to the name of the continent.
-	 * @param p_continentArmyValue refers to the number of armies deployed in the continent.
+	 * @param p_continentBonusValue refers to the bonus value associated to the continent.
 	 * @param p_countries refers to the list of countries in that particular continent.
 	 */
 	
@@ -69,8 +69,8 @@ public class Continent {
 	}
 	
 	/**
-	 * Gets the number of armies for that continent.
-	 * @return the continent army value.
+	 * Gets the bonus value for that continent.
+	 * @return the bonus value.
 	 * 
 	 */
 
@@ -107,18 +107,18 @@ public class Continent {
 	}
 	
 	/**
-	 * Gets the continent army value.
-	 * @return continent army value
+	 * Gets the continent bonus value.
+	 * @return continent bonus value
 	 *
 	 */
 	
-	public int getD_d_continentArmyValue() {
+	public int getD_d_continentBonusValue() {
 		return d_continentBonusValue;
 	}
 	
 	/**
-	 * Sets the continent army value.
-	 * @param army value
+	 * Sets the continent bonus value.
+	 * @param bonus value
 	 */
 
 	public void setD_continentBonusValue(int p_continentArmyValue) {

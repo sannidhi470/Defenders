@@ -25,7 +25,7 @@ public class SaveMap {
 		ArrayList<String> l_mapData=new ArrayList<String>();
 		l_mapData.add("[continents]"+"\n");
 		for(int i=0;i<p_connectivity.getD_continentList().size();i++)
-			l_mapData.add(p_connectivity.getD_continentList().get(i).getD_continentName()+" "+p_connectivity.getD_continentList().get(i).getD_d_continentArmyValue()+"\n");
+			l_mapData.add(p_connectivity.getD_continentList().get(i).getD_continentName()+" "+p_connectivity.getD_continentList().get(i).getD_d_continentBonusValue()+"\n");
 		l_mapData.add("\n");
 		l_mapData.add("[countries]"+"\n");
 		for(int i=0;i<p_connectivity.getD_countryList().size();i++) 
