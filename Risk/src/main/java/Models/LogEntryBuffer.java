@@ -8,7 +8,9 @@ import java.io.PrintWriter;
 import Tools.Observable;
 import Views.LogWriter;
 
-
+/**
+ * This class refers to the log entry into the file.
+ */
 public class LogEntryBuffer implements Observable {
 	
 	private LogWriter d_logWriter= new LogWriter();

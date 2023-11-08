@@ -148,8 +148,6 @@ public class Order {
 					p_player.removeCard("blockade");
 				}
 					else
-				
-					//System.out.println(""+l_getCountry.get_nameFromId(p_connectivity.getD_countryList(), Integer.parseInt(l_orderContent[1])));
 					System.out.println(ColorCoding.red+p_player.getD_playerName()+" doesn't have blockade card "+ColorCoding.blank);
 				break;
 			case "airlift":
@@ -170,8 +168,6 @@ public class Order {
 				if(p_player.getCards().contains("diplomacy"))
 				{
 					PlayersGameplay.negotiate(p_player,Play.getL_playersArray(),l_orderContent[1]);
-					
-					//remove diplomacy card from players
 					p_player.removeCard("diplomacy");
 				}
 					
