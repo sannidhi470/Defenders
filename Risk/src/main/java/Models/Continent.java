@@ -2,7 +2,7 @@ package Models;
 import java.util.*;
 
 /**
- * The class Continent defines Continents and it's properties such as ID, Name, Control Value and list of countries it has.
+ * The class Continent defines Continents and it's properties such as ID, Name, Bonus Value and list of countries it has.
  *
  */
 
@@ -10,7 +10,7 @@ public class Continent {
 
 	private int d_continentId;
 	private String d_continentName;
-	private int d_continentArmyValue;
+	private int d_continentBonusValue;
 	private List<Country> d_countries;
 	
 	/**
@@ -27,15 +27,15 @@ public class Continent {
 	 * It initiates a new continent.
 	 * @param p_continentId refers to the continent id.
 	 * @param p_continentName refers to the name of the continent.
-	 * @param p_continentArmyValue refers to the number of armies deployed in the continent.
+	 * @param p_continentBonusValue refers to the bonus value associated to the continent.
 	 * @param p_countries refers to the list of countries in that particular continent.
 	 */
 	
-	public Continent(int p_continentId, String p_continentName, int p_continentArmyValue, List<Country> p_countries) {
+	public Continent(int p_continentId, String p_continentName, int p_continentBonusValue, List<Country> p_countries) {
 		super();
 		this.d_continentId = p_continentId;
 		this.d_continentName = p_continentName;
-		this.d_continentArmyValue = p_continentArmyValue;
+		this.d_continentBonusValue = p_continentBonusValue;
 		this.d_countries = p_countries;
 	}
 	
@@ -69,13 +69,13 @@ public class Continent {
 	}
 	
 	/**
-	 * Gets the number of armies for that continent.
-	 * @return the continent army value.
+	 * Gets the bonus value for that continent.
+	 * @return the bonus value.
 	 * 
 	 */
 
-	public int getD_continentArmyValue() {
-		return d_continentArmyValue;
+	public int getD_continentBonusValue() {
+		return d_continentBonusValue;
 	}
 	
 	/**
@@ -107,22 +107,22 @@ public class Continent {
 	}
 	
 	/**
-	 * Gets the continent army value.
-	 * @return continent army value
+	 * Gets the continent bonus value.
+	 * @return continent bonus value
 	 *
 	 */
 	
-	public int getD_d_continentArmyValue() {
-		return d_continentArmyValue;
+	public int getD_d_continentBonusValue() {
+		return d_continentBonusValue;
 	}
 	
 	/**
-	 * Sets the continent army value.
-	 * @param army value
+	 * Sets the continent bonus value.
+	 * @param bonus value
 	 */
 
-	public void setD_continentArmyValue(int p_continentArmyValue) {
-		this.d_continentArmyValue = p_continentArmyValue;
+	public void setD_continentBonusValue(int p_continentArmyValue) {
+		this.d_continentBonusValue = p_continentArmyValue;
 	}
 	
 	/**

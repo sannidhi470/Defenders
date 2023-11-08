@@ -19,6 +19,24 @@ public class Connectivity {
 	
 	private String d_FilepathName;
 	
+	private String d_mapName;
+	
+	/**
+	 * Function is used to get the name of current map
+	 * @return name of map
+	 */	
+	public String getD_mapName() {
+		return d_mapName;
+	}
+	
+	/**
+	 * Used to set the name of current map
+	 * @param d_mapName name of map to be set
+	 */
+	public void setD_mapName(String d_mapName) {
+		this.d_mapName = d_mapName;
+	}
+
 	/**
 	 * Gets the File path address.
 	 * @return file path

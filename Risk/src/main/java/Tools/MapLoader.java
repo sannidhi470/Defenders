@@ -2,6 +2,8 @@ package Tools;
 import java.util.*;
 import Models.Continent;
 import Models.Country;
+import Models.LogEntryBuffer;
+
 import java.io.*;
 import Models.Map;
 
@@ -12,16 +14,17 @@ import Models.Map;
 
 public class MapLoader {
 	
-	/**
-	 *
+/**
+ * 
 	 * This method is used to load the Map selected by the user whether pre-defined or user made.
 	 * @param p_connectivity
 	 * @param p_mapName refers to the Name of the map being loaded.
-	 *
-	 */
+	 * @return 0 in-case of successful loading of map; 1 in-case unsuccessful loading of map
+ */
 	
-	public static void loadMap(Connectivity p_connectivity,String p_mapName)
-	{
+	public static int loadMap(Connectivity p_connectivity,String p_mapName) {
+		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
+		
 		Scanner l_input = new Scanner(System.in);
 		String l_fileName = p_mapName;
 		String l_copyFileName=l_fileName;
@@ -31,6 +34,7 @@ public class MapLoader {
 		try 
 		{	   
 			File f = new File("");
+			p_connectivity.setD_mapName(p_mapName);
 			String absolute = f.getAbsolutePath();
             p_connectivity.setD_pathName(absolute+ File.separator+"src/main/resources");
             l_fileName = absolute + File.separator + "src/main/resources" + File.separator + l_fileName+".map";
@@ -93,7 +97,7 @@ public class MapLoader {
     	   			Continent l_continentObj=new Continent();
     	   			l_continentObj.setD_continentId(l_continentId);
     	   			l_continentObj.setD_continentName(aArr[0]);
-    	   			l_continentObj.setD_continentArmyValue(Integer.parseInt(aArr[1]));
+    	   			l_continentObj.setD_continentBonusValue(Integer.parseInt(aArr[1]));
     	   			l_continentObj.setD_countries(l_continentObj.d_getCountryFromContinentId(l_continentId, l_countryList));
     	   			l_continentId++;
     	   			continentList.add(l_continentObj);	
@@ -107,22 +111,26 @@ public class MapLoader {
     	       }
     	      try
     	       {
+    	    	  d_logEntryBuffer.log("Map "+p_mapName+".map"+" has been successfully loaded...");
     	    	  System.out.println(ColorCoding.green+"Map "+p_mapName+".map"+" has been successfully loaded..."+ColorCoding.blank);
     	       } 
     	       catch (Exception e)
     	       {
     	    	   System.out.println("Map could not be loaded properly");
-    	    	   return;
+    	    	   return -1;
     	       }
+    	      return 0;
     	 	 
      }
      else
      {
     	 p_connectivity.setD_continentList(new ArrayList<Continent>());
     	 p_connectivity.setD_countryList(new ArrayList<Country>());
+    	 d_logEntryBuffer.log("Map does not exist. Creating a map...");
     	 System.out.println(ColorCoding.green+"Map does not exist. Creating a map..."+ColorCoding.blank);
     	 MapCreater.createMap(l_copyFileName,p_connectivity.getD_pathName());
-    	 SaveMap.saveMap(p_connectivity);
+    	 SaveMap.saveMap(p_connectivity, l_copyFileName);
+    	 return 1;
   	 }
        
 	}

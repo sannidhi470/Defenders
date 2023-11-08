@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import Models.Continent;
 import Models.Country;
+import Models.LogEntryBuffer;
 import Tools.ColorCoding;
 import Tools.Connectivity;
 import state.Phase;
@@ -14,16 +15,38 @@ import state.*;
 
 /**
  *  Context of the State pattern. 
- *  It contains a State object (in this example the State class is the class Phase). 
+ *  It contains a State object (Here, State class is the class Phase). 
  */
-public class GameEngine {
+public class GameEngine 
+{
+	
+	LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 
 	/**
 	 * State object of the GameEngine 
 	 */
-	private Phase gamePhase;
-	private Connectivity connectivity;
+	private Phase l_gamePhase;
+	private Connectivity l_connectivity;
+	private boolean l_checkIfTest = false;
 	
+    /**
+     * Gets the value indicating if the GameEngine is in test mode.
+     * @return true if the GameEngine is in test mode, false otherwise.
+     */
+	public boolean getCheckIfTest() 
+	{
+		return l_checkIfTest;
+	}
+
+    /**
+     * Sets the test mode for the GameEngine.
+     * @param l_checkIfTest true to enable test mode, false otherwise.
+     */
+	public void setCheckIfTest(boolean l_checkIfTest) 
+	{
+		this.l_checkIfTest = l_checkIfTest;
+	}
+
 	int mystart;
 	String mycommand;
 
@@ -31,9 +54,29 @@ public class GameEngine {
 	 * Method that allows the GameEngine object to change its state.  
 	 * @param p_phase new state to be set for the GameEngine object.
 	 */
-	public void setPhase(Phase p_phase) {
-		gamePhase = p_phase;
+	public void setPhase(Phase p_phase) 
+	{
+		l_gamePhase = p_phase;
+		d_logEntryBuffer.log("new phase: " + p_phase.getClass().getSimpleName());
 		System.out.println("new phase: " + p_phase.getClass().getSimpleName());
+	}
+	
+    /**
+     * Gets the name of the current phase.
+     * @return The name of the current phase.
+     */
+	public String getPhaseName()
+	{
+		return l_gamePhase.getClass().getSimpleName();
+	}
+	
+    /**
+     * Gets the current phase object.
+     * @return The current phase object.
+     */
+	public Phase getPhase()
+	{
+		return l_gamePhase;
 	}
 	
 	/**
@@ -46,15 +89,19 @@ public class GameEngine {
 	 *      have a different behavior. 
 	 */
 	
-	public void start() {
+	public void start() 
+	{
+		d_logEntryBuffer.clearFile();
 		Connectivity l_connectivity=new Connectivity();
 		
 		l_connectivity.setD_continentList(new ArrayList<Continent>());
 		l_connectivity.setD_countryList(new ArrayList<Country>());
+		boolean l_check_if_map_loaded = false;
 		Scanner keyboard = new Scanner(System.in);
 		Scanner phase_command = new Scanner(System.in);
 		String[] l_commands;
 		do {
+			d_logEntryBuffer.log("Choice of Starting the Game or Ending it");
 			System.out.println("1. Edit Map");
 			System.out.println("2. Play Game");
 			System.out.println("3. Quit");
@@ -62,19 +109,19 @@ public class GameEngine {
 			mystart = keyboard.nextInt();
 			switch (mystart) {
 			case 1:
-				// Set the state to Preload
 				setPhase(new Preload(this));
 				break;
 			case 2:
-				// Set the state to PlaySetup
 				setPhase(new PlaySetup(this));
 				break;
 			case 3:
+				d_logEntryBuffer.log("Bye!");
 				System.out.println("Bye!");
 				return;
 			}
 			
-			do {
+			do 
+			{
 				System.out.println(" ====================================================================================================");
 				System.out.println("| #   PHASE                   : command                                                             |"); 
 				System.out.println(" ====================================================================================================");
@@ -85,84 +132,103 @@ public class GameEngine {
 				System.out.println("| 5.  Play:MainPlay:Reinforce : deploy                                                              |");
 				System.out.println("| 6.  Play:MainPlay:Attack    : advance, bomb, airlift, blockade, negotiate                         |");
 				System.out.println("| 7.  Play:MainPlay:Fortify   : fortify                                                             |");
-				System.out.println("| 8.  End                     : end game                                                             |");
+				System.out.println("| 8.  End                     : end game                                                            |");
 				System.out.println("| 9.  Any                     : next phase                                                          |");
 				System.out.println(" ====================================================================================================");
-				System.out.println("enter a " + gamePhase.getClass().getSimpleName() + " phase command: ");
+				d_logEntryBuffer.log("enter a " + l_gamePhase.getClass().getSimpleName() + " phase command: ");
+				System.out.println("enter a " + l_gamePhase.getClass().getSimpleName() + " phase command: ");
 				mycommand = phase_command.nextLine();
 				l_commands = mycommand.split(" "); 
 				System.out.println(" =================================================");
-				//
-				// Calls the method corresponding to the action that the user has selected. 
-				// Depending on what it the current state object, these method calls will  
-				// have a different implementation. 
-				//
 				
 				if(l_commands[0]!= null)
 				{
-				switch (l_commands[0]) {
+				switch (l_commands[0]) 
+				{
 				case "loadmap":					
-					gamePhase.loadMap(l_connectivity,l_commands);
+					l_gamePhase.loadMap(l_connectivity,l_commands);
+					l_check_if_map_loaded = true;
 					break;
 				case "validatemap":
 //					d_logEntryBuffer.log("Validating the loaded Map");
-					System.out.println(ColorCoding.cyan+"\n--------Validating the loaded map--------\n"+ColorCoding.blank);
-					gamePhase.validateMap(l_connectivity);
+					if(l_check_if_map_loaded) l_gamePhase.validateMap(l_connectivity);
+					else {
+						d_logEntryBuffer.log("ERROR: Map cannot be validated before loading it");
+						System.out.println(ColorCoding.red+"ERROR: Map cannot be validated before loading it"+ColorCoding.blank);
+					}
 					break;
 				case "showmap":
-					gamePhase.viewMap(l_connectivity.getD_continentList(),l_connectivity.getD_countryList(),Play.getL_playersArray());
+					if(l_check_if_map_loaded) l_gamePhase.viewMap(l_connectivity.getD_continentList(),l_connectivity.getD_countryList(),Play.getL_playersArray());
+					else {
+						d_logEntryBuffer.log("ERROR: Map cannot be viewed before loading it");
+						System.out.println(ColorCoding.red+"ERROR: Map cannot be viewed before loading it"+ColorCoding.blank);
+					}
 					break;
 				case "help":
-					gamePhase.help();
+					l_gamePhase.help();
 					break;
 				case "editcountry":
-					gamePhase.editCountry(l_commands, l_connectivity);
+					l_gamePhase.editCountry(l_commands, l_connectivity);
 					break;
 				case "editcontinent":
-					gamePhase.editContinent(l_commands, l_connectivity);
+					if(l_check_if_map_loaded) l_gamePhase.editContinent(l_commands, l_connectivity);
+					else {
+						d_logEntryBuffer.log("ERROR: Map cannot be edited before loading it");
+						System.out.println(ColorCoding.red+"ERROR: Map cannot be edited before loading it"+ColorCoding.blank);
+					}
 					break;	
 				case "editneighbor":
-					gamePhase.editNeighbor(l_commands, l_connectivity);
+					l_gamePhase.editNeighbor(l_commands, l_connectivity);
 					break;						
 				case "savemap":
-					//setPhase(new PostLoad(this));
-					gamePhase.saveMap(l_connectivity);
+					l_gamePhase.saveMap(l_connectivity, l_commands[1]);
 					break;				
 				case "gameplayer":
-					gamePhase.setPlayers(l_commands);
+					l_gamePhase.setPlayers(l_commands);
 					break;
 				case "assigncountries":
-					if(gamePhase.assignCountries(l_connectivity))
+					if(l_gamePhase.assignCountries(l_connectivity))
 					{
-					gamePhase.next();
+					l_gamePhase.next();
 					}
 					break;
 				case "deploy":
-					gamePhase.reinforce(l_connectivity);
+					l_gamePhase.reinforce(l_connectivity);
 					break;
 				case "attack":
-					gamePhase.attack(l_connectivity);
+					l_gamePhase.attack(l_connectivity);
 					break;
 				case "fortify":
-					gamePhase.fortify();
+					l_gamePhase.fortify(l_connectivity);
 					break;
 				case "exit":
-					gamePhase.endGame();
+					l_gamePhase.endGame();
 					break;
 				default: 
+					d_logEntryBuffer.log("This command does not exist");
 					System.out.println("This command does not exist");
 				}
 				}
-			} while (!(gamePhase instanceof End));
+			} while (!(l_gamePhase instanceof End));
 		} while (l_commands[0] != "exit");
 		keyboard.close();
 	}
 
-	public Connectivity getConnectivity() {
-		return connectivity;
+    /**
+     * Gets the connectivity object.
+     * @return Connectivity object.
+     */
+	public Connectivity getConnectivity() 
+	{
+		return l_connectivity;
 	}
 
-	public void setConnectivity(Connectivity connectivity) {
-		this.connectivity = connectivity;
+    /**
+     * sets the connectivity object.
+     * @param connectivity Connectivity object.
+     */
+	public void setConnectivity(Connectivity connectivity) 
+	{
+		this.l_connectivity = connectivity;
 	}
 }
