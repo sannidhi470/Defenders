@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 import Controllers.GameEngine;
 import state.Preload;
 
+/**
+ * The class MapLoader tests if we can load the valid map or not.
+ *
+ */
 class MapLoaderTest {
 
 	private static Connectivity d_connectivity=new Connectivity();
@@ -20,6 +24,10 @@ class MapLoaderTest {
 		gameEngine.setCheckIfTest(true);
 	}
 	
+	
+	/**
+	 * This test checks whether a map containing continent without country could be loaded for not
+	 */
 	@Test
 	void loadMapTest1() 
 	{
@@ -32,6 +40,9 @@ class MapLoaderTest {
 		
 	}
 
+	/**
+	 * This test checks whether a map containing same country assigned to multiple continents could be loaded or not.
+	 */
 	@Test
 	void loadMapTest2() 
 	{
@@ -44,6 +55,9 @@ class MapLoaderTest {
 		
 	}
 	
+	/**
+	 * This test checks whether a map containing multiple continents could be loaded or not.
+	 */
 	@Test
 	void loadMapTest3() 
 	{
