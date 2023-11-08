@@ -18,7 +18,6 @@ public class Player {
 	private int d_armyCount;
 	private ArrayList<Continent> d_playerContinent=new ArrayList<>();
 	private ArrayList<String> d_cards = new ArrayList<>();
-	//private int d_diplomacyWith=-1; //Holds ID of player with whom diplomacy is executed
 	private ArrayList<Integer> d_diplomacyWith = new ArrayList<>();
 	private static int d_objCount = 1;
 	

@@ -79,13 +79,10 @@ public class Reinforcement extends MainPlay
 							l_order.setD_numberOfArmies(Integer.parseInt(l_tempOrderListArray[2]));
 							l_playersArray.get(i).setD_Order(l_order);
 							l_playersArray.get(i).issue_order();
-							//i++;
 						}
 						else
 						{
-							//d_logEntryBuffer.log("Error: Please enter valid number of troops");
 							System.out.println(ColorCoding.red+"Error: Please enter valid number of troops"+ColorCoding.blank);
-							//i--;
 						}
 					}
 					else
@@ -139,8 +136,6 @@ public class Reinforcement extends MainPlay
 			
 			
 		}
-		//d_logEntryBuffer.log("Execute Phase");
-		//d_logEntryBuffer.log("All Armies have been successfully deployed. Enter command to proceed");
 		System.out.println(ColorCoding.green+"All Armies have been successfully deployed. Enter command to proceed"+ColorCoding.blank);
 		ViewMap.viewMap(p_connectivity.getD_continentList(), p_connectivity.getD_countryList(), Play.getL_playersArray());
 		System.out.println("reinforcement done");
@@ -183,7 +178,6 @@ public class Reinforcement extends MainPlay
 	@Override
 	public void loadMap(Connectivity p_connectivity, String[] p_commands) 
 	{
-		// TODO Auto-generated method stub
 		printInvalidCommandMessage();
 	}
 
