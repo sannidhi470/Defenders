@@ -6,8 +6,8 @@ import Controllers.GameEngine;
 import Models.*;
 
 /**
- *	ConcreteState of the State pattern. In this example, defines behavior 
- *  for commands that are valid in this state, and for the others signifies  
+ *	ConcreteState of the State pattern. Play state defines behavior 
+ *  for commands that are valid in the MainPlay and PlaySetup states, and for the others signifies  
  *  that the command is invalid. 
  *  
  *  This state represents a group of states, and defines the behavior 
@@ -15,44 +15,84 @@ import Models.*;
  *  group need to extend this class. 
  *  
  */
-public abstract class Play extends Phase {
+public abstract class Play extends Phase 
+{
 	
 	public static ArrayList<Player> l_playersArray = new ArrayList<Player>();
 	
+	/**
+	 * Retrieves the ArrayList containing Player objects.
+	 * 
+	 * @return ArrayList containing Player objects.
+	 */
 	public static ArrayList<Player> getL_playersArray()
 	{
 		return l_playersArray;
 	}
 
-	Play(GameEngine p_ge) {
+	/**
+	 * Constructor for Play phase.
+	 * 
+	 * @param p_ge The GameEngine object associated with this phase.
+	 */
+	Play(GameEngine p_ge) 
+	{
 		super(p_ge); 
 	}
 	
-	public void setPlayers() {
+	/**
+	 * Sets the players for the phase.
+	 */
+	public void setPlayers() 
+	{
 		printInvalidCommandMessage(); 
 	}
 
-	public void assignCountries() {
+	/**
+	 * Assigns countries to players in the phase.
+	 */
+	public void assignCountries() 
+	{
 		printInvalidCommandMessage(); 
 	}
 
-	public void reinforce() {
+	/**
+	 * Reinforces the players' armies in the phase.
+	 */
+	public void reinforce() 
+	{
 		printInvalidCommandMessage(); 
 	}
 
-	public void attack() {
+	/**
+	 * Initiates an attack between players in the phase.
+	 */
+	public void attack() 
+	{
 		printInvalidCommandMessage(); 
 	}
 
-	public void fortify() {
+	/**
+	 * Allows players to fortify their positions in the phase.
+	 */
+	public void fortify() 
+	{
 		printInvalidCommandMessage(); 
 	}
 
-	public void endGame() {
+	/**
+	 * Ends the game phase.
+	 */
+	public void endGame() 
+	{
 		printInvalidCommandMessage(); 
 	}
 	
-	public void showMap() {
+	/**
+	 * Shows the map for the current phase.
+	 */
+	public void showMap() 
+	{
 		printInvalidCommandMessage(); 
 	}
 }

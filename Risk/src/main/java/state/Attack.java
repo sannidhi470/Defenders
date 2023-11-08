@@ -15,29 +15,49 @@ import Tools.PlayersGameplay;
 import Views.ViewMap;
 
 /**
- *	ConcreteState of the State pattern. In this example, defines behavior 
- *  for commands that are valid in this state, and for the others signifies  
- *  that the command is invalid. 
+ * ConcreteState of the State pattern.Attack phase defines behavior 
+ * for advance, attack and card commands that are valid in this state, and for the others signifies  
+ * that the command is invalid.
  */
-public class Attack extends MainPlay {
+public class Attack extends MainPlay 
+{
 	static int l_testFlag =0;
 
-	Attack(GameEngine p_ge) {
+    /**
+     * Constructor for the Attack class.
+     *
+     * @param p_ge The GameEngine instance associated with this state.
+     */
+	Attack(GameEngine p_ge) 
+	{
 		super(p_ge);
 	}
 
 	/**
-	 *  Call this method to go the the next state in the sequence. 
-	 */
-	public void next() {
+     * This method is used to transition to the next state which is Fortify.
+     */
+	public void next() 
+	{
 		ge.setPhase(new Fortify(ge));
 	}
 	
-	public void reinforce(Connectivity l_connectivity) {
+    /**
+     * Reinforcement does not belong to Attack phase. Prints an invalid command message.
+     *
+     * @param l_connectivity The Connectivity object.
+     */
+	public void reinforce(Connectivity p_connectivity) 
+	{
 		printInvalidCommandMessage(); 
 	}
 
-	public void attack(Connectivity l_connectivity) {
+    /**
+     * Handles the logic for player commands related to attacks.
+     *
+     * @param l_connectivity
+     */
+	public void attack(Connectivity p_connectivity) 
+	{
 		LogEntryBuffer d_logEntryBuffer= new LogEntryBuffer();
 		
 		int terminateFlag=0;
@@ -55,7 +75,7 @@ public class Attack extends MainPlay {
 			{
 				d_logEntryBuffer.log("For the testcase, Winner is assigned");
 				System.out.println("For the testcase, Winner is assigned\n");
-				l_playersArray.get(0).setD_Country(l_connectivity.getD_countryList());
+				l_playersArray.get(0).setD_Country(p_connectivity.getD_countryList());
 			}
 			if(winner_check>0)
 			{
@@ -64,20 +84,20 @@ public class Attack extends MainPlay {
 			}
 			
 		do{
-			if(PlayersGameplay.winnerPlayer(l_playersArray, l_connectivity)!=null)
+			if(PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity)!=null)
 			{
-				Player winner = PlayersGameplay.winnerPlayer(l_playersArray, l_connectivity);
+				Player winner = PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity);
 				d_logEntryBuffer.log("CONGRATULATIONS!!! Our Winner is:"+winner.getD_playerName());
 				System.out.println("CONGRATULATIONS!!! Our Winner is:"+winner.getD_playerName());
 				l_winner++;
-				System.exit(0);
-				break;
-				
+				ge.setPhase(new End(ge));
+				ge.getPhase().endGame();	
 			}
 		for(int i=0;i<l_playersArray.size();i++)
 		{
 			 l_flag1=1;
-			do {
+			do 
+			{
 			if(playerNames.contains(l_playersArray.get(i).getD_playerName()))
 				continue;
 			d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+"Asked whether he/she wants to give a command");
@@ -124,52 +144,41 @@ public class Attack extends MainPlay {
 				System.exit(0);
 			}
 			String[] l_inputOrderArray=l_orderinput.split(" ");
-			//make a function to validate command..
 			switch(l_inputOrderArray[0])
 			{
 			case "advance":
-				//System.out.println("Call Advance");
 				l_order.setOrderContent(l_orderinput);
 				l_playersArray.get(i).getD_playerOrder().add(l_order);
 				l_flag1=1;
 				break;
 			case "bomb":
-				//System.out.println("Call Bomb");
 				l_order.setOrderContent(l_orderinput);
 				l_playersArray.get(i).getD_playerOrder().add(l_order);
 				l_flag1=1;
 				break;
 			case "blockade":
-				//System.out.println("Call Blockade");
 				l_order.setOrderContent(l_orderinput);
 				l_playersArray.get(i).getD_playerOrder().add(l_order);
 				l_flag1=1;
 				break;
 			case "airlift":
-				//System.out.println("Call airlift");
 				l_order.setOrderContent(l_orderinput);
 				l_playersArray.get(i).getD_playerOrder().add(l_order);
 				l_flag1=1;
 				break;
 			case "negotiate":
-				//System.out.println("Call negotiate");
 				l_order.setOrderContent(l_orderinput);
 				l_playersArray.get(i).getD_playerOrder().add(l_order);
 				l_flag1=1;
 				break;
 			default:
-				//d_logEntryBuffer.log("Invalid Command!!");
 				System.out.println(ColorCoding.red+"Invalid Command!!"+ColorCoding.blank);
 				l_flag1=0;
 			}
 
 			}while(l_flag1==0);
 			
-
-			
-		
 	}
-//After countries are deployed
 		
 		}while(terminateFlag!=l_playersArray.size());
 		
@@ -190,10 +199,10 @@ public class Attack extends MainPlay {
 					l_executeOrder++;
 					continue;	
 				}
-				l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),l_connectivity,1,0);
+				l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),p_connectivity,1,0);
 			}
 		}
-		ViewMap.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList(), l_playersArray);
+		ViewMap.viewMap(p_connectivity.getD_continentList(), p_connectivity.getD_countryList(), l_playersArray);
 		winner_check++;
 		PlayersGameplay.resetDiplomacy(l_playersArray);
 	}
@@ -202,61 +211,103 @@ public class Attack extends MainPlay {
 		
 	}
 
-	public void fortify(Connectivity l_connectivity) {
+    /**
+     * Fortification does not belong to Attack phase. Prints an invalid command message.
+     *
+     * @param l_connectivity
+     */
+	public void fortify(Connectivity p_connectivity) 
+	{
 		printInvalidCommandMessage(); 
 	}
 
+	 /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void loadMap(Connectivity l_connectivity, String[] l_commands) {
+	public void loadMap(Connectivity p_connectivity, String[] p_commands) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
+	 /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void validateMap(Connectivity l_connectivity) {
+	public void validateMap(Connectivity p_connectivity) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
+	 /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void editCountry(String[] l_commands, Connectivity l_connectivity) {
+	public void editCountry(String[] p_commands, Connectivity p_connectivity) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
+	 /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void editContinent(String[] l_commands, Connectivity l_connectivity) {
+	public void editContinent(String[] p_commands, Connectivity p_connectivity) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
+	 /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void editNeighbor(String[] l_commands, Connectivity l_connectivity) {
+	public void editNeighbor(String[] p_commands, Connectivity p_connectivity) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
+	 /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void saveMap(Connectivity l_connectivity, String p_mapName) {
+	public void saveMap(Connectivity p_connectivity, String p_mapName) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
+	 /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void setPlayers(String[] l_commands) {
+	public void setPlayers(String[] p_commands) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
+	 /**
+     * {@inheritDoc}
+     */
 	@Override
-	public boolean assignCountries(Connectivity l_connectivity) {
+	public boolean assignCountries(Connectivity p_connectivity) 
+	{
 		return false;
 		// TODO Auto-generated method stub
 		
 	}
 
+	 /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void endGame() {
+	public void endGame() 
+	{
 		// TODO Auto-generated method stub
 		System.out.println("Thank you for Playing the Game");
 		System.exit(0);

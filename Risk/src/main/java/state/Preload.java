@@ -8,17 +8,35 @@ import Tools.Connectivity;
 import Tools.MapEditor;
 import Tools.MapLoader;
 
-public class Preload extends Edit {
+/**
+ * Concrete state representing the phase before loading a map.
+ * Allows the user to load, edit, and validate the map before entering PostLoad phase.
+ */
+public class Preload extends Edit 
+{
 
-	public Preload(GameEngine p_ge) {
+	/**
+	 * Constructor for Preload phase.
+	 * 
+	 * @param p_ge The GameEngine object associated with this phase.
+	 */
+	public Preload(GameEngine p_ge) 
+	{
 		super(p_ge);
 	}
 
-	public void loadMap(Connectivity l_connectivity, String[] l_commands) {
+	/**
+	 * Loads a map using the provided commands.
+	 * 
+	 * @param p_connectivity
+	 * @param p_commands Array of user commands for loading a map.
+	 */
+	public void loadMap(Connectivity p_connectivity, String[] p_commands) 
+	{
 		int l_newMapCreated = 0;
-		if(l_commands.length == 2)
+		if(p_commands.length == 2)
 		{
-			l_newMapCreated =MapLoader.loadMap(l_connectivity,l_commands[1]);
+			l_newMapCreated =MapLoader.loadMap(p_connectivity,p_commands[1]);
 		} else {
 			//d_logEntryBuffer.log("No map entered. Please enter name of map to be loaded");
 			System.out.println(ColorCoding.red+"No map entered. Please enter name of map to be loaded"+ColorCoding.blank);
@@ -27,8 +45,8 @@ public class Preload extends Edit {
 		{
 			//d_logEntryBuffer.log("Validating the loaded Map");
 			System.out.println(ColorCoding.cyan+"\n--------Validating the loaded map--------\n"+ColorCoding.blank);
-			Tools.Graph l_graph=new Tools.Graph(l_connectivity.getD_countryList().size(),l_connectivity);
-			if(l_graph.continentConnection(l_connectivity, l_graph))
+			Tools.Graph l_graph=new Tools.Graph(p_connectivity.getD_countryList().size(),p_connectivity);
+			if(l_graph.continentConnection(p_connectivity, l_graph))
 				l_graph.isConnected(l_graph);		
 			
 		}
@@ -36,21 +54,27 @@ public class Preload extends Edit {
 		{
 			System.out.println(ColorCoding.green+"Skipping Map Validation as it is a newly created map"+ColorCoding.blank);
 		}
-		//System.out.println(p_mapName);
 		next();
 	}
-
-	public void editCountry(String[] l_commands,Connectivity l_connectivity) {
-		for(int i=1; i<l_commands.length;)
+	
+	/**
+	 * Edits (add/remove) country information based on the provided commands.
+	 * 
+	 * @param p_commands Array of user commands for editing countries.
+	 * @param p_connectivity
+	 */
+	public void editCountry(String[] p_commands,Connectivity p_connectivity) 
+	{
+		for(int i=1; i<p_commands.length;)
 		{
-			if(l_commands[i].equals("-add"))
+			if(p_commands[i].equals("-add"))
 			{
-				MapEditor.addCountry(l_commands[i+1], l_commands[i+2], l_connectivity);
+				MapEditor.addCountry(p_commands[i+1], p_commands[i+2], p_connectivity);
 				i = i+3;
 			}
-			else if(l_commands[i].equals("-remove"))
+			else if(p_commands[i].equals("-remove"))
 			{
-				MapEditor.removeCountry(l_commands[i+1], l_connectivity);
+				MapEditor.removeCountry(p_commands[i+1], p_connectivity);
 				i=i+2;
 			}
 			else
@@ -62,19 +86,26 @@ public class Preload extends Edit {
 		next();
 	}
 	
-	public void editContinent(String[] l_commands,Connectivity l_connectivity) {
-		for(int i=1; i<l_commands.length;)
+	/**
+	 * Edits (add/remove) continent information based on the provided commands.
+	 * 
+	 * @param p_commands Array of user commands for editing continents.
+	 * @param p_connectivity
+	 */
+	public void editContinent(String[] p_commands,Connectivity p_connectivity) 
+	{
+		for(int i=1; i<p_commands.length;)
 		{
-			if(l_commands[i].equals("-add"))
+			if(p_commands[i].equals("-add"))
 			{
 				//d_logEntryBuffer.log("Added Country");
 				System.out.println("add");
-					MapEditor.addContinent(l_commands[i+1],Integer.parseInt(l_commands[i+2]), l_connectivity);
+					MapEditor.addContinent(p_commands[i+1],Integer.parseInt(p_commands[i+2]), p_connectivity);
 					i=i+3;
 			}
-			else if(l_commands[i].equals("-remove") )
+			else if(p_commands[i].equals("-remove") )
 			{
-					MapEditor.removeContinent(l_commands[i+1], l_connectivity);
+					MapEditor.removeContinent(p_commands[i+1], p_connectivity);
 					i=i+2;
 			}
 			else
@@ -87,17 +118,24 @@ public class Preload extends Edit {
 		next();
 	}
 	
-	public void editNeighbor(String[] l_commands,Connectivity l_connectivity) {
-		for(int i=1; i<l_commands.length;)
+	/**
+	 * Edits (add/remove) neighbor information based on the provided commands.
+	 * 
+	 * @param p_commands Array of user commands for editing neighbors.
+	 * @param p_connectivity
+	 */
+	public void editNeighbor(String[] p_commands,Connectivity p_connectivity) 
+	{
+		for(int i=1; i<p_commands.length;)
 		{
-			if(l_commands[i].equals("-add"))
+			if(p_commands[i].equals("-add"))
 			{
-				MapEditor.addNeighbour(Integer.parseInt(l_commands[i+1]), Integer.parseInt(l_commands[i+2]), l_connectivity);
+				MapEditor.addNeighbour(Integer.parseInt(p_commands[i+1]), Integer.parseInt(p_commands[i+2]), p_connectivity);
 				i=i+3;
 			}
-			else if(l_commands[i].equals("-remove"))
+			else if(p_commands[i].equals("-remove"))
 			{
-				MapEditor.removeNeighbour(Integer.parseInt(l_commands[i+1]), Integer.parseInt(l_commands[i+2]), l_connectivity,1);
+				MapEditor.removeNeighbour(Integer.parseInt(p_commands[i+1]), Integer.parseInt(p_commands[i+2]), p_connectivity,1);
 				i=i+3;
 			}
 			else
@@ -109,20 +147,36 @@ public class Preload extends Edit {
 		next();
 	}
 
-	public void validateMap(Connectivity l_connectivity)
+	/**
+	 * Validates the loaded map.
+	 * 
+	 * @param p_connectivity
+	 */
+	public void validateMap(Connectivity p_connectivity)
 	{
 		System.out.println(ColorCoding.cyan+"\n--------Validating the loaded map--------\n"+ColorCoding.blank);
-		Tools.Graph l_graph=new Tools.Graph(l_connectivity.getD_countryList().size(),l_connectivity);
-		if(l_graph.continentConnection(l_connectivity, l_graph))
+		Tools.Graph l_graph=new Tools.Graph(p_connectivity.getD_countryList().size(),p_connectivity);
+		if(l_graph.continentConnection(p_connectivity, l_graph))
 			l_graph.isConnected(l_graph);
 		next();
 		}
 	
-	public void saveMap(Connectivity l_connectivity, String p_mapName) {
+	/**
+	 * Saves the map (invalid command in this state).
+	 * 
+	 * @param p_connectivity
+	 * @param p_mapName The name of the map to save.
+	 */
+	public void saveMap(Connectivity p_connectivity, String p_mapName) 
+	{
 		printInvalidCommandMessage(); 
 	}
 
-	public void next() {
+	/**
+	 * Moves to the next phase or exits the program based on user input.
+	 */
+	public void next() 
+	{
 		Scanner sc = new Scanner(System.in);
 		String user_output;
 		if(ge.getCheckIfTest()) {
@@ -149,40 +203,64 @@ public class Preload extends Edit {
 		}
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void setPlayers(String[] l_commands) {
+	public void setPlayers(String[] p_commands) 
+	{
 		// TODO Auto-generated method stub
 		printInvalidCommandMessage(); 
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public boolean assignCountries(Connectivity l_connectivity) {
+	public boolean assignCountries(Connectivity p_connectivity) 
+	{
 		printInvalidCommandMessage(); 
 		return false;
 		// TODO Auto-generated method stub
 		
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void reinforce(Connectivity l_connectivity) {
+	public void reinforce(Connectivity p_connectivity) 
+	{
 		// TODO Auto-generated method stub
 		printInvalidCommandMessage(); 
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void attack(Connectivity l_connectivity) {
+	public void attack(Connectivity p_connectivity) 
+	{
 		// TODO Auto-generated method stub
 		printInvalidCommandMessage(); 
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void fortify(Connectivity l_connectivity) {
+	public void fortify(Connectivity p_connectivity) 
+	{
 		// TODO Auto-generated method stub
 		printInvalidCommandMessage(); 
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void endGame() {
+	public void endGame() 
+	{
 		// TODO Auto-generated method stub
 		System.out.println("Thank you for Playing the Game");
 		System.exit(0);

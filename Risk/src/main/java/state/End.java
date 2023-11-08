@@ -3,93 +3,202 @@ package state;
 import Controllers.GameEngine;
 import Tools.Connectivity;
 
-public class End extends Phase {
+/**
+ * The End class represents the end phase of the game.
+ * This phase handles actions that can be performed when the game has ended.
+ */
+public class End extends Phase 
+{
 
-	End(GameEngine p_ge) {
-		super(p_ge);
-	}
+    /**
+     * Constructs a new End phase with the given GameEngine.
+     *
+     * @param p_ge The GameEngine object associated with this phase.
+     */
+    End(GameEngine p_ge) 
+    {
+        super(p_ge);
+    }
 
-	public void loadMap() {
-		printInvalidCommandMessage(); 
-	}
+    /**
+     * This method is not applicable in the End phase.
+     * It prints an invalid command message.
+     */
+    public void loadMap() 
+    {
+        printInvalidCommandMessage(); 
+    }
 
-	public void showMap() {
-		printInvalidCommandMessage(); 
-	}
+    /**
+     * This method is not applicable in the End phase.
+     * It prints an invalid command message.
+     */
+    public void showMap() 
+    {
+        printInvalidCommandMessage(); 
+    }
 
-	public void editCountry() {
-		printInvalidCommandMessage(); 
-	}
+    /**
+     * This method is not applicable in the End phase.
+     * It prints an invalid command message.
+     */
+    public void editCountry() 
+    {
+        printInvalidCommandMessage(); 
+    }
 
-	public void saveMap() {
-		printInvalidCommandMessage(); 
-	}
+    /**
+     * This method is not applicable in the End phase.
+     * It prints an invalid command message.
+     */
+    public void saveMap() 
+    {
+        printInvalidCommandMessage(); 
+    }
 
-	public void setPlayers(String[] l_commands) {
-		printInvalidCommandMessage(); 
-	}
+    /**
+     * This method is not applicable in the End phase.
+     * It prints an invalid command message.
+     *
+     * @param p_commands An array of user commands.
+     */
+    public void setPlayers(String[] p_commands) 
+    {
+        printInvalidCommandMessage(); 
+    }
 
-	public boolean assignCountries(Connectivity l_connectivity) {
-		printInvalidCommandMessage();
-		return false; 
-	}
+    /**
+     * This method is not applicable in the End phase.
+     * It prints an invalid command message.
+     *
+     * @param p_connectivity
+     * @return Always returns false.
+     */
+    public boolean assignCountries(Connectivity p_connectivity) 
+    {
+        printInvalidCommandMessage();
+        return false; 
+    }
 
-	public void reinforce(Connectivity l_connectivity) {
-		printInvalidCommandMessage(); 
-	}
+    /**
+     * This method is not applicable in the End phase.
+     * It prints an invalid command message.
+     *
+     * @param p_connectivity
+     */
+    public void reinforce(Connectivity p_connectivity) 
+    {
+        printInvalidCommandMessage(); 
+    }
 
-	public void attack(Connectivity l_connectivity) {
-		printInvalidCommandMessage(); 
-	}
+    /**
+     * This method is not applicable in the End phase.
+     * It prints an invalid command message.
+     *
+     * @param p_connectivity
+     */
+    public void attack(Connectivity p_connectivity) 
+    {
+        printInvalidCommandMessage(); 
+    }
 
-	public void fortify(Connectivity l_connectivity) {
-		printInvalidCommandMessage(); 
-	}
+    /**
+     * This method is not applicable in the End phase.
+     * It prints an invalid command message.
+     *
+     * @param p_connectivity
+     */
+    public void fortify(Connectivity p_connectivity) 
+    {
+        printInvalidCommandMessage(); 
+    }
 
-	public void endGame() {
-		//d_logEntryBuffer.log("The Game is Ended");
-		System.out.println("Thank you for Playing the Game");
-		System.exit(0);
-//		printInvalidCommandMessage(); 
-	}
+    /**
+     * This method ends the game by printing a thank you message and exiting the program.
+     */
+    public void endGame() 
+    {
+        System.out.println("Thank you for Playing the Game");
+        System.exit(0);
+    }
 
-	public void next() {
-		printInvalidCommandMessage(); 
-	}
+    /**
+     * This method is not applicable in the End phase.
+     * It prints an invalid command message.
+     */
+    public void next() 
+    {
+        printInvalidCommandMessage(); 
+    }
 
-	@Override
-	public void loadMap(Connectivity l_connectivity, String[] l_commands) {
-		// TODO Auto-generated method stub
-		
-	}
+    /**
+     * This method is not implemented in the End phase.
+     *
+     * @param p_connectivity
+     * @param p_commands An array of String commands.
+     */
+    @Override
+    public void loadMap(Connectivity p_connectivity, String[] p_commands) 
+    {
+        // TODO Auto-generated method stub
+    }
 
-	@Override
-	public void validateMap(Connectivity l_connectivity) {
-		// TODO Auto-generated method stub
-		
-	}
+    /**
+     * This method is not implemented in the End phase.
+     *
+     * @param p_connectivity
+     */
+    @Override
+    public void validateMap(Connectivity p_connectivity) 
+    {
+        // TODO Auto-generated method stub
+    }
 
-	@Override
-	public void editCountry(String[] l_commands, Connectivity l_connectivity) {
-		// TODO Auto-generated method stub
-		
-	}
+    /**
+     * This method is not implemented in the End phase.
+     *
+     * @param p_commands An array of user commands.
+     * @param p_connectivity
+     */
+    @Override
+    public void editCountry(String[] p_commands, Connectivity p_connectivity) 
+    {
+        // TODO Auto-generated method stub
+    }
 
-	@Override
-	public void editContinent(String[] l_commands, Connectivity l_connectivity) {
-		// TODO Auto-generated method stub
-		
-	}
+    /**
+     * This method is not implemented in the End phase.
+     *
+     * @param p_commands An array of user commands.
+     * @param p_connectivity
+     */
+    @Override
+    public void editContinent(String[] p_commands, Connectivity p_connectivity) 
+    {
+        // TODO Auto-generated method stub
+    }
 
-	@Override
-	public void editNeighbor(String[] l_commands, Connectivity l_connectivity) {
-		// TODO Auto-generated method stub
-		
-	}
+    /**
+     * This method is not implemented in the End phase.
+     *
+     * @param p_commands An array of user commands.
+     * @param p_connectivity
+     */
+    @Override
+    public void editNeighbor(String[] p_commands, Connectivity p_connectivity) 
+    {
+        // TODO Auto-generated method stub
+    }
 
-	@Override
-	public void saveMap(Connectivity l_connectivity, String p_mapName) {
-		// TODO Auto-generated method stub
-		
-	}
+    /**
+     * This method is not implemented in the End phase.
+     *
+     * @param p_connectivity
+     * @param p_mapName The name of the map to be saved.
+     */
+    @Override
+    public void saveMap(Connectivity p_connectivity, String p_mapName)
+    {
+        // TODO Auto-generated method stub
+    }
 }

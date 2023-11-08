@@ -14,23 +14,54 @@ import Tools.Connectivity;
 import Tools.PlayersGameplay;
 import Views.ViewMap;
 
-public class Fortify extends MainPlay {
+/**
+* The Fortify class represents the phase where players can choose to fortify their countries.
+*
+* @author Sannidhi Shetty
+*/
+public class Fortify extends MainPlay 
+{
 
-	Fortify(GameEngine p_ge) {
+    /**
+     * Constructs a new Fortify phase with the given GameEngine.
+     *
+     * @param p_ge The GameEngine instance associated with this Fortify phase.
+     */
+	Fortify(GameEngine p_ge) 
+	{
 		super(p_ge);
 	}
-	public void reinforce(Connectivity l_connectivity) {
+    /**
+     * This method is not applicable in the Fortify phase.
+     *
+     * @param p_connectivity
+     */
+	public void reinforce(Connectivity p_connectivity) 
+	{
 		printInvalidCommandMessage(); 
 	}
 
-	public void attack(Connectivity l_connectivity) {
+    /**
+     * This method is not applicable in the Fortify phase.
+     *
+     * @param p_connectivity
+     */
+	public void attack(Connectivity p_connectivity) 
+	{
 		printInvalidCommandMessage(); 
 	}
 
-	public void fortify(Connectivity l_connectivity) {
+    /**
+     * This method allows players to perform the fortification phase of their turn. Players can choose
+     * to give commands or pass their turn. The method handles user input and executes orders accordingly.
+     *
+     * @param p_connectivity
+     */
+	public void fortify(Connectivity p_connectivity) 
+	{
 		Scanner sc = new Scanner(System.in);
 		Country l_getCountry=new Country();
-		Player p_player;
+		Player l_player;
 		System.out.println("Do you want to fortify (yes/no)?");
 		String user_output = "";
 		if(ge.getCheckIfTest())
@@ -41,17 +72,19 @@ public class Fortify extends MainPlay {
 			user_output = sc.nextLine();
 		if(user_output.equalsIgnoreCase("yes"))
 		{
-			int terminateFlag=0;
+			int l_terminateFlag=0;
 			int l_flag1=0;
 			int l_executeOrder=0;
-				terminateFlag=0;
+				l_terminateFlag=0;
 				l_flag1=0;
 				ArrayList<String> playerNames=new ArrayList<>();
-			do{
+			do
+			{
 			for(int i=0;i<l_playersArray.size();i++)
 			{
 				 l_flag1=1;
-				do {
+				do 
+				{
 				if(playerNames.contains(l_playersArray.get(i).getD_playerName()))
 					continue;
 				//d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+"Asked whether he/she wants to give a command");
@@ -66,7 +99,7 @@ public class Fortify extends MainPlay {
 				if(l_passContinue.equals("pass"))
 				{
 					playerNames.add(l_playersArray.get(i).getD_playerName());
-					terminateFlag++;
+					l_terminateFlag++;
 					break;
 				}
 				Order l_order=new Order();
@@ -99,9 +132,8 @@ public class Fortify extends MainPlay {
 				
 			
 		}
-	//After countries are deployed
 			
-			}while(terminateFlag!=l_playersArray.size());
+			}while(l_terminateFlag!=l_playersArray.size());
 			
 			 l_executeOrder=0;
 			 HashSet<String> l_emptyOrders=new HashSet<>();
@@ -119,10 +151,10 @@ public class Fortify extends MainPlay {
 						l_executeOrder++;
 						continue;	
 					}
-					l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),l_connectivity,1,1);
+					l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),p_connectivity,1,1);
 				}
 			}
-			ViewMap.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList(), l_playersArray);
+			ViewMap.viewMap(p_connectivity.getD_continentList(), p_connectivity.getD_countryList(), l_playersArray);
 			PlayersGameplay.resetDiplomacy(l_playersArray);
 			System.out.println("fortification done");
 			ge.setPhase(new Reinforcement(ge));
@@ -136,52 +168,92 @@ public class Fortify extends MainPlay {
 		
 	}
 
-	public void next() {
+    /**
+     * Moves the game to the next phase (Reinforcement) after fortification.
+     */
+	public void next() 
+	{
 		ge.setPhase(new Reinforcement(ge));
 	}
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void loadMap(Connectivity l_connectivity, String[] l_commands) {
+	public void loadMap(Connectivity p_connectivity, String[] p_commands) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void validateMap(Connectivity l_connectivity) {
+	public void validateMap(Connectivity p_connectivity) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void editCountry(String[] l_commands, Connectivity l_connectivity) {
+	public void editCountry(String[] p_commands, Connectivity p_connectivity) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void editContinent(String[] l_commands, Connectivity l_connectivity) {
+	public void editContinent(String[] p_commands, Connectivity p_connectivity) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void editNeighbor(String[] l_commands, Connectivity l_connectivity) {
+	public void editNeighbor(String[] p_commands, Connectivity p_connectivity) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void saveMap(Connectivity l_connectivity, String p_mapName) {
+	public void saveMap(Connectivity p_connectivity, String p_mapName) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void setPlayers(String[] l_commands) {
+	public void setPlayers(String[] p_commands) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public boolean assignCountries(Connectivity l_connectivity) {
+	public boolean assignCountries(Connectivity p_connectivity) 
+	{
 		return false;
 		// TODO Auto-generated method stub
 		
 	}
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void endGame() {
+	public void endGame() 
+	{
 		// TODO Auto-generated method stub
 		System.out.println("Thank you for Playing the Game");
 		System.exit(0);

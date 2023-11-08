@@ -11,30 +11,34 @@ import Tools.PlayersGameplay;
 import Views.ViewMap;
 
 /**
- *	
+ * Concrete state representing the Reinforcement phase of the game.
+ * Allows players to deploy armies and proceed to the Attack phase.
  */
-public class Reinforcement extends MainPlay {
+public class Reinforcement extends MainPlay 
+{
 
-	Reinforcement(GameEngine p_ge) {
+	/**
+	 * Constructor for Reinforcement phase.
+	 * 
+	 * @param p_ge The GameEngine object associated with this phase.
+	 */
+	Reinforcement(GameEngine p_ge) 
+	{
 		super(p_ge);
 	}
 
-	public void reinforce(Connectivity l_connectivity) {
-		//PlayersGameplay.assignArmiesToPlayers(l_playersArray);
-		//d_logEntryBuffer.log("Game Begins");
-//		System.out.println("Game Begins!!!!!!!!!!!\n");
-//		for(int i=0;i<l_playersArray.size();i++)
-//		{
-//			//d_logEntryBuffer.log("Player "+ Integer.sum(i,1) +"("+l_playersArray.get(i).getD_playerName()+") has Army Count: "+l_playersArray.get(i).getD_armyCount());
-//			System.out.println("Player "+ Integer.sum(i,1) +"("+l_playersArray.get(i).getD_playerName()+") has Army Count: "+l_playersArray.get(i).getD_armyCount());
-//			PlayersGameplay.showPlayersCountry(l_playersArray.get(i),1);
-//			System.out.println();
-//		}
-		
+	/**
+	 * Allows players to deploy armies during the reinforcement phase.
+	 * 
+	 * @param p_connectivity
+	 */
+	public void reinforce(Connectivity p_connectivity) 
+	{
 		int l_temp =1;
 		int flag=0;
 		ArrayList<String> l_tempName=new ArrayList<>();
-		while(l_temp>0) {
+		while(l_temp>0) 
+		{
 			for(int i=0;i<l_playersArray.size();i++)
 			{
 				String l_userOrder="";
@@ -119,7 +123,7 @@ public class Reinforcement extends MainPlay {
 			{
 				if(l_playersArray.get(i).getD_armyCount()!=0)
 				{
-					l_playersArray.get(i).getD_Order().execute(l_playersArray.get(i), l_playersArray.get(i).next_order(),l_connectivity,0,0);
+					l_playersArray.get(i).getD_Order().execute(l_playersArray.get(i), l_playersArray.get(i).next_order(),p_connectivity,0,0);
 					if(l_playersArray.get(i).getD_armyCount()==0)
 					{
 						flag+=1;
@@ -136,78 +140,131 @@ public class Reinforcement extends MainPlay {
 			
 		}
 		//d_logEntryBuffer.log("Execute Phase");
-//		l_flag=0;
 		//d_logEntryBuffer.log("All Armies have been successfully deployed. Enter command to proceed");
 		System.out.println(ColorCoding.green+"All Armies have been successfully deployed. Enter command to proceed"+ColorCoding.blank);
-		ViewMap.viewMap(l_connectivity.getD_continentList(), l_connectivity.getD_countryList(), Play.getL_playersArray());
+		ViewMap.viewMap(p_connectivity.getD_continentList(), p_connectivity.getD_countryList(), Play.getL_playersArray());
 		System.out.println("reinforcement done");
 		ge.setPhase(new Attack(ge));
 	}
 
-	public void attack(Connectivity l_connectivity) {
+	/**
+	 * Invalid command in Reinforcement phase.
+	 * Players cannot attack during the Reinforcement phase.
+	 * 
+	 * @param p_connectivity
+	 */
+	public void attack(Connectivity p_connectivity) 
+	{
 		printInvalidCommandMessage(); 
 	}
 
-	public void fortify(Connectivity l_connectivity) {
+	/**
+	 * Invalid command in Reinforcement phase.
+	 * Players cannot fortify during the Reinforcement phase.
+	 * 
+	 * @param p_connectivity
+	 */
+	public void fortify(Connectivity p_connectivity) 
+	{
 		printInvalidCommandMessage(); 
 	}
 
-	public void next() {
+	/**
+	 * Moves to the Attack phase.
+	 */
+	public void next() 
+	{
 		ge.setPhase(new Attack(ge));
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void loadMap(Connectivity l_connectivity, String[] l_commands) {
+	public void loadMap(Connectivity p_connectivity, String[] p_commands) 
+	{
 		// TODO Auto-generated method stub
 		printInvalidCommandMessage();
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void validateMap(Connectivity l_connectivity) {
+	public void validateMap(Connectivity p_connectivity) 
+	{
 		// TODO Auto-generated method stub
 		printInvalidCommandMessage();
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void editCountry(String[] l_commands, Connectivity l_connectivity) {
+	public void editCountry(String[] p_commands, Connectivity p_connectivity) 
+	{
 		// TODO Auto-generated method stub
 		printInvalidCommandMessage();
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void editContinent(String[] l_commands, Connectivity l_connectivity) {
+	public void editContinent(String[] p_commands, Connectivity p_connectivity) 
+	{
 		// TODO Auto-generated method stub
 		printInvalidCommandMessage();
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void editNeighbor(String[] l_commands, Connectivity l_connectivity) {
+	public void editNeighbor(String[] p_commands, Connectivity p_connectivity) 
+	{
 		// TODO Auto-generated method stub
 		printInvalidCommandMessage();
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void saveMap(Connectivity l_connectivity, String p_mapName) {
+	public void saveMap(Connectivity p_connectivity, String p_mapName) 
+	{
 		// TODO Auto-generated method stub
 		printInvalidCommandMessage();
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void setPlayers(String[] l_commands) {
+	public void setPlayers(String[] p_commands) 
+	{
 		// TODO Auto-generated method stub
 		printInvalidCommandMessage();
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public boolean assignCountries(Connectivity l_connectivity) {
+	public boolean assignCountries(Connectivity p_connectivity) 
+	{
 		printInvalidCommandMessage();
 		return false;
 		// TODO Auto-generated method stub
 		
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void endGame() {
+	public void endGame() 
+	{
 		// TODO Auto-generated method stub
 		System.out.println("Thank you for Playing the Game");
 		System.exit(0);

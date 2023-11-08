@@ -3,8 +3,8 @@ package state;
 import Controllers.GameEngine;
 
 /**
- *	ConcreteState of the State pattern. In this example, defines behavior 
- *  for commands that are valid in this state, and for the others signifies  
+ *	ConcreteState of the State pattern. MainPlay defines behavior 
+ *  for commands that are valid for Reinforcement, Attack and fortify states, and for the others signifies  
  *  that the command is invalid. 
  *  
  *  This state represents a group of states, and defines the behavior 
@@ -14,19 +14,37 @@ import Controllers.GameEngine;
  */
 public abstract class MainPlay extends Play {
 
-	MainPlay(GameEngine p_ge) {
+	/**
+	 * Constructor for MainPlay phase.
+	 * 
+	 * @param p_ge The GameEngine object associated with this phase.
+	 */
+	MainPlay(GameEngine p_ge) 
+	{
 		super(p_ge);
 	}
 
-	public void loadMap() {
+	/**
+	 * Loads a map for the current phase.
+	 */
+	public void loadMap() 
+	{
 		this.printInvalidCommandMessage();
 	}
 
-	public void setPlayers() {
+	/**
+	 * Sets the players for the phase.
+	 */
+	public void setPlayers() 
+	{
 		this.printInvalidCommandMessage();	
 	}
 
-	public void assignCountries() {
+	/**
+	 * Assigns countries to players in the phase.
+	 */
+	public void assignCountries() 
+	{
 		this.printInvalidCommandMessage();
 	}
 }

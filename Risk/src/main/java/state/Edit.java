@@ -3,50 +3,82 @@ package state;
 import Controllers.GameEngine;
 
 /**
- *	ConcreteState of the State pattern. In this example, defines behavior 
- *  for commands that are valid in this state, and for the others signifies  
- *  that the command is invalid. 
- *  
- *  This state represents a group of states, and defines the behavior 
- *  that is common to all the states in its group. All the states in its 
- *  group need to extend this class. 
- *  
+ * The abstract sub class Edit contains states for Preload and Postload states.
  */
-public abstract class Edit extends Phase {
+public abstract class Edit extends Phase 
+{
 
-	Edit(GameEngine p_ge) {
-		super(p_ge);
-	}
-	public void loadMap()
-	{
-		printInvalidCommandMessage();
-	}
-	public void showMap() {
-		System.out.println("map is being displayed");		
-	}
+    /**
+     * Constructor for the Edit class.
+     *
+     * @param p_ge The GameEngine object associated with this Edit phase.
+     */
+    Edit(GameEngine p_ge) 
+    {
+        super(p_ge);
+    }
 
-	public void editCountry() {
-		printInvalidCommandMessage(); 
-	}
-	
-	public void editContinent() {
-		printInvalidCommandMessage(); 
-	}
-	
-	public void editNeighbor() {
-		printInvalidCommandMessage(); 
-	}
-	
-	public void validateMap() {
-		printInvalidCommandMessage(); 
-	}
+    /**
+     * Loads a map. This method is expected to be overridden by subclasses.
+     */
+    public void loadMap() 
+    {
+        printInvalidCommandMessage();
+    }
 
-	public void saveMap() {
-		printInvalidCommandMessage(); 
-	}
-	public void endGame() {
-		ge.setPhase(new End(ge));
-	}
-	
+    /**
+     * Displays the map.
+     */
+    public void showMap() 
+    {
+        System.out.println("Map is being displayed");
+    }
 
+    /**
+     * Edits a country. This method is expected to be overridden by subclasses.
+     */
+    public void editCountry() 
+    {
+        printInvalidCommandMessage();
+    }
+
+    /**
+     * Edits a continent. This method is expected to be overridden by subclasses.
+     */
+    public void editContinent() 
+    {
+        printInvalidCommandMessage();
+    }
+
+    /**
+     * Edits a neighbor. This method is expected to be overridden by subclasses.
+     */
+    public void editNeighbor() 
+    {
+        printInvalidCommandMessage();
+    }
+
+    /**
+     * Validates the map. This method is expected to be overridden by subclasses.
+     */
+    public void validateMap() 
+    {
+        printInvalidCommandMessage();
+    }
+
+    /**
+     * Saves the map. This method is expected to be overridden by subclasses.
+     */
+    public void saveMap() 
+    {
+        printInvalidCommandMessage();
+    }
+
+    /**
+     * Ends the game and sets the phase to End.
+     */
+    public void endGame() 
+    {
+        ge.setPhase(new End(ge));
+    }
 }

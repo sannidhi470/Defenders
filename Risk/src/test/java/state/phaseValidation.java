@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import Controllers.GameEngine;
+import Tools.ColorCoding;
 import Tools.Connectivity;
 import Tools.MapLoader;
 import Tools.SaveMap;
@@ -31,7 +32,7 @@ public class phaseValidation {
 			gameEngine.setPhase(new Preload(gameEngine));
 			System.out.println(gameEngine.getPhase());
 			assertEquals("Preload",gameEngine.getPhaseName());
-			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
+			System.out.println(ColorCoding.green+"Phase has been successfully changed to "+gameEngine.getPhaseName()+ColorCoding.blank);
 			String[] mapCommand = d_commands[1].split(" ") ;
 			
 			if(d_commands[1].equals("loadmap VeryBasic"))
@@ -40,32 +41,34 @@ public class phaseValidation {
 				
 			}
 			assertEquals("PostLoad",gameEngine.getPhaseName());
-			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
+			System.out.println(ColorCoding.green+"Phase has been successfully changed to "+gameEngine.getPhaseName()+ColorCoding.blank);
 			if(d_commands[3].equals("savemap VeryBasic"))
 			{
 				gameEngine.getPhase().saveMap(d_connectivity, "VeryBasic");
 			}
 			assertEquals("PlaySetup",gameEngine.getPhaseName());
-			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
+			System.out.println(ColorCoding.green+"Phase has been successfully changed to "+gameEngine.getPhaseName()+ColorCoding.blank);
 			mapCommand = d_commands[4].split(" ");
 			gameEngine.getPhase().setPlayers(mapCommand);
 			gameEngine.getPhase().assignCountries(gameEngine.getConnectivity());
 			gameEngine.getPhase().next();
 			assertEquals("Reinforcement",gameEngine.getPhaseName());
-			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
+			System.out.println(ColorCoding.green+"Phase has been successfully changed to "+gameEngine.getPhaseName()+ColorCoding.blank);
 			gameEngine.getPhase().reinforce(d_connectivity);
 			assertEquals("Attack",gameEngine.getPhaseName());
-			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
+			System.out.println(ColorCoding.green+"Phase has been successfully changed to "+gameEngine.getPhaseName()+ColorCoding.blank);
 			gameEngine.getPhase().attack(d_connectivity);
 			assertEquals("Fortify",gameEngine.getPhaseName());
-			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
+			System.out.println(ColorCoding.green+"Phase has been successfully changed to "+gameEngine.getPhaseName()+ColorCoding.blank);
 			gameEngine.getPhase().fortify(d_connectivity);
 			assertEquals("Reinforcement",gameEngine.getPhaseName());
-			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
+			System.out.println(ColorCoding.green+"Phase has been successfully changed to "+gameEngine.getPhaseName()+ColorCoding.blank);
 			gameEngine.getPhase().reinforce(d_connectivity);
 			assertEquals("Attack",gameEngine.getPhaseName());
-			System.out.println("Phase has been successfully changed to "+gameEngine.getPhaseName());
+			System.out.println(ColorCoding.green+"Phase has been successfully changed to "+gameEngine.getPhaseName()+ColorCoding.blank);
 			gameEngine.getPhase().attack(d_connectivity);
+			assertEquals("End",gameEngine.getPhaseName());
+			System.out.println(ColorCoding.green+"Phase has been successfully changed to "+gameEngine.getPhaseName()+ColorCoding.blank);
 		}
 	}
 	

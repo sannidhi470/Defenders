@@ -11,28 +11,11 @@ import Tools.Connectivity;
 import Views.ViewMap;
 
 /**
- *	State of the State pattern. Here implemented as a abstract class. 
+ *	The abstract class Phase manages the states in the State pattern.
  *  
- *	In this example, the states represent states in the board game Risk. 
- *  There are many states, and even a hierarchy of states: 
- *
- *		Phase 
- *        Edit phase (abstract)
- *          Preload
- *          Postload
- *        Play (abstract)
- *          PlaySetup
- *          MainPlay 
- *          Reinforcement <--
- *          Attack          | 
- *          Fortify ---------
- *        End
- *        
- *      In each state, nextState() is defined so that it goes down in 
- *      the above list, except for Fortify, which goes back to 
- *      Reinforcement state. 
  */
-public abstract class Phase {
+public abstract class Phase 
+{
 
 	/**
 	 *  Contains a reference to the State of the GameEngine 
@@ -41,44 +24,91 @@ public abstract class Phase {
 	 */
 	GameEngine ge;
 
-	Phase(GameEngine p_ge) {
+	Phase(GameEngine p_ge) 
+	{
 		ge = p_ge;
 	}
 
-	// common commands
-	public void loadMap(Connectivity l_connectivity, String[] l_commands) {
+	/**
+	 * This method is used to load the Map in the Preload state.
+	 * @param p_connectivity
+	 * @param p_commands is used to pass user command
+	 */	
+	public void loadMap(Connectivity p_connectivity, String[] p_commands) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void viewMap(ArrayList<Continent> p_continentList, ArrayList<Country> p_countryList, ArrayList<Player> p_players) {
+	/**
+	 * This method is used to display the map in an tabular manner.
+	 * @param p_continentList refers to the list of continents.
+	 * @param p_countryList refers to the list of countries.
+	 * @param p_playerList refers to the list of players.
+	 */
+	public void viewMap(ArrayList<Continent> p_continentList, ArrayList<Country> p_countryList, ArrayList<Player> p_players) 
+	{
 		ViewMap.viewMap(p_continentList, p_countryList,p_players);
-		}
+	}
 
-	// Edit map commands
-	abstract public void editCountry(String[] l_commands,Connectivity l_connectivity);
-	abstract public void editContinent(String[] l_commands,Connectivity l_connectivity);
-	abstract public void editNeighbor(String[] l_commands,Connectivity l_connectivity);
-	abstract public void saveMap(Connectivity l_connectivity, String p_mapName);
 
-	// Play commands
-	// game setup commands
-	abstract public void setPlayers(String[] l_commands);
-	abstract public boolean assignCountries(Connectivity l_connectivity);
-
-	// reinforcement commands
-	abstract public void reinforce(Connectivity l_connectivity);
-
-	// attack commands
-	abstract public void attack(Connectivity l_connectivity);
-
-	// fortify commands
-	abstract public void fortify(Connectivity l_connectivity);
-
-	// end command
+	/**
+	 * This abstract method is used to add/remove country in the Preload state.
+	 * @param p_connectivity
+	 * @param l_commands is used to pass user command
+	 */	
+	abstract public void editCountry(String[] p_commands,Connectivity p_connectivity);
+	/**
+	 * This abstract method is used to add/remove continent in the Preload state.
+	 * @param p_connectivity
+	 * @param p_commands is used to pass user command
+	 */	
+	abstract public void editContinent(String[] p_commands,Connectivity p_connectivity);
+	/**
+	 * This abstract method is used to add/remove neighbor in the Preload state.
+	 * @param p_connectivity
+	 * @param p_commands is used to pass user command
+	 */	
+	abstract public void editNeighbor(String[] p_commands,Connectivity p_connectivity);
+	/**
+	 * This abstract method is used to save map in the Postload state.
+	 * @param p_connectivity
+	 * @param p_mapName is used to pass map name
+	 */	
+	abstract public void saveMap(Connectivity p_connectivity, String p_mapName);
+	/**
+	 * This abstract method is used to add/remove players in the PlaySetup state.
+	 * @param p_commands is used to pass user command
+	 */	
+	abstract public void setPlayers(String[] p_commands);
+	/**
+	 * This abstract method is used to assign countries in the PlaySetup state.
+	 * @param p_connectivity
+	 */	
+	abstract public boolean assignCountries(Connectivity p_connectivity);
+	/**
+	 * This abstract method is used to deploy troops in the Reinforcement state.
+	 * @param p_connectivity
+	 */	
+	abstract public void reinforce(Connectivity p_connectivity);
+	/**
+	 * This abstract method is used for attacking in the Attack state.
+	 * @param p_connectivity
+	 */	
+	abstract public void attack(Connectivity p_connectivity);
+	/**
+	 * This abstract method is used for deploying more armies in order to determine the winner.
+	 * @param p_connectivity
+	 */	
+	abstract public void fortify(Connectivity p_connectivity);
+	/**
+	 * This abstract method is used to end the game.
+	 */
 	abstract public void endGame();
 
-	//help command
+	/**
+	 * This method is used to display the help instructions.
+	 */
 	public void help()
 	{
 		//d_logEntryBuffer.log("Help is being used by Player");
@@ -94,15 +124,20 @@ public abstract class Phase {
 				+ "gameplayer -add playername -remove playername : \n	Command to add or remove players from the game\n__________________________________________________________\n");
 	}
 	
-	// go to next phase
-	abstract public void next();
-	
-	abstract public void validateMap(Connectivity l_connectivity);
-	
 	/**
-	 *  Common method to all States. 
+	 * This method is used to go to next phase.
 	 */
-	public void printInvalidCommandMessage() {
+	abstract public void next();
+	/**
+	 * This method is used validate the loaded map.
+	 * @param p_connectivity
+	 */
+	abstract public void validateMap(Connectivity p_connectivity);
+	/**
+	 *  This method is used to display invalid command in the state. Common to all states.
+	 */
+	public void printInvalidCommandMessage() 
+	{
 		System.out.println("Invalid command in state " + this.getClass().getSimpleName() );
 	}
 }
