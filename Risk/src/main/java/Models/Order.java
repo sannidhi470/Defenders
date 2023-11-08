@@ -6,8 +6,8 @@ import Tools.PlayersGameplay;
 import state.Play;
 
 /**
- * The class Order defines Orders and it's properties such as from country, to country and transfer of number of armies.
- *
+ * The class Order defines Orders and it's properties such as from country, to country and transfer of number of armies and the Content of 
+ * the order in the form of String. Execute function is implemented to execute the orders.
  */
 
 public class Order {

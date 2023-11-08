@@ -3,8 +3,9 @@
 import java.util.ArrayList;
 
 /**
- * The class Player defines Players and it's properties such as Name, ID, countries owned by players and orders given by player.
- *
+ * The class Player defines Players and it's properties such as Name, player ID,Order list of the player,countries owned by the player
+ * army count of the player, continents owned by the player, cards owned by the player , a diplomacy variable to be used by the diplomacy
+ * card and a static variable to keep track of the object of players.
  */
 
 public class Player {
