@@ -16,11 +16,18 @@ public class Order {
 	private Country d_toCountry;
 	private int d_numberOfArmies;
 	private String orderContent;
-	
+	/**
+	 * @return returns the String of the order passed
+	 * 
+	 */
 	public String getOrderContent() {
 		return orderContent;
 	}
 
+	/**
+	 * 
+	 * @param orderContent sets the String passed by the user in orderContent.
+	 */
 	public void setOrderContent(String orderContent) {
 		this.orderContent = orderContent;
 	}
@@ -89,6 +96,9 @@ public class Order {
 	 * Execute the orders given by the user.
 	 * @param p_player refers to the player object
 	 * @param p_order refers to the order object
+	 * @param p_connectivity refers to the list of map contents
+	 * @param flag flag to choose between deploy or ataack commands
+	 * @param fortify_flag to choose the fortify functionality 
 	 *
 	 */
 	public void execute(Player p_player,Order p_order,Connectivity p_connectivity,int flag,int fortify_flag) {
