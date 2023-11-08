@@ -1,4 +1,4 @@
-package Models;
+ package Models;
 
 import java.util.ArrayList;
 
@@ -139,6 +139,10 @@ public class Player {
 	{
 		return d_playerCountry;
 	}
+	/**
+	 * This function sets the country list owned by the player
+	 * @param p_countryList is the country list owned by the player
+	 */
 	
 	public void setD_Country(ArrayList<Country> p_countryList)
 	{
@@ -230,47 +234,81 @@ public class Player {
 	public void setD_armyCount(int d_armyCount) {
 		this.d_armyCount = d_armyCount;
 	}
-	
+	/**
+	 * This function returns the cards of the given player
+	 * @return list of cards
+	 */
 	public ArrayList<String> getCards() {
 		return d_cards;
 	}
+	/**
+	 * This function sets the cards owned by the players
+	 * @param cards cards owned by player
+	 */
 
-	public void setCards(ArrayList<String> cards) {
+	public void setCards(ArrayList<String> cards) 
+	{
 		d_cards = cards;
 	}
-
+	/**
+	 * This function removes the card from the list of cards owned by the player
+	 * @param card Card to be removed from the array list
+	 */
 	public void removeCard(String card)
 	{
 		d_cards.remove(card);
 	}
-	
+	/**
+	 * This function adds the card to the list of cards
+	 * @param card refers to the card to be added to list
+	 */
 	public void addCard(String card)
 	{
 		d_cards.add(card);
 	}
-	
-	public ArrayList<Integer> getDiplomacyWith() {
+	/**
+	 * This function returns the countries the player set the diplomacy with
+	 * @return refers to the second country the player set the diplomacy with
+	 */
+	public ArrayList<Integer> getDiplomacyWith() 
+	{
 		return d_diplomacyWith;
 	}
-
-	public void setDiplomacyWith(ArrayList<Integer> diplomacyWith) {
+	/**
+	 * This function sets the countries the player sets the diplomacy with
+	 * @param diplomacyWith refers to the second country the player sets the diplomacy with
+	 */
+	public void setDiplomacyWith(ArrayList<Integer> diplomacyWith) 
+	{
 		d_diplomacyWith = diplomacyWith;
 	}
-	
-	public void addDiplomacyWith(Integer l_toPlayerID) {
+	/**
+	 * This function adds the country to the diplomacy list
+	 * @param l_toPlayerID represents the playerId to perform diplomacy with
+	 */
+	public void addDiplomacyWith(Integer l_toPlayerID) 
+	{
 		d_diplomacyWith.add(l_toPlayerID);
 	}
-	
-	public void clearDiplomacyWith() {
+	/**
+	 * This function clears the diplomacy list of the player
+	 */
+	public void clearDiplomacyWith()
+	{
 		d_diplomacyWith.clear();
 	}
-	
+	/**
+	 * This function removes all the assigned continents and countries to the player
+	 */
 	public void removeAllCountryAndContinentAssigned()
 	{
 		d_playerCountry.clear();
 		d_playerContinent.clear();
 	}
-	
+	/**
+	 * This function remove the country from the player country list
+	 * @param c Refers to the country
+	 */
 	public void removeCountry(Country c)
 	{
 		d_playerCountry.remove(c);
