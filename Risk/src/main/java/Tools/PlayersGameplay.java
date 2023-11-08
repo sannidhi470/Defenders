@@ -68,12 +68,7 @@ public class PlayersGameplay {
 				l_removeCountry.add(l_country);
 				p_playersArray.get(i).addCountry(l_country);
 			}
-			//removes the countries assigned to players from the main list 
-			//p_countryList.removeAll(l_removeCountry);
-			
 		}
-		
-		//add neutral countries to neutral Country ArrayList
 		for(int i=index; i<p_countryList.size(); i++)
 		{
 			l_neutralCountry.add(p_countryList.get(i));
@@ -173,22 +168,16 @@ public class PlayersGameplay {
 	 */
 	public static int advance(Player p_player,ArrayList<Player> p_playersArray,Country p_fromCountry,Country p_toCountry,int p_troops,ArrayList<Continent> p_continent,Connectivity p_connectivity, int fortify_flag) {
 		LogEntryBuffer d_logEntryBuffer= new LogEntryBuffer();
-		//Check whether Countries belongs to map or not
 		if(p_connectivity.getD_countryList().contains(p_fromCountry) && p_connectivity.getD_countryList().contains(p_toCountry))
 		{
-			//Check whether the fromCountry belongs to player or not
 			if(p_player.getD_Country().contains(p_fromCountry))
 			{
-				//Check whether the toCountry belongs to player or not
 				if(p_player.getD_Country().contains(p_toCountry))
 				{
-					//Check whether the toCountry is the neighbor of fromCountry or not 
 					if(p_fromCountry.getD_neighbours().contains(p_toCountry.getD_countryId()))
 					{
-						//Check troops count is +ve
 						if(p_troops>=0)
 						{
-							//check p_troops is less then p_formCountry.getDarmyDeployed
 							if(p_troops<=p_fromCountry.getD_armyDeployedOnCountry())
 							{
 								d_logEntryBuffer.log("Calling Advance");
@@ -226,7 +215,7 @@ public class PlayersGameplay {
 						return 1;
 					}	
 				}
-				else //Attack on toCountry as it doesn't belong to player 
+				else  
 				{
 					if(fortify_flag==0)
 					{
@@ -239,8 +228,6 @@ public class PlayersGameplay {
 						System.out.println(p_player.getDiplomacyWith());
 						if(!p_player.getDiplomacyWith().contains(l_toplayer.getD_playerId()))
 						{
-							//Already checked whether fromCountry belongs to player or not 
-							
 							attack(p_player,p_playersArray,p_fromCountry,p_toCountry,p_troops,p_continent,p_connectivity);
 							return 0;
 						}
@@ -253,7 +240,6 @@ public class PlayersGameplay {
 					}
 					else
 					{
-						//This will be called if to country is a neutral country
 						attack(p_player,p_playersArray,p_fromCountry,p_toCountry,p_troops,p_continent,p_connectivity);
 						return 0;
 					}		
@@ -330,32 +316,22 @@ public class PlayersGameplay {
 		System.out.println("Calling Attack");
 		if(p_troops>=0)
 		{
-			//handles if to_Country name is wrong
 			try{
-				//Check whether Countries belongs to map or not
 				if(p_connectivity.getD_countryList().contains(p_fromCountry) && p_connectivity.getD_countryList().contains(p_toCountry))
 				{
-					//Check whether the fromCountry belongs to player or not
 					if(p_player.getD_Country().contains(p_fromCountry))
 					{
-						//check whether toCountry belongs to same player, then don't attack
 						if(!p_player.getD_Country().contains(p_toCountry))
 						{
-							//check toCountry is neighbor of fromCountry or not 
 							if(p_fromCountry.getD_neighbours().contains(p_toCountry.getD_countryId()))
 							{
-								//check p_troops is less then p_formCountry.getDarmyDeployed
 								if(p_troops<=p_fromCountry.getD_armyDeployedOnCountry())
 								{
-									//attacking country: 60% chance of killing 1 unit
 									int l_troopsSource = p_troops;
-									
-									//defending country: 70% chance of killing 1 unit
 									int l_troopsDestination = p_toCountry.getD_armyDeployedOnCountry();
 									
 									if(l_troopsDestination>0 && l_troopsDestination> 0)
 									{
-										//increase troops strength by 60 %
 										int attackRange =(60 - 0)+1; 
 										int attackRandom = (int)(Math.random() * attackRange) + 0;
 										System.out.println("attackRandom = "+attackRandom);
@@ -371,16 +347,11 @@ public class PlayersGameplay {
 									}
 									if(l_troopsSource>l_troopsDestination)
 									{							
-										//Remove p_toCountry from the player which it is assigned to, or form neutral country.
 										removeCountry(p_playersArray,p_toCountry,p_continent);	
 										p_player.getD_Country().add(p_toCountry);										
 										System.out.println(ColorCoding.green+"Attack Successfull!!"+ColorCoding.blank);									
-										//add card to player
 										p_player.getCards().add(generateCard());
-										//Remove Continent if Player doesn't have any country belonging to it. OR Add Continent if player
-										//has won All countries in that Continent
 										updateContinent(p_playersArray, p_continent);
-
 										int l_troopsLeft = l_troopsSource - l_troopsDestination; 
 										p_toCountry.setD_armyDeployedOnCountry(l_troopsLeft);
 										p_fromCountry.setD_armyDeployedOnCountry(p_fromCountry.getD_armyDeployedOnCountry()-p_troops);
@@ -391,10 +362,8 @@ public class PlayersGameplay {
 									}
 									else if(l_troopsSource<l_troopsDestination)
 									{
-										//Defender defeats the attacker
 										int l_troopsLeft = l_troopsDestination - l_troopsSource;
 										p_toCountry.setD_armyDeployedOnCountry(l_troopsLeft);
-										//p_fromCountry.setD_armyDeployedOnCountry(0);
 										p_fromCountry.setD_armyDeployedOnCountry(p_fromCountry.getD_armyDeployedOnCountry()-p_troops);
 										System.out.println(p_toCountry.getD_countryName()+" defended itself successuflly from "+p_fromCountry.getD_countryName());
 										System.out.println("After change "+p_fromCountry.getD_countryName()+" has "+p_fromCountry.getD_armyDeployedOnCountry()+" troops");
@@ -403,7 +372,6 @@ public class PlayersGameplay {
 									else
 									{
 										p_toCountry.setD_armyDeployedOnCountry(0);
-										//p_fromCountry.setD_armyDeployedOnCountry(0);
 										p_fromCountry.setD_armyDeployedOnCountry(p_fromCountry.getD_armyDeployedOnCountry()-p_troops);
 										System.out.println(p_toCountry.getD_countryName()+" defended itself successuflly from "+p_fromCountry.getD_countryName());
 										System.out.println("After change "+p_fromCountry.getD_countryName()+" has "+p_fromCountry.getD_armyDeployedOnCountry()+" troops");
@@ -478,7 +446,6 @@ public class PlayersGameplay {
 	 */	
 	public static int removeCountry(ArrayList<Player> p_playersArray,Country p_country,ArrayList<Continent> p_continent) {
 		LogEntryBuffer d_logEntryBuffer= new LogEntryBuffer();
-		//if p_country is assigned to players
 		for(Player p:p_playersArray)
 		{
 			if(p.getD_Country().contains(p_country))
@@ -488,8 +455,6 @@ public class PlayersGameplay {
 				return 0;
 			}
 		}
-		
-		//if p_country is not assigned to players and belongs to neutral country 
 		if(l_neutralCountry.contains(p_country))
 		{
 			l_neutralCountry.remove(p_country);

@@ -7,7 +7,10 @@ import java.io.PrintWriter;
 
 import Tools.Observer;
 
-
+/**
+ * This class refers to the log writer that writes on the log file.
+ *
+ */
 public class LogWriter implements Observer {
 	
 	private String l_fileName= "LogEntry";
