@@ -11,6 +11,11 @@ import Tools.Connectivity;
 import Tools.MapLoader;
 import Tools.SaveMap;
 import Views.ViewMap;
+
+/**
+ * The class PhaseValidation tests if right phase is being executed at right time.
+ *
+ */
 public class phaseValidation {
 	
 	static GameEngine gameEngine = new GameEngine();
@@ -23,6 +28,10 @@ public class phaseValidation {
 		gameEngine.setConnectivity(d_connectivity);
 		gameEngine.setCheckIfTest(true);
 	}
+	
+	/**
+	 * This test checks if pre load phase is executing all the methods in it at right time or not.
+	 */
 	@Test
 	public void checkPreLoad()
 	{
