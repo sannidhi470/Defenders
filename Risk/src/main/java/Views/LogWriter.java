@@ -15,6 +15,7 @@ public class LogWriter implements Observer {
 	
 	/**
 	 * This function updates the log messages.
+	 * @param p_log refers to the log message that needs to be updated.
 	 */
 	public void update(String p_log) {
 		writeLogFile(p_log);
