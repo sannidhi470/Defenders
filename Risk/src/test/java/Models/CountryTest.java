@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import Tools.Connectivity;
 import Tools.MapLoader;
 
+/**
+ * This class tests the components of Country Model
+ */
 public class CountryTest {
 	
 	private Connectivity d_connectivity=new Connectivity();

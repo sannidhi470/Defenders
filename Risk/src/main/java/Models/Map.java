@@ -32,7 +32,7 @@ public class Map {
 	
 	/**
 	 * Sets the file Name.
-	 * @param d_mapFileName refers to the file name.
+	 * @param p_mapFileName refers to the file name.
 	 *
 	 */
 	

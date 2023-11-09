@@ -677,6 +677,7 @@ public class PlayersGameplay {
 	/**
 	 *
 	 * This method will generate random cards and adds to players if player capture the new territory.
+	 * @return returns generated card
 	 */	
 	public static String generateCard() {
 		String[] l_cards = {"bomb","blockade","airlift","diplomacy"};
