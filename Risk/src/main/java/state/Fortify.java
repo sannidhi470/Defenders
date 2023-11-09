@@ -34,7 +34,7 @@ public class Fortify extends MainPlay
     /**
      * This method is not applicable in the Fortify phase.
      *
-     * @param p_connectivity
+     * @param p_connectivity refers to the connection of the countries and continents.
      */
 	public void reinforce(Connectivity p_connectivity) 
 	{
@@ -44,7 +44,7 @@ public class Fortify extends MainPlay
     /**
      * This method is not applicable in the Fortify phase.
      *
-     * @param p_connectivity
+     * @param p_connectivity refers to the connection of the countries and continents.
      */
 	public void attack(Connectivity p_connectivity) 
 	{
@@ -55,7 +55,7 @@ public class Fortify extends MainPlay
      * This method allows players to perform the fortification phase of their turn. Players can choose
      * to give commands or pass their turn. The method handles user input and executes orders accordingly.
      *
-     * @param p_connectivity
+     * @param p_connectivity refers to the connection of the countries and continents.
      */
 	public void fortify(Connectivity p_connectivity) 
 	{
