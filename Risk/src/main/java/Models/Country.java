@@ -82,7 +82,7 @@ public class Country {
 	
 	/**
 	 * Sets the continent ID.
-	 * @param d_continentId refers to the continent ID
+	 * @param p_continentId refers to the continent ID
 	 */
 
 	public void setD_continentId(int p_continentId) {
@@ -91,7 +91,7 @@ public class Country {
 	
 	/**
 	 * Sets the country ID.
-	 * @param d_countryId refers to the country ID
+	 * @param p_countryId refers to the country ID
 	 */
 
 	public void setD_countryId(int p_countryId) {
@@ -109,7 +109,7 @@ public class Country {
 	
 	/**
 	 * Sets the country Name.
-	 * @param d_countryName refers to the country Name
+	 * @param p_countryName refers to the country Name
 	 */
 
 	public void setD_countryName(String p_countryName) {

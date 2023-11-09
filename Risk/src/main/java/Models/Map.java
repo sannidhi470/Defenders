@@ -52,7 +52,7 @@ public class Map {
 	
 	/**
 	 * Sets the checker for file existance.
-	 * @param d_mapExist refers to the boolean checker.
+	 * @param p_mapExist refers to the boolean checker.
 	 *
 	 */
 
