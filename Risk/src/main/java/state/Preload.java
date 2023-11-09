@@ -28,7 +28,7 @@ public class Preload extends Edit
 	/**
 	 * Loads a map using the provided commands.
 	 * 
-	 * @param p_connectivity
+	 * @param p_connectivity  represents the map content
 	 * @param p_commands Array of user commands for loading a map.
 	 */
 	public void loadMap(Connectivity p_connectivity, String[] p_commands) 
@@ -61,7 +61,7 @@ public class Preload extends Edit
 	 * Edits (add/remove) country information based on the provided commands.
 	 * 
 	 * @param p_commands Array of user commands for editing countries.
-	 * @param p_connectivity
+	 * @param p_connectivity  represents the map content
 	 */
 	public void editCountry(String[] p_commands,Connectivity p_connectivity) 
 	{
@@ -90,7 +90,7 @@ public class Preload extends Edit
 	 * Edits (add/remove) continent information based on the provided commands.
 	 * 
 	 * @param p_commands Array of user commands for editing continents.
-	 * @param p_connectivity
+	 * @param p_connectivity  represents the map content
 	 */
 	public void editContinent(String[] p_commands,Connectivity p_connectivity) 
 	{
@@ -122,7 +122,7 @@ public class Preload extends Edit
 	 * Edits (add/remove) neighbor information based on the provided commands.
 	 * 
 	 * @param p_commands Array of user commands for editing neighbors.
-	 * @param p_connectivity
+	 * @param p_connectivity  represents the map content
 	 */
 	public void editNeighbor(String[] p_commands,Connectivity p_connectivity) 
 	{
@@ -150,7 +150,7 @@ public class Preload extends Edit
 	/**
 	 * Validates the loaded map.
 	 * 
-	 * @param p_connectivity
+	 * @param p_connectivity  represents the map content
 	 */
 	public void validateMap(Connectivity p_connectivity)
 	{
@@ -164,7 +164,7 @@ public class Preload extends Edit
 	/**
 	 * Saves the map (invalid command in this state).
 	 * 
-	 * @param p_connectivity
+	 * @param p_connectivity  represents the map content
 	 * @param p_mapName The name of the map to save.
 	 */
 	public void saveMap(Connectivity p_connectivity, String p_mapName) 
