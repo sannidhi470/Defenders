@@ -44,7 +44,11 @@ public abstract class Phase
 	 * This method is used to display the map in an tabular manner.
 	 * @param p_continentList refers to the list of continents.
 	 * @param p_countryList refers to the list of countries.
+<<<<<<< HEAD
 	 * @param p_players refers to the list of players.
+=======
+	 * @param p_players refers to the object of players.
+>>>>>>> branch 'main' of https://github.com/sannidhi470/Defenders.git
 	 */
 	public void viewMap(ArrayList<Continent> p_continentList, ArrayList<Country> p_countryList, ArrayList<Player> p_players) 
 	{
