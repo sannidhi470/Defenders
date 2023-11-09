@@ -762,7 +762,7 @@ public class PlayersGameplayTest {
 		
 		country2.setD_armyDeployedOnCountry(4);
 		
-		int result=PlayersGameplay.bomb(d_playersArray, country1, country2, continentList);
+		int result=PlayersGameplay.bomb(l_player1, d_playersArray, country2, continentList);
 		assertEquals(result, 2);
 	}
 	
@@ -785,7 +785,7 @@ public class PlayersGameplayTest {
 		
 		country2.setD_armyDeployedOnCountry(4);
 		
-		int result=PlayersGameplay.bomb(d_playersArray, country1, country2, continentList);
+		int result=PlayersGameplay.bomb(l_player1, d_playersArray, country2, continentList);
 		assertEquals(result, 0);
 	}
 	
@@ -808,7 +808,7 @@ public class PlayersGameplayTest {
 		
 		country2.setD_armyDeployedOnCountry(1);
 		
-		int result=PlayersGameplay.bomb(d_playersArray, country1, country2, continentList);
+		int result=PlayersGameplay.bomb(l_player1,d_playersArray, country2, continentList);
 		assertEquals(result, 0);
 		assertFalse(PlayersGameplay.showPlayersCountry(l_player2, 1).contains(country2));
 	}

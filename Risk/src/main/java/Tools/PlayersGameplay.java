@@ -479,12 +479,17 @@ public class PlayersGameplay {
 	 * @param p_continent refers to list of continents.
 	 * @return l_targetArmies refers to the number of armies left on that country after bomb card is used.
 	 */
-	public static int bomb(ArrayList<Player> p_playersArray,Country p_fromCountry,Country p_toCountry,ArrayList<Continent> p_continent) {
+	public static int bomb(Player p_player, ArrayList<Player> p_playersArray,Country p_toCountry,ArrayList<Continent> p_continent) {
 		LogEntryBuffer d_logEntryBuffer= new LogEntryBuffer();
 		
 		int l_targetArmies=0;
-		
-		if(p_fromCountry.getD_neighbours().contains(p_toCountry.getD_countryId())) {
+		int l_countryFoundFlag=0;
+		for(Country c:p_player.getD_Country())
+		{
+			if(c.getD_neighbours().contains(p_toCountry.getD_countryId()))
+				l_countryFoundFlag++;
+		}
+		if(l_countryFoundFlag!=0) {
 			l_targetArmies=(int) Math.floor(p_toCountry.getD_armyDeployedOnCountry()/2);
 			p_toCountry.setD_armyDeployedOnCountry(l_targetArmies);
 			if(p_toCountry.getD_armyDeployedOnCountry()==0) {
@@ -498,7 +503,7 @@ public class PlayersGameplay {
 				System.out.println("The country "+ p_toCountry + "now has " + l_targetArmies+ " armies");
 			}
 		} else {
-			System.out.println("The country "+ p_fromCountry+ " and "+ p_toCountry + " are not neighbours.");
+			System.out.println(p_toCountry + " is not neighbour to any of the existing lands.");
 		}
 		return l_targetArmies;
 	}

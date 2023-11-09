@@ -168,4 +168,13 @@ public class Country {
 		return null;
 		
 	}
+	public static Country getCountryFromID(ArrayList<Country> p_countryList,int p_countryID)
+	{
+		for(Country c:p_countryList)
+		{
+			if(c.getD_countryId()==p_countryID)
+				return c;
+		}
+		return null;
+	}
 }
