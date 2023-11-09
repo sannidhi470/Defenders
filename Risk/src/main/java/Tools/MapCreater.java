@@ -15,7 +15,7 @@ public class MapCreater {
 	/**
 	 *
 	 * This method is used to create the map.
-	 * @param p_enteredFileName refers to the Map Name being entered.
+	 * @param p_fileName refers to the Map Name being entered.
 	 * @param p_pathName refers to the path.
 	 *
 	 */
