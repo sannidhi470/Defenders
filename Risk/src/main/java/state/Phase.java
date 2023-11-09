@@ -31,7 +31,7 @@ public abstract class Phase
 
 	/**
 	 * This method is used to load the Map in the Preload state.
-	 * @param p_connectivity
+	 * @param p_connectivity Connectivity object
 	 * @param p_commands is used to pass user command
 	 */	
 	public void loadMap(Connectivity p_connectivity, String[] p_commands) 
@@ -54,25 +54,25 @@ public abstract class Phase
 
 	/**
 	 * This abstract method is used to add/remove country in the Preload state.
-	 * @param p_connectivity
+	 * @param p_connectivity Connectivity object
 	 * @param p_commands is used to pass user command
 	 */	
 	abstract public void editCountry(String[] p_commands,Connectivity p_connectivity);
 	/**
 	 * This abstract method is used to add/remove continent in the Preload state.
-	 * @param p_connectivity
+	 * @param p_connectivity Connectivity object
 	 * @param p_commands is used to pass user command
 	 */	
 	abstract public void editContinent(String[] p_commands,Connectivity p_connectivity);
 	/**
 	 * This abstract method is used to add/remove neighbor in the Preload state.
-	 * @param p_connectivity
+	 * @param p_connectivity Connectivity object
 	 * @param p_commands is used to pass user command
 	 */	
 	abstract public void editNeighbor(String[] p_commands,Connectivity p_connectivity);
 	/**
 	 * This abstract method is used to save map in the Postload state.
-	 * @param p_connectivity
+	 * @param p_connectivity Connectivity object
 	 * @param p_mapName is used to pass map name
 	 */	
 	abstract public void saveMap(Connectivity p_connectivity, String p_mapName);
@@ -83,23 +83,23 @@ public abstract class Phase
 	abstract public void setPlayers(String[] p_commands);
 	/**
 	 * This abstract method is used to assign countries in the PlaySetup state.
-	 * @param p_connectivity
+	 * @param p_connectivity Connectivity object
 	 * @return True/False
 	 */	
 	abstract public boolean assignCountries(Connectivity p_connectivity);
 	/**
 	 * This abstract method is used to deploy troops in the Reinforcement state.
-	 * @param p_connectivity
+	 * @param p_connectivity Connectivity object
 	 */	
 	abstract public void reinforce(Connectivity p_connectivity);
 	/**
 	 * This abstract method is used for attacking in the Attack state.
-	 * @param p_connectivity
+	 * @param p_connectivity Connectivity object
 	 */	
 	abstract public void attack(Connectivity p_connectivity);
 	/**
 	 * This abstract method is used for deploying more armies in order to determine the winner.
-	 * @param p_connectivity
+	 * @param p_connectivity Connectivity object
 	 */	
 	abstract public void fortify(Connectivity p_connectivity);
 	/**
@@ -131,7 +131,7 @@ public abstract class Phase
 	abstract public void next();
 	/**
 	 * This method is used validate the loaded map.
-	 * @param p_connectivity
+	 * @param p_connectivity Connectivity object
 	 */
 	abstract public void validateMap(Connectivity p_connectivity);
 	/**

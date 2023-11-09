@@ -146,7 +146,7 @@ public class Country {
 	}
 	
 	/**
-	 * 
+	 * Sets the armies deployed on a country.
 	 * @param d_armyDeployedOnCountry Set the number of armies currently deployed on the country
 	 */
 	public void setD_armyDeployedOnCountry(int d_armyDeployedOnCountry) {
