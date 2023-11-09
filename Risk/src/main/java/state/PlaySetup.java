@@ -63,7 +63,7 @@ public class PlaySetup extends Play
 	/**
 	 * Assigns countries to players.
 	 * 
-	 * @param p_connectivity
+	 * @param p_connectivity refers to connectivity object
 	 * @return True if countries are successfully assigned, false otherwise.
 	 */
 	public boolean assignCountries(Connectivity p_connectivity) {
@@ -112,7 +112,7 @@ public class PlaySetup extends Play
 	/**
 	 * Attack phase is not applicable in PlaySetup and results in an invalid command.
 	 * 
-	 * @param p_connectivity
+	 * @param p_connectivity refers to connectivity object
 	 */
 	public void attack(Connectivity p_connectivity) 
 	{
@@ -121,7 +121,7 @@ public class PlaySetup extends Play
 	/**
 	 * Fortify phase is not applicable in PlaySetup and results in an invalid command.
 	 * 
-	 * @param p_connectivity
+	 * @param p_connectivity refers to connectivity object
 	 */
 	public void fortify(Connectivity p_connectivity) 
 	{
