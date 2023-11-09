@@ -30,7 +30,7 @@ public class Reinforcement extends MainPlay
 	/**
 	 * Allows players to deploy armies during the reinforcement phase.
 	 * 
-	 * @param p_connectivity
+	 * @param p_connectivity refers to connectivity object
 	 */
 	public void reinforce(Connectivity p_connectivity) 
 	{
@@ -146,7 +146,7 @@ public class Reinforcement extends MainPlay
 	 * Invalid command in Reinforcement phase.
 	 * Players cannot attack during the Reinforcement phase.
 	 * 
-	 * @param p_connectivity
+	 * @param p_connectivity refers to connectivity object
 	 */
 	public void attack(Connectivity p_connectivity) 
 	{
@@ -157,7 +157,7 @@ public class Reinforcement extends MainPlay
 	 * Invalid command in Reinforcement phase.
 	 * Players cannot fortify during the Reinforcement phase.
 	 * 
-	 * @param p_connectivity
+	 * @param p_connectivity refers to connectivity object
 	 */
 	public void fortify(Connectivity p_connectivity) 
 	{
