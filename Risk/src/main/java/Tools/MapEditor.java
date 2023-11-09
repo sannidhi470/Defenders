@@ -20,6 +20,8 @@ public class MapEditor {
 	 * @param p_continentId refers to the ID of the continent.
 	 * @param p_continentvalue refers to the control value of the continent.
 	 * @param p_connectivity refers object of the connectivity class.
+	 * 
+	 * @return 0 is continent adds successfully or 1 if it fails.
 	 *
 	 */
 		
@@ -53,6 +55,8 @@ public class MapEditor {
 	 * @param p_countryId refers to the ID of the country.
 	 * @param p_continentId refers to the ID of the continent.
 	 * @param p_connectivity refers to the object of the connectivity class.
+	 * 
+	 * @return 0 is continent adds successfully or 1 if it fails.
 	 *
 	 */
 	
@@ -116,6 +120,8 @@ public class MapEditor {
 	 * @param p_countryId refers to the ID of the country.
 	 * @param p_neighbourcountryId refers to the ID of the neighbouring country.
 	 * @param p_connectivity refers to the object of the connectivity class.
+	 * 
+	 * @return 0 is continent adds successfully or 1 if it fails.
 	 *
 	 */
 	
@@ -194,7 +200,7 @@ public class MapEditor {
 	 * @param p_connectivity refers to the object of the connectivity class.
 	 * @param p_displayMessage refers to the message being displayed.
 	 * 
-	 * @return display messages
+	 * @return 0 is continent adds successfully or 1 if it fails.
 	 *
 	 */
 	
@@ -244,6 +250,8 @@ public class MapEditor {
 	 * This method is used to remove country to the user defined maps.
 	 * @param p_countryId refers to the ID of the country.
 	 * @param p_connectivity refers to the object of the connectivity class.
+	 * 
+	 * @return 0 is continent adds successfully or 1 if it fails.
 	 *
 	 */
 	
@@ -307,7 +315,7 @@ public class MapEditor {
 	 * @param p_continentId refers to the ID of the continent.
 	 * @param p_connectivity refers to the object of the connectivity class.
 	 * 
-	 * @return display messages.
+	 * @return 0 is continent adds successfully or 1 if it fails.
 	 *
 	 */
 	

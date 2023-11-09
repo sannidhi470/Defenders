@@ -497,6 +497,8 @@ public class PlayersGameplay {
 				d_logEntryBuffer.log("The country "+ p_toCountry + "now has " + l_targetArmies+ " armies");
 				System.out.println("The country "+ p_toCountry + "now has " + l_targetArmies+ " armies");
 			}
+		} else {
+			System.out.println("The country "+ p_fromCountry+ " and "+ p_toCountry + " are not neighbours.");
 		}
 		return l_targetArmies;
 	}

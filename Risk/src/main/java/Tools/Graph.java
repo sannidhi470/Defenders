@@ -9,6 +9,7 @@ import java.util.LinkedList;
 public class Graph extends validateGraph{
 	 
 	/**
+	 * This method creates a graph.
 	 * 
 	 * @param d_noOfCountries refers to the total number of countries in the map
 	 * @param p_connectivity refers to the connectivity object
@@ -29,6 +30,7 @@ public class Graph extends validateGraph{
 
 	}
 	/**
+	 * This method add countries.
 	 * 
 	 * @param d_noOfCountries refers to the total number of countries
 	 * @param p_countryId refers to the countryID of a particular country
