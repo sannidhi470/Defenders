@@ -12,7 +12,7 @@ import state.Preload;
  * The class MapLoader tests if we can load the valid map or not.
  *
  */
-class MapLoaderTest {
+public class MapLoaderTest {
 
 	private static Connectivity d_connectivity=new Connectivity();
 	static GameEngine gameEngine =  new GameEngine();

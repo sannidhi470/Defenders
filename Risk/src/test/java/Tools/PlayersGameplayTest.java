@@ -17,7 +17,7 @@ import state.Play;
  *
  */
 
-class PlayersGameplayTest {
+public class PlayersGameplayTest {
 	
 	private ArrayList<Player> d_playersArray = new ArrayList<Player>();
 			//Play.getL_playersArray();

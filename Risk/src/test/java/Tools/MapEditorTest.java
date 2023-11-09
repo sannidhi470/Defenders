@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
  *
  */
 
-class MapEditorTest {
+public class MapEditorTest {
 
 	Connectivity d_connectivity=new Connectivity();
 	
