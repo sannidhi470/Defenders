@@ -14,10 +14,10 @@ import Models.Map;
 
 public class MapLoader {
 	
-/**
- * 
+	/**
+ 	 * 
 	 * This method is used to load the Map selected by the user whether pre-defined or user made.
-	 * @param p_connectivity
+	 * @param p_connectivity refers to connectivity object
 	 * @param p_mapName refers to the Name of the map being loaded.
 	 * @return 0 in-case of successful loading of map; 1 in-case unsuccessful loading of map
  */
