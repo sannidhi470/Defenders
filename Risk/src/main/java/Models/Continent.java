@@ -61,7 +61,7 @@ public class Continent {
 	
 	/**
 	 * Sets list of countries to the continent.
-	 * @param list of countries
+	 * @param p_countries list of countries
 	 */
 
 	public void setD_countries(List<Country> p_countries) {
@@ -99,7 +99,7 @@ public class Continent {
 	
 	/**
 	 * Sets the continent Name.
-	 * @param continent name
+	 * @param p_continentName continent name
 	 */
 
 	public void setD_continentName(String p_continentName) {
@@ -118,7 +118,7 @@ public class Continent {
 	
 	/**
 	 * Sets the continent bonus value.
-	 * @param bonus value
+	 * @param p_continentArmyValue value
 	 */
 
 	public void setD_continentBonusValue(int p_continentArmyValue) {

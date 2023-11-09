@@ -44,7 +44,7 @@ public class Attack extends MainPlay
     /**
      * Reinforcement does not belong to Attack phase. Prints an invalid command message.
      *
-     * @param l_connectivity The Connectivity object.
+     * @param p_connectivity The Connectivity object.
      */
 	public void reinforce(Connectivity p_connectivity) 
 	{
@@ -54,7 +54,7 @@ public class Attack extends MainPlay
     /**
      * Handles the logic for player commands related to attacks.
      *
-     * @param l_connectivity
+     * @param p_connectivity
      */
 	public void attack(Connectivity p_connectivity) 
 	{
@@ -214,7 +214,7 @@ public class Attack extends MainPlay
     /**
      * Fortification does not belong to Attack phase. Prints an invalid command message.
      *
-     * @param l_connectivity
+     * @param p_connectivity
      */
 	public void fortify(Connectivity p_connectivity) 
 	{
