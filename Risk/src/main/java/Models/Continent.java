@@ -80,7 +80,7 @@ public class Continent {
 	
 	/**
 	 * Sets the continent ID
-	 * @param list of continent
+	 * @param p_continentId list of continent
 	 */
 
 	public void setD_continentId(int p_continentId) {

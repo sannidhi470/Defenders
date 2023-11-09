@@ -52,6 +52,9 @@ public class PlayersGameplayTest {
 		}
 		
 	}
+	/**
+	 * clears the neutral country list
+	 */
 	
 	@AfterEach
 	public void clean()

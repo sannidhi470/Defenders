@@ -90,7 +90,7 @@ public class Player {
 	
 	/**
 	 * Once the order is executed it gets removed from the list.
-	 *
+	 * @return returns the order of the player
 	 */
 	
 	public Order next_order(){

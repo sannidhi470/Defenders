@@ -10,7 +10,11 @@ import Models.LogEntryBuffer;
 public class validateGraph {
 	public int d_noOfCountries;
 	public LinkedList[] d_adjacentCountriesList;
-
+/**
+ * 
+ * @param graph represents the graph
+ * @return returns 0 and 1 depending on isconnected.
+ */
 	public int isConnected(validateGraph graph){
 		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 		  

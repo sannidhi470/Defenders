@@ -16,6 +16,7 @@ public class SaveMap {
  * 
  * This method is used to save the map once user creates a new map or make changes to the existing ones.
  * @param p_connectivity refers to the connectivity object
+ * @param p_mapName refers to map name.
  * @return 0 in case of successful save of map; 1 in case of unsuccessful map save
  */
 
