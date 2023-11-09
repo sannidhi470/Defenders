@@ -17,6 +17,7 @@ public class Order {
 	private int d_numberOfArmies;
 	private String orderContent;
 	/**
+	 * returns the order content
 	 * @return returns the String of the order passed
 	 * 
 	 */
@@ -25,7 +26,7 @@ public class Order {
 	}
 
 	/**
-	 * 
+	 * Sets the order content
 	 * @param orderContent sets the String passed by the user in orderContent.
 	 */
 	public void setOrderContent(String orderContent) {

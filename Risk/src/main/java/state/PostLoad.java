@@ -48,7 +48,7 @@ public class PostLoad extends Edit
 	/**
 	 * Saves the map.
 	 * 
-	 * @param p_connectivity
+	 * @param p_connectivity represents the map content
 	 * @param p_mapName The name of the map to save.
 	 */
 	public void saveMap(Connectivity p_connectivity, String p_mapName) 
