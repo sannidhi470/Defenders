@@ -84,7 +84,7 @@ public class End extends Phase
      * This method is not applicable in the End phase.
      * It prints an invalid command message.
      *
-     * @param p_connectivity
+     * @param p_connectivity refers to connectivity object
      */
     public void reinforce(Connectivity p_connectivity) 
     {
@@ -95,7 +95,7 @@ public class End extends Phase
      * This method is not applicable in the End phase.
      * It prints an invalid command message.
      *
-     * @param p_connectivity
+     * @param p_connectivity refers to connectivity object
      */
     public void attack(Connectivity p_connectivity) 
     {
@@ -106,7 +106,7 @@ public class End extends Phase
      * This method is not applicable in the End phase.
      * It prints an invalid command message.
      *
-     * @param p_connectivity
+     * @param p_connectivity refers to connectivity object
      */
     public void fortify(Connectivity p_connectivity) 
     {
@@ -134,7 +134,7 @@ public class End extends Phase
     /**
      * This method is not implemented in the End phase.
      *
-     * @param p_connectivity
+     * @param p_connectivity refers to connectivity object
      * @param p_commands An array of String commands.
      */
     @Override
@@ -146,7 +146,7 @@ public class End extends Phase
     /**
      * This method is not implemented in the End phase.
      *
-     * @param p_connectivity
+     * @param p_connectivity refers to connectivity object
      */
     @Override
     public void validateMap(Connectivity p_connectivity) 
@@ -158,7 +158,7 @@ public class End extends Phase
      * This method is not implemented in the End phase.
      *
      * @param p_commands An array of user commands.
-     * @param p_connectivity
+     * @param p_connectivity refers to connectivity object
      */
     @Override
     public void editCountry(String[] p_commands, Connectivity p_connectivity) 
@@ -170,7 +170,7 @@ public class End extends Phase
      * This method is not implemented in the End phase.
      *
      * @param p_commands An array of user commands.
-     * @param p_connectivity
+     * @param p_connectivity refers to connectivity object
      */
     @Override
     public void editContinent(String[] p_commands, Connectivity p_connectivity) 
@@ -182,7 +182,7 @@ public class End extends Phase
      * This method is not implemented in the End phase.
      *
      * @param p_commands An array of user commands.
-     * @param p_connectivity
+     * @param p_connectivity refers to connectivity object
      */
     @Override
     public void editNeighbor(String[] p_commands, Connectivity p_connectivity) 
@@ -193,7 +193,7 @@ public class End extends Phase
     /**
      * This method is not implemented in the End phase.
      *
-     * @param p_connectivity
+     * @param p_connectivity refers to connectivity object
      * @param p_mapName The name of the map to be saved.
      */
     @Override
