@@ -134,9 +134,6 @@ public class Order {
 				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"bomb");
 				System.out.println(p_player.getD_playerName()+"is calling"+"bomb");
 				if(p_player.getCards().contains("bomb")) {
-//					Country l_bombCountry=new Country();
-//					String l_countryName=Country.get_nameFromId(p_connectivity.getD_countryList(),Integer.parseInt(l_orderContent[1]));
-//					l_bombCountry=l_bombCountry.getCountryFromName(p_connectivity.getD_countryList(), l_countryName);
 					PlayersGameplay.bomb(p_player,Play.getL_playersArray(), Country.getCountryFromID(p_connectivity.getD_countryList(), Integer.parseInt(l_orderContent[1])) , p_connectivity.getD_continentList());
 					p_player.removeCard("bomb");
 				} else {

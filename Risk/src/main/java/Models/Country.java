@@ -153,6 +153,7 @@ public class Country {
 	}
 	
 	/**
+	 * This method is used get country from its name.
 	 * 
 	 * @param p_countryList List of objects of individual countries 
 	 * @param p_countryName Name of particular country
@@ -168,6 +169,14 @@ public class Country {
 		return null;
 		
 	}
+	
+	/**
+	 * This method is used to get country from ID.
+	 * 
+	 * @param p_countryList List of objects of individual countries
+	 * @param p_countryID Id of particular countries.
+	 * @return id of country is country is present; null if such country does not exist.
+	 */
 	public static Country getCountryFromID(ArrayList<Country> p_countryList,int p_countryID)
 	{
 		for(Country c:p_countryList)

@@ -1,10 +1,1 @@
 Choice of Starting the Game or Ending it
-new phase: Preload
-enter a Preload phase command: 
-Map VeryBasic.map has been successfully loaded...
-Graph is connected
-
------ ✓ Loaded Map is a valid map ✓ -----
-
-new phase: PostLoad
-enter a PostLoad phase command: 
