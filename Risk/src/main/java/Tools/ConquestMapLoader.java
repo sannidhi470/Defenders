@@ -70,7 +70,7 @@ public class ConquestMapLoader {
     	   		HashMap<Integer,ArrayList<Integer>> l_neighbouringCountries=new HashMap<Integer,ArrayList<Integer>>();
     	   		int l_countryID =1;
     	   		int l_continentID =1;
-    	   		for(int i=l_continentLength+1; i<l_fileContent.size(); i++)
+    	   		for(int i=l_continentLength+1; i<l_territoryLength-1; i++)
     	   		{
     	   			String a=l_fileContent.get(i);
     	   			String[] aArr=a.split("=");
@@ -79,8 +79,43 @@ public class ConquestMapLoader {
     	   			l_continentObj.setD_continentName(aArr[0]);
     	   			l_continentObj.setD_continentBonusValue(Integer.parseInt(aArr[1]));
     	   			System.out.println("setting continentID"+l_continentID+" continentName "+aArr[0]+" continentBonus"+Integer.parseInt(aArr[1]));
+    	   			l_continentObj.setD_countries(l_countryList);
     	   			l_continentID++;
-    	   			continentList.add(l_continentObj);	
+    	   			continentList.add(l_continentObj);
+
+    	   		}
+    	   		//Countries are duplicated in countryList | Need to check if existing or not and then not add it to the list
+    	   		for(int i=l_territoryLength+1; i<l_fileContent.size(); i++)
+    	   		{
+    	   			int l_currentCountryID = l_countryID;
+    	   			String a = l_fileContent.get(i);
+    	   			String[] aArr = a.split(",");
+    	   			Country obj=new Country();
+    	   			obj.setD_countryId(l_countryID);
+    	   			obj.setD_countryName(aArr[0]);
+    	   			System.out.println("setting countryID "+l_countryID+" countryName "+aArr[0]);
+    	   			l_countryList.add(obj);
+    	   			for(int j=0; j<continentList.size();j++)
+    	   			{
+    	   				if(continentList.get(j).getD_continentName().equals(aArr[3]))
+    	   				{
+    	   					continentList.get(j).getD_countries().add(obj);
+    	   					System.out.println("added to conti "+continentList.get(j).getD_continentName());
+    	   				}
+    	   			}
+    	   			l_countryID++;
+    	   			ArrayList<Integer> l_neighbours=new ArrayList<Integer>();
+    	   			for(int j=4; j<aArr.length; j++)
+    	   			{
+        	   			obj=new Country();
+        	   			obj.setD_countryId(l_countryID);
+        	   			obj.setD_countryName(aArr[0]);
+        	   			l_countryList.add(obj);
+        	   			l_neighbours.add(l_countryID);
+        	   			l_countryID++;
+    	   			}
+    	   			l_neighbouringCountries.put(l_currentCountryID,l_neighbours);
+    	   			
     	   		}
 //    	        for(int i=l_borderLength+1; i<l_fileContent.size(); i++) 
 //    	        {
