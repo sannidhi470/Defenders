@@ -202,6 +202,7 @@ public class GameEngine {
 		keyboard.close();
 	}
 	/**
+	 * This method gets the connectivity object
 	 * @return returns the map content
 	 */
 	public Connectivity getConnectivity() {

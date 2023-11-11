@@ -54,7 +54,7 @@ public class Attack extends MainPlay
     /**
      * Handles the logic for player commands related to attacks.
      *
-     * @param p_connectivity
+     * @param p_connectivity refers to connectivity object
      */
 	public void attack(Connectivity p_connectivity) 
 	{
@@ -214,7 +214,7 @@ public class Attack extends MainPlay
     /**
      * Fortification does not belong to Attack phase. Prints an invalid command message.
      *
-     * @param p_connectivity
+     * @param p_connectivity refers to connectivity object
      */
 	public void fortify(Connectivity p_connectivity) 
 	{

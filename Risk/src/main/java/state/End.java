@@ -71,7 +71,7 @@ public class End extends Phase
      * This method is not applicable in the End phase.
      * It prints an invalid command message.
      *
-     * @param p_connectivity
+     * @param p_connectivity refers to connectivity object
      * @return Always returns false.
      */
     public boolean assignCountries(Connectivity p_connectivity) 

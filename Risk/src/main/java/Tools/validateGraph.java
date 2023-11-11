@@ -11,7 +11,7 @@ public class validateGraph {
 	public int d_noOfCountries;
 	public LinkedList[] d_adjacentCountriesList;
 /**
- * 
+ * This method checks if the graph is connected or not.
  * @param graph represents the graph
  * @return returns 0 and 1 depending on isconnected.
  */
@@ -48,7 +48,7 @@ public class validateGraph {
         
     }
 	/**
-	 * 
+	 * This method is used for DFS route.
 	 * @param source refers to the source country from where we are about to traverse from
 	 * @param adjacencyList refers to the adjacent countries/neighbors list
 	 * @param visited refers to the list of visited countries in the traversal
@@ -65,7 +65,7 @@ public class validateGraph {
         }
     }
 	/**
-	 * 
+	 * This methods is used to check whether continents are connected or not.
 	 * @param p_connectivity refers to the connectivity object 
 	 * @param graph is the graph representation of the map
 	 * @return true if continents are connected; false if continents are not connected
