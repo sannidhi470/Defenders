@@ -2,6 +2,9 @@
 
 import java.util.ArrayList;
 
+import Controllers.GameEngine;
+import Strategy.PlayerStrategy;
+
 /**
  * The class Player defines Players and it's properties such as Name, player ID,Order list of the player,countries owned by the player
  * army count of the player, continents owned by the player, cards owned by the player , a diplomacy variable to be used by the diplomacy
@@ -20,6 +23,9 @@ public class Player {
 	private ArrayList<String> d_cards = new ArrayList<>();
 	private ArrayList<Integer> d_diplomacyWith = new ArrayList<>();
 	private static int d_objCount = 1;
+	
+	private PlayerStrategy strategy;
+	
 	
 	/**
 	 * This is a default constructor.
@@ -82,10 +88,16 @@ public class Player {
 	 *
 	 */
 
-	public void issue_order(){
+	public boolean issue_order(){
 		
-		this.d_playerOrder.add(d_order);
-		
+		Order order;
+		order = strategy.createOrder();
+		if (order != null) {
+			d_playerOrder.add(order);
+			return true;
+		}
+			return false;
+
 	}
 	
 	/**
@@ -313,5 +325,14 @@ public class Player {
 	{
 		d_playerCountry.remove(c);
 	}
+
+	public PlayerStrategy getStrategy() {
+		return strategy;
+	}
+
+	public void setStrategy(PlayerStrategy strategy) {
+		this.strategy = strategy;
+	}
+
 	
 }

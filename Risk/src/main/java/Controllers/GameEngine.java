@@ -24,7 +24,7 @@ public class GameEngine {
 	/**
 	 * State object of the GameEngine 
 	 */
-	private Phase gamePhase;
+	private static Phase gamePhase;
 	private Connectivity connectivity;
 	private boolean checkIfTest = false;
 	/**
@@ -58,7 +58,7 @@ public class GameEngine {
 	 * This function returns the phase of the game
 	 * @return returns the name of the game phase.
 	 */
-	public String getPhaseName()
+	public static String getPhaseName()
 	{
 		return gamePhase.getClass().getSimpleName();
 	}

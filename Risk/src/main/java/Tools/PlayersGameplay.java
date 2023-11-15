@@ -288,7 +288,7 @@ public class PlayersGameplay {
 	 * @return player to which the country belongs or null if country dosn't belongs to anyone 
 	 *
 	 */
-	private static Player findPlayerWithCountry(ArrayList<Player> p_playersArray, Country p_Country) 
+	public static Player findPlayerWithCountry(ArrayList<Player> p_playersArray, Country p_Country) 
 	{
 		for(Player p: p_playersArray)
 		{
