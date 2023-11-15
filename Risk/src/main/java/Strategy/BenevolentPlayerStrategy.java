@@ -53,14 +53,14 @@ public class BenevolentPlayerStrategy extends PlayerStrategy{
 		Order o =new Order();
 		String str;
 		
-		if(GameEngine.getPhaseName().equals("Reinforce"))
+		if(GameEngine.getPhaseName().equals("reinforce"))
 		{
 			str="deploy ";
 			str = str+ toDefend() + d_player.getD_armyCount();
 			o.setOrderContent(str);
 			return o;
 		}
-		else if(GameEngine.getPhaseName().equals("Attack"))
+		else if(GameEngine.getPhaseName().equals("attack"))
 		{
 			str="advance ";
 			str = str+ toDefend() + d_player.getD_armyCount();
