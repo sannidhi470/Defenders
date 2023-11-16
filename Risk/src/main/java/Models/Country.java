@@ -31,7 +31,7 @@ public class Country {
 	 * @param p_countryId refers to the country ID.
 	 * @param p_countryName refers to the name of the country.
 	 * @param p_continentId refers to the continent ID.
-	 * @param p_neighbours refers to the list of neighbours for that particular country.
+	 * @param p_neighbours refers to the list of neighbors for that particular country.
 	 */
 
 	public Country(int p_countryId, String p_countryName, int p_continentId,ArrayList<Integer> p_neighbours) {

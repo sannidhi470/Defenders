@@ -48,7 +48,7 @@ public class CheaterPlayerStrategy extends PlayerStrategy{
 		
 //		d_connectivity.getD_countryList();
 		System.out.println("////////////////////////////////////////");
-		//conquers all the immediate neighboring enemy countrie
+		//conquers all the immediate neighboring enemy countries
 		for(Country c:d_player.getD_Country())
 		{
 			for(int n:c.getD_neighbours())
