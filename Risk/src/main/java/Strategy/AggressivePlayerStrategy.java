@@ -14,18 +14,18 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 	@Override
 	protected Country toAttack() {
 		Country d_StrongestCountry = toMoveFrom();
+		Country l_neighborCountry = null;
 		if(d_StrongestCountry!=null) {
 			int l_neighborCount = d_StrongestCountry.getD_neighbours().size();
             for (int i=0;i<l_neighborCount-1;i++) {
-            	//Country l_neighborCountry = d_StrongestCountry.getD_neighbours().get(i);
-            	Country l_neighborCountry = null;
-	                if (!d_player.getD_Country().contains(l_neighborCountry)) {
-	                    Country d_OpponentCountry = l_neighborCountry;
-	                    return d_OpponentCountry;
-	                }
-                
+            	//l_neighborCountry = d_StrongestCountry.getD_neighbours().get(i);
+	            if (!d_player.getD_Country().contains(l_neighborCountry)) {
+	                Country d_OpponentCountry = l_neighborCountry;           
+	                return d_OpponentCountry;
+	            }
             }
         }
+		System.out.println("No neighbours present for attack!");
 		return null;
 	}
 
