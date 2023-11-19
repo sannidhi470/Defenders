@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import Controllers.GameEngine;
 import Models.Order;
+import Models.Player;
 import Strategy.HumanPlayerStrategy;
 import Tools.ColorCoding;
 import Tools.Connectivity;
@@ -38,12 +39,18 @@ public class Reinforcement extends MainPlay
 		int l_temp =1;
 		int flag=0;
 		ArrayList<String> l_tempName=new ArrayList<>();
+		ArrayList<Player> l_tempPlayerArray = new ArrayList<>();
+		for(int i=0; i<l_playersArray.size(); i++)
+		{
+			l_tempPlayerArray.add(l_playersArray.get(i));
+		}
 		while(l_temp>0) 
 		{
 			for(int i=0;i<l_playersArray.size();i++)
 			{
 				String l_userOrder="";
-				if(l_playersArray.get(i).getD_armyCount()!=0)
+				boolean l_outcomeIssueOrder = false;
+				if(l_playersArray.get(i).getD_armyCount()!=0 && !(l_tempName.contains(l_playersArray.get(i).getD_playerName())))
 				{
 					//d_logEntryBuffer.log("Player "+l_playersArray.get(i).getD_playerName()+" deploy your troops:");
 					System.out.println("Player "+l_playersArray.get(i).getD_playerName()+" deploy your troops:");
@@ -55,7 +62,21 @@ public class Reinforcement extends MainPlay
 						System.out.println("For testcase, we have the following command\n"+l_userOrder);
 					}
 					else
-						l_playersArray.get(i).issue_order();						
+					{
+						l_outcomeIssueOrder =l_playersArray.get(i).issue_order();
+						if(l_outcomeIssueOrder == false)
+						{
+							System.out.println("Player "+l_playersArray.get(i).getD_playerName()+" has decided not to deploy any troops");
+							l_tempName.add(l_playersArray.get(i).getD_playerName());
+							flag++;
+							for(int k=0; k<l_tempPlayerArray.size(); k++)
+							{
+								if(l_tempPlayerArray.get(k).getD_playerName().equals(l_playersArray.get(i).getD_playerName()))
+									l_tempPlayerArray.remove(k);
+							}
+						}
+					}
+						
 
 					for(int j=0;j<l_playersArray.size();j++)
 					{
@@ -79,32 +100,36 @@ public class Reinforcement extends MainPlay
 				}
 			}
 		}
-		PlayersGameplay.assignArmiesToPlayers(l_playersArray);
+		PlayersGameplay.assignArmiesToPlayers(l_tempPlayerArray);
 		l_temp=1;
 		flag=0;
-		while(l_temp>0) 
+		if(l_tempPlayerArray.size() != 0)
 		{
-			for(int i=0;i<l_playersArray.size();i++)
+			while(l_temp>0) 
 			{
-				if(l_playersArray.get(i).getD_armyCount()!=0)
+				for(int i=0;i<l_tempPlayerArray.size();i++)
 				{
-					l_playersArray.get(i).getD_Order().execute(l_playersArray.get(i), l_playersArray.get(i).next_order(),p_connectivity,0,0);
-					if(l_playersArray.get(i).getD_armyCount()==0)
+					if(l_tempPlayerArray.get(i).getD_armyCount()!=0)
 					{
-						flag+=1;
+						l_tempPlayerArray.get(i).getD_Order().execute(l_tempPlayerArray.get(i), l_tempPlayerArray.get(i).next_order(),p_connectivity,0,0);
+						if(l_tempPlayerArray.get(i).getD_armyCount()==0)
+						{
+							flag+=1;
+						}
 					}
-				}
-				if(flag==l_playersArray.size())
-				{
-					l_temp=0;
-					break;
+					if(flag==l_tempPlayerArray.size())
+					{
+						l_temp=0;
+						break;
+					}
+					
 				}
 				
+				
 			}
-			
-			
+			System.out.println(ColorCoding.green+"All Armies have been successfully deployed. Enter command to proceed"+ColorCoding.blank);
 		}
-		System.out.println(ColorCoding.green+"All Armies have been successfully deployed. Enter command to proceed"+ColorCoding.blank);
+
 		ViewMap.viewMap(p_connectivity.getD_continentList(), p_connectivity.getD_countryList(), Play.getL_playersArray());
 		System.out.println("reinforcement done");
 		ge.setPhase(new Attack(ge));
