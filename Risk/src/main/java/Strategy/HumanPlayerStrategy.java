@@ -21,9 +21,7 @@ public class HumanPlayerStrategy extends PlayerStrategy{
 		Scanner l_sc = new Scanner(System.in);
 		l_userOrder=l_sc.nextLine();
 		l_order.setOrderContent(l_userOrder);
-		l_sc.close();
 		return l_order;
-
 	}
 
 	@Override

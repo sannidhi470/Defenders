@@ -117,11 +117,13 @@ public class Player {
 			}
 			else
 			{
+				l_validUserCommand= false;
 				System.out.println(ColorCoding.red+"Error: Please enter valid number of troops"+ColorCoding.blank);
 			}
 		}
 		else
 		{
+			l_validUserCommand= false;
 			System.out.println(ColorCoding.red+"INVALID Command as player "+p_player.getD_playerName()+" doesn't control country with countryID "+l_tempOrderListArray[1]+ColorCoding.blank);
 		}
 		return l_validUserCommand;
@@ -137,6 +139,7 @@ public class Player {
 			{
 				while(!verifyOrder(l_order, this))
 				{
+					System.out.println("INVALID ORDER! Please enter the order again");
 					l_order = strategy.createOrder();
 				}
 			}
