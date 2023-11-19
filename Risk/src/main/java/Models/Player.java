@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import Controllers.GameEngine;
 import Strategy.HumanPlayerStrategy;
 import Strategy.PlayerStrategy;
+import Tools.ColorCoding;
+import Tools.PlayersGameplay;
 
 /**
  * The class Player defines Players and it's properties such as Name, player ID,Order list of the player,countries owned by the player
@@ -88,19 +90,61 @@ public class Player {
 	 * Orders that are issued by the player.
 	 *
 	 */
+	
+	public boolean verifyOrder(Order p_order, Player p_player) {
+		String l_userOrder = p_order.getOrderContent();
+		boolean l_validUserCommand =false;
+		if(l_userOrder.equalsIgnoreCase("exit"))
+		{
+			System.out.println("Thank you for Playing the Game");
+			System.exit(0);
+		}
+		String[] l_tempOrderListArray=l_userOrder.split(" ");
+		for(int j=0;j<p_player.getD_Country().size();j++)
+		{
+			if(Integer.parseInt(l_tempOrderListArray[1])==(p_player.getD_Country().get(j).getD_countryId()))
+			{
+				p_order.setD_fromCountry(p_player.getD_Country().get(j));
+				l_validUserCommand= true;
+			}
+		}
+		if(l_validUserCommand)
+		{
+			if(PlayersGameplay.checkArmyAvailable(Integer.parseInt(l_tempOrderListArray[2]),p_player))
+			{
+				p_order.setD_numberOfArmies(Integer.parseInt(l_tempOrderListArray[2]));
+				p_player.setD_Order(p_order);
+			}
+			else
+			{
+				System.out.println(ColorCoding.red+"Error: Please enter valid number of troops"+ColorCoding.blank);
+			}
+		}
+		else
+		{
+			System.out.println(ColorCoding.red+"INVALID Command as player "+p_player.getD_playerName()+" doesn't control country with countryID "+l_tempOrderListArray[1]+ColorCoding.blank);
+		}
+		return l_validUserCommand;
+	}
 
 	public boolean issue_order(){
 		
-		Order order;
-		order = strategy.createOrder();
-		if (order != null) {
-			this.d_playerOrder.add(order);
+		Order l_order;
+		l_order = strategy.createOrder();
+		if(l_order !=null)
+		{
+			if(GameEngine.getPhaseName().equals("Reinforcement"))
+			{
+				while(!verifyOrder(l_order, this))
+				{
+					l_order = strategy.createOrder();
+				}
+			}
+			this.d_playerOrder.add(l_order);
 			return true;
 		}
-		if(strategy instanceof HumanPlayerStrategy)
-			this.d_playerOrder.add(d_order);
+		else
 			return false;
-
 	}
 	
 	/**

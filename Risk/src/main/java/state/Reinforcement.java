@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import Controllers.GameEngine;
 import Models.Order;
+import Strategy.HumanPlayerStrategy;
 import Tools.ColorCoding;
 import Tools.Connectivity;
 import Tools.PlayersGameplay;
@@ -42,13 +43,10 @@ public class Reinforcement extends MainPlay
 			for(int i=0;i<l_playersArray.size();i++)
 			{
 				String l_userOrder="";
-				Order l_order=new Order();
-				boolean l_validUserCommand =false;
 				if(l_playersArray.get(i).getD_armyCount()!=0)
 				{
 					//d_logEntryBuffer.log("Player "+l_playersArray.get(i).getD_playerName()+" deploy your troops:");
 					System.out.println("Player "+l_playersArray.get(i).getD_playerName()+" deploy your troops:");
-					Scanner l_sc = new Scanner(System.in);
 					if(ge.getCheckIfTest())
 					{
 						int l_countryID = l_playersArray.get(i).getD_Country().get(0).getD_countryId();
@@ -57,38 +55,8 @@ public class Reinforcement extends MainPlay
 						System.out.println("For testcase, we have the following command\n"+l_userOrder);
 					}
 					else
-						l_userOrder=l_sc.nextLine();
-					if(l_userOrder.equalsIgnoreCase("exit"))
-					{
-						System.out.println("Thank you for Playing the Game");
-						System.exit(0);
-					}
-					String[] l_tempOrderListArray=l_userOrder.split(" ");
-					for(int j=0;j<l_playersArray.get(i).getD_Country().size();j++)
-					{
-						if(Integer.parseInt(l_tempOrderListArray[1])==(l_playersArray.get(i).getD_Country().get(j).getD_countryId()))
-						{
-							l_order.setD_fromCountry(l_playersArray.get(i).getD_Country().get(j));
-							l_validUserCommand= true;
-						}
-					}
-					if(l_validUserCommand)
-					{
-						if(PlayersGameplay.checkArmyAvailable(Integer.parseInt(l_tempOrderListArray[2]),l_playersArray.get(i)))
-						{
-							l_order.setD_numberOfArmies(Integer.parseInt(l_tempOrderListArray[2]));
-							l_playersArray.get(i).setD_Order(l_order);
-							l_playersArray.get(i).issue_order();
-						}
-						else
-						{
-							System.out.println(ColorCoding.red+"Error: Please enter valid number of troops"+ColorCoding.blank);
-						}
-					}
-					else
-					{
-						System.out.println(ColorCoding.red+"INVALID Command as player "+l_playersArray.get(i).getD_playerName()+" doesn't control country with countryID "+l_tempOrderListArray[1]+ColorCoding.blank);
-					}
+						l_playersArray.get(i).issue_order();						
+
 					for(int j=0;j<l_playersArray.size();j++)
 					{
 						if(l_tempName.contains(l_playersArray.get(j).getD_playerName()))
@@ -234,7 +202,6 @@ public class Reinforcement extends MainPlay
     /**
      * {@inheritDoc}
      */
-	@Override
 	public void setPlayers(String[] p_commands) 
 	{
 		// TODO Auto-generated method stub
@@ -262,6 +229,12 @@ public class Reinforcement extends MainPlay
 		// TODO Auto-generated method stub
 		System.out.println("Thank you for Playing the Game");
 		System.exit(0);
+		
+	}
+
+	@Override
+	public void setPlayers(String[] p_commands, Connectivity p_connectivity) {
+		// TODO Auto-generated method stub
 		
 	}
 }
