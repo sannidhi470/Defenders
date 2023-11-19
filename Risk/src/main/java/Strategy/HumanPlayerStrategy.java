@@ -1,5 +1,7 @@
 package Strategy;
 
+import java.util.Scanner;
+
 import Models.Country;
 import Models.Order;
 import Models.Player;
@@ -14,8 +16,14 @@ public class HumanPlayerStrategy extends PlayerStrategy{
 
 	@Override
 	public Order createOrder() {
-		// TODO Auto-generated method stub
-		return null;
+		String l_userOrder="";
+		Order l_order=new Order();
+		Scanner l_sc = new Scanner(System.in);
+		l_userOrder=l_sc.nextLine();
+		l_order.setOrderContent(l_userOrder);
+		l_sc.close();
+		return l_order;
+
 	}
 
 	@Override

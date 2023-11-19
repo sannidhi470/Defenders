@@ -61,7 +61,6 @@ public class BenevolentPlayerStrategy extends PlayerStrategy{
 			str = str+ toDefend().getD_countryId()+" " + d_player.getD_armyCount();
 			System.out.println(str);
 			o.setOrderContent(str);
-			o.setD_fromCountry(toDefend());
 			return o;
 		}
 		else if(GameEngine.getPhaseName().equals("Attack"))
