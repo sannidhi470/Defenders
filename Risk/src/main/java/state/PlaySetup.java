@@ -1,7 +1,13 @@
 package state;
 
+import java.util.Scanner;
+
 import Controllers.GameEngine;
 import Models.Player;
+import Strategy.AggressivePlayerStrategy;
+import Strategy.BenevolentPlayerStrategy;
+import Strategy.CheaterPlayerStrategy;
+import Strategy.HumanPlayerStrategy;
 import Tools.ColorCoding;
 import Tools.Connectivity;
 import Tools.PlayersGameplay;
@@ -28,13 +34,40 @@ public class PlaySetup extends Play
 	 * 
 	 * @param p_commands Array of user commands for setting up players.
 	 */
-	public void setPlayers(String[] p_commands) 
+	public void setPlayers(String[] p_commands,Connectivity p_connectivity) 
 	{
 		for(int i=1;i<p_commands.length;)
 		{
 			if(p_commands[i].equals("-add"))
 			{
 				Player l_player = new Player();
+				System.out.println("Enter the behaviour of the player: Aggressive, Human, Benevolent, Random, Cheater");
+				Scanner l_sc=new Scanner(System.in);
+				String l_strategy=l_sc.nextLine();
+				switch(l_strategy)
+				{
+				case "Aggressive":	
+					l_player.setStrategy(new AggressivePlayerStrategy(l_player,p_connectivity));
+					break;
+				case "Human":
+					l_player.setStrategy(new HumanPlayerStrategy(l_player,p_connectivity));
+					break;
+				case "Benevolent":
+					l_player.setStrategy(new BenevolentPlayerStrategy(l_player,p_connectivity));
+					break;
+//				case "Random":
+//					l_player.setStrategy(new RandomPlayerStrategy(l_player,p_connectivity));
+//					break;
+				case "Cheater":
+					l_player.setStrategy(new CheaterPlayerStrategy(l_player,p_connectivity));
+					break;
+				default:
+					System.out.println("Invalid strategy name");
+					
+				}
+				
+				
+				
 				l_player.setD_playerName(p_commands[i+1]);
 				l_playersArray.add(l_player);
 				//d_logEntryBuffer.log(l_player.getD_playerName() + "added successfully");

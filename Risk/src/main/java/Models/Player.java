@@ -3,6 +3,7 @@
 import java.util.ArrayList;
 
 import Controllers.GameEngine;
+import Strategy.HumanPlayerStrategy;
 import Strategy.PlayerStrategy;
 
 /**
@@ -93,9 +94,11 @@ public class Player {
 		Order order;
 		order = strategy.createOrder();
 		if (order != null) {
-			d_playerOrder.add(order);
+			this.d_playerOrder.add(order);
 			return true;
 		}
+		if(strategy instanceof HumanPlayerStrategy)
+			this.d_playerOrder.add(d_order);
 			return false;
 
 	}

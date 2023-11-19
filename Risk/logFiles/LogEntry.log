@@ -1,1 +1,67 @@
 Choice of Starting the Game or Ending it
+new phase: Preload
+enter a Preload phase command: 
+Map canada.map has been successfully loaded...
+Graph is connected
+
+----- ✓ Loaded Map is a valid map ✓ -----
+
+new phase: PostLoad
+enter a PostLoad phase command: 
+Map has been successfully saved
+new phase: PlaySetup
+enter a PlaySetup phase command: 
+enter a PlaySetup phase command: 
+enter a PlaySetup phase command: 
+Player:daivik has following countries assigned
+New_Brunswick
+Prince_Edward_Island
+Nova_Scotia
+N&L-Newfoundland
+N&L-Labrador
+Quebec-North
+Player:pruthvi has following countries assigned
+Quebec-Central
+Quebec-South
+Ontario-South
+Ontario-West
+Ontario-North
+Manitoba-South
+Saskatchewan-South
+Alberta-South
+British_Columbia-South
+BC-Vancouver_Island
+British_Columbia-North
+Alberta-North
+Saskatchewan-North
+Manitoba-North
+Nunavut-Continental
+NU-Southern_Islands
+Player daivik has been alloted 6 amries for this round
+Player pruthvi has been alloted 10 amries for this round
+Player:daivik has following countries assigned
+New_Brunswick
+Prince_Edward_Island
+Nova_Scotia
+N&L-Newfoundland
+N&L-Labrador
+Quebec-North
+Player:pruthvi has following countries assigned
+Quebec-Central
+Quebec-South
+Ontario-South
+Ontario-West
+Ontario-North
+Manitoba-South
+Saskatchewan-South
+Alberta-South
+British_Columbia-South
+BC-Vancouver_Island
+British_Columbia-North
+Alberta-North
+Saskatchewan-North
+Manitoba-North
+Nunavut-Continental
+NU-Southern_Islands
+new phase: Reinforcement
+enter a Reinforcement phase command: 

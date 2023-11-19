@@ -7,7 +7,7 @@ import Tools.Connectivity;
 
 public class AggressivePlayerStrategy extends PlayerStrategy{
 
-	AggressivePlayerStrategy(Player p_player, Connectivity p_connectivity) {
+	public AggressivePlayerStrategy(Player p_player, Connectivity p_connectivity) {
 		super(p_player, p_connectivity);
 	}
 

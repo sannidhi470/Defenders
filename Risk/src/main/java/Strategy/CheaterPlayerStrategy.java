@@ -15,7 +15,7 @@ import state.Play;
 
 public class CheaterPlayerStrategy extends PlayerStrategy{
 
-	CheaterPlayerStrategy(Player p_player, Connectivity p_connectivity) {
+	public CheaterPlayerStrategy(Player p_player, Connectivity p_connectivity) {
 		super(p_player, p_connectivity);
 	}
 

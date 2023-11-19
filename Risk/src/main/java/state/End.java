@@ -62,7 +62,7 @@ public class End extends Phase
      *
      * @param p_commands An array of user commands.
      */
-    public void setPlayers(String[] p_commands) 
+    public void setPlayers(String[] p_commands,Connectivity p_connectivity) 
     {
         printInvalidCommandMessage(); 
     }

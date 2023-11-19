@@ -114,7 +114,7 @@ public class PostLoad extends Edit
      * {@inheritDoc}
      */
 	@Override
-	public void setPlayers(String[] p_commands) 
+	public void setPlayers(String[] p_commands,Connectivity p_connectivity) 
 	{
 		// TODO Auto-generated method stub
 		printInvalidCommandMessage(); 

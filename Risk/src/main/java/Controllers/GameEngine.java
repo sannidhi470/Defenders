@@ -172,7 +172,7 @@ public class GameEngine {
 					gamePhase.saveMap(l_connectivity, l_commands[1]);
 					break;				
 				case "gameplayer":
-					gamePhase.setPlayers(l_commands);
+					gamePhase.setPlayers(l_commands,l_connectivity);
 					break;
 				case "assigncountries":
 					if(gamePhase.assignCountries(l_connectivity))

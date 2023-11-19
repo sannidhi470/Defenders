@@ -285,7 +285,7 @@ public class Attack extends MainPlay
      * {@inheritDoc}
      */
 	@Override
-	public void setPlayers(String[] p_commands) 
+	public void setPlayers(String[] p_commands,Connectivity p_connectivity) 
 	{
 		// TODO Auto-generated method stub
 		

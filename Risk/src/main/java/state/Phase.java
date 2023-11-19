@@ -80,7 +80,7 @@ public abstract class Phase
 	 * This abstract method is used to add/remove players in the PlaySetup state.
 	 * @param p_commands is used to pass user command
 	 */	
-	abstract public void setPlayers(String[] p_commands);
+	abstract public void setPlayers(String[] p_commands,Connectivity p_connectivity);
 	/**
 	 * This abstract method is used to assign countries in the PlaySetup state.
 	 * @param p_connectivity Connectivity object
