@@ -56,7 +56,6 @@ public class BenevolentPlayerStrategy extends PlayerStrategy{
 	{
 		Order o =new Order();
 		String str;
-		System.out.println("test");
 		if(GameEngine.getPhaseName().equals("Reinforcement"))
 		{
 			str="deploy ";
