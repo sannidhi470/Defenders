@@ -16,8 +16,8 @@ import state.Play;
 
 public class PlayersGameplay {
 	
-	static ArrayList<Integer> l_armiesOfPlayers=new ArrayList<>();
-	static ArrayList<Country> l_neutralCountry = new ArrayList<>();
+	public static ArrayList<Integer> l_armiesOfPlayers=new ArrayList<>();
+	public static ArrayList<Country> l_neutralCountry = new ArrayList<>();
 	private static Player l_winner;
 	
 	/**

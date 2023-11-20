@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
+import org.hamcrest.core.IsInstanceOf;
+
 import Controllers.GameEngine;
 import Models.Country;
 import Models.LogEntryBuffer;
 import Models.Order;
 import Models.Player;
+import Strategy.HumanPlayerStrategy;
 import Tools.ColorCoding;
 import Tools.Connectivity;
 import Tools.PlayersGameplay;
@@ -136,7 +139,19 @@ public class Attack extends MainPlay
 				System.out.println("For testcase, we have the following command\n"+l_orderinput);
 			}
 			else
-				l_orderinput=l_sc.nextLine();
+			{
+				if(l_playersArray.get(i).getStrategy() instanceof HumanPlayerStrategy)
+				{
+					l_orderinput=l_sc.nextLine();
+				}
+				else
+				{
+					l_playersArray.get(i).issue_order();
+					Order o = l_playersArray.get(i).next_order();
+					l_orderinput=o.getOrderContent();
+				}
+			}
+				
 
 			if(l_orderinput.equalsIgnoreCase("exit"))
 			{

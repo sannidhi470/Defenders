@@ -1,7 +1,7 @@
 Choice of Starting the Game or Ending it
 new phase: Preload
 enter a Preload phase command: 
-Map canada.map has been successfully loaded...
+Map VeryBasic.map has been successfully loaded...
 Graph is connected
 
 ----- ✓ Loaded Map is a valid map ✓ -----
@@ -12,56 +12,40 @@ Map has been successfully saved
 new phase: PlaySetup
 enter a PlaySetup phase command: 
 enter a PlaySetup phase command: 
-enter a PlaySetup phase command: 
-Player:daivik has following countries assigned
-New_Brunswick
-Prince_Edward_Island
-Nova_Scotia
-N&L-Newfoundland
-N&L-Labrador
-Quebec-North
-Player:pruthvi has following countries assigned
-Quebec-Central
-Quebec-South
-Ontario-South
-Ontario-West
-Ontario-North
-Manitoba-South
-Saskatchewan-South
-Alberta-South
-British_Columbia-South
-BC-Vancouver_Island
-British_Columbia-North
-Alberta-North
-Saskatchewan-North
-Manitoba-North
-Nunavut-Continental
-NU-Southern_Islands
-Player daivik has been alloted 6 amries for this round
-Player pruthvi has been alloted 10 amries for this round
-Player:daivik has following countries assigned
-New_Brunswick
-Prince_Edward_Island
-Nova_Scotia
-N&L-Newfoundland
-N&L-Labrador
-Quebec-North
-Player:pruthvi has following countries assigned
-Quebec-Central
-Quebec-South
-Ontario-South
-Ontario-West
-Ontario-North
-Manitoba-South
-Saskatchewan-South
-Alberta-South
-British_Columbia-South
-BC-Vancouver_Island
-British_Columbia-North
-Alberta-North
-Saskatchewan-North
-Manitoba-North
-Nunavut-Continental
-NU-Southern_Islands
+Player:p1 has following countries assigned
+Canada
+USA
+Mexico
+Brazil
+Argentina
+Player:p2 has following countries assigned
+Columbia
+S.Africa
+Tanzania
+Sudan
+Libya
+Player p1 has been alloted 8 amries for this round
+Player p2 has been alloted 8 amries for this round
+Player:p1 has following countries assigned
+Canada
+USA
+Mexico
+Brazil
+Argentina
+Player:p2 has following countries assigned
+Columbia
+S.Africa
+Tanzania
+Sudan
+Libya
 new phase: Reinforcement
 enter a Reinforcement phase command: 
+Army count changed to 0
+Player p1 has been alloted 8 amries for this round
+Player p1: Canada has been assigned with 8
+new phase: Attack
+enter a Attack phase command: 
+p1Asked whether he/she wants to give a command
+p1Asked for Command
+p2Asked whether he/she wants to give a command
+p2Asked for Command

@@ -100,6 +100,18 @@ public class Connectivity {
 		return d_countryList;
 	}
 	
+	public Country getCountryByID(int ID)
+	{
+		for(Country c : d_countryList)
+		{
+			if(c.getD_countryId()==ID)
+			{
+				return c;
+			}
+		}
+		return null;
+	}
+	
 	/**
 	 * Sets the country list.
 	 * @param p_countryList refers to the list of the countries.
