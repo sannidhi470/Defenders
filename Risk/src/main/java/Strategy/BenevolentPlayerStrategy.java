@@ -7,6 +7,8 @@ import Models.Country;
 import Models.Order;
 import Models.Player;
 import Tools.Connectivity;
+import Views.ViewMap;
+import state.Play;
 
 public class BenevolentPlayerStrategy extends PlayerStrategy{
 
@@ -33,7 +35,8 @@ public class BenevolentPlayerStrategy extends PlayerStrategy{
 	
 	@Override //returns country with Minimum number of troops 
 	protected Country toDefend() 
-	{
+	{  if(d_player.getD_Country().size()==0)
+		return null;
 		Country result = d_player.getD_Country().get(0);
 		System.out.println(d_player.getD_playerName());
 		int min= result.getD_armyDeployedOnCountry();
@@ -56,6 +59,8 @@ public class BenevolentPlayerStrategy extends PlayerStrategy{
 	{
 		Order o =new Order();
 		String str;
+		if(toDefend()==null)
+			return null;
 		if(GameEngine.getPhaseName().equals("Reinforcement"))
 		{
 			str="deploy ";
@@ -71,9 +76,10 @@ public class BenevolentPlayerStrategy extends PlayerStrategy{
 			
 			if(c!=null)
 			{
-				str = str+ c[0] +" "+ c[1]+" "+c[0].getD_armyDeployedOnCountry();
+				str = str+ c[0].getD_countryName() +" "+ c[1].getD_countryName()+" "+c[0].getD_armyDeployedOnCountry();
 				System.out.println("advance "+c[0].getD_countryName()+" "+c[1].getD_countryName()+" "+c[0].getD_armyDeployedOnCountry());
 				o.setOrderContent(str);
+				ViewMap.viewMap(d_connectivity.getD_continentList(), d_connectivity.getD_countryList(), Play.getL_playersArray());
 				return o;
 			}
 			else
