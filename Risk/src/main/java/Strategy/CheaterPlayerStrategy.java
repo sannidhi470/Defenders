@@ -103,7 +103,7 @@ public class CheaterPlayerStrategy extends PlayerStrategy{
 //			}
 //		}
 		
-		
+		ViewMap.viewMap(d_connectivity.getD_continentList(), d_connectivity.getD_countryList(), Play.getL_playersArray());
 		return null;
 	}
 
