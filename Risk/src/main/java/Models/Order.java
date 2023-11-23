@@ -129,6 +129,8 @@ public class Order {
 			case "advance":
 				d_logEntryBuffer.log(p_player.getD_playerName()+"is calling"+"Advance");
 				//System.out.println(p_player.getD_playerName()+"is calling"+"Advance");
+				System.out.println(p_order.getOrderContent());
+				System.out.println(l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[1])+" seconf time "+l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[2]));
 				PlayersGameplay.advance(p_player,Play.getL_playersArray(),l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[1]) , l_getCountry.getCountryFromName(p_connectivity.getD_countryList(), l_orderContent[2]), Integer.parseInt( l_orderContent[3]),p_connectivity.getD_continentList(),p_connectivity,fortify_flag);
 				break;
 			case "bomb":
@@ -178,7 +180,7 @@ public class Order {
 					System.out.println(ColorCoding.red+p_player.getD_playerName()+" doesn't have diplomacy card "+ColorCoding.blank);
 				}
 				break;
-			}
+			} 
 		
 	}
 	
