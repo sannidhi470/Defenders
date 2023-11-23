@@ -12,7 +12,7 @@ import state.Play;
 
 public class RandomPlayerStrategy extends PlayerStrategy{
 
-	RandomPlayerStrategy(Player p_player, Connectivity p_connectivity) {
+	public RandomPlayerStrategy(Player p_player, Connectivity p_connectivity) {
 		super(p_player, p_connectivity);
 	}
 
@@ -50,15 +50,17 @@ public class RandomPlayerStrategy extends PlayerStrategy{
 		
 		Random rndm = new Random();       
 		Order o =new Order();
-		String str;
+		String str="";
 		
 		//generates deploy for random country with random number of troops 
 		if(GameEngine.getPhaseName().equals("Reinforcement"))
 		{
 			str="deploy ";
-			str = str+ toDefend().getD_countryId()+" " + rndm.nextInt(d_player.getD_armyCount());
+			System.out.println(d_player.getD_armyCount()); 
+			str = str+ toDefend().getD_countryId()+" " + rndm.nextInt(d_player.getD_armyCount()+1);
 			System.out.println(str);
 			o.setOrderContent(str);
+			System.out.println(str);
 			return o;
 		}
 		else if(GameEngine.getPhaseName().equals("Attack"))
@@ -77,9 +79,10 @@ public class RandomPlayerStrategy extends PlayerStrategy{
 					int rndmIndex = rndm.nextInt(l_neighbour.size());
 					Country l_toCountry = Country.getCountryFromID(d_connectivity.getD_countryList(), l_neighbour.get(rndmIndex));
 					
-					int rndmTroops = rndm.nextInt(l_fromCountry.getD_armyDeployedOnCountry()); 
+					int rndmTroops = rndm.nextInt(l_fromCountry.getD_armyDeployedOnCountry()+1); 
 					str = str+" "+l_fromCountry.getD_countryName()+" "+l_toCountry.getD_countryName()+" "+rndmTroops;
 					o.setOrderContent(str);
+					System.out.println(str);
 					return o;
 					
 				case "bomb":
@@ -96,6 +99,7 @@ public class RandomPlayerStrategy extends PlayerStrategy{
 							{
 								str = str+" "+l_toCountry.getD_countryId();
 								o.setOrderContent(str);
+								System.out.println(str);
 								return o;
 							}
 						}
@@ -116,9 +120,10 @@ public class RandomPlayerStrategy extends PlayerStrategy{
 								l_tCountry = toDefend();
 						}
 						
-						rndmTroops = rndm.nextInt(l_fCountry.getD_armyDeployedOnCountry());
-						str = str +" "+l_fCountry+" "+l_tCountry+" "+rndmTroops;
+						rndmTroops = rndm.nextInt(l_fCountry.getD_armyDeployedOnCountry()+1);
+						str = str +" "+l_fCountry.getD_countryId()+" "+l_tCountry.getD_countryId()+" "+rndmTroops;
 						o.setOrderContent(str);
+						System.out.println(str);
 						return o;
 					}
 					else
@@ -129,6 +134,7 @@ public class RandomPlayerStrategy extends PlayerStrategy{
 					{
 						str = str+" "+toDefend().getD_countryId();
 						o.setOrderContent(str);
+						System.out.println(str);
 						return o;
 					}
 					else
@@ -144,6 +150,7 @@ public class RandomPlayerStrategy extends PlayerStrategy{
 						{
 							str = str+" "+d_player.getD_playerId()+" "+p2.getD_playerId();
 							o.setOrderContent(str);
+							System.out.println(str);
 							return o;
 						}
 						//else part is not written becz if we keep finding different player whern there is
@@ -155,6 +162,7 @@ public class RandomPlayerStrategy extends PlayerStrategy{
 			}
 			
 		}
+		System.out.println(str);
 		return null;
 	}
 
