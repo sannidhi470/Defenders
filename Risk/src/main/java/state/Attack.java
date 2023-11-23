@@ -11,6 +11,7 @@ import Models.Country;
 import Models.LogEntryBuffer;
 import Models.Order;
 import Models.Player;
+import Strategy.CheaterPlayerStrategy;
 import Strategy.HumanPlayerStrategy;
 import Tools.ColorCoding;
 import Tools.Connectivity;
@@ -146,9 +147,15 @@ public class Attack extends MainPlay
 				}
 				else
 				{
-					l_playersArray.get(i).issue_order();
-					Order o = l_playersArray.get(i).next_order();
-					l_orderinput=o.getOrderContent();
+					if(l_playersArray.get(i).issue_order())
+					{
+						Order o = l_playersArray.get(i).next_order();
+						l_orderinput=o.getOrderContent();
+					}
+					else
+						continue;
+//					Order o = l_playersArray.get(i).next_order();
+//					l_orderinput=o.getOrderContent();
 				}
 			}
 				
@@ -207,6 +214,10 @@ public class Attack extends MainPlay
 			for(int j=0;j<l_playersArray.size();j++)
 			{
 				
+//				if(l_playersArray.get(j).getD_playerOrder().size()==0)
+//				{
+//					l_emptyOrders.add(l_playersArray.get(j).getD_playerName());
+//				}
 				if(l_emptyOrders.contains(l_playersArray.get(j).getD_playerName())) continue;
 				if(l_playersArray.get(j).getD_playerOrder().size()==0) 
 				{
@@ -214,6 +225,7 @@ public class Attack extends MainPlay
 					l_executeOrder++;
 					continue;	
 				}
+				
 				l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),p_connectivity,1,0);
 			}
 		}
