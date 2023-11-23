@@ -8,6 +8,7 @@ import Strategy.AggressivePlayerStrategy;
 import Strategy.BenevolentPlayerStrategy;
 import Strategy.CheaterPlayerStrategy;
 import Strategy.HumanPlayerStrategy;
+import Strategy.RandomPlayerStrategy;
 import Tools.ColorCoding;
 import Tools.Connectivity;
 import Tools.PlayersGameplay;
@@ -55,9 +56,9 @@ public class PlaySetup extends Play
 				case "Benevolent":
 					l_player.setStrategy(new BenevolentPlayerStrategy(l_player,p_connectivity));
 					break;
-//				case "Random":
-//					l_player.setStrategy(new RandomPlayerStrategy(l_player,p_connectivity));
-//					break;
+				case "Random":
+					l_player.setStrategy(new RandomPlayerStrategy(l_player,p_connectivity));
+					break;
 				case "Cheater":
 					l_player.setStrategy(new CheaterPlayerStrategy(l_player,p_connectivity));
 					break;
