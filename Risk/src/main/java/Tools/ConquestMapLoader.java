@@ -24,7 +24,6 @@ public class ConquestMapLoader {
 	
 	public static int loadMap(Connectivity p_connectivity,String p_mapName) {
 		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
-		
 		Scanner l_input = new Scanner(System.in);
 		String l_fileName = p_mapName;
 		String l_copyFileName=l_fileName;
@@ -57,8 +56,6 @@ public class ConquestMapLoader {
     	   			l_fileContent.add(l_input.nextLine());
     	   		}
     	   		int l_continentLength = 0;
-    	   		int l_countryLength=0;
-    	   		int l_borderLength=0;
     	   		int l_territoryLength=0;
     	   		for(int i=0;i<l_fileContent.size();i++)
     	   		{
@@ -70,6 +67,7 @@ public class ConquestMapLoader {
     	   		HashMap<Integer,ArrayList<Integer>> l_neighbouringCountries=new HashMap<Integer,ArrayList<Integer>>();
     	   		int l_countryID =1;
     	   		int l_continentID =1;
+    	   		//Parsing continents
     	   		for(int i=l_continentLength+1; i<l_territoryLength-1; i++)
     	   		{
     	   			String a=l_fileContent.get(i);
@@ -78,47 +76,44 @@ public class ConquestMapLoader {
     	   			l_continentObj.setD_continentId(l_continentID);
     	   			l_continentObj.setD_continentName(aArr[0]);
     	   			l_continentObj.setD_continentBonusValue(Integer.parseInt(aArr[1]));
-    	   			System.out.println("setting continentID"+l_continentID+" continentName "+aArr[0]+" continentBonus"+Integer.parseInt(aArr[1]));
-    	   			l_continentObj.setD_countries(l_countryList);
     	   			l_continentID++;
     	   			continentList.add(l_continentObj);
-
     	   		}
-    	   		//Only Alaska Countries are duplicated in countryList
+    	   		//Parsing territories
     	   		for(int i=l_territoryLength+1; i<l_fileContent.size(); i++)
     	   		{
-    	   			int l_currentCountryID = l_countryID;
 	   				Country l_currentCountry = new Country();
-	   				boolean l_countryAlreadyExists = false;
     	   			String a = l_fileContent.get(i);
-    	   			System.out.println(a);
     	   			String[] aArr = a.split(",");
     	   			
     	   			//Checking if aArr[0] country already exists or not, if it does, set it to l_currentCountry
     	   			//else create a new country object and assign it to l_currentCountry
+    	   		
     	   			if(checkIfcountryExists(l_countryList,aArr[0]))
    					{
     	   				for(int j=0; j<l_countryList.size(); j++)
     	   					if(l_countryList.get(j).getD_countryName().equals(aArr[0]))
+    	   					{
     	   						l_currentCountry = l_countryList.get(j);
+    	   						l_currentCountry.setD_continentId(Continent.getIdFromName(aArr[3],continentList));
+    	   					}
    					}
     	   			else
     	   			{
     	   				l_currentCountry.setD_countryId(l_countryID);
     	   				l_currentCountry.setD_countryName(aArr[0]);
+    	   				l_currentCountry.setD_continentId(Continent.getIdFromName(aArr[3], continentList));
         	   			l_countryList.add(l_currentCountry);
         	   			l_countryID++;
-        	   			for(int j=0; j<continentList.size();j++)
-        	   			{
-        	   				if(continentList.get(j).getD_continentName().equals(aArr[3]))
-        	   				{
-        	   					continentList.get(j).getD_countries().add(l_currentCountry);
-        	   				}
-        	   			}
-        	   			System.out.println("added to list"+l_currentCountry.getD_countryName());
     	   			}
-    	   			System.out.println("CurrentCountry ="+l_currentCountry.getD_countryName());
-    	   			   
+    	   			
+    	   			//Adding currentCountry to continentList
+    	   			for(int j=0; j<continentList.size();j++)
+    	   			{
+    	   				if(continentList.get(j).getD_continentName().equals(aArr[3]))
+    	   					continentList.get(j).getD_countries().add(l_currentCountry);
+    	   			}
+    	   			 			   
     	   			//Setting neighbors for l_currentCountry according to loaded map
     	   			ArrayList<Integer> l_neighbours=new ArrayList<Integer>();
     	   			for(int j=4; j<aArr.length; j++)
@@ -126,65 +121,23 @@ public class ConquestMapLoader {
     	   				Country l_neighborCountry=new Country();
     	   				if(checkIfcountryExists(l_countryList, aArr[j]))
     	   				{
-    	   					l_neighborCountry = Country.getCountryFromName(l_countryList, aArr[j]);
-    	   					System.out.println("country already exists"+l_neighborCountry.getD_countryName());
+    	   					for(int k=0; k<l_countryList.size(); k++)
+    	   						if(l_countryList.get(k).getD_countryName().equals(aArr[j]))	
+    	   							l_neighborCountry = l_countryList.get(k);   					
     	   				}
-
     	   				else
     	   				{
         	   				l_neighborCountry.setD_countryId(l_countryID);
         	   				l_neighborCountry.setD_countryName(aArr[j]);
             	   			l_countryList.add(l_neighborCountry);
-            	   			System.out.println("country newly created"+l_neighborCountry.getD_countryName()+" ID="+l_neighborCountry.getD_countryId());
             	   			l_countryID++;   					   				
     	   				}
     	   				l_neighbours.add(l_neighborCountry.getD_countryId());
     	   			}
-    	   			l_neighbouringCountries.put(l_currentCountryID,l_neighbours);
+    	   			l_neighbouringCountries.put(l_currentCountry.getD_countryId(),l_neighbours);
     	   			l_currentCountry.setD_neighbours(l_currentCountry.getD_countryId(), l_neighbouringCountries);
-    	   			System.out.println("\n\n");
-    	   			for(Country x: l_countryList)
-    	   			{
-    	   				System.out.println(x.getD_countryName());
-    	   			}
-//    	   			
-    	   			//Setting continents and their respective bonus values
+    	   			
     	   		}
-//    	        for(int i=l_borderLength+1; i<l_fileContent.size(); i++) 
-//    	        {
-//    	        	String a = l_fileContent.get(i);
-//    	        	String[] aArr=a.split(",");
-//    	        	String l_borderString=aArr[0];
-//    	        	String[] l_borderStringArr=l_borderString.split(" ");
-//    	        	ArrayList<Integer> l_neighbours=new ArrayList<Integer>();
-//    	        	for(int j=1;j<l_borderStringArr.length;j++) l_neighbours.add(Integer.parseInt(l_borderStringArr[j]));
-//    	        	l_neighbouringCountries.put(Integer.parseInt(l_borderStringArr[0]),l_neighbours );
-//    	        }
-//    	   		for(int i=l_countryLength+1;i<l_borderLength-1;i++)
-//    	   		{
-//    	   			String a=l_fileContent.get(i);
-//    	  		    String[] aArr=a.split(" ");
-//    	  		    Country obj=new Country();
-//    	  		    obj.setD_countryId(Integer.parseInt(aArr[0]));
-//    	  		    obj.setD_countryName(aArr[1]);
-//    	  		    obj.setD_continentId(Integer.parseInt(aArr[2]));
-//    	  		    obj.setD_neighbours(Integer.parseInt(aArr[0]), l_neighbouringCountries);
-//    	     		l_countryList.add(obj);	
-//    	   		}
-//    	   		int l_continentId=1;
-//    	   		for(int i=l_continentLength+1;i<l_countryLength-1;i++)
-//    	   		{
-//    	   			String a=l_fileContent.get(i);
-//    	   			String[] aArr=a.split(" ");
-//    	   			Continent l_continentObj=new Continent();
-//    	   			l_continentObj.setD_continentId(l_continentId);
-//    	   			l_continentObj.setD_continentName(aArr[0]);
-//    	   			l_continentObj.setD_continentBonusValue(Integer.parseInt(aArr[1]));
-//    	   			l_continentObj.setD_countries(l_continentObj.d_getCountryFromContinentId(l_continentId, l_countryList));
-//    	   			l_continentId++;
-//    	   			continentList.add(l_continentObj);	
-//    	   		}
-    	   		
     	   		p_connectivity.setD_continentList(continentList);
     	        p_connectivity.setD_countryList(l_countryList);
     	        }
