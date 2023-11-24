@@ -1,7 +1,10 @@
 package state;
 
+import java.util.Scanner;
+
 import Controllers.GameEngine;
 import Tools.Connectivity;
+import Tools.ConquestSaveMap;
 import Tools.SaveMap;
 
 /**
@@ -53,7 +56,30 @@ public class PostLoad extends Edit
 	 */
 	public void saveMap(Connectivity p_connectivity, String p_mapName) 
 	{
-		int l_saveMapResult = SaveMap.saveMap(p_connectivity, p_mapName);
+		System.out.println("Enter the format for savemap (conquest/domination)");
+		Scanner l_sc=new Scanner(System.in);
+		String l_type=l_sc.nextLine();
+		int l_saveMapResult=0;
+		int l_flag=0;
+		do
+		{
+			switch(l_type)
+			{
+			case "conquest":
+				System.out.println("in conquest");
+				l_saveMapResult=ConquestSaveMap.conquestMapSaver(p_connectivity, p_mapName);
+				l_flag=1;
+				break;
+			case "domination":
+				System.out.println("in domination");
+				l_saveMapResult=SaveMap.saveMap(p_connectivity, p_mapName);
+				l_flag=1;
+				break;
+			default:
+				System.out.println("Please enter the valid command");
+			}
+		}while(l_flag==0);
+		 
 		if(l_saveMapResult == 0) ge.setPhase(new PlaySetup(ge));
 	}
 
