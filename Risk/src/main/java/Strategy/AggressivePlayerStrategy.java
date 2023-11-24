@@ -70,7 +70,7 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 		String str;
 		if(GameEngine.getPhaseName().equals("Reinforcement")) {
 			str= "deploy ";
-			str= str+toDefend().getD_countryId()+" " + d_player.getD_armyCount();
+			str= str+toMoveFrom().getD_countryId()+" " + d_player.getD_armyCount();
 			System.out.println(str);
 			o.setOrderContent(str);
 			return o;
