@@ -1,5 +1,8 @@
 package Tools;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import Models.Continent;
 import Models.Country;
 import Models.LogEntryBuffer;
@@ -24,7 +27,7 @@ public class MapLoader {
 	
 	public static int loadMap(Connectivity p_connectivity,String p_mapName) {
 		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
-		
+System.out.println("coming here");
 		Scanner l_input = new Scanner(System.in);
 		String l_fileName = p_mapName;
 		String l_copyFileName=l_fileName;
@@ -83,9 +86,15 @@ public class MapLoader {
     	   			String a=l_fileContent.get(i);
     	  		    String[] aArr=a.split(" ");
     	  		    Country obj=new Country();
+    	  		    obj.setD_continentId(Integer.parseInt(aArr[aArr.length-1]));
+    	  		  Pattern pattern=Pattern.compile("[A-Za-z\\s.]{1,}");
+    	      	  Matcher matcher = pattern.matcher(a);
+    	        
+    	          if(matcher.find())
+    	        	  aArr[1]=matcher.group(0).replaceFirst(" ", ""); 
     	  		    obj.setD_countryId(Integer.parseInt(aArr[0]));
     	  		    obj.setD_countryName(aArr[1]);
-    	  		    obj.setD_continentId(Integer.parseInt(aArr[2]));
+    	  		    
     	  		    obj.setD_neighbours(Integer.parseInt(aArr[0]), l_neighbouringCountries);
     	     		l_countryList.add(obj);	
     	   		}
@@ -96,8 +105,13 @@ public class MapLoader {
     	   			String[] aArr=a.split(" ");
     	   			Continent l_continentObj=new Continent();
     	   			l_continentObj.setD_continentId(l_continentId);
+    	   		 Pattern pattern=Pattern.compile("[A-Za-z\\s.]{1,}");
+    	   		 Matcher matcher = pattern.matcher(a);
+    	   		 
+    	   		 if(matcher.find())
+    	   			 aArr[0]=matcher.group(0);
     	   			l_continentObj.setD_continentName(aArr[0]);
-    	   			l_continentObj.setD_continentBonusValue(Integer.parseInt(aArr[1]));
+    	   			l_continentObj.setD_continentBonusValue(Integer.parseInt(aArr[aArr.length-1]));
     	   			l_continentObj.setD_countries(l_continentObj.d_getCountryFromContinentId(l_continentId, l_countryList));
     	   			l_continentId++;
     	   			continentList.add(l_continentObj);	
