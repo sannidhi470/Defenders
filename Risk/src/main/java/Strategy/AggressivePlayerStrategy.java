@@ -100,6 +100,8 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 		
 		for(int i: neighbourCountryID)
 		{
+			
+			//if a neighboring country belongs to same player and has troops>0 then advance to strongest country. 
 			if(d_player.getD_Country().contains(d_connectivity.getCountryByID(i)))
 			{
 				if(d_connectivity.getCountryByID(i).getD_armyDeployedOnCountry()>0)
@@ -109,8 +111,18 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 					return c;
 				}
 			}
+			//if neighboring country belongs to different player then attack it with the strongest country. 
+			else if(!d_player.getD_Country().contains(d_connectivity.getCountryByID(i))) 
+			{
+				c[0] = d_connectivity.getCountryByID(i); //from Country
+				c[1] = d_connectivity.getCountryByID(countryID); // to country 
+				return c;
+			}
 			
 		}
+		
+		//if All neighboring country belongs to player but all have 0 troops to advance
+		//then this loop goes to 2nd level of neighbors.
 		for(int i:neighbourCountryID)
 		{
 			
@@ -125,6 +137,13 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 						c[1] = d_connectivity.getCountryByID(i);// to country
 						return c;
 					}
+				}
+				//if neighboring country belongs to different player then attack it with the strongest country. 
+				else if(!d_player.getD_Country().contains(d_connectivity.getCountryByID(i))) 
+				{
+					c[0] = d_connectivity.getCountryByID(i); //from Country
+					c[1] = d_connectivity.getCountryByID(countryID); // to country 
+					return c;
 				}
 				
 			}
