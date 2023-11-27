@@ -129,7 +129,7 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 			neighbourCountryID = d_connectivity.getCountryByID(i).getD_neighbours();
 			for(int j: neighbourCountryID)
 			{
-				if(d_player.getD_Country().contains(d_connectivity.getCountryByID(i)))
+				if(d_player.getD_Country().contains(d_connectivity.getCountryByID(j)))
 				{
 					if(d_connectivity.getCountryByID(j).getD_armyDeployedOnCountry()>0)
 					{
@@ -139,13 +139,43 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 					}
 				}
 				//if neighboring country belongs to different player then attack it with the strongest country. 
-				else if(!d_player.getD_Country().contains(d_connectivity.getCountryByID(i))) 
+				else if(!d_player.getD_Country().contains(d_connectivity.getCountryByID(j))) 
 				{
-					c[0] = d_connectivity.getCountryByID(i); //from Country
-					c[1] = d_connectivity.getCountryByID(countryID); // to country 
+					c[0] = d_connectivity.getCountryByID(j); //from Country
+					c[1] = d_connectivity.getCountryByID(i); // to country 
 					return c;
 				}
 				
+			}
+		}
+		
+		//3rd Neighbour
+		for(int i:neighbourCountryID)
+		{
+					
+			ArrayList<Integer> neighbourCountryID2 = d_connectivity.getCountryByID(i).getD_neighbours();
+			for(int j: neighbourCountryID2)
+			{
+				ArrayList<Integer> neighbourCountryID3 = d_connectivity.getCountryByID(j).getD_neighbours();
+				for(int k:neighbourCountryID3)
+				{
+					if(d_player.getD_Country().contains(d_connectivity.getCountryByID(k)))
+					{
+						if(d_connectivity.getCountryByID(k).getD_armyDeployedOnCountry()>0)
+						{
+							c[0] = d_connectivity.getCountryByID(k); //from country
+							c[1] = d_connectivity.getCountryByID(i);// to country
+							return c;
+						}
+						else if(!d_player.getD_Country().contains(d_connectivity.getCountryByID(k))) 
+						{
+							c[0] = d_connectivity.getCountryByID(k); //from Country
+							c[1] = d_connectivity.getCountryByID(i); // to country 
+							return c;
+						}
+					}
+				}
+						
 			}
 		}
 		return null;
