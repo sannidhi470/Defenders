@@ -87,7 +87,7 @@ public class Player {
 	}
 	
 	/**
-	 * Orders that are issued by the player.
+	 * Verifies the orders that are issued by the player.
 	 *
 	 */
 	
@@ -128,7 +128,11 @@ public class Player {
 		}
 		return l_validUserCommand;
 	}
-
+	
+	/**
+	 * Orders that are issued by the player.
+	 *
+	 */
 	public boolean issue_order(){
 		
 		Order l_order;
@@ -379,10 +383,18 @@ public class Player {
 		d_playerCountry.remove(c);
 	}
 
+	/**
+	 * Gets the player strategy
+	 * @return player strategy
+	 */
 	public PlayerStrategy getStrategy() {
 		return strategy;
 	}
 
+	/**
+	 * Sets the player strategy
+	 * @param player strategy
+	 */
 	public void setStrategy(PlayerStrategy strategy) {
 		this.strategy = strategy;
 	}
