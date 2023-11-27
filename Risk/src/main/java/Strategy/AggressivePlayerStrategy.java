@@ -114,8 +114,8 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 			//if neighboring country belongs to different player then attack it with the strongest country. 
 			else if(!d_player.getD_Country().contains(d_connectivity.getCountryByID(i))) 
 			{
-				c[0] = d_connectivity.getCountryByID(i); //from Country
-				c[1] = d_connectivity.getCountryByID(countryID); // to country 
+				c[0] = d_connectivity.getCountryByID(countryID); //from Country
+				c[1] = d_connectivity.getCountryByID(i); // to country 
 				return c;
 			}
 			
@@ -141,8 +141,8 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 				//if neighboring country belongs to different player then attack it with the strongest country. 
 				else if(!d_player.getD_Country().contains(d_connectivity.getCountryByID(j))) 
 				{
-					c[0] = d_connectivity.getCountryByID(j); //from Country
-					c[1] = d_connectivity.getCountryByID(i); // to country 
+					c[0] = d_connectivity.getCountryByID(i); //from Country
+					c[1] = d_connectivity.getCountryByID(j); // to country 
 					return c;
 				}
 				
@@ -169,8 +169,8 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 						}
 						else if(!d_player.getD_Country().contains(d_connectivity.getCountryByID(k))) 
 						{
-							c[0] = d_connectivity.getCountryByID(k); //from Country
-							c[1] = d_connectivity.getCountryByID(i); // to country 
+							c[0] = d_connectivity.getCountryByID(i); //from Country
+							c[1] = d_connectivity.getCountryByID(k); // to country 
 							return c;
 						}
 					}
