@@ -257,6 +257,11 @@ public class Reinforcement extends MainPlay
 		
 	}
 
+	/**
+	 * Sets the player commands
+	 * @param p_commands refers to commands
+	 * @param p_connectivity refers to connectivity object
+	 */
 	@Override
 	public void setPlayers(String[] p_commands, Connectivity p_connectivity) {
 		// TODO Auto-generated method stub
