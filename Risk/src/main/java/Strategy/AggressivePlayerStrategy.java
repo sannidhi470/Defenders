@@ -77,7 +77,7 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 		} 
 		else if(GameEngine.getPhaseName().equals("Attack")) {
 			str= "advance ";
-			Country[] c= level(toAttackFrom().getD_countryId());
+			Country[] c= level(toMoveFrom().getD_countryId());
 			
 			if(c!=null) {
 				str= str+ c[0].getD_countryName()+ " "+ c[1].getD_countryName()+ " "+c[0].getD_armyDeployedOnCountry();
