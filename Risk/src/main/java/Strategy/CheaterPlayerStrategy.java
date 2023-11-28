@@ -69,14 +69,24 @@ public class CheaterPlayerStrategy extends PlayerStrategy{
 				}
 			}
 		}
-		//add all counties to player
-		d_player.getD_Country().addAll(l_countriesToAdd);
 		
 		//doubles the number of armies on its countries that have enemy neighbors
 		for(Country c:l_countriesToAdd)
 		{
-			c.setD_armyDeployedOnCountry(c.getD_armyDeployedOnCountry()*2);
+			if(!d_player.getD_Country().contains(c))
+				c.setD_armyDeployedOnCountry(c.getD_armyDeployedOnCountry()*2);
 		}
+				
+		//add all counties to player
+		for(Country c:l_countriesToAdd)
+		{
+			if(!d_player.getD_Country().contains(c))
+				d_player.getD_Country().add(c);
+				
+		}
+		
+		
+		
 		
 		
 		ViewMap.viewMap(d_connectivity.getD_continentList(), d_connectivity.getD_countryList(), Play.getL_playersArray());
