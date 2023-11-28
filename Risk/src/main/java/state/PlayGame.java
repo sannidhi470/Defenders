@@ -22,6 +22,7 @@ public class PlayGame extends Phase {
 	int l_roundCount = 0;
 	GameEngine gameEngine = new GameEngine();
 	ArrayList<String> d_gameResult = new ArrayList<>();
+	String d_gameplayerCommand = "";
 
 	public PlayGame(GameEngine p_ge) {
 		super(p_ge);
@@ -58,56 +59,12 @@ public class PlayGame extends Phase {
 				
 					
 				case "P":
-					if(Play.getL_playersArray().size() == 0) 
-					{
-						System.out.println("ERROR: No players have been set. Please set players before entering tournament command");
-						return;
-					}
-					if(Play.getL_playersArray().size() <2 || Play.getL_playersArray().size() >5)
+					d_gameplayerCommand = l_splitUserCommand[i];
+					if(l_parameters.length < 3 || l_parameters.length >5)
 					{
 						System.out.println("ERROR: Invalid number of players for tournament");
 						System.out.println("Player limit allowed for the tournament: 2-4");
 						return;
-					}
-					if(!(Play.getL_playersArray().size() == (l_parameters.length -1)))
-					{
-						System.out.println("ERROR: Number of players added does not match the number of strategies defined in the tournament command");
-						return;
-					}
-
-					for(int j=1; j<l_parameters.length; j++)
-					{
-						if(!l_behaviourList.contains(l_parameters[j]))
-							l_behaviourList.add(l_parameters[j]);
-						else
-						{
-							System.out.println("INVALID COMMAND! Duplicate behavior "+l_parameters[j]+" found");
-							return;
-						}
-					}
-					String[] l_behaviours = l_behaviourList.toArray(new String[l_behaviourList.size()]);
-					for(int j=0; j<l_behaviours.length; j++)
-					{
-						switch(l_behaviours[j])
-						{
-						case "Aggressive":
-							Play.getL_playersArray().get(j).setStrategy(new AggressivePlayerStrategy(Play.getL_playersArray().get(j),l_connectivity));
-							break;
-						case "Human":
-							Play.getL_playersArray().get(j).setStrategy(new HumanPlayerStrategy(Play.getL_playersArray().get(j),l_connectivity));
-							break;
-						case "Benevolent":
-							Play.getL_playersArray().get(j).setStrategy(new BenevolentPlayerStrategy(Play.getL_playersArray().get(j),l_connectivity));
-							break;
-						case "Random":
-							Play.getL_playersArray().get(j).setStrategy(new RandomPlayerStrategy(Play.getL_playersArray().get(j),l_connectivity));
-							break;
-						case "Cheater":
-							Play.getL_playersArray().get(j).setStrategy(new CheaterPlayerStrategy(Play.getL_playersArray().get(j),l_connectivity));
-							break;
-						default:
-							System.out.println("Invalid strategy name");		
-						}
 					}
 					break;	
 					
@@ -159,28 +116,13 @@ public class PlayGame extends Phase {
 		}
 		
 		System.out.println("*********************STARTING TOURNAMENT*********************");
-		for(int i=0; i<1; i++)
-		{
-			for(int j=0; j<2; j++)
-			{
-				System.out.println("----------------GAME "+(j+1)+" BEGINS"+"----------------");
-				startGame(l_mapList.get(i));
-				//String l_winner = d_gameResult.get(d_gameResult.size()-1);
-				String l_winner = d_gameResult.remove(d_gameResult.size()-1);
-				if(l_winner.equals("DRAW"))
-					l_winner = "Result --> "+l_winner + " for Map "+(i+1)+" Game "+(j+1);
-				else
-					l_winner = "Winner --> "+l_winner + " for Map "+(i+1)+" Game "+(j+1);
-				d_gameResult.add(l_winner);
-			}
-
-		}
-//		for(int i=0; i<l_mapList.size(); i++)
+//		for(int i=0; i<1; i++)
 //		{
-//			for(int j=0; j<l_gameCount; j++)
+//			for(int j=0; j<2; j++)
 //			{
 //				System.out.println("----------------GAME "+(j+1)+" BEGINS"+"----------------");
 //				startGame(l_mapList.get(i));
+//				//String l_winner = d_gameResult.get(d_gameResult.size()-1);
 //				String l_winner = d_gameResult.remove(d_gameResult.size()-1);
 //				if(l_winner.equals("DRAW"))
 //					l_winner = "Result --> "+l_winner + " for Map "+(i+1)+" Game "+(j+1);
@@ -190,6 +132,23 @@ public class PlayGame extends Phase {
 //			}
 //
 //		}
+		
+		
+		for(int i=0; i<l_mapList.size(); i++)
+		{
+			for(int j=0; j<l_gameCount; j++)
+			{
+				System.out.println("----------------GAME "+(j+1)+" BEGINS"+"----------------");
+				startGame(l_mapList.get(i));
+				String l_winner = d_gameResult.remove(d_gameResult.size()-1);
+				if(l_winner.equals("DRAW"))
+					l_winner = "Result --> "+l_winner + " for Map "+(i+1)+" Game "+(j+1);
+				else
+					l_winner = "Winner --> "+l_winner + " for Map "+(i+1)+" Game "+(j+1);
+				d_gameResult.add(l_winner);
+			}
+
+		}
 		System.out.println();
 		System.out.println("TOURNAMENT SUMMARY");
 		for(int i=0; i<d_gameResult.size(); i++)
@@ -208,6 +167,8 @@ public class PlayGame extends Phase {
 		String[] mapCommand = ("loadmap "+p_mapName).split(" ");
 		gameEngine.getPhase().loadMap(gameEngine.getConnectivity(), mapCommand);
 		gameEngine.getPhase().saveMap(gameEngine.getConnectivity(), p_mapName);
+		Play.l_playersArray.clear();
+		gameEngine.getPhase().setPlayers(d_gameplayerCommand.split(" "),gameEngine.getConnectivity());
 		gameEngine.getPhase().assignCountries(gameEngine.getConnectivity());
 		gameEngine.getPhase().next();
 		for(int i=0; i<l_roundCount; i++)
@@ -286,33 +247,7 @@ public class PlayGame extends Phase {
 	}
 
 	public void setPlayers(String[] p_commands, Connectivity p_connectivity) {
-		for(int i=1;i<p_commands.length;)
-		{
-			if(p_commands[i].equals("-add"))
-			{
-				Player l_player = new Player();
-				l_player.setD_playerName(p_commands[i+1]);
-				Play.l_playersArray.add(l_player);
-				//d_logEntryBuffer.log(l_player.getD_playerName() + "added successfully");
-				System.out.println(ColorCoding.green+l_player.getD_playerName()+" added successfully"+ColorCoding.blank);
-				i=i+2;
-				
-			}
-			else if(p_commands[i].equals("-remove"))
-			{
-				for(int j=0;j<Play.l_playersArray.size();j++)
-				{
-					if(p_commands[i+1].equals(Play.l_playersArray.get(j).getD_playerName()))
-					{
-						//d_logEntryBuffer.log(l_playersArray.get(j).getD_playerName()+ "removed successfully");
-						System.out.println(ColorCoding.green+Play.l_playersArray.get(j).getD_playerName()+" removed successfully"+ColorCoding.blank);
-						Play.l_playersArray.remove(j);
-						i=i+2;
-						break;
-					}
-				}
-			}
-		}
+		printInvalidCommandMessage(); 
 		
 	}
 

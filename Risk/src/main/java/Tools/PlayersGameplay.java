@@ -694,11 +694,9 @@ public class PlayersGameplay {
 	 */
 	
 	public static Player winnerPlayer(ArrayList<Player> p_players,Connectivity p_connectivity) {
-		System.out.println("In winnerPlayer and countryList.size = "+p_connectivity.getD_countryList().size());
 		Player l_winner = new Player();
 		for(Player p:p_players)
 		{
-			System.out.println("Player p.getD_coutnry_size ="+p.getD_Country().size());
 			if(p.getD_Country().size()==p_connectivity.getD_countryList().size())
 			{
 				System.out.println("test");

@@ -89,7 +89,6 @@ public class Attack extends MainPlay
 			}
 			
 		do{
-			System.out.println("test3");
 //			PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity);
 			Player winner = PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity);
 			if(winner !=null)

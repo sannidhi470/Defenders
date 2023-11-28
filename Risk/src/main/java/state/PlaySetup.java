@@ -38,14 +38,12 @@ public class PlaySetup extends Play
 	public void setPlayers(String[] p_commands,Connectivity p_connectivity) 
 	{
 		for(int i=1;i<p_commands.length;)
-		{
-			if(p_commands[i].equals("-add"))
+		{	
+			
+			if(ge.getCheckIfTournament())
 			{
 				Player l_player = new Player();
-				System.out.println("Enter the behaviour of the player: Aggressive, Human, Benevolent, Random, Cheater");
-				Scanner l_sc=new Scanner(System.in);
-				String l_strategy=l_sc.nextLine();
-				switch(l_strategy)
+				switch(p_commands[i])
 				{
 				case "Aggressive":	
 					l_player.setStrategy(new AggressivePlayerStrategy(l_player,p_connectivity));
@@ -63,33 +61,69 @@ public class PlaySetup extends Play
 					l_player.setStrategy(new CheaterPlayerStrategy(l_player,p_connectivity));
 					break;
 				default:
-					System.out.println("Invalid strategy name");
-					
+					System.out.println("Invalid strategy name");	
 				}
-				
-				
-				
-				l_player.setD_playerName(p_commands[i+1]);
+				l_player.setD_playerName(p_commands[i]);
 				l_playersArray.add(l_player);
 				//d_logEntryBuffer.log(l_player.getD_playerName() + "added successfully");
 				System.out.println(ColorCoding.green+l_player.getD_playerName()+" added successfully"+ColorCoding.blank);
-				i=i+2;
-				
+				i=i+1;
 			}
-			else if(p_commands[i].equals("-remove"))
+			else
 			{
-				for(int j=0;j<l_playersArray.size();j++)
+				if(p_commands[i].equals("-add"))
 				{
-					if(p_commands[i+1].equals(l_playersArray.get(j).getD_playerName()))
+					Player l_player = new Player();
+					System.out.println("Enter the behaviour of the player: Aggressive, Human, Benevolent, Random, Cheater");
+					Scanner l_sc=new Scanner(System.in);
+					String l_strategy=l_sc.nextLine();
+					switch(l_strategy)
 					{
-						//d_logEntryBuffer.log(l_playersArray.get(j).getD_playerName()+ "removed successfully");
-						System.out.println(ColorCoding.green+l_playersArray.get(j).getD_playerName()+" removed successfully"+ColorCoding.blank);
-						l_playersArray.remove(j);
-						i=i+2;
+					case "Aggressive":	
+						l_player.setStrategy(new AggressivePlayerStrategy(l_player,p_connectivity));
 						break;
+					case "Human":
+						l_player.setStrategy(new HumanPlayerStrategy(l_player,p_connectivity));
+						break;
+					case "Benevolent":
+						l_player.setStrategy(new BenevolentPlayerStrategy(l_player,p_connectivity));
+						break;
+					case "Random":
+						l_player.setStrategy(new RandomPlayerStrategy(l_player,p_connectivity));
+						break;
+					case "Cheater":
+						l_player.setStrategy(new CheaterPlayerStrategy(l_player,p_connectivity));
+						break;
+					default:
+						System.out.println("Invalid strategy name");
+						
+					}
+					
+					
+					
+					l_player.setD_playerName(p_commands[i+1]);
+					l_playersArray.add(l_player);
+					//d_logEntryBuffer.log(l_player.getD_playerName() + "added successfully");
+					System.out.println(ColorCoding.green+l_player.getD_playerName()+" added successfully"+ColorCoding.blank);
+					i=i+2;
+					
+				} 
+				else if(p_commands[i].equals("-remove"))
+				{
+					for(int j=0;j<l_playersArray.size();j++)
+					{
+						if(p_commands[i+1].equals(l_playersArray.get(j).getD_playerName()))
+						{
+							//d_logEntryBuffer.log(l_playersArray.get(j).getD_playerName()+ "removed successfully");
+							System.out.println(ColorCoding.green+l_playersArray.get(j).getD_playerName()+" removed successfully"+ColorCoding.blank);
+							l_playersArray.remove(j);
+							i=i+2;
+							break;
+						}
 					}
 				}
 			}
+
 		}
 		System.out.println("players have been set");
 	}
