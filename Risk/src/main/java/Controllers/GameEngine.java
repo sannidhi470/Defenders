@@ -146,6 +146,8 @@ public class GameEngine {
 				switch (l_commands[0]) {
 				case "tournament" :
 					gamePhase.enableTournament(mycommand);
+					System.out.println("Tournament complete! Thank you participating");
+					System.exit(0);
 				case "loadmap":					
 					gamePhase.loadMap(l_connectivity,l_commands);
 					l_check_if_map_loaded = true;

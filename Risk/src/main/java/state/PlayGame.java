@@ -165,9 +165,10 @@ public class PlayGame extends Phase {
 			{
 				System.out.println("----------------GAME "+(j+1)+" BEGINS"+"----------------");
 				startGame(l_mapList.get(i));
-				String l_winner = d_gameResult.get(d_gameResult.size()-1);
-				l_winner = l_winner + "Map "+i+" Game "+j;
-				d_gameResult.remove(d_gameResult.size()-1);
+				//String l_winner = d_gameResult.get(d_gameResult.size()-1);
+				String l_winner = d_gameResult.remove(d_gameResult.size()-1);
+				l_winner = "Winner --> "+l_winner + "for Map "+(i+1)+" Game "+(j+1);
+				d_gameResult.add(l_winner);
 			}
 
 		}
@@ -180,7 +181,11 @@ public class PlayGame extends Phase {
 //			}
 //
 //		}
+		System.out.println();
 		System.out.println("TOURNAMENT SUMMARY");
+		for(int i=0; i<d_gameResult.size(); i++)
+			System.out.println(d_gameResult.get(i));
+		System.out.println();
 		
 	}
 	
@@ -196,34 +201,61 @@ public class PlayGame extends Phase {
 		gameEngine.getPhase().next();
 		for(int i=0; i<l_roundCount; i++)
 		{
-			if(gameEngine.getConnectivity().getD_winnerPlayer().getD_playerName() == null)
+			if(!checkIfWinnerExists())
 			{
 				System.out.println("///////////////////////ROUND "+(i+1)+" BEGINS"+"///////////////////////");
 				gameEngine.getPhase().reinforce(gameEngine.getConnectivity());
 				gameEngine.getPhase().attack(gameEngine.getConnectivity());
+				if(checkIfWinnerExists())
+				{
+					recordResult();
+					return;
+				}
+				else
+					gameEngine.getPhase().fortify(gameEngine.getConnectivity());
+				
 				if(i == l_roundCount-1)
 				{
-					if(gameEngine.getConnectivity().getD_winnerPlayer().getD_playerName() == null)
+					if(!checkIfWinnerExists())
 					{
 						System.out.println("GAME RESULT = DRAW!!!");
-						d_gameResult.add("DRAW");
+						recordResult();
+						System.out.println("going to call endgame");
 						gameEngine.getPhase().endGame();
-						break;
+						System.out.println("AFTER DRAW");
+						return;
+						//break;
 					}
 
 				}
-				gameEngine.getPhase().fortify(gameEngine.getConnectivity());
+
 			}
 			else
 			{
 				System.out.println("WE HAVE A WINNER!!! --> "+gameEngine.getConnectivity().getD_winnerPlayer().getD_playerName());
-				d_gameResult.add(gameEngine.getConnectivity().getD_winnerPlayer().getD_playerName());
+				recordResult();
 				gameEngine.getPhase().endGame();
 				break;
 			}
 
 		}
 		
+	}
+	
+	public boolean checkIfWinnerExists()
+	{
+		if(gameEngine.getConnectivity().getD_winnerPlayer().getD_playerName() == null)
+			return false;
+		else
+			return true;
+	}
+	
+	public void recordResult()
+	{
+		if(checkIfWinnerExists())
+			d_gameResult.add(gameEngine.getConnectivity().getD_winnerPlayer().getD_playerName());
+		else
+			d_gameResult.add("DRAW");
 	}
 
 	public void editCountry(String[] p_commands, Connectivity p_connectivity) {

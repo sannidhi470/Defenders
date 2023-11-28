@@ -92,11 +92,13 @@ public class Attack extends MainPlay
 			if(PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity)!=null)
 			{
 				Player winner = PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity);
+				p_connectivity.setD_winnerPlayer(winner);
 				d_logEntryBuffer.log("CONGRATULATIONS!!! Our Winner is:"+winner.getD_playerName());
 				System.out.println("CONGRATULATIONS!!! Our Winner is:"+winner.getD_playerName());
 				l_winner++;
 				ge.setPhase(new End(ge));
-				ge.getPhase().endGame();	
+				ge.getPhase().endGame();
+				return;
 			}
 		for(int i=0;i<l_playersArray.size();i++)
 		{
