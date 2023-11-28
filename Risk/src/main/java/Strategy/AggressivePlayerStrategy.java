@@ -51,6 +51,8 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
                 d_StrongestCountry = l_country;
             }
         }
+        if(d_player.getD_Country().size() == 0)
+        	return null;
         if(l_maxArmies == 0) {
             d_StrongestCountry = d_player.getD_Country().get(0);
         }
