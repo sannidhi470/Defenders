@@ -69,6 +69,7 @@ public class Attack extends MainPlay
 		int l_winner=0;
 		int l_flag1=0;
 		int l_executeOrder=0;
+		int l_countOrder =0;
 
 		while(l_winner==0) 
 		{
@@ -113,6 +114,16 @@ public class Attack extends MainPlay
 				if(l_testFlag == 0) l_passContinue = "continue";
 				else if(l_testFlag > 0) l_passContinue = "pass";
 				l_testFlag = l_testFlag+1;
+			}
+			else if(ge.getCheckIfTournament())
+			{
+				if(l_countOrder == l_playersArray.size())
+					l_passContinue = "pass";
+				else
+				{
+					l_passContinue = "continue";
+					l_countOrder+=1;
+				}
 			}
 			else
 				l_passContinue=l_sc.nextLine();
@@ -338,6 +349,13 @@ public class Attack extends MainPlay
 		// TODO Auto-generated method stub
 		System.out.println("Thank you for Playing the Game");
 		System.exit(0);
+	}
+
+	@Override
+	public
+	void enableTournament(String mycommand) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

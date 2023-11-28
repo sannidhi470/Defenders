@@ -119,7 +119,8 @@ public class End extends Phase
     public void endGame() 
     {
         System.out.println("Thank you for Playing the Game");
-        System.exit(0);
+        //System.exit(0);
+        return;
     }
 
     /**
@@ -201,4 +202,11 @@ public class End extends Phase
     {
         // TODO Auto-generated method stub
     }
+
+	@Override
+	public
+	void enableTournament(String mycommand) {
+		// TODO Auto-generated method stub
+		
+	}
 }

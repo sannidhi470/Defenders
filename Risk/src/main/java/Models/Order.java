@@ -104,6 +104,12 @@ public class Order {
 	 */
 	public void execute(Player p_player,Order p_order,Connectivity p_connectivity,int flag,int fortify_flag) {
 		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
+		
+		if(p_order == null)
+		{
+			p_player.setD_armyCount(0);
+			return;
+		}
 		if(flag==0)
 		{
 		if(p_player.getD_armyCount() !=0)

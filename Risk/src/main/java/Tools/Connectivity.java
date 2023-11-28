@@ -3,6 +3,7 @@ import java.util.*;
 
 import Models.Continent;
 import Models.Country;
+import Models.Player;
 
 /**
  * The class Connectivity manages the transfer of data from skeleton to other classes where the map objects are used.
@@ -21,6 +22,16 @@ public class Connectivity {
 	
 	private String d_mapName;
 	
+	private Player d_winnerPlayer = new Player();
+	
+	public Player getD_winnerPlayer() {
+		return d_winnerPlayer;
+	}
+
+	public void setD_winnerPlayer(Player d_winnerPlayer) {
+		this.d_winnerPlayer = d_winnerPlayer;
+	}
+
 	/**
 	 * Function is used to get the name of current map
 	 * @return name of map

@@ -62,9 +62,14 @@ public class Fortify extends MainPlay
 		Scanner sc = new Scanner(System.in);
 		Country l_getCountry=new Country();
 		Player l_player;
+		int l_countOrder =0;
 		System.out.println("Do you want to fortify (yes/no)?");
 		String user_output = "";
 		if(ge.getCheckIfTest())
+		{
+			user_output = "no";
+		}
+		else if(ge.getCheckIfTournament())
 		{
 			user_output = "no";
 		}
@@ -90,7 +95,18 @@ public class Fortify extends MainPlay
 				//d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+"Asked whether he/she wants to give a command");
 				System.out.println(ColorCoding.cyan+"\n"+l_playersArray.get(i).getD_playerName()+"!! Do you want to give command or pass?(Press enter to continue / pass)"+ColorCoding.blank);
 				Scanner l_sc = new Scanner(System.in);
-				String l_passContinue=l_sc.nextLine();
+				String l_passContinue = "";
+				if(ge.getCheckIfTournament())
+				{
+					if(l_countOrder == l_playersArray.size())
+						l_passContinue = "pass";
+					else
+					{
+						l_passContinue = "continue";
+						l_countOrder+=1;
+					}
+				}
+				l_passContinue=l_sc.nextLine();
 				if(l_passContinue.equalsIgnoreCase("exit"))
 				{
 					System.out.println("Thank you for Playing the Game");
@@ -257,5 +273,11 @@ public class Fortify extends MainPlay
 		// TODO Auto-generated method stub
 		System.out.println("Thank you for Playing the Game");
 		System.exit(0);
+	}
+	@Override
+	public
+	void enableTournament(String mycommand) {
+		// TODO Auto-generated method stub
+		
 	}
 }

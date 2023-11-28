@@ -184,6 +184,13 @@ public class PostLoad extends Edit
 		System.out.println("Thank you for Playing the Game");
 		System.exit(0);
 	}
+
+	@Override
+	public
+	void enableTournament(String mycommand) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

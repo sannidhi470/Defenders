@@ -237,4 +237,11 @@ public class PlaySetup extends Play
 		// TODO Auto-generated method stub
 		printInvalidCommandMessage();
 	}
+
+	@Override
+	public
+	void enableTournament(String mycommand) {
+		// TODO Auto-generated method stub
+		
+	}
 }

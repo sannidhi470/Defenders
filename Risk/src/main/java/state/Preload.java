@@ -182,6 +182,9 @@ public class Preload extends Edit
 		if(ge.getCheckIfTest()) {
 			user_output = "no";
 		}
+		if(ge.getCheckIfTournament()) {
+			user_output = "no";
+		}
 		else
 		{
 			System.out.println("Do you want to make more edits on the map (yes/no)?");
@@ -264,5 +267,12 @@ public class Preload extends Edit
 		// TODO Auto-generated method stub
 		System.out.println("Thank you for Playing the Game");
 		System.exit(0);
+	}
+
+	@Override
+	public
+	void enableTournament(String mycommand) {
+		// TODO Auto-generated method stub
+		
 	}
 }
