@@ -10,17 +10,34 @@ import Tools.Connectivity;
 import Views.ViewMap;
 import state.Play;
 
+/**
+ * The AggressivePlayerStrategy class represents the player strategy that focuses on centralization of forces and then attack.
+ */
 public class AggressivePlayerStrategy extends PlayerStrategy{
 
+	/**
+	 * This constructor refers to the aggressive player strategy.
+	 * @param p_player refers to the object of the player class
+	 * @param p_connectivity refers to connectivity object
+	 */
+	
 	public AggressivePlayerStrategy(Player p_player, Connectivity p_connectivity) {
 		super(p_player, p_connectivity);
 	}
 
+	/**
+	 * Override method to attack
+	 * @return null in case of aggressive player
+	 */
 	@Override
 	protected Country toAttack() {
 		return null;
 	}
 
+	/**
+	 * Override method to attack from method to get country to which attack should happen
+	 * @return opponent country to attack
+	 */
 	@Override
 	protected Country toAttackFrom() {
 		Country d_StrongestCountry = toMoveFrom();
@@ -40,6 +57,10 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 
 	}
 
+	/**
+	 * Override method to get the strongest country from which armies should be used for attack
+	 * @return country with highest army count i.e. strongest country
+	 */
 	@Override
 	protected Country toMoveFrom() {
 		int l_maxArmies = 0;
@@ -58,12 +79,20 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 		return d_StrongestCountry;
 	}
 
+	/**
+	 * Override method to defend the country
+	 * @return null in case of aggressive player
+	 */
 	@Override
 	protected Country toDefend() {
 		//null
 		return null;
 	} 
 	
+	/**
+	 * Override method to apply aggressive player strategy during main game play by creating order
+	 * @return order
+	 */
 	@Override
 	public Order createOrder() {
 		Order o= new Order();
@@ -93,6 +122,11 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 		return o;
 	}
 	
+	/**
+	 * Method to get countries for advance and attack accordingly
+	 * @param countryID refers to the country ID of the strongest country, around which advance and attack will happen
+	 * @return countries
+	 */
 	public Country[] level(int countryID)
 	{
 		Country[] c = new Country[2];

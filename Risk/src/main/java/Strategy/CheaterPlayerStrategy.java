@@ -13,36 +13,61 @@ import Views.ViewMap;
 import state.Phase;
 import state.Play;
 
+/**
+ * The CheaterPlayerStrategy class represents the player strategy y whose issueOrder() method conquers all the immediate 
+ * neighboring enemy countries, and then doubles the number of armies on its countries that have enemy neighbors.
+ */
 public class CheaterPlayerStrategy extends PlayerStrategy{
 
+	/**
+	 * This constructor refers to the cheater player strategy.
+	 * @param p_player refers to the object of the player class
+	 * @param p_connectivity refers to connectivity object
+	 */
 	public CheaterPlayerStrategy(Player p_player, Connectivity p_connectivity) {
 		super(p_player, p_connectivity);
 	}
 
-	
-
+	/**
+	 * Override method to attack
+	 * @return null in case of cheater player
+	 */
 	@Override
 	protected Country toAttack() {
-		
 		return null;
 	}
 
+	/**
+	 * Override method to get country on which attack happens
+	 * @return null in case of cheater player
+	 */
 	@Override
 	protected Country toAttackFrom() {
 		return null;
 	}
 
+	/**
+	 * Override method to get country from which attack happens
+	 * @return null in case of cheater player
+	 */
 	@Override
 	protected Country toMoveFrom() {	
 		return null;
 	}
 
+	/**
+	 * Override method to defend the country
+	 * @return null in case of cheater player
+	 */
 	@Override
 	protected Country toDefend() {	
 		return null;
 	}
 	
-	
+	/**
+	 * Override method to apply cheater player strategy during main game play
+	 * @return null
+	 */
 	@Override
 	public Order createOrder() {
 		

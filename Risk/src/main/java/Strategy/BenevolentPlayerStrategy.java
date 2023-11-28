@@ -10,30 +10,53 @@ import Tools.Connectivity;
 import Views.ViewMap;
 import state.Play;
 
+/**
+ * The BenevolentPlayerStrategy class represents the player strategy that focuses on protecting its weak countries.
+ */
 public class BenevolentPlayerStrategy extends PlayerStrategy{
 
+	/**
+	 * This constructor refers to the benevolent player strategy.
+	 * @param p_player refers to the object of the player class
+	 * @param p_connectivity refers to connectivity object
+	 */
 	public BenevolentPlayerStrategy(Player p_player, Connectivity p_connectivity) {
 		super(p_player, p_connectivity);
 	}
 
 
+	/**
+	 * Override method to attack
+	 * @return null in case of benevolent player
+	 */
 	@Override
 	protected Country toAttack() {
 		return null;
 	}
 
+	/**
+	 * Override method to get country on which attack happens
+	 * @return null in case of benevolent player
+	 */
 	@Override
 	protected Country toAttackFrom() {
 		return null;
 	}
 
+	/**
+	 * Override method to get country from which attack happens
+	 * @return null in case of benevolent player
+	 */
 	@Override
 	protected Country toMoveFrom() {
 		return null;
 	}
 
-	
-	@Override //returns country with Minimum number of troops 
+	/**
+	 * Override method to get country with Minimum number of troops
+	 * @return that country
+	 */
+	@Override
 	protected Country toDefend() 
 	{  if(d_player.getD_Country().size()==0)
 		return null;
@@ -53,7 +76,10 @@ public class BenevolentPlayerStrategy extends PlayerStrategy{
 		return result;
 	}
 
-	
+	/**
+	 * Override method to apply benevolent player strategy during main game play by creating order
+	 * @return order
+	 */
 	@Override
 	public Order createOrder()
 	{
@@ -93,7 +119,11 @@ public class BenevolentPlayerStrategy extends PlayerStrategy{
 		
 	}
 	
-	
+	/**
+	 * Method to get neighboring countries of the country ID of the country with minimum number of troops 
+	 * @param countryID refers to the country ID of the country with minimum number of troops
+	 * @return countries
+	 */
 	public Country[] level(int countryID)
 	{
 		Country[] c = new Country[2];

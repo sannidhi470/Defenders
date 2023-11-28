@@ -10,32 +10,46 @@ import Models.Player;
 import Tools.Connectivity;
 import state.Play;
 
+/**
+ * The AggressivePlayerStrategy class represents the player strategy that focuses on centralization of forces and then attack.
+ */
 public class RandomPlayerStrategy extends PlayerStrategy{
 
 	public RandomPlayerStrategy(Player p_player, Connectivity p_connectivity) {
 		super(p_player, p_connectivity);
 	}
 
-	
-
+	/**
+	 * Override method to attack
+	 * @return null in case of random player
+	 */
 	@Override
 	protected Country toAttack() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Override method to get country on which attack happens
+	 * @return null in case of random player
+	 */
 	@Override
 	protected Country toAttackFrom() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Override method to get country from which attack happens
+	 * @return null in case of random player
+	 */
 	@Override
-	protected Country toMoveFrom() {
-		// TODO Auto-generated method stub
+	protected Country toMoveFrom() {	
 		return null;
 	}
 
+	/**
+	 * Override method to get random countries from the player's country
+	 * @return those random countries
+	 */
 	@Override //returns the random countries form the players country
 	protected Country toDefend() {
 		
@@ -45,6 +59,11 @@ public class RandomPlayerStrategy extends PlayerStrategy{
 		return l_countries.get(rndmIndex);
 	}
 	
+	/**
+	 * Override method to apply random player strategy during main game play by creating order, generating and deploying random 
+	 * troops to countries and randomly attacking once finds a neighboring enemy.
+	 * @return order
+	 */
 	@Override
 	public Order createOrder() {
 		
