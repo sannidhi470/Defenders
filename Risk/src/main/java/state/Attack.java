@@ -89,9 +89,12 @@ public class Attack extends MainPlay
 			}
 			
 		do{
-			if(PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity)!=null)
+			System.out.println("test3");
+//			PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity);
+			Player winner = PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity);
+			if(winner !=null)
 			{
-				Player winner = PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity);
+//				Player winner = PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity);
 				p_connectivity.setD_winnerPlayer(winner);
 				d_logEntryBuffer.log("CONGRATULATIONS!!! Our Winner is:"+winner.getD_playerName());
 				System.out.println("CONGRATULATIONS!!! Our Winner is:"+winner.getD_playerName());

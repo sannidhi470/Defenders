@@ -72,7 +72,7 @@ public class Fortify extends MainPlay
 		}
 		else if(ge.getCheckIfTournament())
 		{
-			user_output = "no";
+			user_output = "yes";
 		}
 		else
 			user_output = sc.nextLine();
@@ -107,7 +107,8 @@ public class Fortify extends MainPlay
 						l_countOrder+=1;
 					}
 				}
-				l_passContinue=l_sc.nextLine();
+				else
+					l_passContinue=l_sc.nextLine();
 				if(l_passContinue.equalsIgnoreCase("exit"))
 				{
 					System.out.println("Thank you for Playing the Game");

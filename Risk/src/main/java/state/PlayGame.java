@@ -161,13 +161,16 @@ public class PlayGame extends Phase {
 		System.out.println("*********************STARTING TOURNAMENT*********************");
 		for(int i=0; i<1; i++)
 		{
-			for(int j=0; j<1; j++)
+			for(int j=0; j<2; j++)
 			{
 				System.out.println("----------------GAME "+(j+1)+" BEGINS"+"----------------");
 				startGame(l_mapList.get(i));
 				//String l_winner = d_gameResult.get(d_gameResult.size()-1);
 				String l_winner = d_gameResult.remove(d_gameResult.size()-1);
-				l_winner = "Winner --> "+l_winner + "for Map "+(i+1)+" Game "+(j+1);
+				if(l_winner.equals("DRAW"))
+					l_winner = "Result --> "+l_winner + " for Map "+(i+1)+" Game "+(j+1);
+				else
+					l_winner = "Winner --> "+l_winner + " for Map "+(i+1)+" Game "+(j+1);
 				d_gameResult.add(l_winner);
 			}
 
@@ -178,6 +181,12 @@ public class PlayGame extends Phase {
 //			{
 //				System.out.println("----------------GAME "+(j+1)+" BEGINS"+"----------------");
 //				startGame(l_mapList.get(i));
+//				String l_winner = d_gameResult.remove(d_gameResult.size()-1);
+//				if(l_winner.equals("DRAW"))
+//					l_winner = "Result --> "+l_winner + " for Map "+(i+1)+" Game "+(j+1);
+//				else
+//					l_winner = "Winner --> "+l_winner + " for Map "+(i+1)+" Game "+(j+1);
+//				d_gameResult.add(l_winner);
 //			}
 //
 //		}
@@ -192,6 +201,8 @@ public class PlayGame extends Phase {
 	public void startGame(String p_mapName) {
 		System.out.println("Begin");
 		gameEngine.setCheckIfTournament(true);
+		l_connectivity.setD_winnerPlayer(new Player());
+		System.out.println("Beginning game winner = "+l_connectivity.getD_winnerPlayer().getD_playerName());
 		gameEngine.setConnectivity(l_connectivity);
 		gameEngine.setPhase(new Preload(gameEngine));
 		String[] mapCommand = ("loadmap "+p_mapName).split(" ");
@@ -201,6 +212,7 @@ public class PlayGame extends Phase {
 		gameEngine.getPhase().next();
 		for(int i=0; i<l_roundCount; i++)
 		{
+			
 			if(!checkIfWinnerExists())
 			{
 				System.out.println("///////////////////////ROUND "+(i+1)+" BEGINS"+"///////////////////////");
@@ -221,14 +233,11 @@ public class PlayGame extends Phase {
 						System.out.println("GAME RESULT = DRAW!!!");
 						recordResult();
 						System.out.println("going to call endgame");
-						gameEngine.getPhase().endGame();
-						System.out.println("AFTER DRAW");
+						ge.setPhase(new End(ge));
 						return;
-						//break;
 					}
 
 				}
-
 			}
 			else
 			{
@@ -244,6 +253,7 @@ public class PlayGame extends Phase {
 	
 	public boolean checkIfWinnerExists()
 	{
+
 		if(gameEngine.getConnectivity().getD_winnerPlayer().getD_playerName() == null)
 			return false;
 		else
