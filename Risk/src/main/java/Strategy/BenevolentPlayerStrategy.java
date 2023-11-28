@@ -69,7 +69,7 @@ public class BenevolentPlayerStrategy extends PlayerStrategy{
 			o.setOrderContent(str);
 			return o;
 		}
-		else if(GameEngine.getPhaseName().equals("Attack"))
+		else if(GameEngine.getPhaseName().equals("Attack") || GameEngine.getPhaseName().equals("Fortify") )
 		{
 			str="advance ";
 			Country[] c = level(toDefend().getD_countryId());

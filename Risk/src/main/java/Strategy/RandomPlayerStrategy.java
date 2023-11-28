@@ -112,13 +112,11 @@ public class RandomPlayerStrategy extends PlayerStrategy{
 					{
 						Country l_fCountry = toDefend();
 						Country l_tCountry = toDefend();
-						for(;;)// to generate two unique countries
-						{
-							if(l_fCountry.getD_countryId() != l_tCountry.getD_countryId())
-								break;
-							else
-								l_tCountry = toDefend();
-						}
+						if(l_fCountry.getD_countryId() != l_tCountry.getD_countryId())
+							break;
+						else
+							l_tCountry = toDefend();
+						
 						
 						rndmTroops = rndm.nextInt(l_fCountry.getD_armyDeployedOnCountry()+1);
 						str = str +" "+l_fCountry.getD_countryId()+" "+l_tCountry.getD_countryId()+" "+rndmTroops;

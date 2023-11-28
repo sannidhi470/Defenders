@@ -9,6 +9,7 @@ import Models.Continent;
 import Models.Country;
 import Models.Order;
 import Models.Player;
+import Strategy.HumanPlayerStrategy;
 import Tools.ColorCoding;
 import Tools.Connectivity;
 import Tools.PlayersGameplay;
@@ -122,7 +123,23 @@ public class Fortify extends MainPlay
 				//d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+ "Asked for Command");
 				System.out.println("\nEnter the Command for player: "+l_playersArray.get(i).getD_playerName());
 				System.out.println("Cards available: "+l_playersArray.get(i).getCards());
-				String l_orderinput=l_sc.nextLine();
+				String l_orderinput="";
+				
+				if(l_playersArray.get(i).getStrategy() instanceof HumanPlayerStrategy)
+				{
+					l_orderinput=l_sc.nextLine();
+				}
+				else
+				{
+					if(l_playersArray.get(i).issue_order())
+					{
+						Order o = l_playersArray.get(i).next_order();
+						l_orderinput=o.getOrderContent();
+					}
+					else
+						continue;
+				}
+				
 				if(l_orderinput.equalsIgnoreCase("exit"))
 				{
 					System.out.println("Thank you for Playing the Game");
@@ -155,21 +172,22 @@ public class Fortify extends MainPlay
 			 HashSet<String> l_emptyOrders=new HashSet<>();
 			
 			
-			while(l_executeOrder!=l_playersArray.size())
-			{
-				for(int j=0;j<l_playersArray.size();j++)
+			 while(l_executeOrder!=l_playersArray.size())
 				{
-					
-					if(l_emptyOrders.contains(l_playersArray.get(j).getD_playerName())) continue;
-					if(l_playersArray.get(j).getD_playerOrder().size()==0) 
+					for(int j=0;j<l_playersArray.size();j++)
 					{
-						l_emptyOrders.add(l_playersArray.get(j).getD_playerName());
-						l_executeOrder++;
-						continue;	
+						
+						if(l_emptyOrders.contains(l_playersArray.get(j).getD_playerName())) continue;
+						if(l_playersArray.get(j).getD_playerOrder().size()==0) 
+						{
+							l_emptyOrders.add(l_playersArray.get(j).getD_playerName());
+							l_executeOrder++;
+							continue;	
+						}
+						
+						l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),p_connectivity,1,0);
 					}
-					l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),p_connectivity,1,1);
 				}
-			}
 			ViewMap.viewMap(p_connectivity.getD_continentList(), p_connectivity.getD_countryList(), l_playersArray);
 			PlayersGameplay.resetDiplomacy(l_playersArray);
 			System.out.println("fortification done");
