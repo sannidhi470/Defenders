@@ -27,6 +27,16 @@ public class GameEngine {
 	private static Phase gamePhase;
 	private Connectivity connectivity;
 	private boolean checkIfTest = false;
+	private boolean checkIfTournament = false;
+	
+	public boolean getCheckIfTournament() {
+		return checkIfTournament;
+	}
+	
+	public void setCheckIfTournament(boolean checkIfTournament) {
+		this.checkIfTournament = checkIfTournament;
+	}
+	
 	/**
 	 * Used for the unit testing
 	 * @return returns true for testing
@@ -104,7 +114,7 @@ public class GameEngine {
 				setPhase(new Preload(this));
 				break;
 			case 2:
-				setPhase(new PlaySetup(this));
+				setPhase(new PlayGame(this));
 				break;
 			case 3:
 				d_logEntryBuffer.log("Bye!");
@@ -134,6 +144,8 @@ public class GameEngine {
 				if(l_commands[0]!= null)
 				{
 				switch (l_commands[0]) {
+				case "tournament" :
+					gamePhase.enableTournament(mycommand);
 				case "loadmap":					
 					gamePhase.loadMap(l_connectivity,l_commands);
 					l_check_if_map_loaded = true;
@@ -178,10 +190,15 @@ public class GameEngine {
 					if(gamePhase.assignCountries(l_connectivity))
 					{
 					gamePhase.next();
+					gamePhase.reinforce(l_connectivity);
+					gamePhase.attack(l_connectivity);
+					gamePhase.fortify(l_connectivity);
 					}
 					break;
 				case "deploy":
 					gamePhase.reinforce(l_connectivity);
+					gamePhase.attack(l_connectivity);
+					gamePhase.fortify(l_connectivity);
 					break;
 				case "attack":
 					gamePhase.attack(l_connectivity);
