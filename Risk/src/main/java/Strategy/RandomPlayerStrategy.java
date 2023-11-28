@@ -40,6 +40,8 @@ public class RandomPlayerStrategy extends PlayerStrategy{
 	protected Country toDefend() {
 		
 		ArrayList<Country> l_countries = d_player.getD_Country();
+		if(l_countries.size() == 0)
+			return null;
 		Random rndm = new Random(); 
 	    int rndmIndex = rndm.nextInt(l_countries.size());    
 		return l_countries.get(rndmIndex);
@@ -51,6 +53,8 @@ public class RandomPlayerStrategy extends PlayerStrategy{
 		Random rndm = new Random();       
 		Order o =new Order();
 		String str="";
+		if(toDefend() == null)
+			return null;
 		
 		//generates deploy for random country with random number of troops 
 		if(GameEngine.getPhaseName().equals("Reinforcement"))
