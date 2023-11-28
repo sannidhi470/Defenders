@@ -159,15 +159,27 @@ public class PlayGame extends Phase {
 		}
 		
 		System.out.println("*********************STARTING TOURNAMENT*********************");
-		for(int i=0; i<l_mapList.size(); i++)
+		for(int i=0; i<1; i++)
 		{
-			for(int j=0; j<l_gameCount; j++)
+			for(int j=0; j<1; j++)
 			{
 				System.out.println("----------------GAME "+(j+1)+" BEGINS"+"----------------");
 				startGame(l_mapList.get(i));
+				String l_winner = d_gameResult.get(d_gameResult.size()-1);
+				l_winner = l_winner + "Map "+i+" Game "+j;
+				d_gameResult.remove(d_gameResult.size()-1);
 			}
 
 		}
+//		for(int i=0; i<l_mapList.size(); i++)
+//		{
+//			for(int j=0; j<l_gameCount; j++)
+//			{
+//				System.out.println("----------------GAME "+(j+1)+" BEGINS"+"----------------");
+//				startGame(l_mapList.get(i));
+//			}
+//
+//		}
 		System.out.println("TOURNAMENT SUMMARY");
 		
 	}
@@ -213,7 +225,6 @@ public class PlayGame extends Phase {
 		}
 		
 	}
-
 
 	public void editCountry(String[] p_commands, Connectivity p_connectivity) {
 		printInvalidCommandMessage(); 
