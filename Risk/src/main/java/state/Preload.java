@@ -3,8 +3,10 @@ package state;
 import java.util.Scanner;
 
 import Controllers.GameEngine;
+import Models.Map;
 import Tools.ColorCoding;
 import Tools.Connectivity;
+import Tools.ConquestMapLoader;
 import Tools.MapEditor;
 import Tools.MapLoader;
 
@@ -36,7 +38,9 @@ public class Preload extends Edit
 		int l_newMapCreated = 0;
 		if(p_commands.length == 2)
 		{
-			l_newMapCreated =MapLoader.loadMap(p_connectivity,p_commands[1]);
+//			l_newMapCreated =MapLoader.loadMap(p_connectivity,p_commands[1]);
+			Map.checkMap(p_connectivity, p_commands[1]);
+			//l_newMapCreated = ConquestMapLoader.loadMap(p_connectivity, p_commands[1]);
 		} else {
 			//d_logEntryBuffer.log("No map entered. Please enter name of map to be loaded");
 			System.out.println(ColorCoding.red+"No map entered. Please enter name of map to be loaded"+ColorCoding.blank);

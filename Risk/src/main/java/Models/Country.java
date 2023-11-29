@@ -160,7 +160,7 @@ public class Country {
 	 * @param p_countryName Name of particular country
 	 * @return name of country if country is present; null if such country does not exist
 	 */
-	public Country getCountryFromName(ArrayList<Country> p_countryList,String p_countryName)
+	public static Country getCountryFromName(ArrayList<Country> p_countryList,String p_countryName)
 	{
 		for(Country c:p_countryList)
 		{

@@ -11,7 +11,8 @@ public class Continent {
 	private int d_continentId;
 	private String d_continentName;
 	private int d_continentBonusValue;
-	private List<Country> d_countries;
+	private List<Country> d_countries=new ArrayList<Country>();
+	//private List<Country> d_countries;
 	
 	/**
 	 * This is a default constructor.
@@ -142,5 +143,23 @@ public class Continent {
 				l_countries.add(i);
 		}
 		return l_countries;
+	}
+	public static String getNameFromId(int p_id,ArrayList<Continent> p_continentList)
+	{
+		for(Continent c:p_continentList)
+		{
+			if(p_id==c.getD_continentId())
+				return c.d_continentName;
+		}
+		return null;
+	}
+	public static int getIdFromName(String p_name,ArrayList<Continent> p_continentList)
+	{
+		for(Continent c:p_continentList)
+		{
+			if(p_name.equals(c.getD_continentName()))
+				return c.d_continentId;
+		}
+		return 0;
 	}
 }
