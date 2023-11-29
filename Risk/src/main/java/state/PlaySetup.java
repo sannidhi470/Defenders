@@ -79,7 +79,13 @@ public class PlaySetup extends Play
 					Scanner l_sc=new Scanner(System.in);
 					do {
 					System.out.println("Enter the behaviour of the player: "+l_player.getD_playerName() +" - Aggressive, Human, Benevolent, Random, Cheater");
-					String l_strategy=l_sc.nextLine();
+					String l_strategy = "";
+					if(ge.getCheckIfTest())
+					{
+						l_strategy = "Aggressive";
+					}
+					else
+						l_strategy=l_sc.nextLine();
 					l_flag=0;
 					switch(l_strategy)
 					{

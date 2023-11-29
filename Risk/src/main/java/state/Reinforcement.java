@@ -54,26 +54,16 @@ public class Reinforcement extends MainPlay
 				{
 					//d_logEntryBuffer.log("Player "+l_playersArray.get(i).getD_playerName()+" deploy your troops:");
 					System.out.println("Player "+l_playersArray.get(i).getD_playerName()+" deploy your troops:");
-					if(ge.getCheckIfTest())
+					l_outcomeIssueOrder =l_playersArray.get(i).issue_order();
+					if(l_outcomeIssueOrder == false)
 					{
-						int l_countryID = l_playersArray.get(i).getD_Country().get(0).getD_countryId();
-						int l_armycount = l_playersArray.get(i).getD_armyCount();
-						l_userOrder = "deploy "+l_countryID+" "+l_armycount;
-						System.out.println("For testcase, we have the following command\n"+l_userOrder);
-					}
-					else
-					{
-						l_outcomeIssueOrder =l_playersArray.get(i).issue_order();
-						if(l_outcomeIssueOrder == false)
+						System.out.println("Player "+l_playersArray.get(i).getD_playerName()+" has decided not to deploy any troops");
+						l_tempName.add(l_playersArray.get(i).getD_playerName());
+						flag++;
+						for(int k=0; k<l_tempPlayerArray.size(); k++)
 						{
-							System.out.println("Player "+l_playersArray.get(i).getD_playerName()+" has decided not to deploy any troops");
-							l_tempName.add(l_playersArray.get(i).getD_playerName());
-							flag++;
-							for(int k=0; k<l_tempPlayerArray.size(); k++)
-							{
-								if(l_tempPlayerArray.get(k).getD_playerName().equals(l_playersArray.get(i).getD_playerName()))
-									l_tempPlayerArray.remove(k);
-							}
+							if(l_tempPlayerArray.get(k).getD_playerName().equals(l_playersArray.get(i).getD_playerName()))
+								l_tempPlayerArray.remove(k);
 						}
 					}
 						

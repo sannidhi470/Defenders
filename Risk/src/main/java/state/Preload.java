@@ -186,7 +186,7 @@ public class Preload extends Edit
 		if(ge.getCheckIfTest()) {
 			user_output = "no";
 		}
-		if(ge.getCheckIfTournament()) {
+		else if(ge.getCheckIfTournament()) {
 			user_output = "no";
 		}
 		else
