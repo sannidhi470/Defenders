@@ -84,14 +84,15 @@ System.out.println("coming here");
     	   		for(int i=l_countryLength+1;i<l_borderLength-1;i++)
     	   		{
     	   			String a=l_fileContent.get(i);
+    	   			
     	  		    String[] aArr=a.split(" ");
     	  		    Country obj=new Country();
     	  		    obj.setD_continentId(Integer.parseInt(aArr[aArr.length-1]));
-    	  		  Pattern pattern=Pattern.compile("[A-Za-z\\s.]{1,}");
+    	  		  Pattern pattern=Pattern.compile("(([A-Za-z.]{1,})([\\s][A-Za-z.]{1,}){0,})");
     	      	  Matcher matcher = pattern.matcher(a);
     	        
     	          if(matcher.find())
-    	        	  aArr[1]=matcher.group(0).replaceFirst(" ", ""); 
+    	        	  aArr[1]=matcher.group(0);
     	  		    obj.setD_countryId(Integer.parseInt(aArr[0]));
     	  		    obj.setD_countryName(aArr[1]);
     	  		    
@@ -105,7 +106,7 @@ System.out.println("coming here");
     	   			String[] aArr=a.split(" ");
     	   			Continent l_continentObj=new Continent();
     	   			l_continentObj.setD_continentId(l_continentId);
-    	   		 Pattern pattern=Pattern.compile("[A-Za-z\\s.]{1,}");
+    	   		 Pattern pattern=Pattern.compile("(([A-Za-z.]{1,})([\\s][A-Za-z.]{1,}){0,})");
     	   		 Matcher matcher = pattern.matcher(a);
     	   		 
     	   		 if(matcher.find())
