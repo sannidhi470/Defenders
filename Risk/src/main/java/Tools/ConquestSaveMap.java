@@ -6,8 +6,17 @@ import java.util.ArrayList;
 import Models.Continent;
 import Models.Country;
 
+/**
+ * The class MapLoader will save the map selected by the user in conquest format
+ */
 public class ConquestSaveMap {
 
+	/**
+	 * The function is used to save the map in the conquest format
+	 * @param p_connectivity refers to the connectivity object
+	 * @param p_mapName refers to the name of map as defined in the userCommand
+	 * @return 0 for successful save of map; 1 for failure in saving the map
+	 */
 	public static int conquestMapSaver(Connectivity p_connectivity, String p_mapName) {
 		ArrayList<String> l_mapData=new ArrayList<String>();
 		l_mapData.add("[Continents]\n");

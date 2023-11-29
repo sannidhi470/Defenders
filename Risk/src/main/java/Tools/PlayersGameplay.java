@@ -181,8 +181,7 @@ public class PlayersGameplay {
 						{
 							if(p_troops<=p_fromCountry.getD_armyDeployedOnCountry())
 							{
-								d_logEntryBuffer.log("Calling Advance");
-								System.out.println("Calling Advance");
+
 								int l_troopsaddition = p_toCountry.getD_armyDeployedOnCountry() + p_troops;
 								p_toCountry.setD_armyDeployedOnCountry(l_troopsaddition); 
 								int l_troopsDeduction = p_fromCountry.getD_armyDeployedOnCountry() - p_troops;
@@ -220,13 +219,10 @@ public class PlayersGameplay {
 				{
 					if(fortify_flag==0)
 					{
-						d_logEntryBuffer.log("Inside fortify");
-						System.out.println("Inside fortify");
 						Player l_toplayer = findPlayerWithCountry(p_playersArray,p_toCountry);
 					
 					if(l_toplayer != null)
 					{
-						System.out.println(p_player.getDiplomacyWith());
 						if(!p_player.getDiplomacyWith().contains(l_toplayer.getD_playerId()))
 						{							
 							attack(p_player,p_playersArray,p_fromCountry,p_toCountry,p_troops,p_continent,p_connectivity);
@@ -248,7 +244,7 @@ public class PlayersGameplay {
 					else
 					{
 						d_logEntryBuffer.log("Attack cannot be done on fortify phase");
-						System.out.println("Attack cannot be done on fortify phase");
+						System.out.println(ColorCoding.red+"Attack cannot be done on fortify phase"+ColorCoding.blank);
 						return 1;
 					}
 				}
@@ -335,15 +331,11 @@ public class PlayersGameplay {
 									{
 										int attackRange =(60 - 0)+1; 
 										int attackRandom = (int)(Math.random() * attackRange) + 0;
-										System.out.println("attackRandom = "+attackRandom);
 										l_troopsSource = Math.round(l_troopsSource*((float)attackRandom/100));
-										System.out.println("source Troops = "+l_troopsSource);
 										
 										int defendRange =(70 - 0)+1; 
 										int defendRandom = (int)(Math.random() * defendRange) + 0;
-										System.out.println("defendRandom = "+defendRandom);
 										l_troopsDestination = Math.round (l_troopsDestination*((float)defendRandom/100));
-										System.out.println("Destination Troops = "+l_troopsDestination);
 
 									}
 									if(l_troopsSource>l_troopsDestination)
@@ -423,7 +415,7 @@ public class PlayersGameplay {
 				}			
 			}catch(Exception e)
 			{
-				System.out.println(ColorCoding.red+"Error: Coutry "+p_toCountry+" Does not exist"+ColorCoding.blank);
+				System.out.println(ColorCoding.red+"Error: Country "+p_toCountry+" Does not exist"+ColorCoding.blank);
 				return 1;
 			}
 		
@@ -699,7 +691,6 @@ public class PlayersGameplay {
 		{
 			if(p.getD_Country().size()==p_connectivity.getD_countryList().size())
 			{
-				System.out.println("test");
 				l_winner.setD_playerId(p.getD_playerId());
 				l_winner.setD_playerName(p.getD_playerName());
 				l_winner.setD_armyCount(p.getD_armyCount());

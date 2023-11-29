@@ -14,8 +14,21 @@ import Models.Continent;
 import Models.Country;
 import Tools.Connectivity;
 
+/**
+ * tournamentValidation is used for successfully validating the given tournament scenario
+ */
 public class tournamentValidation {
 	
+	/**
+	 * l_connectivity refers to connectivity object
+	 * l_mapList refers to list of maps specified in the userCommand
+	 * l_behaviourList refers to list of behaviors specified in the userCommand
+	 * l_gameCount refers to number of games specified in the userCommand
+	 * l_roundCount refers to the number of rounds specified in the userCommand
+	 * gameEngine is an instance of GameEngine class
+	 * d_gameResult stores the results of all the games in the tournament
+	 * d_gameplayerCommand stores the setPlayer/gameplayer command
+	 */
 	Connectivity l_connectivity=new Connectivity();
 	ArrayList<String> l_mapList = new ArrayList<>();
 	HashSet<String> l_behaviourList = new HashSet<String>();
@@ -25,6 +38,9 @@ public class tournamentValidation {
 	ArrayList<String> d_gameResult = new ArrayList<>();
 	String d_gameplayerCommand = "";
 	
+	/**
+	 * testTournament is used to test the tournament scenario for the defined userCommand
+	 */
 	@Test
 	public void testTournament() {
 		l_connectivity.setD_continentList(new ArrayList<Continent>());

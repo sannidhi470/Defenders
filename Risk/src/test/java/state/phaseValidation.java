@@ -17,6 +17,10 @@ import Views.ViewMap;
  *
  */
 public class phaseValidation {
+	/**
+	 * GameEngine refers to static object GameEngine
+	 * d_connectibity refers to static Connectivity Object
+	 */
 	
 	static GameEngine gameEngine = new GameEngine();
 	static Connectivity d_connectivity=new Connectivity();
@@ -30,10 +34,10 @@ public class phaseValidation {
 	}
 	
 	/**
-	 * This test checks if pre load phase is executing all the methods in it at right time or not.
+	 * This test checks for successful transition between states of the phase
 	 */
 	@Test
-	public void checkPreLoad()
+	public void checkState()
 	{
 		
 		if(d_commands[0].equals("1"))
