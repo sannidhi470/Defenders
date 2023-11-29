@@ -7,6 +7,7 @@ import java.util.Scanner;
 import Controllers.GameEngine;
 import Models.Continent;
 import Models.Country;
+import Models.LogEntryBuffer;
 import Models.Order;
 import Models.Player;
 import Strategy.HumanPlayerStrategy;
@@ -61,6 +62,7 @@ public class Fortify extends MainPlay
 	public void fortify(Connectivity p_connectivity) 
 	{
 		Scanner sc = new Scanner(System.in);
+		LogEntryBuffer d_logEntryBuffer= new LogEntryBuffer();
 		Country l_getCountry=new Country();
 		Player l_player;
 		int l_countOrder =0;
@@ -93,7 +95,7 @@ public class Fortify extends MainPlay
 				{
 				if(playerNames.contains(l_playersArray.get(i).getD_playerName()))
 					continue;
-				//d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+"Asked whether he/she wants to give a command");
+				d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+"Asked whether he/she wants to give a command");
 				System.out.println(ColorCoding.cyan+"\n"+l_playersArray.get(i).getD_playerName()+"!! Do you want to give command or pass?(Press enter to continue / pass)"+ColorCoding.blank);
 				Scanner l_sc = new Scanner(System.in);
 				String l_passContinue = "";
@@ -121,7 +123,7 @@ public class Fortify extends MainPlay
 					break;
 				}
 				Order l_order=new Order();
-				//d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+ "Asked for Command");
+				d_logEntryBuffer.log(l_playersArray.get(i).getD_playerName()+ "Asked for Command");
 				System.out.println("\nEnter the Command for player: "+l_playersArray.get(i).getD_playerName());
 				System.out.println("Cards available: "+l_playersArray.get(i).getCards());
 				String l_orderinput="";
@@ -147,17 +149,14 @@ public class Fortify extends MainPlay
 					System.exit(0);
 				}
 				String[] l_inputOrderArray=l_orderinput.split(" ");
-				//make a function to validate command..
 				switch(l_inputOrderArray[0])
 				{
 				case "advance":
-					//System.out.println("Call Advance");
 					l_order.setOrderContent(l_orderinput);
 					l_playersArray.get(i).getD_playerOrder().add(l_order);
 					l_flag1=1;
 					break;
 				default:
-					//d_logEntryBuffer.log("Invalid Command!!");
 					System.out.println(ColorCoding.red+"Invalid Command!!"+ColorCoding.blank);
 					l_flag1=0;
 				}
@@ -170,8 +169,7 @@ public class Fortify extends MainPlay
 			}while(l_terminateFlag!=l_playersArray.size());
 			
 			 l_executeOrder=0;
-			 HashSet<String> l_emptyOrders=new HashSet<>();
-			
+			 HashSet<String> l_emptyOrders=new HashSet<>();	
 			
 			 while(l_executeOrder!=l_playersArray.size())
 				{
@@ -186,7 +184,7 @@ public class Fortify extends MainPlay
 							continue;	
 						}
 						
-						l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),p_connectivity,1,0);
+						l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),p_connectivity,1,1);
 					}
 				}
 			ViewMap.viewMap(p_connectivity.getD_continentList(), p_connectivity.getD_countryList(), l_playersArray);

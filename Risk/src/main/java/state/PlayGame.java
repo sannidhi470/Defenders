@@ -36,7 +36,6 @@ public class PlayGame extends Phase {
 		{
 			for(int i=1; i<l_splitUserCommand.length; i++)
 			{
-				System.out.println(l_splitUserCommand[i]);
 				String[] l_parameters = l_splitUserCommand[i].split(" ");
 				switch(l_parameters[0])
 				{
@@ -54,7 +53,6 @@ public class PlayGame extends Phase {
 						else
 							l_mapList.add(l_parameters[j]);
 					}
-					System.out.println("Final mapList = "+l_mapList);
 					break;
 				
 					
@@ -82,7 +80,6 @@ public class PlayGame extends Phase {
 						System.out.println("INVALID COMMAND! Parameter G Limit: 1-5 games");
 						return;
 					}
-					System.out.println("l_gameCount set to "+l_gameCount);
 					break;
 							
 							
@@ -99,7 +96,6 @@ public class PlayGame extends Phase {
 						System.out.println("INVALID COMMAND! Parameter D Limit: 10-50 turns");
 						return;
 					}
-					System.out.println("l_roundCount set to "+l_roundCount);
 					break;
 					
 				
@@ -115,25 +111,8 @@ public class PlayGame extends Phase {
 			return;
 		}
 		
-		System.out.println("*********************STARTING TOURNAMENT*********************");
-//		for(int i=0; i<1; i++)
-//		{
-//			for(int j=0; j<2; j++)
-//			{
-//				System.out.println("----------------GAME "+(j+1)+" BEGINS"+"----------------");
-//				startGame(l_mapList.get(i));
-//				//String l_winner = d_gameResult.get(d_gameResult.size()-1);
-//				String l_winner = d_gameResult.remove(d_gameResult.size()-1);
-//				if(l_winner.equals("DRAW"))
-//					l_winner = "Result --> "+l_winner + " for Map "+(i+1)+" Game "+(j+1);
-//				else
-//					l_winner = "Winner --> "+l_winner + " for Map "+(i+1)+" Game "+(j+1);
-//				d_gameResult.add(l_winner);
-//			}
-//
-//		}
 		
-		
+		System.out.println("*********************STARTING TOURNAMENT*********************");		
 		for(int i=0; i<l_mapList.size(); i++)
 		{
 			for(int j=0; j<l_gameCount; j++)
@@ -158,10 +137,8 @@ public class PlayGame extends Phase {
 	}
 	
 	public void startGame(String p_mapName) {
-		System.out.println("Begin");
 		gameEngine.setCheckIfTournament(true);
 		l_connectivity.setD_winnerPlayer(new Player());
-		System.out.println("Beginning game winner = "+l_connectivity.getD_winnerPlayer().getD_playerName());
 		gameEngine.setConnectivity(l_connectivity);
 		gameEngine.setPhase(new Preload(gameEngine));
 		String[] mapCommand = ("loadmap "+p_mapName).split(" ");
@@ -193,7 +170,6 @@ public class PlayGame extends Phase {
 					{
 						System.out.println("GAME RESULT = DRAW!!!");
 						recordResult();
-						System.out.println("going to call endgame");
 						ge.setPhase(new End(ge));
 						return;
 					}

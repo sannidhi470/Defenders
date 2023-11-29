@@ -89,11 +89,9 @@ public class Attack extends MainPlay
 			}
 			
 		do{
-//			PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity);
 			Player winner = PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity);
 			if(winner !=null)
 			{
-//				Player winner = PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity);
 				p_connectivity.setD_winnerPlayer(winner);
 				d_logEntryBuffer.log("CONGRATULATIONS!!! Our Winner is:"+winner.getD_playerName());
 				System.out.println("CONGRATULATIONS!!! Our Winner is:"+winner.getD_playerName());
@@ -169,8 +167,6 @@ public class Attack extends MainPlay
 					}
 					else
 						continue;
-//					Order o = l_playersArray.get(i).next_order();
-//					l_orderinput=o.getOrderContent();
 				}
 			}
 				
@@ -215,7 +211,7 @@ public class Attack extends MainPlay
 
 			}while(l_flag1==0);
 			
-	}
+		}
 		
 		}while(terminateFlag!=l_playersArray.size());
 		
@@ -223,16 +219,10 @@ public class Attack extends MainPlay
 		 l_executeOrder=0;
 		 HashSet<String> l_emptyOrders=new HashSet<>();
 		
-		
 		while(l_executeOrder!=l_playersArray.size())
 		{
 			for(int j=0;j<l_playersArray.size();j++)
 			{
-				
-//				if(l_playersArray.get(j).getD_playerOrder().size()==0)
-//				{
-//					l_emptyOrders.add(l_playersArray.get(j).getD_playerName());
-//				}
 				if(l_emptyOrders.contains(l_playersArray.get(j).getD_playerName())) continue;
 				if(l_playersArray.get(j).getD_playerOrder().size()==0) 
 				{
@@ -240,7 +230,6 @@ public class Attack extends MainPlay
 					l_executeOrder++;
 					continue;	
 				}
-				
 				l_playersArray.get(j).getD_Order().execute(l_playersArray.get(j), l_playersArray.get(j).next_order(),p_connectivity,1,0);
 			}
 		}
