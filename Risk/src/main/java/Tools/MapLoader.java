@@ -88,7 +88,7 @@ System.out.println("coming here");
     	  		    String[] aArr=a.split(" ");
     	  		    Country obj=new Country();
     	  		    obj.setD_continentId(Integer.parseInt(aArr[aArr.length-1]));
-    	  		  Pattern pattern=Pattern.compile("(([A-Za-z.]{1,})([\\s][A-Za-z.]{1,}){0,})");
+    	  		  Pattern pattern=Pattern.compile("(([A-Za-z._&-]{1,})([\\s][A-Za-z._&-]{1,}){0,})");
     	      	  Matcher matcher = pattern.matcher(a);
     	        
     	          if(matcher.find())
@@ -106,7 +106,7 @@ System.out.println("coming here");
     	   			String[] aArr=a.split(" ");
     	   			Continent l_continentObj=new Continent();
     	   			l_continentObj.setD_continentId(l_continentId);
-    	   		 Pattern pattern=Pattern.compile("(([A-Za-z.]{1,})([\\s][A-Za-z.]{1,}){0,})");
+    	   		 Pattern pattern=Pattern.compile("(([A-Za-z._&-]{1,})([\\s][A-Za-z._&-]{1,}){0,})");
     	   		 Matcher matcher = pattern.matcher(a);
     	   		 
     	   		 if(matcher.find())
