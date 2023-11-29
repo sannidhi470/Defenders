@@ -19,7 +19,7 @@ import state.Attack;
 import state.Phase;
 import state.Reinforcement;
 
-class BenevolentPlayerStrategyTest {
+public class BenevolentPlayerStrategyTest {
 	
 	
 	static GameEngine gameEngine = new GameEngine();

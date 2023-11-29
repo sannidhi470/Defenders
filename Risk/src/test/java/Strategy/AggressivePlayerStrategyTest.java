@@ -13,7 +13,7 @@ import Tools.MapLoader;
 import state.Attack;
 import state.Reinforcement;
 
-class AggressivePlayerStrategyTest {
+public class AggressivePlayerStrategyTest {
 
 	static GameEngine gameEngine = new GameEngine();
 	static Connectivity d_connectivity=new Connectivity();
