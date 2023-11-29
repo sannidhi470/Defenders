@@ -32,7 +32,7 @@ public class Attack extends MainPlay
      *
      * @param p_ge The GameEngine instance associated with this state.
      */
-	Attack(GameEngine p_ge) 
+	public Attack(GameEngine p_ge) 
 	{
 		super(p_ge);
 	}

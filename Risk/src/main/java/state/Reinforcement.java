@@ -24,7 +24,7 @@ public class Reinforcement extends MainPlay
 	 * 
 	 * @param p_ge The GameEngine object associated with this phase.
 	 */
-	Reinforcement(GameEngine p_ge) 
+	public Reinforcement(GameEngine p_ge) 
 	{
 		super(p_ge);
 	}
