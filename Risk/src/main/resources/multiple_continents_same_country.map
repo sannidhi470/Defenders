@@ -8,8 +8,8 @@ map canada_map.gif
 crd canada.cards
 
 [continents]
-Atlantic_Provinces 3 blue
-Ontario_and_Quebec 4 cyan
+Atlantic_Provinces 3
+Ontario_and_Quebec 4
 
 [countries]
 1 New_Brunswick 1 501 350

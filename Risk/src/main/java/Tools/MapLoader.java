@@ -27,7 +27,6 @@ public class MapLoader {
 	
 	public static int loadMap(Connectivity p_connectivity,String p_mapName) {
 		LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
-System.out.println("coming here");
 		Scanner l_input = new Scanner(System.in);
 		String l_fileName = p_mapName;
 		String l_copyFileName=l_fileName;

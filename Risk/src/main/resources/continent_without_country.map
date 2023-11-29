@@ -8,7 +8,7 @@ map canada_map.gif
 crd canada.cards
 
 [continents]
-Atlantic_Provinces 3 blue
+Atlantic_Provinces 3
 
 [countries]
 
