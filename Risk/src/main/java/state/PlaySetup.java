@@ -74,30 +74,41 @@ public class PlaySetup extends Play
 				if(p_commands[i].equals("-add"))
 				{
 					Player l_player = new Player();
-					System.out.println("Enter the behaviour of the player: Aggressive, Human, Benevolent, Random, Cheater");
+					l_player.setD_playerName(p_commands[i+1]);
+					int l_flag=0;
 					Scanner l_sc=new Scanner(System.in);
+					do {
+					System.out.println("Enter the behaviour of the player: "+l_player.getD_playerName() +" - Aggressive, Human, Benevolent, Random, Cheater");
 					String l_strategy=l_sc.nextLine();
+					l_flag=0;
 					switch(l_strategy)
 					{
 					case "Aggressive":	
 						l_player.setStrategy(new AggressivePlayerStrategy(l_player,p_connectivity));
+						l_flag++;
 						break;
 					case "Human":
 						l_player.setStrategy(new HumanPlayerStrategy(l_player,p_connectivity));
+						l_flag++;
 						break;
 					case "Benevolent":
 						l_player.setStrategy(new BenevolentPlayerStrategy(l_player,p_connectivity));
+						l_flag++;
 						break;
 					case "Random":
 						l_player.setStrategy(new RandomPlayerStrategy(l_player,p_connectivity));
+						l_flag++;
 						break;
 					case "Cheater":
 						l_player.setStrategy(new CheaterPlayerStrategy(l_player,p_connectivity));
+						l_flag++;
 						break;
 					default:
-						System.out.println("Invalid strategy name");
+						System.out.println(ColorCoding.red+"Invalid strategy name"+ColorCoding.blank);
+						l_flag=0;
 						
 					}
+					}while(l_flag==0);
 					
 					
 					
