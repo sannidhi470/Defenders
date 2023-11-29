@@ -72,6 +72,8 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
                 d_StrongestCountry = l_country;
             }
         }
+        if(d_player.getD_Country().size() == 0)
+        	return null;
         if(l_maxArmies == 0) {
             d_StrongestCountry = d_player.getD_Country().get(0);
         }
@@ -97,6 +99,9 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 	public Order createOrder() {
 		Order o= new Order();
 		String str;
+		
+		if(toMoveFrom() == null)
+			return null;
 		if(GameEngine.getPhaseName().equals("Reinforcement")) {
 			str= "deploy ";
 			str= str+toMoveFrom().getD_countryId()+" " + d_player.getD_armyCount();
@@ -119,6 +124,21 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 			}
 			
 		}
+		else if(GameEngine.getPhaseName().equals("Fortify")) {
+			str= "advance ";
+			Country[] c= level1(toMoveFrom().getD_countryId());
+			
+			if(c!=null) {
+				str= str+ c[0].getD_countryName()+ " "+ c[1].getD_countryName()+ " "+c[0].getD_armyDeployedOnCountry();
+				System.out.println(str+ c[0].getD_countryName()+ " "+ c[1].getD_countryName()+ " "+c[0].getD_armyDeployedOnCountry());
+				o.setOrderContent(str);
+				ViewMap.viewMap(d_connectivity.getD_continentList(), d_connectivity.getD_countryList(), Play.getL_playersArray());
+				return o;
+			} else {
+				return null;
+			}
+			
+		}
 		return o;
 	}
 	
@@ -127,6 +147,74 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 	 * @param countryID refers to the country ID of the strongest country, around which advance and attack will happen
 	 * @return countries
 	 */
+	public Country[] level1(int countryID)
+	{
+		Country[] c = new Country[2];
+		ArrayList<Integer> neighbourCountryID = d_connectivity.getCountryByID(countryID).getD_neighbours();
+		
+		for(int i: neighbourCountryID)
+		{
+			
+			//if a neighboring country belongs to same player and has troops>0 then advance to strongest country. 
+			if(d_player.getD_Country().contains(d_connectivity.getCountryByID(i)))
+			{
+				if(d_connectivity.getCountryByID(i).getD_armyDeployedOnCountry()>0)
+				{
+					c[0] = d_connectivity.getCountryByID(i); //from Country
+					c[1] = d_connectivity.getCountryByID(countryID); // to country 
+					return c;
+				}
+			}
+			
+		}
+		
+		//if All neighboring country belongs to player but all have 0 troops to advance
+		//then this loop goes to 2nd level of neighbors.
+		for(int i:neighbourCountryID)
+		{
+			
+			neighbourCountryID = d_connectivity.getCountryByID(i).getD_neighbours();
+			for(int j: neighbourCountryID)
+			{
+				if(d_player.getD_Country().contains(d_connectivity.getCountryByID(j)))
+				{
+					if(d_connectivity.getCountryByID(j).getD_armyDeployedOnCountry()>0)
+					{
+						c[0] = d_connectivity.getCountryByID(j); //from country
+						c[1] = d_connectivity.getCountryByID(i);// to country
+						return c;
+					}
+				}
+				
+			}
+		}
+		
+		//3rd Neighbour
+		for(int i:neighbourCountryID)
+		{
+					
+			ArrayList<Integer> neighbourCountryID2 = d_connectivity.getCountryByID(i).getD_neighbours();
+			for(int j: neighbourCountryID2)
+			{
+				ArrayList<Integer> neighbourCountryID3 = d_connectivity.getCountryByID(j).getD_neighbours();
+				for(int k:neighbourCountryID3)
+				{
+					if(d_player.getD_Country().contains(d_connectivity.getCountryByID(k)))
+					{
+						if(d_connectivity.getCountryByID(k).getD_armyDeployedOnCountry()>0)
+						{
+							c[0] = d_connectivity.getCountryByID(k); //from country
+							c[1] = d_connectivity.getCountryByID(i);// to country
+							return c;
+						}
+					}
+				}
+						
+			}
+		}
+		return null;
+	}
+	
 	public Country[] level(int countryID)
 	{
 		Country[] c = new Country[2];

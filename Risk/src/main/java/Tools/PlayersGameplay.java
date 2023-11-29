@@ -699,6 +699,7 @@ public class PlayersGameplay {
 		{
 			if(p.getD_Country().size()==p_connectivity.getD_countryList().size())
 			{
+				System.out.println("test");
 				l_winner.setD_playerId(p.getD_playerId());
 				l_winner.setD_playerName(p.getD_playerName());
 				l_winner.setD_armyCount(p.getD_armyCount());

@@ -1,51 +1,96 @@
 Choice of Starting the Game or Ending it
+new phase: PlayGame
+enter a PlayGame phase command: 
+enter a PlayGame phase command: 
 new phase: Preload
-enter a Preload phase command: 
 Map VeryBasic.map has been successfully loaded...
 Graph is connected
 
 ----- ✓ Loaded Map is a valid map ✓ -----
 
 new phase: PostLoad
-enter a PostLoad phase command: 
 Map has been successfully saved
 new phase: PlaySetup
-enter a PlaySetup phase command: 
-enter a PlaySetup phase command: 
 Player:p1 has following countries assigned
 Canada
 USA
+Player:p2 has following countries assigned
 Mexico
 Brazil
 Argentina
-Player:p2 has following countries assigned
 Columbia
 S.Africa
 Tanzania
 Sudan
 Libya
-Player p1 has been alloted 8 amries for this round
-Player p2 has been alloted 8 amries for this round
+India
+Player:p3 has following countries assigned
+China
+Russia
+UK
+France
+Player:p4 has following countries assigned
+Sweden
+Melbourne
+Player p1 has been alloted 3 amries for this round
+Player p2 has been alloted 13 amries for this round
+Player p3 has been alloted 3 amries for this round
+Player p4 has been alloted 3 amries for this round
 Player:p1 has following countries assigned
 Canada
 USA
+Player:p2 has following countries assigned
 Mexico
 Brazil
 Argentina
-Player:p2 has following countries assigned
 Columbia
 S.Africa
 Tanzania
 Sudan
 Libya
+India
+Player:p3 has following countries assigned
+China
+Russia
+UK
+France
+Player:p4 has following countries assigned
+Sweden
+Melbourne
 new phase: Reinforcement
-enter a Reinforcement phase command: 
 Army count changed to 0
-Player p1 has been alloted 8 amries for this round
-Player p1: Canada has been assigned with 8
+Army count changed to 13
+Army count changed to 0
+Army count changed to 3
+Army count changed to 0
+Player p1 has been alloted 3 amries for this round
+Player p2 has been alloted 13 amries for this round
+Player p3 has been alloted 3 amries for this round
+Player p2: Tanzania has been assigned with 0
+Player p3: China has been assigned with 3
+Player p2: Columbia has been assigned with 10
+Player p2: S.Africa has been assigned with 3
 new phase: Attack
-enter a Attack phase command: 
 p1Asked whether he/she wants to give a command
 p1Asked for Command
 p2Asked whether he/she wants to give a command
 p2Asked for Command
+p3Asked whether he/she wants to give a command
+p3Asked for Command
+p4Asked whether he/she wants to give a command
+p4Asked for Command
+p1Asked whether he/she wants to give a command
+p2Asked whether he/she wants to give a command
+p3Asked whether he/she wants to give a command
+p4Asked whether he/she wants to give a command
+p2is callingAdvance
+Inside fortify
+p3is callingAdvance
+Error: China doesn't belongs to player from where he wants to advance the troops
+new phase: Fortify
+new phase: Reinforcement
+Player p1 has been alloted 3 amries for this round
+Player p2 has been alloted 13 amries for this round
+Player p3 has been alloted 3 amries for this round
+Player p4 has been alloted 3 amries for this round
+Army count changed to 0

@@ -69,6 +69,7 @@ public class Attack extends MainPlay
 		int l_winner=0;
 		int l_flag1=0;
 		int l_executeOrder=0;
+		int l_countOrder =0;
 
 		while(l_winner==0) 
 		{
@@ -88,14 +89,18 @@ public class Attack extends MainPlay
 			}
 			
 		do{
-			if(PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity)!=null)
+//			PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity);
+			Player winner = PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity);
+			if(winner !=null)
 			{
-				Player winner = PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity);
+//				Player winner = PlayersGameplay.winnerPlayer(l_playersArray, p_connectivity);
+				p_connectivity.setD_winnerPlayer(winner);
 				d_logEntryBuffer.log("CONGRATULATIONS!!! Our Winner is:"+winner.getD_playerName());
 				System.out.println("CONGRATULATIONS!!! Our Winner is:"+winner.getD_playerName());
 				l_winner++;
 				ge.setPhase(new End(ge));
-				ge.getPhase().endGame();	
+				ge.getPhase().endGame();
+				return;
 			}
 		for(int i=0;i<l_playersArray.size();i++)
 		{
@@ -113,6 +118,16 @@ public class Attack extends MainPlay
 				if(l_testFlag == 0) l_passContinue = "continue";
 				else if(l_testFlag > 0) l_passContinue = "pass";
 				l_testFlag = l_testFlag+1;
+			}
+			else if(ge.getCheckIfTournament())
+			{
+				if(l_countOrder == l_playersArray.size())
+					l_passContinue = "pass";
+				else
+				{
+					l_passContinue = "continue";
+					l_countOrder+=1;
+				}
 			}
 			else
 				l_passContinue=l_sc.nextLine();
@@ -338,6 +353,13 @@ public class Attack extends MainPlay
 		// TODO Auto-generated method stub
 		System.out.println("Thank you for Playing the Game");
 		System.exit(0);
+	}
+
+	@Override
+	public
+	void enableTournament(String mycommand) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

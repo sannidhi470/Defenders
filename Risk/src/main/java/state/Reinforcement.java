@@ -267,4 +267,11 @@ public class Reinforcement extends MainPlay
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public
+	void enableTournament(String mycommand) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -163,9 +163,17 @@ public class Player {
 	 */
 	
 	public Order next_order(){
-	
-		Order l_order =d_playerOrder.remove(0);
-		return l_order;
+		if(d_playerOrder.size() == 0)
+		{
+			System.out.println("d_playerOrder = "+d_playerOrder.size());
+			return null;
+		}
+		else
+		{
+			Order l_order =d_playerOrder.remove(0);
+			return l_order;
+		}
+
 	}
 	
 	/**
