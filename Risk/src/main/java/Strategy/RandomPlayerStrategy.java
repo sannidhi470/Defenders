@@ -79,9 +79,7 @@ public class RandomPlayerStrategy extends PlayerStrategy{
 		if(GameEngine.getPhaseName().equals("Reinforcement"))
 		{
 			str="deploy ";
-			System.out.println(d_player.getD_armyCount()); 
 			str = str+ toDefend().getD_countryId()+" " + rndm.nextInt(d_player.getD_armyCount()+1);
-			System.out.println(str);
 			o.setOrderContent(str);
 			System.out.println(str);
 			return o;

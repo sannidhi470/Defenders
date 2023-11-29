@@ -3,6 +3,7 @@ package state;
 import java.util.Scanner;
 
 import Controllers.GameEngine;
+import Models.LogEntryBuffer;
 import Models.Player;
 import Strategy.AggressivePlayerStrategy;
 import Strategy.BenevolentPlayerStrategy;
@@ -19,7 +20,7 @@ import Tools.PlayersGameplay;
  */
 public class PlaySetup extends Play 
 {
-
+	LogEntryBuffer d_logEntryBuffer= new LogEntryBuffer();
 	/**
 	 * Constructor for PlaySetup phase.
 	 * 
@@ -39,7 +40,6 @@ public class PlaySetup extends Play
 	{
 		for(int i=1;i<p_commands.length;)
 		{	
-			
 			if(ge.getCheckIfTournament())
 			{
 				Player l_player = new Player();
@@ -61,11 +61,11 @@ public class PlaySetup extends Play
 					l_player.setStrategy(new CheaterPlayerStrategy(l_player,p_connectivity));
 					break;
 				default:
-					System.out.println("Invalid strategy name");	
+					System.out.println(ColorCoding.red+"Invalid strategy name"+ColorCoding.blank);	
 				}
 				l_player.setD_playerName(p_commands[i]);
 				l_playersArray.add(l_player);
-				//d_logEntryBuffer.log(l_player.getD_playerName() + "added successfully");
+				d_logEntryBuffer.log(l_player.getD_playerName() + "added successfully");
 				System.out.println(ColorCoding.green+l_player.getD_playerName()+" added successfully"+ColorCoding.blank);
 				i=i+1;
 			}
@@ -81,9 +81,7 @@ public class PlaySetup extends Play
 					System.out.println("Enter the behaviour of the player: "+l_player.getD_playerName() +" - Aggressive, Human, Benevolent, Random, Cheater");
 					String l_strategy = "";
 					if(ge.getCheckIfTest())
-					{
 						l_strategy = "Aggressive";
-					}
 					else
 						l_strategy=l_sc.nextLine();
 					l_flag=0;
@@ -120,7 +118,7 @@ public class PlaySetup extends Play
 					
 					l_player.setD_playerName(p_commands[i+1]);
 					l_playersArray.add(l_player);
-					//d_logEntryBuffer.log(l_player.getD_playerName() + "added successfully");
+					d_logEntryBuffer.log(l_player.getD_playerName() + "added successfully");
 					System.out.println(ColorCoding.green+l_player.getD_playerName()+" added successfully"+ColorCoding.blank);
 					i=i+2;
 					
@@ -131,7 +129,7 @@ public class PlaySetup extends Play
 					{
 						if(p_commands[i+1].equals(l_playersArray.get(j).getD_playerName()))
 						{
-							//d_logEntryBuffer.log(l_playersArray.get(j).getD_playerName()+ "removed successfully");
+							d_logEntryBuffer.log(l_playersArray.get(j).getD_playerName()+ "removed successfully");
 							System.out.println(ColorCoding.green+l_playersArray.get(j).getD_playerName()+" removed successfully"+ColorCoding.blank);
 							l_playersArray.remove(j);
 							i=i+2;
@@ -156,7 +154,7 @@ public class PlaySetup extends Play
 		{
 			if(PlayersGameplay.assigncountries(l_playersArray,p_connectivity.getD_countryList(),p_connectivity.getD_continentList())==0)
 			{
-				//d_logEntryBuffer.log("Countries assigned to players Successfully");
+				d_logEntryBuffer.log("Countries assigned to players Successfully");
 				System.out.println(ColorCoding.green+"Countries assigned to players Successfully"+ColorCoding.blank+"\n");
 			}
 			else
@@ -166,7 +164,7 @@ public class PlaySetup extends Play
 		}
 		else
 		{
-			//d_logEntryBuffer.log("ERROR: No players to assign Countries");
+			d_logEntryBuffer.log("ERROR: No players to assign Countries");
 			System.out.println(ColorCoding.red+"ERROR: No players to assign Countries"+ColorCoding.blank);
 			return false;
 		}
@@ -176,11 +174,11 @@ public class PlaySetup extends Play
 			PlayersGameplay.showPlayersCountry(p,1);
 		}
 		PlayersGameplay.assignArmiesToPlayers(l_playersArray);
-		//d_logEntryBuffer.log("Game Begins");
+		d_logEntryBuffer.log("Game Begins");
 		System.out.println("Game Begins!!!!!!!!!!!\n");
 		for(int i=0;i<l_playersArray.size();i++)
 		{
-			//d_logEntryBuffer.log("Player "+ Integer.sum(i,1) +"("+l_playersArray.get(i).getD_playerName()+") has Army Count: "+l_playersArray.get(i).getD_armyCount());
+			d_logEntryBuffer.log("Player "+ Integer.sum(i,1) +"("+l_playersArray.get(i).getD_playerName()+") has Army Count: "+l_playersArray.get(i).getD_armyCount());
 			System.out.println("Player "+ Integer.sum(i,1) +"("+l_playersArray.get(i).getD_playerName()+") has Army Count: "+l_playersArray.get(i).getD_armyCount());
 			PlayersGameplay.showPlayersCountry(l_playersArray.get(i),1);
 			System.out.println();

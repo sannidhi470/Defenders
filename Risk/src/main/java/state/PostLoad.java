@@ -3,6 +3,7 @@ package state;
 import java.util.Scanner;
 
 import Controllers.GameEngine;
+import Tools.ColorCoding;
 import Tools.Connectivity;
 import Tools.ConquestSaveMap;
 import Tools.SaveMap;
@@ -70,17 +71,15 @@ public class PostLoad extends Edit
 			switch(l_type)
 			{
 			case "conquest":
-				System.out.println("in conquest");
 				l_saveMapResult=ConquestSaveMap.conquestMapSaver(p_connectivity, p_mapName);
 				l_flag=1;
 				break;
 			case "domination":
-				System.out.println("in domination");
 				l_saveMapResult=SaveMap.saveMap(p_connectivity, p_mapName);
 				l_flag=1;
 				break;
 			default:
-				System.out.println("Please enter the valid command");
+				System.out.println(ColorCoding.red+"Please enter the valid command"+ColorCoding.blank);
 			}
 		}while(l_flag==0);
 		 

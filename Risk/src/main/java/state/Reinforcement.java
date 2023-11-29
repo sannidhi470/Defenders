@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Controllers.GameEngine;
+import Models.LogEntryBuffer;
 import Models.Order;
 import Models.Player;
 import Strategy.HumanPlayerStrategy;
@@ -18,7 +19,7 @@ import Views.ViewMap;
  */
 public class Reinforcement extends MainPlay 
 {
-
+	LogEntryBuffer d_logEntryBuffer= new LogEntryBuffer();
 	/**
 	 * Constructor for Reinforcement phase.
 	 * 
@@ -52,7 +53,7 @@ public class Reinforcement extends MainPlay
 				boolean l_outcomeIssueOrder = false;
 				if(l_playersArray.get(i).getD_armyCount()!=0 && !(l_tempName.contains(l_playersArray.get(i).getD_playerName())))
 				{
-					//d_logEntryBuffer.log("Player "+l_playersArray.get(i).getD_playerName()+" deploy your troops:");
+					d_logEntryBuffer.log("Player "+l_playersArray.get(i).getD_playerName()+" deploy your troops:");
 					System.out.println("Player "+l_playersArray.get(i).getD_playerName()+" deploy your troops:");
 					l_outcomeIssueOrder =l_playersArray.get(i).issue_order();
 					if(l_outcomeIssueOrder == false)

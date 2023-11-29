@@ -61,7 +61,6 @@ public class BenevolentPlayerStrategy extends PlayerStrategy{
 	{  if(d_player.getD_Country().size()==0)
 		return null;
 		Country result = d_player.getD_Country().get(0);
-		System.out.println(d_player.getD_playerName());
 		int min= result.getD_armyDeployedOnCountry();
 		
 		for(Country c:d_player.getD_Country())
@@ -72,7 +71,6 @@ public class BenevolentPlayerStrategy extends PlayerStrategy{
 				result = c;
 			}
 		}
-		System.out.println("resutl:"+result.getD_countryName()+" "+result.getD_countryId());
 		return result;
 	}
 

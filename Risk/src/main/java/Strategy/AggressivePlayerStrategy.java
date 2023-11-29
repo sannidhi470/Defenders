@@ -6,6 +6,7 @@ import Controllers.GameEngine;
 import Models.Country;
 import Models.Order;
 import Models.Player;
+import Tools.ColorCoding;
 import Tools.Connectivity;
 import Views.ViewMap;
 import state.Play;
@@ -45,14 +46,13 @@ public class AggressivePlayerStrategy extends PlayerStrategy{
 		if(d_StrongestCountry!=null) {
 			int l_neighborCount = d_StrongestCountry.getD_neighbours().size();
             for (int i=0;i<l_neighborCount-1;i++) {
-            	//l_neighborCountry = d_StrongestCountry.getD_neighbours().get(i);
 	            if (!d_player.getD_Country().contains(l_neighborCountry)) {
 	                Country d_OpponentCountry = l_neighborCountry;           
 	                return d_OpponentCountry;
 	            }
             }
         }
-		System.out.println("No neighbours present for attack!");
+		System.out.println(ColorCoding.red+"No neighbours present for attack!"+ColorCoding.blank);
 		return null;
 
 	}

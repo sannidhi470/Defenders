@@ -3,6 +3,7 @@ package state;
 import java.util.Scanner;
 
 import Controllers.GameEngine;
+import Models.LogEntryBuffer;
 import Models.Map;
 import Tools.ColorCoding;
 import Tools.Connectivity;
@@ -16,7 +17,7 @@ import Tools.MapLoader;
  */
 public class Preload extends Edit 
 {
-
+	LogEntryBuffer d_logEntryBuffer= new LogEntryBuffer();
 	/**
 	 * Constructor for Preload phase.
 	 * 
@@ -38,16 +39,15 @@ public class Preload extends Edit
 		int l_newMapCreated = 0;
 		if(p_commands.length == 2)
 		{
-//			l_newMapCreated =MapLoader.loadMap(p_connectivity,p_commands[1]);
 			Map.checkMap(p_connectivity, p_commands[1]);
-			//l_newMapCreated = ConquestMapLoader.loadMap(p_connectivity, p_commands[1]);
+			
 		} else {
-			//d_logEntryBuffer.log("No map entered. Please enter name of map to be loaded");
+			d_logEntryBuffer.log("No map entered. Please enter name of map to be loaded");
 			System.out.println(ColorCoding.red+"No map entered. Please enter name of map to be loaded"+ColorCoding.blank);
 		}
 		if(l_newMapCreated == 0 )
 		{
-			//d_logEntryBuffer.log("Validating the loaded Map");
+			d_logEntryBuffer.log("Validating the loaded Map");
 			System.out.println(ColorCoding.cyan+"\n--------Validating the loaded map--------\n"+ColorCoding.blank);
 			Tools.Graph l_graph=new Tools.Graph(p_connectivity.getD_countryList().size(),p_connectivity);
 			if(l_graph.continentConnection(p_connectivity, l_graph))
@@ -83,7 +83,7 @@ public class Preload extends Edit
 			}
 			else
 			{
-				//d_logEntryBuffer.log("ERROR: Invalid Command");
+				d_logEntryBuffer.log("ERROR: Invalid Command");
 				System.out.println(ColorCoding.red+"ERROR: Invalid Command"+ColorCoding.blank);
 			}
 		} 
@@ -102,10 +102,9 @@ public class Preload extends Edit
 		{
 			if(p_commands[i].equals("-add"))
 			{
-				//d_logEntryBuffer.log("Added Country");
-				System.out.println("add");
-					MapEditor.addContinent(p_commands[i+1],Integer.parseInt(p_commands[i+2]), p_connectivity);
-					i=i+3;
+				d_logEntryBuffer.log("Added Country");
+				MapEditor.addContinent(p_commands[i+1],Integer.parseInt(p_commands[i+2]), p_connectivity);
+				i=i+3;
 			}
 			else if(p_commands[i].equals("-remove") )
 			{
@@ -114,7 +113,7 @@ public class Preload extends Edit
 			}
 			else
 			{
-				//d_logEntryBuffer.log("Invalid Command");
+				d_logEntryBuffer.log("Invalid Command");
 				System.out.println("Invalid Command");
 				break;
 			}
@@ -144,7 +143,7 @@ public class Preload extends Edit
 			}
 			else
 			{
-				//d_logEntryBuffer.log("ERROR: Invalid Command");
+				d_logEntryBuffer.log("ERROR: Invalid Command");
 				System.out.println(ColorCoding.red+"ERROR: Invalid Command"+ColorCoding.blank);
 			}
 		}

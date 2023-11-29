@@ -84,7 +84,6 @@ public class CheaterPlayerStrategy extends PlayerStrategy{
 				{
 					Player p =PlayersGameplay.findPlayerWithCountry(Play.getL_playersArray(), c1);
 					
-//					System.out.println("C1: "+c1.getD_countryName());
 					if(p!=null && !l_palyerCountry.contains(c1) )
 					{
 						l_countriesToAdd.add(c1);
@@ -108,11 +107,7 @@ public class CheaterPlayerStrategy extends PlayerStrategy{
 			if(!d_player.getD_Country().contains(c))
 				d_player.getD_Country().add(c);
 				
-		}
-		
-		
-		
-		
+		}		
 		
 		ViewMap.viewMap(d_connectivity.getD_continentList(), d_connectivity.getD_countryList(), Play.getL_playersArray());
 		return null;
