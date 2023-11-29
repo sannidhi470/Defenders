@@ -58,7 +58,11 @@ public class PostLoad extends Edit
 	{
 		System.out.println("Enter the format for savemap (conquest/domination)");
 		Scanner l_sc=new Scanner(System.in);
-		String l_type=l_sc.nextLine();
+		String l_type = "";
+		if(ge.getCheckIfTournament())
+			l_type = "domination";
+		else
+			l_type=l_sc.nextLine();
 		int l_saveMapResult=0;
 		int l_flag=0;
 		do
