@@ -1,8 +1,11 @@
 package state;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Scanner;
+
 import Controllers.GameEngine;
 import Models.Player;
 import Strategy.AggressivePlayerStrategy;
@@ -12,7 +15,9 @@ import Strategy.HumanPlayerStrategy;
 import Strategy.RandomPlayerStrategy;
 import Tools.ColorCoding;
 import Tools.Connectivity;
+import Tools.LoadGame;
 import Tools.MapCheck;
+import Tools.MapLoader;
 
 public class PlayGame extends Phase {
 	Connectivity l_connectivity=new Connectivity();
@@ -147,7 +152,7 @@ public class PlayGame extends Phase {
 		Play.l_playersArray.clear();
 		gameEngine.getPhase().setPlayers(d_gameplayerCommand.split(" "),gameEngine.getConnectivity());
 		gameEngine.getPhase().assignCountries(gameEngine.getConnectivity());
-		gameEngine.getPhase().next();
+		gameEngine.getPhase().next(l_connectivity);
 		for(int i=0; i<l_roundCount; i++)
 		{
 			
@@ -180,7 +185,7 @@ public class PlayGame extends Phase {
 			{
 				System.out.println("WE HAVE A WINNER!!! --> "+gameEngine.getConnectivity().getD_winnerPlayer().getD_playerName());
 				recordResult();
-				gameEngine.getPhase().endGame();
+				gameEngine.getPhase().endGame(l_connectivity);
 				break;
 			}
 
@@ -244,22 +249,55 @@ public class PlayGame extends Phase {
 		printInvalidCommandMessage(); 
 	}
 
-	public void endGame() {
-		ge.setPhase(new End(ge));
-		System.exit(0);
-	}
+
 	
 	public void loadMap(Connectivity p_connectivity, String[] p_commands) 
 	{
 		printInvalidCommandMessage(); 	
 	}
 
-	public void next() {
+	public void next(Connectivity p_connectivity) {
 		
 	}
 
 	public void validateMap(Connectivity p_connectivity) {
 		printInvalidCommandMessage(); 
+	}
+
+	@Override
+	public void loadgame(String[] p_commands, Connectivity p_connectivity, GameEngine ge) throws FileNotFoundException 
+	{
+
+		LoadGame.loadgame(p_commands[1],p_connectivity,ge);
+		String l_phase_name= LoadGame.getD_GamePhase();
+		String l_map_name= LoadGame.getD_MapName();
+		switch(l_phase_name)
+		{
+		case "Preload":
+			System.out.println("Map has not been loaded. Starting game...");
+			ge.setCheckIfLoad(true);
+			ge.start();
+		case "Reinforcement":
+			ge.setPhase(new Reinforcement(ge));
+			PlaySetup playsetup = new PlaySetup(ge);
+			playsetup.next(p_connectivity);
+			break;			
+		case "Attack":
+			ge.setPhase(new Attack(ge));
+			break;
+		case "PlaySetup":
+			ge.setPhase(new PlaySetup(ge));
+			break;
+		case "PostLoad":
+			ge.setCheckIfLoad(true);
+			ge.setPhase(new PostLoad(ge));
+			break;
+		case "Fortify":
+			ge.setPhase(new Fortify(ge));
+			break;
+			
+		}	
+		
 	}
 	
 }

@@ -64,7 +64,7 @@ public class phaseValidation {
 			mapCommand = d_commands[4].split(" ");
 			gameEngine.getPhase().setPlayers(mapCommand,gameEngine.getConnectivity());
 			gameEngine.getPhase().assignCountries(gameEngine.getConnectivity());
-			gameEngine.getPhase().next();
+			gameEngine.getPhase().next(d_connectivity);
 			assertEquals("Reinforcement",gameEngine.getPhaseName());
 			System.out.println(ColorCoding.green+"Phase has been successfully changed to "+gameEngine.getPhaseName()+ColorCoding.blank);
 			gameEngine.getPhase().reinforce(d_connectivity);

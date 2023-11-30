@@ -1,5 +1,6 @@
 package state;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,6 +12,7 @@ import Strategy.HumanPlayerStrategy;
 import Tools.ColorCoding;
 import Tools.Connectivity;
 import Tools.PlayersGameplay;
+import Tools.SaveGame;
 import Views.ViewMap;
 
 /**
@@ -151,7 +153,7 @@ public class Reinforcement extends MainPlay
 	/**
 	 * Moves to the Attack phase.
 	 */
-	public void next() 
+	public void next(Connectivity p_connectivity) 
 	{
 		ge.setPhase(new Attack(ge));
 	}
@@ -236,17 +238,7 @@ public class Reinforcement extends MainPlay
 		
 	}
 
-    /**
-     * {@inheritDoc}
-     */
-	@Override
-	public void endGame() 
-	{
-		// TODO Auto-generated method stub
-		System.out.println("Thank you for Playing the Game");
-		System.exit(0);
-		
-	}
+
 
 	/**
 	 * Sets the player commands

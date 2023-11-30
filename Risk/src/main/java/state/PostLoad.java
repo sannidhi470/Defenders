@@ -1,6 +1,8 @@
 package state;
 
 import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 import Controllers.GameEngine;
 import Tools.ColorCoding;
@@ -11,7 +13,8 @@ import Tools.SaveMap;
 /**
  * Concrete state representing the phase after loading a map.
  * Allows the user to save the map and proceed to game play phases.
- */
+*/
+import Models.Player;
 public class PostLoad extends Edit 
 {
 
@@ -89,7 +92,7 @@ public class PostLoad extends Edit
 	/**
 	 * To move to next phase
 	 */
-	public void next() 
+	public void next(Connectivity p_connectivity) 
 	{
 		System.out.println("must save map");
 	}
@@ -203,20 +206,16 @@ public class PostLoad extends Edit
 		printInvalidCommandMessage(); 
 	}
 
-    /**
-     * {@inheritDoc}
-     */
-	@Override
-	public void endGame() 
-	{
-		// TODO Auto-generated method stub
-		System.out.println("Thank you for Playing the Game");
-		System.exit(0);
-	}
+
 
 	@Override
 	public
 	void enableTournament(String mycommand) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void loadgame(String[] p_commands, Connectivity p_connectivity, GameEngine ge) throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		
 	}

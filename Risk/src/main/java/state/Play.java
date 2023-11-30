@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Controllers.GameEngine;
 import Models.*;
+import Tools.Connectivity;
 
 /**
  *	ConcreteState of the State pattern. Play state defines behavior 
@@ -80,12 +81,10 @@ public abstract class Play extends Phase
 		printInvalidCommandMessage(); 
 	}
 
-	/**
-	 * Ends the game phase.
-	 */
-	public void endGame() 
+	
+	public void loadgame()
 	{
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage();
 	}
 	
 	/**

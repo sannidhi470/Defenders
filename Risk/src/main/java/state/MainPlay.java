@@ -1,6 +1,13 @@
 package state;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+
 import Controllers.GameEngine;
+import Tools.Connectivity;
+import Tools.LoadGame;
+import Tools.SaveGame;
 
 /**
  *	ConcreteState of the State pattern. MainPlay defines behavior 
@@ -32,6 +39,10 @@ public abstract class MainPlay extends Play {
 		this.printInvalidCommandMessage();
 	}
 
+	public void loadgame(String[] p_commands,Connectivity p_connectivity,GameEngine ge) throws FileNotFoundException
+	{
+		this.printInvalidCommandMessage();
+	}
 	/**
 	 * Sets the players for the phase.
 	 */
@@ -46,5 +57,10 @@ public abstract class MainPlay extends Play {
 	public void assignCountries() 
 	{
 		this.printInvalidCommandMessage();
+	}
+	
+	public void endGame(Connectivity p_connectivity) 
+	{
+		
 	}
 }

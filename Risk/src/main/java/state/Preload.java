@@ -1,15 +1,20 @@
 package state;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import Controllers.GameEngine;
 import Models.LogEntryBuffer;
 import Models.Map;
+import Models.Player;
 import Tools.ColorCoding;
 import Tools.Connectivity;
 import Tools.ConquestMapLoader;
 import Tools.MapEditor;
 import Tools.MapLoader;
+import Tools.SaveGame;
 
 /**
  * Concrete state representing the phase before loading a map.
@@ -58,7 +63,7 @@ public class Preload extends Edit
 		{
 			System.out.println(ColorCoding.green+"Skipping Map Validation as it is a newly created map"+ColorCoding.blank);
 		}
-		next();
+		next(p_connectivity);
 	}
 	
 	/**
@@ -87,7 +92,7 @@ public class Preload extends Edit
 				System.out.println(ColorCoding.red+"ERROR: Invalid Command"+ColorCoding.blank);
 			}
 		} 
-		next();
+		next(p_connectivity);
 	}
 	
 	/**
@@ -118,7 +123,7 @@ public class Preload extends Edit
 				break;
 			}
 		}
-		next();
+		next(p_connectivity);
 	}
 	
 	/**
@@ -147,7 +152,7 @@ public class Preload extends Edit
 				System.out.println(ColorCoding.red+"ERROR: Invalid Command"+ColorCoding.blank);
 			}
 		}
-		next();
+		next(p_connectivity);
 	}
 
 	/**
@@ -161,7 +166,7 @@ public class Preload extends Edit
 		Tools.Graph l_graph=new Tools.Graph(p_connectivity.getD_countryList().size(),p_connectivity);
 		if(l_graph.continentConnection(p_connectivity, l_graph))
 			l_graph.isConnected(l_graph);
-		next();
+		next(p_connectivity);
 		}
 	
 	/**
@@ -178,7 +183,7 @@ public class Preload extends Edit
 	/**
 	 * Moves to the next phase or exits the program based on user input.
 	 */
-	public void next() 
+	public void next(Connectivity p_connectivity) 
 	{
 		Scanner sc = new Scanner(System.in);
 		String user_output;
@@ -186,6 +191,10 @@ public class Preload extends Edit
 			user_output = "no";
 		}
 		else if(ge.getCheckIfTournament()) {
+			user_output = "no";
+		}
+		else if(ge.getCheckIfLoad())
+		{
 			user_output = "no";
 		}
 		else
@@ -196,8 +205,8 @@ public class Preload extends Edit
 
 		if(user_output.equalsIgnoreCase("exit"))
 		{
-			System.out.println("Thank you for Playing the Game");
-			System.exit(0);
+	    	ge.setPhase(new End(ge));
+	    	ge.getPhase().endGame(p_connectivity);
 		}
 		else if(user_output.equalsIgnoreCase("no"))
 		{
@@ -261,16 +270,7 @@ public class Preload extends Edit
 		printInvalidCommandMessage(); 
 	}
 
-    /**
-     * {@inheritDoc}
-     */
-	@Override
-	public void endGame() 
-	{
-		// TODO Auto-generated method stub
-		System.out.println("Thank you for Playing the Game");
-		System.exit(0);
-	}
+
 
 	@Override
 	public
@@ -278,4 +278,10 @@ public class Preload extends Edit
 		// TODO Auto-generated method stub
 		
 	}
+		@Override
+	public void loadgame(String[] p_commands, Connectivity p_connectivity, GameEngine ge) throws FileNotFoundException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

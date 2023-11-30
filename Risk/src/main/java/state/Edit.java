@@ -74,11 +74,5 @@ public abstract class Edit extends Phase
         printInvalidCommandMessage();
     }
 
-    /**
-     * Ends the game and sets the phase to End.
-     */
-    public void endGame() 
-    {
-        ge.setPhase(new End(ge));
-    }
+
 }

@@ -1,6 +1,9 @@
 package state;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import Controllers.GameEngine;
 import Models.Continent;
@@ -8,6 +11,7 @@ import Models.Country;
 import Models.LogEntryBuffer;
 import Models.Player;
 import Tools.Connectivity;
+import Tools.SaveGame;
 import Views.ViewMap;
 
 /**
@@ -104,8 +108,37 @@ public abstract class Phase
 	abstract public void fortify(Connectivity p_connectivity);
 	/**
 	 * This abstract method is used to end the game.
+	 * @throws FileNotFoundException 
 	 */
-	abstract public void endGame();
+	public void endGame(Connectivity p_connectivity)
+	{
+		Scanner sc= new Scanner(System.in);
+    	System.out.println("Do you want to save the game?");
+    	String choice = sc.nextLine();
+    	if(choice.equalsIgnoreCase("yes"))
+    	{
+    		System.out.println("Enter the command: ");
+    		String[] l_command= sc.nextLine().split(" ");
+    		String l_filename=l_command[1];
+    		SaveGame sg = new SaveGame();
+    		try 
+    		{
+				sg.saveGame(this,p_connectivity,l_filename);
+			} catch (IOException e) 
+    		{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            System.out.println("Thank you for Playing the Game");
+            System.exit(0);
+    	}
+    	else if (choice.equalsIgnoreCase("no"))
+    	{
+        System.out.println("Thank you for Playing the Game");
+    	}
+    	return;
+	}
+	abstract public void loadgame(String[] p_commands,Connectivity p_connectivity,GameEngine ge) throws FileNotFoundException;
 
 	/**
 	 * This method is used to display the help instructions.
@@ -128,7 +161,7 @@ public abstract class Phase
 	/**
 	 * This method is used to go to next phase.
 	 */
-	abstract public void next();
+	abstract public void next(Connectivity p_connectivity);
 	/**
 	 * This method is used validate the loaded map.
 	 * @param p_connectivity Connectivity object

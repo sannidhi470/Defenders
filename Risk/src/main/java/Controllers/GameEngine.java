@@ -1,5 +1,6 @@
 package Controllers;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -28,7 +29,16 @@ public class GameEngine {
 	private Connectivity connectivity;
 	private boolean checkIfTest = false;
 	private boolean checkIfTournament = false;
+	private boolean checkIfLoad = false;
 	
+	public boolean getCheckIfLoad() {
+		return checkIfLoad;
+	}
+
+	public void setCheckIfLoad(boolean checkIfLoad) {
+		this.checkIfLoad = checkIfLoad;
+	}
+
 	public boolean getCheckIfTournament() {
 		return checkIfTournament;
 	}
@@ -92,7 +102,7 @@ public class GameEngine {
 	 *      have a different behavior. 
 	 */
 	
-	public void start() {
+	public void start() throws FileNotFoundException {
 		d_logEntryBuffer.clearFile();
 		Connectivity l_connectivity=new Connectivity();
 		
@@ -103,12 +113,19 @@ public class GameEngine {
 		Scanner phase_command = new Scanner(System.in);
 		String[] l_commands;
 		do {
+			if(!this.getCheckIfLoad())
+			{
 			d_logEntryBuffer.log("Choice of Starting the Game or Ending it");
 			System.out.println("1. Edit Map");
 			System.out.println("2. Play Game");
 			System.out.println("3. Quit");
 			System.out.println("Where do you want to start?: ");
 			mystart = keyboard.nextInt();
+			}
+			else if(this.getCheckIfLoad())
+			{
+				mystart=1;
+			}
 			switch (mystart) {
 			case 1:
 				setPhase(new Preload(this));
@@ -191,9 +208,13 @@ public class GameEngine {
 				case "assigncountries":
 					if(gamePhase.assignCountries(l_connectivity))
 					{
-					gamePhase.next();
+					gamePhase.next(l_connectivity);
 					gamePhase.reinforce(l_connectivity);
 					gamePhase.attack(l_connectivity);
+					if(this.getPhaseName().equals("End"))
+					{
+						return;
+					}
 					gamePhase.fortify(l_connectivity);
 					}
 					break;
@@ -208,9 +229,12 @@ public class GameEngine {
 				case "fortify":
 					gamePhase.fortify(l_connectivity);
 					break;
+				case "loadgame":
+					gamePhase.loadgame(l_commands,l_connectivity,this);
+					break;
 				case "exit":
-					gamePhase.endGame();
-					break; 
+					gamePhase.endGame(l_connectivity);
+					break;
 				default: 
 					d_logEntryBuffer.log("This command does not exist");
 					System.out.println("This command does not exist");

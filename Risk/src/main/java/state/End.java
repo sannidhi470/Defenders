@@ -1,7 +1,14 @@
 package state;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import Controllers.GameEngine;
+import Models.Player;
 import Tools.Connectivity;
+import Tools.SaveGame;
 
 /**
  * The End class represents the end phase of the game.
@@ -116,18 +123,40 @@ public class End extends Phase
     /**
      * This method ends the game by printing a thank you message and exiting the program.
      */
-    public void endGame() 
+    public void endGame(Connectivity p_connectivity)
     {
+    	Scanner sc= new Scanner(System.in);
+    	System.out.println("Do you want to save the game?");
+    	String choice = sc.nextLine();
+    	if(choice.equalsIgnoreCase("yes"))
+    	{
+    		System.out.println("Enter the command: ");
+    		String[] l_command= sc.nextLine().split(" ");
+    		String l_filename=l_command[1];
+    		SaveGame sg = new SaveGame();
+    		try 
+    		{
+				sg.saveGame(this,p_connectivity,l_filename);
+			} catch (IOException e) 
+    		{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            System.out.println("Thank you for Playing the Game");
+            System.exit(0);
+    	}
+    	else if (choice.equalsIgnoreCase("no"))
+    	{
         System.out.println("Thank you for Playing the Game");
-        //System.exit(0);
-        return;
+    	}
+    	return;
     }
 
     /**
      * This method is not applicable in the End phase.
      * It prints an invalid command message.
      */
-    public void next() 
+    public void next(Connectivity p_connectivity) 
     {
         printInvalidCommandMessage(); 
     }
@@ -202,7 +231,11 @@ public class End extends Phase
     {
         // TODO Auto-generated method stub
     }
-
+	@Override
+	public void loadgame(String[] p_commands, Connectivity p_connectivity, GameEngine ge) throws FileNotFoundException {
+		// TODO Auto-generated method stub
+		
+	}
 	@Override
 	public
 	void enableTournament(String mycommand) {

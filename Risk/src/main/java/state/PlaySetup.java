@@ -1,5 +1,8 @@
 package state;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import Controllers.GameEngine;
@@ -12,7 +15,9 @@ import Strategy.HumanPlayerStrategy;
 import Strategy.RandomPlayerStrategy;
 import Tools.ColorCoding;
 import Tools.Connectivity;
+import Tools.LoadGame;
 import Tools.PlayersGameplay;
+import Tools.SaveGame;
 
 /**
  * Concrete state representing the setup phase of the game.
@@ -210,18 +215,11 @@ public class PlaySetup extends Play
 	{
 		printInvalidCommandMessage(); 
 	}
-	/**
-	 * Ends the game and exits the program.
-	 */
-	public void endGame() 
-	{
-		System.out.println("Thank you for Playing the Game");
-		System.exit(0);
-	}
+
 	/**
 	 * Moves to the Reinforcement phase.
 	 */
-	public void next() 
+	public void next(Connectivity p_connectivity) 
 	{
 		ge.setPhase(new Reinforcement(ge));
 	}
@@ -293,4 +291,11 @@ public class PlaySetup extends Play
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void loadgame(String[] p_commands, Connectivity p_connectivity, GameEngine ge) throws FileNotFoundException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

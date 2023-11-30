@@ -1,5 +1,6 @@
 package state;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -14,6 +15,7 @@ import Strategy.HumanPlayerStrategy;
 import Tools.ColorCoding;
 import Tools.Connectivity;
 import Tools.PlayersGameplay;
+import Tools.SaveGame;
 import Views.ViewMap;
 
 /**
@@ -145,8 +147,31 @@ public class Fortify extends MainPlay
 				
 				if(l_orderinput.equalsIgnoreCase("exit"))
 				{
-					System.out.println("Thank you for Playing the Game");
-					System.exit(0);
+					Scanner scanner= new Scanner(System.in);
+			    	System.out.println("Do you want to save the game?");
+			    	String choice = scanner.nextLine();
+			    	if(choice.equalsIgnoreCase("yes"))
+			    	{
+			    		System.out.println("Enter the command: ");
+			    		String[] l_command= sc.nextLine().split(" ");
+			    		String l_filename=l_command[1];
+			    		SaveGame sg = new SaveGame();
+			    		try 
+			    		{
+							sg.saveGame(this,p_connectivity,l_filename);
+						} catch (IOException e) 
+			    		{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+			            System.out.println("Thank you for Playing the Game");
+			            System.exit(0);
+			    	}
+			    	else if (choice.equalsIgnoreCase("no"))
+			    	{
+			        System.out.println("Thank you for Playing the Game");
+			        System.exit(0);
+			    	}
 				}
 				String[] l_inputOrderArray=l_orderinput.split(" ");
 				switch(l_inputOrderArray[0])
@@ -204,7 +229,7 @@ public class Fortify extends MainPlay
     /**
      * Moves the game to the next phase (Reinforcement) after fortification.
      */
-	public void next() 
+	public void next(Connectivity p_connectivity) 
 	{
 		ge.setPhase(new Reinforcement(ge));
 	}
@@ -281,16 +306,7 @@ public class Fortify extends MainPlay
 		// TODO Auto-generated method stub
 		
 	}
-    /**
-     * {@inheritDoc}
-     */
-	@Override
-	public void endGame() 
-	{
-		// TODO Auto-generated method stub
-		System.out.println("Thank you for Playing the Game");
-		System.exit(0);
-	}
+
 	@Override
 	public
 	void enableTournament(String mycommand) {

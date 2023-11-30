@@ -1,5 +1,6 @@
 package state;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -16,6 +17,7 @@ import Strategy.HumanPlayerStrategy;
 import Tools.ColorCoding;
 import Tools.Connectivity;
 import Tools.PlayersGameplay;
+import Tools.SaveGame;
 import Views.ViewMap;
 
 /**
@@ -40,7 +42,7 @@ public class Attack extends MainPlay
 	/**
      * This method is used to transition to the next state which is Fortify.
      */
-	public void next() 
+	public void next(Connectivity p_connectivity) 
 	{
 		ge.setPhase(new Fortify(ge));
 	}
@@ -97,7 +99,7 @@ public class Attack extends MainPlay
 				System.out.println("CONGRATULATIONS!!! Our Winner is:"+winner.getD_playerName());
 				l_winner++;
 				ge.setPhase(new End(ge));
-				ge.getPhase().endGame();
+				ge.getPhase().endGame(p_connectivity);
 				return;
 			}
 		for(int i=0;i<l_playersArray.size();i++)
@@ -131,8 +133,31 @@ public class Attack extends MainPlay
 				l_passContinue=l_sc.nextLine();
 			if(l_passContinue.equalsIgnoreCase("exit"))
 			{
-				System.out.println("Thank you for Playing the Game");
-				System.exit(0);
+				Scanner sc= new Scanner(System.in);
+		    	System.out.println("Do you want to save the game?");
+		    	String choice = sc.nextLine();
+		    	if(choice.equalsIgnoreCase("yes"))
+		    	{
+		    		System.out.println("Enter the command: ");
+		    		String[] l_command= sc.nextLine().split(" ");
+		    		String l_filename=l_command[1];
+		    		SaveGame sg = new SaveGame();
+		    		try 
+		    		{
+						sg.saveGame(this,p_connectivity,l_filename);
+					} catch (IOException e) 
+		    		{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		            System.out.println("Thank you for Playing the Game");
+		            System.exit(0);
+		    	}
+		    	else if (choice.equalsIgnoreCase("no"))
+		    	{
+		        System.out.println("Thank you for Playing the Game");
+		    	}
+		    	return;
 			}
 			if(l_passContinue.equals("pass"))
 			{
@@ -173,8 +198,9 @@ public class Attack extends MainPlay
 
 			if(l_orderinput.equalsIgnoreCase("exit"))
 			{
-				System.out.println("Thank you for Playing the Game");
-				System.exit(0);
+				ge.setPhase(new End(ge));
+				ge.getPhase().endGame(p_connectivity);
+				return;
 			}
 			String[] l_inputOrderArray=l_orderinput.split(" ");
 			switch(l_inputOrderArray[0])
@@ -333,16 +359,6 @@ public class Attack extends MainPlay
 		
 	}
 
-	 /**
-     * {@inheritDoc}
-     */
-	@Override
-	public void endGame() 
-	{
-		// TODO Auto-generated method stub
-		System.out.println("Thank you for Playing the Game");
-		System.exit(0);
-	}
 
 	@Override
 	public
