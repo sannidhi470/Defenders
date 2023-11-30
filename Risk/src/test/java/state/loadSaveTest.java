@@ -12,11 +12,17 @@ import Models.Continent;
 import Models.Country;
 import Tools.Connectivity;
 
+/**
+ * The SaveLoadGameTest class includes test cases for savegame and loadgame functionality.
+ */
 public class loadSaveTest {
 
 	GameEngine gameEngine = new GameEngine();
 	Connectivity l_connectivity=new Connectivity();
 	
+    /**
+     * Used to test loadgame
+     */
 	@Test
 	public void testLoadGame() {
 		gameEngine.setCheckIfTest(true);
