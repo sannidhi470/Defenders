@@ -197,6 +197,10 @@ public class Preload extends Edit
 		{
 			user_output = "no";
 		}
+		else if(ge.getCheckIfSave())
+		{
+			user_output = "no";
+		}
 		else
 		{
 			System.out.println("Do you want to make more edits on the map (yes/no)?");

@@ -11,16 +11,16 @@ VeryBasic
 7 Antartica
 
 [Countries]
-Canada 1 1 13
+Canada 1 1 8
 USA 2 1 0
 Mexico 3 1 0
 Brazil 4 2 0
 Argentina 5 2 0
-Columbia 6 2 0
+Columbia 6 2 13
 S.Africa 7 3 0
 Tanzania 8 3 0
 Sudan 9 3 0
-Libya 10 3 13
+Libya 10 3 0
 India 11 5 0
 China 12 5 0
 Russia 13 5 0
@@ -35,17 +35,17 @@ Snow 20 7 0
 [Players]
 2 p1
 Player Countries:
-Canada USA Mexico Brazil Argentina Columbia S.Africa Tanzania Sudan 
+Canada USA Mexico Brazil Argentina 
 Cards: []
 Armies: 0
-Behaviour: Human
+Behaviour: Aggressive
 
 3 p2
 Player Countries:
-Libya India China Russia UK France Sweden Melbourne Sydney 
+Columbia S.Africa Tanzania Sudan Libya India China Russia 
 Cards: []
 Armies: 0
-Behaviour: Human
+Behaviour: Aggressive
 
 [phase]
 Attack

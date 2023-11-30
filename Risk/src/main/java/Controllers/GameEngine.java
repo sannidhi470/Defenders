@@ -30,7 +30,16 @@ public class GameEngine {
 	private boolean checkIfTest = false;
 	private boolean checkIfTournament = false;
 	private boolean checkIfLoad = false;
+	private boolean checkIfSave = false;
 	
+	public boolean getCheckIfSave() {
+		return checkIfSave;
+	}
+
+	public void setCheckIfSave(boolean checkIfSave) {
+		this.checkIfSave = checkIfSave;
+	}
+
 	public boolean getCheckIfLoad() {
 		return checkIfLoad;
 	}

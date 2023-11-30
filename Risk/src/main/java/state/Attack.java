@@ -111,7 +111,11 @@ public class Attack extends MainPlay
 			System.out.println(ColorCoding.cyan+"\n"+l_playersArray.get(i).getD_playerName()+"!! Do you want to give command or pass?(Press enter to continue / pass)"+ColorCoding.blank);
 			Scanner l_sc = new Scanner(System.in);
 			String l_passContinue = "";
-			if(ge.getCheckIfTest())
+			if(ge.getCheckIfSave())
+			{	
+				l_passContinue = "exit";
+			}
+			else if(ge.getCheckIfTest() && !ge.getCheckIfSave())
 			{
 				if(l_testFlag == 0) l_passContinue = "continue";
 				else if(l_testFlag > 0) l_passContinue = "pass";
@@ -133,12 +137,23 @@ public class Attack extends MainPlay
 			{
 				Scanner sc= new Scanner(System.in);
 		    	System.out.println("Do you want to save the game?");
-		    	String choice = sc.nextLine();
+		    	String choice = "";
+		    	String l_filename="";
+		    	if(ge.getCheckIfSave())
+		    		choice = "yes";
+		    	else
+		    		choice = sc.nextLine();
 		    	if(choice.equalsIgnoreCase("yes"))
 		    	{
 		    		System.out.println("Enter the command: ");
-		    		String[] l_command= sc.nextLine().split(" ");
-		    		String l_filename=l_command[1];
+		    		if(!ge.getCheckIfSave())
+		    		{
+			    		String[] l_command= sc.nextLine().split(" ");
+			    		l_filename=l_command[1];
+		    		}
+
+		    		if(ge.getCheckIfSave())
+		    			l_filename = "gg";
 		    		SaveGame sg = new SaveGame();
 		    		try 
 		    		{
@@ -168,31 +183,20 @@ public class Attack extends MainPlay
 			System.out.println("\nEnter the Command for player: "+l_playersArray.get(i).getD_playerName());
 			System.out.println("Cards available: "+l_playersArray.get(i).getCards());
 			String l_orderinput = "";
-			if(ge.getCheckIfTest())
+			if(l_playersArray.get(i).getStrategy() instanceof HumanPlayerStrategy)
 			{
-				String l_neighbor = Country.get_nameFromId(l_playersArray.get(i).getD_Country(), l_playersArray.get(i).getD_Country().get(0).getD_neighbours().get(0));
-				System.out.println("l_neighbor="+l_neighbor);
-				l_orderinput = "advance " + l_playersArray.get(i).getD_Country().get(0).getD_countryName() + " "+l_neighbor+ " "+l_playersArray.get(i).getD_Country().get(0).getD_armyDeployedOnCountry();
-				System.out.println("For testcase, we have the following command\n"+l_orderinput);
+				l_orderinput=l_sc.nextLine();
 			}
 			else
 			{
-				if(l_playersArray.get(i).getStrategy() instanceof HumanPlayerStrategy)
+				if(l_playersArray.get(i).issue_order())
 				{
-					l_orderinput=l_sc.nextLine();
+					Order o = l_playersArray.get(i).next_order();
+					l_orderinput=o.getOrderContent();
 				}
 				else
-				{
-					if(l_playersArray.get(i).issue_order())
-					{
-						Order o = l_playersArray.get(i).next_order();
-						l_orderinput=o.getOrderContent();
-					}
-					else
-						continue;
-				}
+					continue;
 			}
-				
 
 			if(l_orderinput.equalsIgnoreCase("exit"))
 			{
