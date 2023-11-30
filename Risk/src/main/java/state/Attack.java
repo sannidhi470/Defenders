@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
-import org.hamcrest.core.IsInstanceOf;
-
 import Controllers.GameEngine;
 import Models.Country;
 import Models.LogEntryBuffer;
@@ -173,7 +171,7 @@ public class Attack extends MainPlay
 			if(ge.getCheckIfTest())
 			{
 				String l_neighbor = Country.get_nameFromId(l_playersArray.get(i).getD_Country(), l_playersArray.get(i).getD_Country().get(0).getD_neighbours().get(0));
-				System.out.println(l_neighbor);
+				System.out.println("l_neighbor="+l_neighbor);
 				l_orderinput = "advance " + l_playersArray.get(i).getD_Country().get(0).getD_countryName() + " "+l_neighbor+ " "+l_playersArray.get(i).getD_Country().get(0).getD_armyDeployedOnCountry();
 				System.out.println("For testcase, we have the following command\n"+l_orderinput);
 			}
