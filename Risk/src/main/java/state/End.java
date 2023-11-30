@@ -127,7 +127,11 @@ public class End extends Phase
     {
     	Scanner sc= new Scanner(System.in);
     	System.out.println("Do you want to save the game?");
-    	String choice = sc.nextLine();
+    	String choice = "";
+    	if(ge.getCheckIfTournament() || ge.getCheckIfTest())
+    		choice = "no";
+    	else
+    		choice = sc.nextLine();
     	if(choice.equalsIgnoreCase("yes"))
     	{
     		System.out.println("Enter the command: ");
