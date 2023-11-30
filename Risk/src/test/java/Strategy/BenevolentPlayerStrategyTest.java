@@ -19,6 +19,9 @@ import state.Attack;
 import state.Phase;
 import state.Reinforcement;
 
+/**
+ * This is benevolent player test
+ */
 public class BenevolentPlayerStrategyTest {
 	
 	

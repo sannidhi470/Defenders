@@ -13,6 +13,9 @@ import Tools.MapLoader;
 import state.Attack;
 import state.Reinforcement;
 
+/**
+ * This is aggressive player test
+ */
 public class AggressivePlayerStrategyTest {
 
 	static GameEngine gameEngine = new GameEngine();
